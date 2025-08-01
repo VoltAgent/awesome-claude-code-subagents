@@ -1,3 +1,5 @@
+<img width="1500" height="500" alt="Group 32" src="https://github.com/user-attachments/assets/286b21c6-7dd5-453a-9360-677151939f4a" />
+
 # Awesome Claude Code Subagents 🤖
 
 The most comprehensive reference repository for production-ready Claude Code subagents. This collection features battle-tested subagent definitions following best practices and industry standards, continuously updated and maintained by the [VoltAgent](https://github.com/voltagent) open-source AI agent framework maintainers.
