@@ -311,8 +311,7 @@ MIT License - see [LICENSE](LICENSE)
 
 - [VoltAgent Framework](https://github.com/voltagent/voltagent)
 - [Claude Code Documentation](https://docs.anthropic.com/claude-code)
-- [MCP Tool Registry](https://github.com/modelcontextprotocol/tools)
-- [Community Discord](https://discord.gg/voltagent)
+- [Community Discord](https://s.voltagent.dev/discord)
 
 ---
 
