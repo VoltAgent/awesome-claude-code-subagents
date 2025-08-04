@@ -7,9 +7,8 @@ Thank you for your interest in contributing to this collection!
 ### Adding a New Subagent
 
 1. **Choose the right category** - Place your subagent in the most appropriate category folder
-2. **Use the template** - Follow the structure in `templates/basic-agent-template.md`
-3. **Test your subagent** - Ensure it works with Claude Code
-4. **Submit a PR** - Include a clear description of the subagent's purpose
+2. **Test your subagent** - Ensure it works with Claude Code
+3. **Submit a PR** - Include a clear description of the subagent's purpose
 
 ### Subagent Requirements
 
