@@ -21,6 +21,19 @@ This repository serves as the definitive collection of Claude Code subagents - s
 3. Use with Claude Code or integrate into your workflow
 4. Customize based on your project requirements
 
+## ⭐ Featured Subagents
+
+1. [Backend Developer](categories/01-core-development/backend-developer.md) - Scalable API development
+2. [Frontend Developer](categories/01-core-development/frontend-developer.md) - Modern UI engineering
+3. [Fullstack Developer](categories/01-core-development/fullstack-developer.md) - End-to-end features
+4. [GraphQL Architect](categories/01-core-development/graphql-architect.md) - GraphQL federation expert
+5. [Microservices Architect](categories/01-core-development/microservices-architect.md) - Distributed systems
+6. [AI Engineer](categories/05-data-ai/ai-engineer.md) - AI system design and deployment
+7. [DevOps Engineer](categories/03-infrastructure/devops-engineer.md) - CI/CD and automation
+8. [Security Auditor](categories/04-quality-security/security-auditor.md) - Security vulnerability expert
+9. [Agent Organizer](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
+10. [Research Analyst](categories/10-research-analysis/research-analyst.md) - Comprehensive research specialist
+
 ## 📚 Categories
 
 ### [01. Core Development](categories/01-core-development/)
@@ -217,18 +230,7 @@ Your subagent becomes immediately available. Claude Code will automatically enga
 
 Note: When naming conflicts occur, project-specific subagents override global ones.
 
-## ⭐ Featured Subagents
 
-1. [Backend Developer](categories/01-core-development/backend-developer.md) - Scalable API development
-2. [Frontend Developer](categories/01-core-development/frontend-developer.md) - Modern UI engineering
-3. [Fullstack Developer](categories/01-core-development/fullstack-developer.md) - End-to-end features
-4. [GraphQL Architect](categories/01-core-development/graphql-architect.md) - GraphQL federation expert
-5. [Microservices Architect](categories/01-core-development/microservices-architect.md) - Distributed systems
-6. [AI Engineer](categories/05-data-ai/ai-engineer.md) - AI system design and deployment
-7. [DevOps Engineer](categories/03-infrastructure/devops-engineer.md) - CI/CD and automation
-8. [Security Auditor](categories/04-quality-security/security-auditor.md) - Security vulnerability expert
-9. [Agent Organizer](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
-10. [Research Analyst](categories/10-research-analysis/research-analyst.md) - Comprehensive research specialist
 
 ## 🛠️ How to Use Subagents
 
