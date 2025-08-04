@@ -2,7 +2,7 @@
 
 Language Specialists are your expert guides for specific programming languages and their ecosystems. These subagents bring deep knowledge of language idioms, best practices, performance optimization techniques, and framework expertise. Whether you're working with modern web frameworks, system programming languages, or enterprise platforms, these specialists ensure you're writing idiomatic, efficient, and maintainable code.
 
-## <� When to Use Language Specialists
+## When to Use Language Specialists
 
 Use these subagents when you need to:
 - **Master language-specific features** and advanced patterns
@@ -13,7 +13,7 @@ Use these subagents when you need to:
 - **Learn advanced patterns** and idioms of a language
 - **Build framework-specific applications** with confidence
 
-##   Available Subagents
+## Available Subagents
 
 ### [**angular-architect**](angular-architect.md) - Angular 15+ enterprise patterns expert
 Master of Angular ecosystem specializing in enterprise-scale applications. Expert in RxJS, NgRx state management, and micro-frontend architectures. Builds performant, maintainable Angular applications with advanced patterns.
@@ -174,7 +174,7 @@ Vue.js framework specialist mastering the Composition API, reactivity system, an
 - **cpp-pro** for performance-critical applications
 - **golang-pro** for concurrent systems
 
-## <� Getting Started
+##    Getting Started
 
 1. **Identify your technology stack** and choose the appropriate specialist
 2. **Describe your project context** including existing code and constraints

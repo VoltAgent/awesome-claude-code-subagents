@@ -4,7 +4,7 @@
 
 The most comprehensive reference repository for production-ready Claude Code subagents. This collection features battle-tested subagent definitions following best practices and industry standards, continuously updated and maintained by the [VoltAgent](https://github.com/voltagent/voltagent) open-source AI agent framework maintainers.
 
-## 🎯 What is this?
+## What is this?
 
 This repository serves as the definitive collection of Claude Code subagents - specialized AI agents designed for specific development tasks. Each subagent is:
 
@@ -14,25 +14,14 @@ This repository serves as the definitive collection of Claude Code subagents - s
 - **Continuously maintained**: Regular updates with new capabilities
 - **Community-driven**: Open to contributions and improvements
 
-## 🚀 Quick Start
+## Quick Start
 
 1. Browse categories to find the subagent you need
 2. Copy the subagent definition
 3. Use with Claude Code or integrate into your workflow
 4. Customize based on your project requirements
 
-## ⭐ Featured Subagents
 
-1. [Backend Developer](categories/01-core-development/backend-developer.md) - Scalable API development
-2. [Frontend Developer](categories/01-core-development/frontend-developer.md) - Modern UI engineering
-3. [Fullstack Developer](categories/01-core-development/fullstack-developer.md) - End-to-end features
-4. [GraphQL Architect](categories/01-core-development/graphql-architect.md) - GraphQL federation expert
-5. [Microservices Architect](categories/01-core-development/microservices-architect.md) - Distributed systems
-6. [AI Engineer](categories/05-data-ai/ai-engineer.md) - AI system design and deployment
-7. [DevOps Engineer](categories/03-infrastructure/devops-engineer.md) - CI/CD and automation
-8. [Security Auditor](categories/04-quality-security/security-auditor.md) - Security vulnerability expert
-9. [Agent Organizer](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
-10. [Research Analyst](categories/10-research-analysis/research-analyst.md) - Comprehensive research specialist
 
 ## 📚 Categories
 
