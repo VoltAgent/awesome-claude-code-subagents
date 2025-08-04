@@ -51,19 +51,29 @@ Essential development subagents for everyday coding tasks.
 
 ### [02. Language Specialists](categories/02-language-specialists/)
 Language-specific experts with deep framework knowledge.
-
-- [**python-pro**](categories/02-language-specialists/python-pro.md) - Python ecosystem master
-- [**javascript-pro**](categories/02-language-specialists/javascript-pro.md) - JavaScript development expert
 - [**typescript-pro**](categories/02-language-specialists/typescript-pro.md) - TypeScript specialist
-- [**rust-engineer**](categories/02-language-specialists/rust-engineer.md) - Systems programming expert
-- [**golang-pro**](categories/02-language-specialists/golang-pro.md) - Go concurrency specialist
-- [**java-architect**](categories/02-language-specialists/java-architect.md) - Enterprise Java expert
+- [**sql-pro**](categories/02-language-specialists/sql-pro.md) - Database query expert
+- [**swift-expert**](categories/02-language-specialists/swift-expert.md) - iOS and macOS specialist
+- [**vue-expert**](categories/02-language-specialists/vue-expert.md) - Vue 3 Composition API expert
+- [**angular-architect**](categories/02-language-specialists/angular-architect.md) - Angular 15+ enterprise patterns expert
 - [**cpp-pro**](categories/02-language-specialists/cpp-pro.md) - C++ performance expert
 - [**csharp-developer**](categories/02-language-specialists/csharp-developer.md) - .NET ecosystem specialist
+- [**django-developer**](categories/02-language-specialists/django-developer.md) - Django 4+ web development expert
+- [**dotnet-core-expert**](categories/02-language-specialists/dotnet-core-expert.md) - .NET 8 cross-platform specialist
+- [**flutter-expert**](categories/02-language-specialists/flutter-expert.md) - Flutter 3+ cross-platform mobile expert
+- [**golang-pro**](categories/02-language-specialists/golang-pro.md) - Go concurrency specialist
+- [**java-architect**](categories/02-language-specialists/java-architect.md) - Enterprise Java expert
+- [**javascript-pro**](categories/02-language-specialists/javascript-pro.md) - JavaScript development expert
 - [**kotlin-specialist**](categories/02-language-specialists/kotlin-specialist.md) - Modern JVM language expert
+- [**laravel-specialist**](categories/02-language-specialists/laravel-specialist.md) - Laravel 10+ PHP framework expert
+- [**nextjs-developer**](categories/02-language-specialists/nextjs-developer.md) - Next.js 14+ full-stack specialist
 - [**php-pro**](categories/02-language-specialists/php-pro.md) - PHP web development expert
-- [**swift-expert**](categories/02-language-specialists/swift-expert.md) - iOS and macOS specialist
-- [**sql-pro**](categories/02-language-specialists/sql-pro.md) - Database query expert
+- [**python-pro**](categories/02-language-specialists/python-pro.md) - Python ecosystem master
+- [**rails-expert**](categories/02-language-specialists/rails-expert.md) - Rails 7+ rapid development expert
+- [**react-specialist**](categories/02-language-specialists/react-specialist.md) - React 18+ modern patterns expert
+- [**rust-engineer**](categories/02-language-specialists/rust-engineer.md) - Systems programming expert
+- [**spring-boot-engineer**](categories/02-language-specialists/spring-boot-engineer.md) - Spring Boot 3+ microservices expert
+
 
 ### [03. Infrastructure](categories/03-infrastructure/)
 DevOps, cloud, and deployment specialists.
