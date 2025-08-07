@@ -2,7 +2,10 @@
 
 # Awesome Claude Code Subagents 
 
-The most comprehensive reference repository for production-ready Claude Code subagents. This collection features battle-tested subagent definitions following best practices and industry standards, continuously updated and maintained by the [VoltAgent](https://github.com/voltagent/voltagent) open-source AI agent framework maintainers.
+The most comprehensive reference repository for production-ready Claude Code subagents. This collection features subagent definitions following best practices and industry standards. 
+
+
+continuously updated and maintained by the [VoltAgent](https://github.com/voltagent/voltagent) open-source AI agent framework maintainers.
 
 ## What is this?
 
