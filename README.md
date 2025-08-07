@@ -1,8 +1,25 @@
 <img width="1500" height="500" alt="Group 32" src="https://github.com/user-attachments/assets/286b21c6-7dd5-453a-9360-677151939f4a" />
 
+<br />
+<br/>
+
+<div align="center">
+    <strong>The most comprehensive reference repository for production-ready Claude Code subagents. This collection features subagent definitions following best practices and industry standards.</strong>
+    <br />
+    <br />
+</div>
+
+<div align="center">
+    
+[![Discord](https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://s.voltagent.dev/discord)
+[![Twitter Follow](https://img.shields.io/twitter/follow/voltagent_dev?style=social)](https://twitter.com/voltagent_dev)
+    
+</div>
+
+<br/>
+
 # Awesome Claude Code Subagents 
 
-The most comprehensive reference repository for production-ready Claude Code subagents. This collection features battle-tested subagent definitions following best practices and industry standards, continuously updated and maintained by the [VoltAgent](https://github.com/voltagent/voltagent) open-source AI agent framework maintainers.
 
 ## What is this?
 
@@ -21,6 +38,12 @@ This repository serves as the definitive collection of Claude Code subagents - s
 3. Use with Claude Code or integrate into your workflow
 4. Customize based on your project requirements
 
+
+### ⚡️ Maintained by the [VoltAgent](https://github.com/voltagent/voltagent) open-source AI agent framework community.
+
+<a href="https://github.com/VoltAgent/voltagent">
+<img width="1800" alt="435380213-b6253409-8741-462b-a346-834cd18565a9" src="https://github.com/user-attachments/assets/452a03e7-eeda-4394-9ee7-0ffbcf37245c" />
+</a>
 
 
 ## 📚 Categories
