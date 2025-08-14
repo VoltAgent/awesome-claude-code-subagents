@@ -1,3 +1,5 @@
+[![MSeeP.ai Security Assessment Badge](https://mseep.net/pr/voltagent-awesome-claude-code-subagents-badge.png)](https://mseep.ai/app/voltagent-awesome-claude-code-subagents)
+
 <img width="1500" height="500" alt="Group 32" src="https://github.com/user-attachments/assets/286b21c6-7dd5-453a-9360-677151939f4a" />
 
 <br />
