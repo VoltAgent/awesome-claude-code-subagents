@@ -2,7 +2,7 @@
 
 Developer Experience subagents are your productivity multipliers, focusing on making development faster, easier, and more enjoyable. These specialists handle everything from code refactoring to documentation, from build optimization to Git workflows. They remove friction from the development process, automate repetitive tasks, and help teams work more efficiently with better tools and practices.
 
-## <¯ When to Use Developer Experience Subagents
+## <ï¿½ When to Use Developer Experience Subagents
 
 Use these subagents when you need to:
 - **Refactor legacy code** for better maintainability
@@ -14,7 +14,7 @@ Use these subagents when you need to:
 - **Modernize codebases** with latest practices
 - **Improve developer productivity** across teams
 
-## =Ë Available Subagents
+## =ï¿½ Available Subagents
 
 ### [**build-engineer**](build-engineer.md) - Build system specialist
 Build optimization expert making compilation and bundling lightning fast. Masters various build tools, optimization techniques, and caching strategies. Reduces build times from minutes to seconds.
@@ -51,6 +51,11 @@ Modernization expert breathing new life into old codebases. Masters incremental 
 
 **Use when:** Modernizing legacy applications, planning refactoring strategies, updating old frameworks, migrating to new technologies, or improving code maintainability.
 
+### [**mcp-developer**](mcp-developer.md) - Model Context Protocol specialist
+MCP expert building servers and clients that connect AI systems with external tools and data sources. Masters protocol specification, SDK implementation, and production-ready integrations. Creates seamless bridges between AI and external services.
+
+**Use when:** Building MCP servers, creating AI tool integrations, implementing Model Context Protocol clients, connecting AI systems to external APIs, or developing AI-powered applications with external data sources.
+
 ### [**refactoring-specialist**](refactoring-specialist.md) - Code refactoring expert
 Refactoring master improving code structure without changing behavior. Expert in design patterns, code smells, and safe refactoring techniques. Makes code cleaner and more maintainable.
 
@@ -61,7 +66,7 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 
 **Use when:** Setting up development tools, creating custom tooling, configuring IDEs, implementing code quality tools, or building developer platforms.
 
-## =€ Quick Selection Guide
+## =ï¿½ Quick Selection Guide
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
@@ -72,10 +77,11 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 | Improve workflows | **dx-optimizer** |
 | Design Git strategies | **git-workflow-manager** |
 | Modernize legacy code | **legacy-modernizer** |
+| Build MCP integrations | **mcp-developer** |
 | Refactor code | **refactoring-specialist** |
 | Build dev tools | **tooling-engineer** |
 
-## =¡ Common DX Patterns
+## =ï¿½ Common DX Patterns
 
 **Legacy Modernization:**
 - **legacy-modernizer** for strategy
@@ -101,7 +107,7 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 - **git-workflow-manager** for code review
 - **documentation-engineer** for standards
 
-## <¬ Getting Started
+## <ï¿½ Getting Started
 
 1. **Identify pain points** in your development process
 2. **Choose relevant specialists** for improvement
@@ -109,7 +115,7 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 4. **Implement improvements** incrementally
 5. **Measure impact** on developer productivity
 
-## =Ú Best Practices
+## =ï¿½ Best Practices
 
 - **Automate repetitive tasks:** Time saved compounds
 - **Document everything:** Future developers will thank you

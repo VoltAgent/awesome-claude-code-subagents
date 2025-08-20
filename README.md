@@ -145,6 +145,7 @@ Tooling and developer productivity experts.
 - [**dx-optimizer**](categories/06-developer-experience/dx-optimizer.md) - Developer experience optimization specialist
 - [**git-workflow-manager**](categories/06-developer-experience/git-workflow-manager.md) - Git workflow and branching expert
 - [**legacy-modernizer**](categories/06-developer-experience/legacy-modernizer.md) - Legacy code modernization specialist
+- [**mcp-developer**](categories/06-developer-experience/mcp-developer.md) - Model Context Protocol specialist
 - [**refactoring-specialist**](categories/06-developer-experience/refactoring-specialist.md) - Code refactoring expert
 - [**tooling-engineer**](categories/06-developer-experience/tooling-engineer.md) - Developer tooling specialist
 
