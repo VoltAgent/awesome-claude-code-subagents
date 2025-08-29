@@ -53,14 +53,15 @@ This repository serves as the definitive collection of Claude Code subagents - s
 ### [01. Core Development](categories/01-core-development/)
 Essential development subagents for everyday coding tasks.
 
-- [**frontend-developer**](categories/01-core-development/frontend-developer.md) - UI/UX specialist for React, Vue, and Angular
-- [**backend-developer**](categories/01-core-development/backend-developer.md) - Server-side expert for scalable APIs
-- [**fullstack-developer**](categories/01-core-development/fullstack-developer.md) - End-to-end feature development
-- [**mobile-developer**](categories/01-core-development/mobile-developer.md) - Cross-platform mobile specialist
-- [**electron-pro**](categories/01-core-development/electron-pro.md) - Desktop application expert
 - [**api-designer**](categories/01-core-development/api-designer.md) - REST and GraphQL API architect
+- [**backend-developer**](categories/01-core-development/backend-developer.md) - Server-side expert for scalable APIs
+- [**electron-pro**](categories/01-core-development/electron-pro.md) - Desktop application expert
+- [**frontend-developer**](categories/01-core-development/frontend-developer.md) - UI/UX specialist for React, Vue, and Angular
+- [**fullstack-developer**](categories/01-core-development/fullstack-developer.md) - End-to-end feature development
 - [**graphql-architect**](categories/01-core-development/graphql-architect.md) - GraphQL schema and federation expert
 - [**microservices-architect**](categories/01-core-development/microservices-architect.md) - Distributed systems designer
+- [**mobile-developer**](categories/01-core-development/mobile-developer.md) - Cross-platform mobile specialist
+- [**ui-designer**](categories/01-core-development/ui-designer.md) - Visual design and interaction specialist
 - [**websocket-engineer**](categories/01-core-development/websocket-engineer.md) - Real-time communication specialist
 
 ### [02. Language Specialists](categories/02-language-specialists/)
