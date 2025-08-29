@@ -57,6 +57,7 @@ Essential development subagents for everyday coding tasks.
 - [**backend-developer**](categories/01-core-development/backend-developer.md) - Server-side expert for scalable APIs
 - [**fullstack-developer**](categories/01-core-development/fullstack-developer.md) - End-to-end feature development
 - [**mobile-developer**](categories/01-core-development/mobile-developer.md) - Cross-platform mobile specialist
+- [**ui-designer**](categories/01-core-development/ui-designer.md) - Visual design and interaction specialist
 - [**electron-pro**](categories/01-core-development/electron-pro.md) - Desktop application expert
 - [**api-designer**](categories/01-core-development/api-designer.md) - REST and GraphQL API architect
 - [**graphql-architect**](categories/01-core-development/graphql-architect.md) - GraphQL schema and federation expert
