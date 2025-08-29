@@ -76,6 +76,7 @@ Language-specific experts with deep framework knowledge.
 - [**csharp-developer**](categories/02-language-specialists/csharp-developer.md) - .NET ecosystem specialist
 - [**django-developer**](categories/02-language-specialists/django-developer.md) - Django 4+ web development expert
 - [**dotnet-core-expert**](categories/02-language-specialists/dotnet-core-expert.md) - .NET 8 cross-platform specialist
+- [**dotnet-framework-4.8-expert**](categories/02-language-specialists/dotnet-framework-4.8-expert.md) - .NET Framework legacy enterprise specialist
 - [**flutter-expert**](categories/02-language-specialists/flutter-expert.md) - Flutter 3+ cross-platform mobile expert
 - [**golang-pro**](categories/02-language-specialists/golang-pro.md) - Go concurrency specialist
 - [**java-architect**](categories/02-language-specialists/java-architect.md) - Enterprise Java expert

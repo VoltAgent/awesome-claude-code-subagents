@@ -40,6 +40,11 @@ Modern .NET expert specializing in cross-platform development, minimal APIs, and
 
 **Use when:** Building cross-platform .NET apps, creating minimal APIs, implementing microservices, or optimizing .NET performance.
 
+### [**dotnet-framework-4.8-expert**](dotnet-framework-4.8-expert.md) - .NET Framework legacy enterprise specialist
+Expert in maintaining and modernizing .NET Framework 4.8 enterprise applications. Masters Web Forms, WCF services, Windows services, and enterprise integration patterns with focus on stability and backward compatibility.
+
+**Use when:** Maintaining legacy .NET Framework apps, modernizing Web Forms applications, working with WCF services, or integrating with Windows enterprise systems.
+
 ### [**flutter-expert**](flutter-expert.md) - Flutter 3+ cross-platform mobile expert
 Mobile development specialist creating beautiful, natively compiled applications from a single codebase. Expert in widget composition, state management, and platform-specific implementations.
 
@@ -134,6 +139,7 @@ Vue.js framework specialist mastering the Composition API, reactivity system, an
 | C#/.NET | **csharp-developer** | Windows apps, enterprise software |
 | Django | **django-developer** | Python web apps, REST APIs |
 | .NET Core | **dotnet-core-expert** | Cross-platform .NET, microservices |
+| .NET Framework | **dotnet-framework-4.8-expert** | Legacy enterprise apps, Windows services |
 | Flutter | **flutter-expert** | Cross-platform mobile apps |
 | Go | **golang-pro** | Concurrent systems, microservices |
 | Java | **java-architect** | Enterprise applications |
