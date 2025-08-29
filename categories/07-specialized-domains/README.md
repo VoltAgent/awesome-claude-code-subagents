@@ -2,7 +2,7 @@
 
 Specialized Domains subagents are your experts in specific technology verticals and industries. These specialists bring deep knowledge of domain-specific challenges, regulations, and best practices. From blockchain and IoT to fintech and gaming, they understand the unique requirements and patterns of their specialized fields, helping you build applications that excel in these complex domains.
 
-## <¯ When to Use Specialized Domains Subagents
+## <ï¿½ When to Use Specialized Domains Subagents
 
 Use these subagents when you need to:
 - **Build blockchain applications** and smart contracts
@@ -14,7 +14,7 @@ Use these subagents when you need to:
 - **Create mobile applications** with native features
 - **Design financial algorithms** for trading systems
 
-## =Ë Available Subagents
+## =ï¿½ Available Subagents
 
 ### [**api-documenter**](api-documenter.md) - API documentation specialist
 API documentation expert creating developer-friendly API docs. Masters OpenAPI/Swagger, interactive documentation, and API best practices. Makes APIs discoverable and easy to integrate.
@@ -66,7 +66,12 @@ Risk management specialist identifying and mitigating various risks. Expert in r
 
 **Use when:** Assessing technical risks, implementing risk controls, building risk models, ensuring compliance, or developing risk management systems.
 
-## =€ Quick Selection Guide
+### [**seo-specialist**](seo-specialist.md) - Search engine optimization expert
+SEO expert driving organic traffic through search optimization. Masters technical SEO, content strategy, and link building. Improves search rankings and visibility through data-driven strategies.
+
+**Use when:** Optimizing for search engines, implementing structured data, improving site speed, building content strategies, or analyzing search performance.
+
+## =ï¿½ Quick Selection Guide
 
 | Domain | Use this subagent | Best For |
 |--------|-------------------|----------|
@@ -80,8 +85,9 @@ Risk management specialist identifying and mitigating various risks. Expert in r
 | Payments | **payment-integration** | Payment gateways, PCI |
 | Quantitative | **quant-analyst** | Trading algorithms, risk |
 | Risk Management | **risk-manager** | Risk assessment, compliance |
+| SEO/Search | **seo-specialist** | Search optimization, rankings |
 
-## =¡ Common Domain Patterns
+## =ï¿½ Common Domain Patterns
 
 **Fintech Application:**
 - **fintech-engineer** for compliance
@@ -107,7 +113,13 @@ Risk management specialist identifying and mitigating various risks. Expert in r
 - **payment-integration** for monetization
 - **api-documenter** for game APIs
 
-## <¬ Getting Started
+**E-commerce Platform:**
+- **seo-specialist** for organic traffic
+- **payment-integration** for checkout
+- **mobile-app-developer** for mobile commerce
+- **risk-manager** for fraud prevention
+
+## <ï¿½ Getting Started
 
 1. **Understand domain requirements** and constraints
 2. **Choose appropriate specialists** for your domain
@@ -115,7 +127,7 @@ Risk management specialist identifying and mitigating various risks. Expert in r
 4. **Plan for domain-specific challenges** early
 5. **Leverage domain expertise** throughout development
 
-## =Ú Best Practices
+## =ï¿½ Best Practices
 
 - **Domain knowledge matters:** Understand the field deeply
 - **Compliance is critical:** Many domains have regulations
