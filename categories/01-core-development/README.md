@@ -65,6 +65,11 @@ Master of real-time, bidirectional communication. Implements WebSocket servers, 
 
 **Use when:** Building chat applications, implementing real-time notifications, creating collaborative features, or developing live-updating dashboards.
 
+### [**wordpress-master**](wordpress-master.md) - WordPress development and optimization expert
+Specialist in WordPress ecosystem who builds everything from simple blogs to enterprise platforms. Masters theme development, plugin architecture, Gutenberg blocks, and performance optimization. Expert in both classic PHP development and modern block-based solutions.
+
+**Use when:** Building WordPress sites, developing custom themes, creating plugins, implementing WooCommerce solutions, or optimizing WordPress performance.
+
 ## 🚀 Quick Selection Guide
 
 | If you need to... | Use this subagent |
@@ -79,6 +84,7 @@ Master of real-time, bidirectional communication. Implements WebSocket servers, 
 | Implement GraphQL | **graphql-architect** |
 | Build a distributed system | **microservices-architect** |
 | Add real-time features | **websocket-engineer** |
+| Create a WordPress site | **wordpress-master** |
 
 ## 💡 Common Combinations
 
@@ -101,6 +107,11 @@ Master of real-time, bidirectional communication. Implements WebSocket servers, 
 - Begin with **ui-designer** for visual design and prototypes
 - Use **frontend-developer** for implementation
 - Add **accessibility-tester** for compliance validation
+
+**WordPress Project:**
+- Start with **wordpress-master** for architecture and setup
+- Add **php-pro** for custom PHP development
+- Use **frontend-developer** for custom JavaScript
 
 ## 🎬 Getting Started
 

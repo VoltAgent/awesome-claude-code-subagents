@@ -63,6 +63,7 @@ Essential development subagents for everyday coding tasks.
 - [**mobile-developer**](categories/01-core-development/mobile-developer.md) - Cross-platform mobile specialist
 - [**ui-designer**](categories/01-core-development/ui-designer.md) - Visual design and interaction specialist
 - [**websocket-engineer**](categories/01-core-development/websocket-engineer.md) - Real-time communication specialist
+- [**wordpress-master**](categories/01-core-development/wordpress-master.md) - WordPress development and optimization expert
 
 ### [02. Language Specialists](categories/02-language-specialists/)
 Language-specific experts with deep framework knowledge.
