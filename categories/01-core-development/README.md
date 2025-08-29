@@ -35,6 +35,11 @@ Expert in creating native and cross-platform mobile applications for iOS and And
 
 **Use when:** Building mobile apps, implementing mobile-specific features, optimizing for mobile performance, or preparing for app store deployment.
 
+### [**ui-designer**](ui-designer.md) - Visual design and interaction specialist
+Master of visual design who creates beautiful, intuitive, and accessible user interfaces. Expert in design systems, typography, color theory, and interaction patterns. Transforms ideas into polished designs that balance aesthetics with functionality while maintaining brand consistency.
+
+**Use when:** Creating visual designs, building design systems, defining interaction patterns, establishing brand identity, or preparing design handoffs for development.
+
 ### [**electron-pro**](electron-pro.md) - Desktop application expert
 Specialist in building cross-platform desktop applications using web technologies. Masters Electron framework for creating installable desktop apps with native capabilities. Handles auto-updates, system integration, and desktop-specific features.
 
@@ -68,6 +73,7 @@ Master of real-time, bidirectional communication. Implements WebSocket servers, 
 | Create a responsive web UI | **frontend-developer** |
 | Develop a complete web application | **fullstack-developer** |
 | Build a mobile app | **mobile-developer** |
+| Design user interfaces | **ui-designer** |
 | Create a desktop application | **electron-pro** |
 | Design a new API structure | **api-designer** |
 | Implement GraphQL | **graphql-architect** |
@@ -90,6 +96,11 @@ Master of real-time, bidirectional communication. Implements WebSocket servers, 
 - Start with **websocket-engineer** for real-time infrastructure
 - Add **backend-developer** for business logic
 - Use **frontend-developer** for interactive UI
+
+**Design-Driven Development:**
+- Begin with **ui-designer** for visual design and prototypes
+- Use **frontend-developer** for implementation
+- Add **accessibility-tester** for compliance validation
 
 ## 🎬 Getting Started
 
