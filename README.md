@@ -17,6 +17,10 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/voltagent_dev?style=social)](https://twitter.com/voltagent_dev)
     
 </div>
+<div align="center">
+ ⚡️ Maintained by the <a href="https://github.com/voltagent/voltagent">VoltAgent </a> open-source AI agent framework community.
+    <br />
+</div>
 
 <br/>
 
@@ -41,11 +45,6 @@ This repository serves as the definitive collection of Claude Code subagents - s
 4. Customize based on your project requirements
 
 
-### ⚡️ Maintained by the [VoltAgent](https://github.com/voltagent/voltagent) open-source AI agent framework community.
-
-<a href="https://github.com/VoltAgent/voltagent">
-<img width="1800" alt="435380213-b6253409-8741-462b-a346-834cd18565a9" src="https://github.com/user-attachments/assets/452a03e7-eeda-4394-9ee7-0ffbcf37245c" />
-</a>
 
 
 ## 📚 Categories
