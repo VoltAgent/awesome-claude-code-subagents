@@ -11,3 +11,7 @@ __pycache__/
 dist/
 build/
 *.egg-info/
+
+# Claude Code
+.claude/
+.claude_history
