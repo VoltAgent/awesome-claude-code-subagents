@@ -322,7 +322,11 @@ Each subagent's `tools` field specifies Claude Code built-in tools, optimized fo
 - **Code writers** (developers, engineers): `Read, Write, Edit, Bash, Glob, Grep` - create and execute
 - **Documentation agents** (writers, documenters): `Read, Write, Edit, Glob, Grep, WebFetch, WebSearch` - document with research
 
-This ensures each agent has exactly the permissions it needs—no more, no less—improving security and clarity. You can extend any agent by adding additional tools (MCP servers or other external tools) to the `tools` field based on your specific needs.
+Each agent has minimal necessary permissions. You can extend agents by adding MCP servers or external tools to the `tools` field.
+
+## 🔧 MCP Tools & Resources
+
+If you're using MCP servers with these agents, feel free to add them here.
 
 ## 🤝 Contributing
 
