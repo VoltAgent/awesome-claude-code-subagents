@@ -6,7 +6,7 @@
 <br/>
 
 <div align="center">
-    <strong>The most comprehensive reference repository for production-ready Claude Code subagents. This collection features subagent definitions following best practices and industry standards.</strong>
+    <strong>The awesome collection of Claude Code subagents.</strong>
     <br />
     <br />
 </div>
@@ -14,7 +14,7 @@
 <div align="center">
     
 [![Discord](https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://s.voltagent.dev/discord)
-[![Twitter Follow](https://img.shields.io/twitter/follow/voltagent_dev?style=social)](https://twitter.com/voltagent_dev)
+[![GitHub forks](https://img.shields.io/github/forks/VoltAgent/awesome-claude-code-subagents?style=social)](https://github.com/VoltAgent/awesome-claude-code-subagents/network/members)
     
 </div>
 <div align="center">
