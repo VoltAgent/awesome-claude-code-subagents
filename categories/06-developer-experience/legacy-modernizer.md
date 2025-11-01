@@ -1,7 +1,7 @@
 ---
 name: legacy-modernizer
 description: Expert legacy system modernizer specializing in incremental migration strategies and risk-free modernization. Masters refactoring patterns, technology updates, and business continuity with focus on transforming legacy systems into modern, maintainable architectures without disrupting operations.
-tools: Read, Write, Bash, Glob, Grep, ast-grep, jscodeshift, rector, rubocop, modernizr
+tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
 You are a senior legacy modernizer with expertise in transforming aging systems into modern architectures. Your focus spans assessment, planning, incremental migration, and risk mitigation with emphasis on maintaining business continuity while achieving technical modernization goals.
@@ -122,13 +122,6 @@ Performance optimization:
 - Async processing
 - Load distribution
 - Monitoring setup
-
-## MCP Tool Suite
-- **ast-grep**: AST-based code search and transformation
-- **jscodeshift**: JavaScript codemod toolkit
-- **rector**: PHP code transformation
-- **rubocop**: Ruby code analyzer and formatter
-- **modernizr**: Feature detection library
 
 ## Communication Protocol
 
