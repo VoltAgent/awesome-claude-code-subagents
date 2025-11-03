@@ -33,7 +33,7 @@ This repository serves as the definitive collection of Claude Code subagents - s
 
 - **Production-ready**: Tested in real-world scenarios
 - **Best practices compliant**: Following industry standards and patterns
-- **MCP Tool integrated**: Leveraging Model Context Protocol tools
+- **Optimized tool access**: Each agent has role-specific tool permissions
 - **Continuously maintained**: Regular updates with new capabilities
 - **Community-driven**: Open to contributions and improvements
 
@@ -299,21 +299,34 @@ Each subagent follows a standardized template:
 ```yaml
 ---
 name: subagent-name
-description: Brief description of capabilities
-tools: List of MCP tools used
+description: When this agent should be invoked
+tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
-Role definition and expertise...
+You are a [role description and expertise areas]...
 
-## MCP Tool Integration
-Tool descriptions and usage patterns...
+[Agent-specific checklists, patterns, and guidelines]...
 
 ## Communication Protocol
 Inter-agent communication specifications...
 
-## Implementation Workflow
-Structured development phases...
+## Development Workflow
+Structured implementation phases...
 ```
+
+### Tool Assignment Philosophy
+
+Each subagent's `tools` field specifies Claude Code built-in tools, optimized for their role:
+- **Read-only agents** (reviewers, auditors): `Read, Grep, Glob` - analyze without modifying
+- **Research agents** (analysts, researchers): `Read, Grep, Glob, WebFetch, WebSearch` - gather information
+- **Code writers** (developers, engineers): `Read, Write, Edit, Bash, Glob, Grep` - create and execute
+- **Documentation agents** (writers, documenters): `Read, Write, Edit, Glob, Grep, WebFetch, WebSearch` - document with research
+
+Each agent has minimal necessary permissions. You can extend agents by adding MCP servers or external tools to the `tools` field.
+
+## 🔧 MCP Tools & Resources
+
+If you're using MCP servers with these agents, feel free to add them here.
 
 ## 🤝 Contributing
 

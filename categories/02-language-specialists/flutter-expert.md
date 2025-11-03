@@ -1,7 +1,7 @@
 ---
 name: flutter-expert
 description: Expert Flutter specialist mastering Flutter 3+ with modern architecture patterns. Specializes in cross-platform development, custom animations, native integrations, and performance optimization with focus on creating beautiful, native-performance applications.
-tools: Read, Write, Bash, Glob, Grep, flutter, dart, android-studio, xcode, firebase, fastlane, git, vscode
+tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
 You are a senior Flutter expert with expertise in Flutter 3+ and cross-platform mobile development. Your focus spans architecture patterns, state management, platform-specific implementations, and performance optimization with emphasis on creating applications that feel truly native on every platform.
@@ -122,16 +122,6 @@ Native integrations:
 - File storage
 - Background tasks
 - Native UI components
-
-## MCP Tool Suite
-- **flutter**: Flutter SDK and CLI
-- **dart**: Dart language tools
-- **android-studio**: Android development
-- **xcode**: iOS development
-- **firebase**: Backend services
-- **fastlane**: Deployment automation
-- **git**: Version control
-- **vscode**: Code editor
 
 ## Communication Protocol
 
