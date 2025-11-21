@@ -33,10 +33,10 @@
 
 This repository serves as the definitive collection of Claude Code subagents - specialized AI agents designed for specific development tasks. Each subagent is:
 
-- **Production-ready**: Tested in real-world scenarios
-- **Best practices compliant**: Following industry standards and patterns
-- **Optimized tool access**: Each agent has role-specific tool permissions
-- **Continuously maintained**: Regular updates with new capabilities
+- **Aligned with Anthropic's Best Practices**: Following the [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) guide
+- **Pattern-Based Design**: Each agent uses one of five proven workflow patterns (Prompt Chaining, Routing, Parallelization, Orchestrator-Workers, Evaluator-Optimizer)
+- **Optimized for Clarity**: Concise prompts with clear "when to use" and "when NOT to use" guidance
+- **Minimal Tool Access**: Each agent has only the permissions needed for its role
 - **Community-driven**: Open to contributions and improvements
 
 ## Quick Start
@@ -231,6 +231,17 @@ You can configure each subagent with specific tool access rights, enabling fine-
 - **Workflow Consistency**: Team-wide subagent sharing ensures uniform approaches to common tasks
 - **Security Control**: Tool access can be restricted based on subagent type and purpose
 
+### Design Principles (from Anthropic's Guide)
+
+These agents follow key principles from Anthropic's [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents):
+
+1. **Start Simple**: Each agent has a focused role with minimal complexity
+2. **Clear Boundaries**: "When NOT to Use" sections prevent over-engineering
+3. **Pattern-Based Workflows**: Each agent uses one proven orchestration pattern
+4. **Tool-Focused Design**: Clear guidance on how each tool should be used
+5. **Concrete Examples**: Real-world task examples show expected behavior
+6. **Error Recovery**: Explicit strategies for handling failures
+
 ### Getting Started with Subagents
 
 **1. Access the Subagent Manager**
@@ -296,25 +307,55 @@ Note: When naming conflicts occur, project-specific subagents override global on
 
 ## 📖 Subagent Structure
 
-Each subagent follows a standardized template:
+Each subagent follows a template aligned with [Anthropic's Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) guide:
 
 ```yaml
 ---
 name: subagent-name
-description: When this agent should be invoked
+description: One-line description of when to use this agent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
-You are a [role description and expertise areas]...
+# Role
+[2-3 sentence role definition with specific expertise]
 
-[Agent-specific checklists, patterns, and guidelines]...
+# When to Use This Agent
+[Bulleted list of activation scenarios]
 
-## Communication Protocol
-Inter-agent communication specifications...
+# When NOT to Use
+[When simpler approaches or other agents are better]
 
-## Development Workflow
-Structured implementation phases...
+# Workflow Pattern
+## Pattern: [Prompt Chaining | Routing | Parallelization | Orchestrator-Workers | Evaluator-Optimizer]
+[How this agent applies the pattern]
+
+# Core Process
+[4-5 numbered, concrete steps]
+
+# Tool Usage
+[How this agent uses each tool]
+
+# Error Handling
+[Specific recovery strategies]
+
+# Collaboration
+[Which agents to hand off to/receive from]
+
+# Example
+[Concrete task with approach and expected output]
 ```
+
+### Workflow Patterns
+
+Each agent uses one of five Anthropic-recommended patterns:
+
+| Pattern | Use Case | Example Agents |
+|---------|----------|----------------|
+| **Prompt Chaining** | Sequential steps building on each other | code-reviewer, incident-responder |
+| **Routing** | Classify then delegate to specialists | devops-incident-responder |
+| **Parallelization** | Independent concurrent tasks | security-auditor, devops-engineer |
+| **Orchestrator-Workers** | Dynamic task delegation | agent-organizer, kubernetes-specialist |
+| **Evaluator-Optimizer** | Iterative refinement | performance-engineer, prompt-engineer |
 
 ### Tool Assignment Philosophy
 
@@ -353,6 +394,8 @@ MIT License - see [LICENSE](LICENSE)
 
 ## 🔗 Related Resources
 
+- [Building Effective Agents (Anthropic)](https://www.anthropic.com/engineering/building-effective-agents) - The guide these agents are based on
+- [Claude Cookbooks - Agent Patterns](https://github.com/anthropics/claude-cookbooks/tree/main/patterns/agents) - Reference implementations
 - [VoltAgent Framework](https://github.com/voltagent/voltagent)
 - [Claude Code Documentation](https://docs.anthropic.com/claude-code)
 - [Community Discord](https://s.voltagent.dev/discord)
