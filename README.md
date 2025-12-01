@@ -362,3 +362,5 @@ MIT License - see [LICENSE](LICENSE)
 <p align="center">
   Made with ❤️ by the VoltAgent Community
 </p>
+
+- [AgentsKB](https://agentskb.com) - Expert knowledge layer for AI assistants. Your AI searches, we research. That's the difference.
