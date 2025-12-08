@@ -90,7 +90,7 @@ Python language expert covering web development, data science, automation, and s
 
 **Use when:** Writing Python applications, building data pipelines, creating automation scripts, or developing Python packages.
 
-### [**rails-expert**](rails-expert.md) - Rails 7+ rapid development expert
+### [**rails-expert**](rails-expert.md) - Rails 8.1 rapid development expert
 Ruby on Rails specialist focusing on convention over configuration and rapid development. Masters Active Record, Hotwire, and Rails' comprehensive feature set.
 
 **Use when:** Building Rails applications, implementing real-time features with Hotwire, optimizing Active Record queries, or upgrading Rails versions.
