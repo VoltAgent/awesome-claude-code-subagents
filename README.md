@@ -87,7 +87,7 @@ Language-specific experts with deep framework knowledge.
 - [**nextjs-developer**](categories/02-language-specialists/nextjs-developer.md) - Next.js 14+ full-stack specialist
 - [**php-pro**](categories/02-language-specialists/php-pro.md) - PHP web development expert
 - [**python-pro**](categories/02-language-specialists/python-pro.md) - Python ecosystem master
-- [**rails-expert**](categories/02-language-specialists/rails-expert.md) - Rails 7+ rapid development expert
+- [**rails-expert**](categories/02-language-specialists/rails-expert.md) - Rails 8.1 rapid development expert
 - [**react-specialist**](categories/02-language-specialists/react-specialist.md) - React 18+ modern patterns expert
 - [**rust-engineer**](categories/02-language-specialists/rust-engineer.md) - Systems programming expert
 - [**spring-boot-engineer**](categories/02-language-specialists/spring-boot-engineer.md) - Spring Boot 3+ microservices expert
