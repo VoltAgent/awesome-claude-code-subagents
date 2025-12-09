@@ -46,6 +46,11 @@ Performance specialist monitoring and optimizing agent systems. Expert in metric
 
 **Use when:** Monitoring agent performance, identifying bottlenecks, optimizing workflows, implementing metrics, or improving system efficiency.
 
+### [**sprint-engineer**](sprint-engineer.md) - Sprint planning and task decomposition expert
+Sprint engineering specialist transforming high-level plans into executable sprints. Masters task decomposition, dependency analysis, wave-based orchestration, and dynamic agent assignment. Generates machine-readable JSON outputs for automated execution.
+
+**Use when:** Converting strategic plans to sprints, decomposing phases into granular tasks, identifying dependencies, assigning agents dynamically, grouping tasks into parallel execution waves, or generating structured sprint definitions.
+
 ### [**task-distributor**](task-distributor.md) - Task allocation specialist
 Task distribution expert optimizing work allocation across agents. Masters load balancing, capability matching, and priority scheduling. Ensures efficient use of all available agents.
 
@@ -66,6 +71,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Combine knowledge sources | **knowledge-synthesizer** |
 | Scale agent operations | **multi-agent-coordinator** |
 | Monitor performance | **performance-monitor** |
+| Plan sprints from high-level plans | **sprint-engineer** |
 | Distribute tasks | **task-distributor** |
 | Automate workflows | **workflow-orchestrator** |
 
@@ -73,6 +79,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 
 **Complex Problem Solving:**
 - **agent-organizer** for task breakdown
+- **sprint-engineer** for plan decomposition and sprint generation
 - **task-distributor** for work allocation
 - **knowledge-synthesizer** for result combination
 - **error-coordinator** for failure handling
