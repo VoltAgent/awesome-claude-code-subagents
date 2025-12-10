@@ -2,7 +2,7 @@
 
 Infrastructure subagents are your DevOps and cloud computing experts, specializing in building, deploying, and maintaining modern infrastructure. These specialists handle everything from CI/CD pipelines to cloud architecture, from container orchestration to database administration. They ensure your applications run reliably, scale efficiently, and deploy seamlessly across any environment.
 
-## <¯ When to Use Infrastructure Subagents
+## <Â¯ When to Use Infrastructure Subagents
 
 Use these subagents when you need to:
 - **Design cloud architectures** for scalability and reliability
@@ -14,7 +14,12 @@ Use these subagents when you need to:
 - **Respond to incidents** and ensure high availability
 - **Secure infrastructure** and implement best practices
 
-## =Ë Available Subagents
+## =Ã‹ Available Subagents
+
+### [**azure-infra-engineer**](azure-infra-engineer.md) - Azure cloud infrastructure and automation specialist  
+Expert in Azure resource design, virtual networking, identity integration, and infrastructure-as-code patterns via PowerShell, Bicep, and Az modules.
+
+**Use when:** Designing Azure environments, deploying resources safely, integrating with M365, or creating automation scripts for Azure services and hybrid identity.
 
 ### [**cloud-architect**](cloud-architect.md) - AWS/GCP/Azure specialist
 Multi-cloud expert designing scalable, cost-effective cloud solutions. Masters cloud-native architectures, serverless patterns, and cloud migration strategies. Ensures optimal resource utilization across major cloud providers.
@@ -76,7 +81,12 @@ IaC specialist using Terraform for infrastructure automation. Masters module des
 
 **Use when:** Writing Terraform code, designing IaC architecture, managing Terraform state, creating reusable modules, or automating infrastructure provisioning.
 
-## =€ Quick Selection Guide
+### [**windows-infra-admin**](windows-infra-admin.md) - Windows infrastructure and Active Directory automation expert  
+Deep expertise in automating AD, DNS, DHCP, GPO, server configuration, and domain services using PowerShell. Focuses on safe change workflows, idempotent operations, and enterprise-grade operational patterns.
+
+**Use when:** Managing domain infrastructure, modifying AD objects, updating DNS/DHCP records, automating GPO tasks, or performing server-level automation in enterprise environments.
+
+## =â‚¬ Quick Selection Guide
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
@@ -93,7 +103,7 @@ IaC specialist using Terraform for infrastructure automation. Masters module des
 | Implement SRE practices | **sre-engineer** |
 | Write infrastructure code | **terraform-engineer** |
 
-## =¡ Common Infrastructure Patterns
+## =Â¡ Common Infrastructure Patterns
 
 **Cloud-Native Application:**
 - **cloud-architect** for architecture design
@@ -119,7 +129,7 @@ IaC specialist using Terraform for infrastructure automation. Masters module des
 - **sre-engineer** for prevention
 - **security-engineer** for security incidents
 
-## <¬ Getting Started
+## <Â¬ Getting Started
 
 1. **Assess your infrastructure needs** and current challenges
 2. **Choose the appropriate specialist** based on your requirements
@@ -127,7 +137,7 @@ IaC specialist using Terraform for infrastructure automation. Masters module des
 4. **Share existing configurations** if applicable
 5. **Follow the specialist's recommendations** for best practices
 
-## =Ú Best Practices
+## =Ãš Best Practices
 
 - **Start with architecture:** Design before implementation
 - **Automate everything:** Manual processes don't scale
