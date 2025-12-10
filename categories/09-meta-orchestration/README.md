@@ -2,7 +2,7 @@
 
 Meta & Orchestration subagents are your conductors and coordinators, managing complex multi-agent workflows and optimizing AI system performance. These specialists excel at the meta-level - orchestrating other agents, managing context, distributing tasks, and ensuring smooth collaboration between multiple AI systems. They turn chaos into symphony, making complex AI systems work harmoniously together.
 
-## <¯ When to Use Meta & Orchestration Subagents
+## <Â¯ When to Use Meta & Orchestration Subagents
 
 Use these subagents when you need to:
 - **Coordinate multiple agents** for complex tasks
@@ -14,7 +14,7 @@ Use these subagents when you need to:
 - **Design complex workflows** with multiple steps
 - **Scale AI operations** across teams
 
-## =Ë Available Subagents
+## =Ã‹ Available Subagents
 
 ### [**agent-organizer**](agent-organizer.md) - Multi-agent coordinator
 Orchestration expert managing complex multi-agent collaborations. Masters task decomposition, agent selection, and result synthesis. Turns complex problems into coordinated solutions.
@@ -30,6 +30,11 @@ Context specialist maximizing efficiency in AI conversations. Expert in context 
 Error handling expert ensuring graceful failure recovery. Masters error patterns, fallback strategies, and system resilience. Keeps multi-agent systems running smoothly despite failures.
 
 **Use when:** Implementing error handling, designing recovery strategies, managing cascading failures, monitoring system health, or building resilient workflows.
+
+### [**it-ops-orchestrator**](it-ops-orchestrator.md) - IT operations meta-orchestrator for PowerShell/.NET ecosystems
+Meta-orchestrator that routes ambiguous infrastructure and operations tasks to the right specialist agents, with a strong preference for PowerShell and .NET-based workflows. Understands the roles of Windows infra, Azure, M365, and PowerShell language experts, and coordinates them to deliver end-to-end solutions.
+
+**Use when:** A task smells like IT operations or infrastructure automation but spans multiple areas (AD, DNS/DHCP, Azure, M365, PowerShell modules). This orchestrator chooses and coordinates the best subagents (e.g., windows-infra-admin, azure-infra-engineer, m365-admin, powershell-5.1-expert, powershell-7-expert, powershell-module-architect) with PowerShell as the default implementation language.
 
 ### [**knowledge-synthesizer**](knowledge-synthesizer.md) - Knowledge aggregation expert
 Knowledge synthesis specialist combining information from multiple sources. Expert in information fusion, conflict resolution, and insight generation. Creates coherent knowledge from diverse inputs.
@@ -56,7 +61,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 
 **Use when:** Designing complex workflows, implementing process automation, managing workflow state, handling long-running processes, or building workflow engines.
 
-## =€ Quick Selection Guide
+## =â‚¬ Quick Selection Guide
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
@@ -69,7 +74,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Distribute tasks | **task-distributor** |
 | Automate workflows | **workflow-orchestrator** |
 
-## =¡ Common Orchestration Patterns
+## =Â¡ Common Orchestration Patterns
 
 **Complex Problem Solving:**
 - **agent-organizer** for task breakdown
@@ -95,7 +100,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 - **agent-organizer** for research coordination
 - **workflow-orchestrator** for knowledge workflows
 
-## <¬ Getting Started
+## <Â¬ Getting Started
 
 1. **Map your workflow** and identify complexity
 2. **Choose orchestration strategy** based on needs
@@ -103,7 +108,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 4. **Implement monitoring** from the start
 5. **Iterate and optimize** based on performance
 
-## =Ú Best Practices
+## =Ãš Best Practices
 
 - **Start simple:** Build complexity incrementally
 - **Monitor everything:** Visibility prevents issues
