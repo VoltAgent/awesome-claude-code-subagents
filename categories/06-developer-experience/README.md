@@ -61,6 +61,11 @@ PowerShell architecture specialist who turns ad-hoc scripts into clean, reusable
 
 **Use when:** Structuring or refactoring PowerShell modules, slimming down slow profiles, designing function/parameter conventions, or organizing shared infra tooling for sysadmins and helpdesk.
 
+### [**powershell-ui-architect**](powershell-ui-architect.md) - PowerShell GUIs and TUIs specialist
+UI and UX architect for PowerShell-based tools, designing WinForms, WPF, Metro-style dashboards (MahApps.Metro/Elysium), and terminal UIs on top of automation modules. Focuses on layering clean interfaces over reusable PowerShell/.NET logic without sacrificing maintainability.
+
+**Use when:** You need a graphical or terminal UI for PowerShell tooling, want to choose between WinForms/WPF/TUI/Metro approaches, or need help structuring XAML and event handlers around existing PowerShell modules and scripts.
+
 ### [**refactoring-specialist**](refactoring-specialist.md) - Code refactoring expert
 Refactoring master improving code structure without changing behavior. Expert in design patterns, code smells, and safe refactoring techniques. Makes code cleaner and more maintainable.
 
