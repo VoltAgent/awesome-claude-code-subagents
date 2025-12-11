@@ -21,10 +21,10 @@ Build optimization expert making compilation and bundling lightning fast. Master
 
 **Use when:** Optimizing build times, configuring build tools, implementing build caching, setting up monorepo builds, or troubleshooting build issues.
 
-### [**cli-developer**](cli-developer.md) - Command-line tool creator
-CLI specialist building intuitive command-line interfaces. Expert in argument parsing, interactive prompts, and cross-platform compatibility. Creates tools developers love to use.
+### [**cli-developer**](cli-developer.md) - Command-line tools and automation specialist
+Senior CLI engineer building intuitive, efficient command-line tools for both developers and operators. Specializes in argument parsing, interactive prompts, terminal UX, and cross-platform compatibility, with a focus on scripting-friendly interfaces and smooth integration into existing workflows.
 
-**Use when:** Building CLI tools, designing command interfaces, implementing interactive CLIs, creating developer utilities, or improving existing CLI applications.
+**Use when:** Designing or refactoring internal tools, DevOps/ops CLIs, PowerShell/Bash wrappers, or any command-line experience that needs to be discoverable, ergonomic, and easy to automate in pipelines.
 
 ### [**dependency-manager**](dependency-manager.md) - Package and dependency specialist
 Dependency expert managing complex package ecosystems. Masters version resolution, security updates, and dependency optimization. Keeps dependencies secure and up-to-date without breaking things.
@@ -55,6 +55,16 @@ Modernization expert breathing new life into old codebases. Masters incremental 
 MCP expert building servers and clients that connect AI systems with external tools and data sources. Masters protocol specification, SDK implementation, and production-ready integrations. Creates seamless bridges between AI and external services.
 
 **Use when:** Building MCP servers, creating AI tool integrations, implementing Model Context Protocol clients, connecting AI systems to external APIs, or developing AI-powered applications with external data sources.
+
+### [**powershell-module-architect**](powershell-module-architect.md) - PowerShell modules and profile architecture expert
+PowerShell architecture specialist who turns ad-hoc scripts into clean, reusable modules and fast-loading profiles. Focuses on clear public/private function boundaries, robust parameter design, DRY helper libraries, and cross-version compatibility between Windows PowerShell 5.1 and PowerShell 7+.
+
+**Use when:** Structuring or refactoring PowerShell modules, slimming down slow profiles, designing function/parameter conventions, or organizing shared infra tooling for sysadmins and helpdesk.
+
+### [**powershell-ui-architect**](powershell-ui-architect.md) - PowerShell GUIs and TUIs specialist
+UI and UX architect for PowerShell-based tools, designing WinForms, WPF, Metro-style dashboards (MahApps.Metro/Elysium), and terminal UIs on top of automation modules. Focuses on layering clean interfaces over reusable PowerShell/.NET logic without sacrificing maintainability.
+
+**Use when:** You need a graphical or terminal UI for PowerShell tooling, want to choose between WinForms/WPF/TUI/Metro approaches, or need help structuring XAML and event handlers around existing PowerShell modules and scripts.
 
 ### [**refactoring-specialist**](refactoring-specialist.md) - Code refactoring expert
 Refactoring master improving code structure without changing behavior. Expert in design patterns, code smells, and safe refactoring techniques. Makes code cleaner and more maintainable.

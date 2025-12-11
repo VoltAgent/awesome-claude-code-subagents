@@ -85,6 +85,16 @@ Modern PHP specialist with expertise in PHP 8+ features, Composer ecosystem, and
 
 **Use when:** Developing PHP applications, modernizing legacy PHP code, implementing PHP APIs, or working with PHP frameworks.
 
+### [**powershell-5.1-expert**](powershell-5.1-expert.md) - Windows PowerShell 5.1 automation specialist  
+Expert in PowerShell 5.1 scripting for Windows infrastructure, RSAT modules, and legacy .NET Framework environments. Ensures compatibility, stability, and safe automation across AD, DNS, DHCP, and GPO.
+
+**Use when:** Working with Windows-only automation, legacy modules, on-prem infrastructure, or scripts requiring compatibility with older servers and full .NET Framework.
+
+### [**powershell-7-expert**](powershell-7-expert.md) - Cross-platform PowerShell 7 automation specialist  
+Expert in modern PowerShell 7+, .NET 6/7 APIs, cross-platform scripting, CI/CD integration, and cloud automation using Az and Microsoft Graph.
+
+**Use when:** Building modern automation tools, cross-platform scripts, Azure integrations, CI/CD cmdlets, or modernization projects moving off Windows PowerShell.
+
 ### [**python-pro**](python-pro.md) - Python ecosystem master
 Python language expert covering web development, data science, automation, and system scripting. Masters Pythonic code patterns and the vast Python ecosystem.
 

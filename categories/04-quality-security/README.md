@@ -2,7 +2,7 @@
 
 Quality & Security subagents are your guardians of code excellence and system protection. These specialists ensure your applications are robust, secure, performant, and accessible. From comprehensive testing strategies to security auditing, from performance optimization to compliance enforcement, they help you build software that meets the highest standards of quality and security.
 
-## <¯ When to Use Quality & Security Subagents
+## <Â¯ When to Use Quality & Security Subagents
 
 Use these subagents when you need to:
 - **Implement comprehensive testing** strategies and automation
@@ -14,12 +14,17 @@ Use these subagents when you need to:
 - **Achieve compliance** with regulations
 - **Test system resilience** through chaos engineering
 
-## =Ë Available Subagents
+## =Ã‹ Available Subagents
 
 ### [**accessibility-tester**](accessibility-tester.md) - A11y compliance expert
 Accessibility specialist ensuring applications work for everyone. Masters WCAG guidelines, screen reader compatibility, and inclusive design. Makes applications accessible without compromising functionality.
 
 **Use when:** Implementing accessibility features, auditing for WCAG compliance, testing with assistive technologies, fixing accessibility issues, or designing inclusive interfaces.
+
+### [**ad-security-reviewer**](ad-security-reviewer.md) - Active Directory security posture and attack surface analyst
+Active Directory security specialist reviewing directory configuration, admin models, and trust boundaries. Focuses on misconfigurations, excessive privileges, legacy protocols, and hardening AD against common attack paths.
+
+**Use when:** Reviewing AD security posture, assessing privileged groups and delegation, tightening GPOs and auth settings, or planning hardening work to reduce lateral movement and domain compromise risk.
 
 ### [**architect-reviewer**](architect-reviewer.md) - Architecture review specialist
 Architecture expert evaluating system designs for scalability, maintainability, and best practices. Identifies architectural risks and suggests improvements. Ensures long-term system health.
@@ -61,6 +66,11 @@ Performance specialist making applications blazing fast. Masters profiling, opti
 
 **Use when:** Optimizing application performance, conducting load testing, analyzing bottlenecks, improving response times, or reducing resource consumption.
 
+### [**powershell-security-hardening**](powershell-security-hardening.md) - PowerShell-driven security baseline specialist
+Security-focused PowerShell expert hardening Windows servers, workstations, and automation tooling. Specializes in secure remoting, constrained endpoints, credential hygiene, logging, and aligning scripts with security baselines.
+
+**Use when:** Hardening Windows hosts, securing PowerShell remoting, locking down scripts and scheduled tasks, or aligning infrastructure automation with security baselines and compliance requirements.
+
 ### [**qa-expert**](qa-expert.md) - Test automation specialist
 Quality assurance master designing comprehensive test strategies. Expert in test automation, frameworks, and methodologies. Ensures quality through systematic testing approaches.
 
@@ -76,7 +86,7 @@ Automation specialist building robust test frameworks. Expert in various testing
 
 **Use when:** Building test frameworks, automating test cases, integrating tests with CI/CD, improving test reliability, or scaling test automation.
 
-## =€ Quick Selection Guide
+## =â‚¬ Quick Selection Guide
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
@@ -93,7 +103,7 @@ Automation specialist building robust test frameworks. Expert in various testing
 | Audit security | **security-auditor** |
 | Build test frameworks | **test-automator** |
 
-## =¡ Common Quality Patterns
+## =Â¡ Common Quality Patterns
 
 **Comprehensive Testing:**
 - **qa-expert** for test strategy
@@ -119,7 +129,7 @@ Automation specialist building robust test frameworks. Expert in various testing
 - **qa-expert** for quality processes
 - **test-automator** for test coverage
 
-## <¬ Getting Started
+## <Â¬ Getting Started
 
 1. **Identify quality concerns** in your application
 2. **Choose appropriate specialists** for your needs
@@ -127,7 +137,7 @@ Automation specialist building robust test frameworks. Expert in various testing
 4. **Share relevant code and logs** for analysis
 5. **Implement recommended improvements** systematically
 
-## =Ú Best Practices
+## =Ãš Best Practices
 
 - **Shift left:** Catch issues early in development
 - **Automate repetitively:** Manual testing doesn't scale
