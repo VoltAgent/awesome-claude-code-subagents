@@ -82,6 +82,8 @@ Language-specific experts with deep framework knowledge.
 - [**golang-pro**](categories/02-language-specialists/golang-pro.md) - Go concurrency specialist
 - [**java-architect**](categories/02-language-specialists/java-architect.md) - Enterprise Java expert
 - [**javascript-pro**](categories/02-language-specialists/javascript-pro.md) - JavaScript development expert
+- [**powershell-5.1-expert**](categories/02-language-specialists/powershell-5.1-expert.md) - Windows PowerShell 5.1 and full .NET Framework automation specialist
+- [**powershell-7-expert**](categories/02-language-specialists/powershell-7-expert.md) - Cross-platform PowerShell 7+ automation and modern .NET specialist
 - [**kotlin-specialist**](categories/02-language-specialists/kotlin-specialist.md) - Modern JVM language expert
 - [**laravel-specialist**](categories/02-language-specialists/laravel-specialist.md) - Laravel 10+ PHP framework expert
 - [**nextjs-developer**](categories/02-language-specialists/nextjs-developer.md) - Next.js 14+ full-stack specialist
@@ -96,6 +98,7 @@ Language-specific experts with deep framework knowledge.
 ### [03. Infrastructure](categories/03-infrastructure/)
 DevOps, cloud, and deployment specialists.
 
+- [**azure-infra-engineer**](categories/03-infrastructure/azure-infra-engineer.md) - Azure infrastructure and Az PowerShell automation expert
 - [**cloud-architect**](categories/03-infrastructure/cloud-architect.md) - AWS/GCP/Azure specialist
 - [**database-administrator**](categories/03-infrastructure/database-administrator.md) - Database management expert
 - [**deployment-engineer**](categories/03-infrastructure/deployment-engineer.md) - Deployment automation specialist
@@ -108,6 +111,7 @@ DevOps, cloud, and deployment specialists.
 - [**security-engineer**](categories/03-infrastructure/security-engineer.md) - Infrastructure security specialist
 - [**sre-engineer**](categories/03-infrastructure/sre-engineer.md) - Site reliability engineering expert
 - [**terraform-engineer**](categories/03-infrastructure/terraform-engineer.md) - Infrastructure as Code expert
+- [**windows-infra-admin**](categories/03-infrastructure/windows-infra-admin.md) - Active Directory, DNS, DHCP, and GPO automation specialist
 
 ### [04. Quality & Security](categories/04-quality-security/)
 Testing, security, and code quality experts.
@@ -152,6 +156,8 @@ Tooling and developer productivity experts.
 - [**git-workflow-manager**](categories/06-developer-experience/git-workflow-manager.md) - Git workflow and branching expert
 - [**legacy-modernizer**](categories/06-developer-experience/legacy-modernizer.md) - Legacy code modernization specialist
 - [**mcp-developer**](categories/06-developer-experience/mcp-developer.md) - Model Context Protocol specialist
+- [**powershell-ui-architect**](categories/06-developer-experience/powershell-ui-architect.md) - PowerShell UI/UX specialist for WinForms, WPF, Metro frameworks, and TUIs
+- [**powershell-module-architect**](categories/06-developer-experience/powershell-module-architect.md) - PowerShell module and profile architecture specialist
 - [**refactoring-specialist**](categories/06-developer-experience/refactoring-specialist.md) - Code refactoring expert
 - [**tooling-engineer**](categories/06-developer-experience/tooling-engineer.md) - Developer tooling specialist
 
@@ -164,6 +170,7 @@ Domain-specific technology experts.
 - [**fintech-engineer**](categories/07-specialized-domains/fintech-engineer.md) - Financial technology specialist
 - [**game-developer**](categories/07-specialized-domains/game-developer.md) - Game development expert
 - [**iot-engineer**](categories/07-specialized-domains/iot-engineer.md) - IoT systems developer
+- [**m365-admin**](categories/07-specialized-domains/m365-admin.md) - Microsoft 365, Exchange Online, Teams, and SharePoint administration specialist
 - [**mobile-app-developer**](categories/07-specialized-domains/mobile-app-developer.md) - Mobile application specialist
 - [**payment-integration**](categories/07-specialized-domains/payment-integration.md) - Payment systems expert
 - [**quant-analyst**](categories/07-specialized-domains/quant-analyst.md) - Quantitative analysis specialist
