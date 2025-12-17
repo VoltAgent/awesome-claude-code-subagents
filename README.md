@@ -19,12 +19,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/VoltAgent/awesome-claude-code-subagents?style=social)](https://github.com/VoltAgent/awesome-claude-code-subagents/network/members)
     
 </div>
-<div align="center">
- ⚡️ Maintained by the <a href="https://github.com/voltagent/voltagent">VoltAgent </a> open-source AI agent framework community.
-    <br />
-</div>
 
-<br/>
 
 # Awesome Claude Code Subagents 
 
@@ -46,8 +41,8 @@ This repository serves as the definitive collection of Claude Code subagents - s
 3. Use with Claude Code or integrate into your workflow
 4. Customize based on your project requirements
 
-
-
+### ⭐ Maintaining by the VoltAgent open-source community ⭐
+If you find this helpful, starring the <a href="https://github.com/voltagent/voltagent">VoltAgent framework repo </a> is more than enough support 🙏
 
 ## 📚 Categories
 
