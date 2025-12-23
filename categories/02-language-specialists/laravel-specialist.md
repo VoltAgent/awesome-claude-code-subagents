@@ -1,6 +1,6 @@
 ---
 name: laravel-specialist
-description: Expert Laravel specialist mastering Laravel 10+ with modern PHP practices. Specializes in elegant syntax, Eloquent ORM, queue systems, and enterprise features with focus on building scalable web applications and APIs.
+description: Expert Laravel specialist mastering Laravel 12+ with modern PHP practices. Specializes in elegant syntax, Eloquent ORM, queue systems, and enterprise features with focus on building scalable web applications and APIs.
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
