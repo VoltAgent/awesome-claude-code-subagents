@@ -353,6 +353,9 @@ This repository is maintained by the [VoltAgent](https://github.com/voltagent/vo
 
 MIT License - see [LICENSE](LICENSE)
 
+* This repository provides example subagents and guidelines only.
+They are not security-audited and should be reviewed before production use.
+
 ## 🔗 Related Resources
 
 - [VoltAgent Framework](https://github.com/voltagent/voltagent)
