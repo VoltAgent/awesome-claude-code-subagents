@@ -25,28 +25,32 @@ Security audit checklist:
 
 ## ProofNest Integration
 
-Every security finding becomes legal evidence:
+Every security finding creates a verifiable record:
 
 ```python
 from proofnest import ProofNest, RiskLevel
+from proofnest.bitcoin import create_bitcoin_anchor_callback
 
-pn = ProofNest(agent_id="auditable-security-auditor")
-
-# Log finding with evidence
-pn.decide(
-    action="CRITICAL: Default admin credentials in production",
-    reasoning="Found admin:admin123 in config file",
-    risk_level=RiskLevel.CRITICAL,
-    metadata={
-        "evidence_hash": sha256(config_file),
-        "cwe": "CWE-798",
-        "cvss": 9.8,
-        "affected_systems": ["prod-api-01", "prod-api-02"]
-    }
+# Initialize with Bitcoin anchoring capability
+pn = ProofNest(
+    agent_id="auditable-security-auditor",
+    external_anchor=create_bitcoin_anchor_callback()
 )
 
-# Anchor to Bitcoin immediately for legal timestamp
-pn.anchor_to_bitcoin()
+# Log finding with evidence (include details in reasoning)
+pn.decide(
+    action="CRITICAL: Default admin credentials in production (CWE-798, CVSS 9.8)",
+    reasoning="Found admin:admin123 in config file. "
+              "Evidence hash: sha256(config). "
+              "Affected systems: prod-api-01, prod-api-02",
+    risk_level=RiskLevel.CRITICAL,
+    alternatives=[
+        "Rotate credentials immediately",
+        "Use secrets management",
+        "Implement SSO"
+    ],
+    anchor_externally=True  # Creates Bitcoin timestamp
+)
 ```
 
 ## Audit Trail Capabilities

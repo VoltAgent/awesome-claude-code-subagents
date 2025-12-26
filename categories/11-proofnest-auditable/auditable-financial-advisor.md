@@ -44,44 +44,33 @@ Every recommendation creates a verifiable record:
 
 ```python
 from proofnest import ProofNest, RiskLevel
+from proofnest.bitcoin import create_bitcoin_anchor_callback
 
-pn = ProofNest(agent_id="auditable-financial-advisor")
+# Initialize with Bitcoin anchoring capability
+pn = ProofNest(
+    agent_id="auditable-financial-advisor",
+    external_anchor=create_bitcoin_anchor_callback()
+)
 
 # Log recommendation with full context
 pn.decide(
-    action="RECOMMEND: Allocate 60% to diversified equity ETFs",
+    action="RECOMMEND: Allocate 60% to diversified equity ETFs (Client: CLI-12345)",
     reasoning="""
-    Client Profile:
-    - Risk tolerance: Moderate-High
-    - Time horizon: 15+ years
-    - Investment objective: Retirement
+    Client Profile: Risk tolerance Moderate-High, 15+ year horizon, Retirement objective.
 
-    Market Analysis:
-    - Current PE ratio: 18.5 (historical average)
-    - Interest rate environment: Stable
-    - Economic indicators: Positive
+    Market Analysis: PE ratio 18.5 (historical avg), stable interest rates, positive indicators.
 
-    Recommendation Rationale:
-    - Long time horizon supports equity exposure
-    - Diversified ETFs reduce single-stock risk
-    - Low expense ratios maximize returns
-
-    Alternatives Considered:
-    1. Individual stocks (rejected: higher risk)
-    2. Bonds only (rejected: insufficient growth)
-    3. 80% equity (rejected: exceeds risk tolerance)
+    Rationale: Long horizon supports equity exposure, diversified ETFs reduce risk,
+    low expense ratios maximize returns. Account type: IRA, Value: $250,000.
     """,
     risk_level=RiskLevel.MEDIUM,
-    metadata={
-        "client_id": "CLI-12345",
-        "account_type": "IRA",
-        "recommendation_value": 250000,
-        "suitability_score": 0.87
-    }
+    alternatives=[
+        "Individual stocks (rejected: higher single-stock risk)",
+        "Bonds only (rejected: insufficient growth for 15-year horizon)",
+        "80% equity (rejected: exceeds stated risk tolerance)"
+    ],
+    anchor_externally=True  # Creates Bitcoin timestamp
 )
-
-# Immediate Bitcoin anchor for regulatory timestamp
-pn.anchor_to_bitcoin()
 ```
 
 ## Suitability Documentation

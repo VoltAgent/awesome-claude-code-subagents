@@ -138,14 +138,14 @@ Every code review decision is recorded to an immutable hash chain:
 from proofnest import ProofNest, RiskLevel
 from proofnest.bitcoin import create_bitcoin_anchor_callback
 
-# Initialize auditable review session WITH Bitcoin anchoring
+# Initialize auditable review session with Bitcoin anchoring capability
 pn = ProofNest(
     agent_id="auditable-code-reviewer",
-    external_anchor=create_bitcoin_anchor_callback()  # Auto-anchors to Bitcoin!
+    external_anchor=create_bitcoin_anchor_callback()
 )
 
 # Log each finding with full context
-# Each decision is automatically anchored to Bitcoin via OpenTimestamps
+# Set anchor_externally=True to create Bitcoin timestamp via OpenTimestamps
 pn.decide(
     action="CRITICAL: SQL injection vulnerability in user_controller.py:47",
     reasoning="User input passed directly to query without parameterization. "
@@ -155,19 +155,19 @@ pn.decide(
         "Use parameterized queries",
         "Add input validation layer",
         "Implement ORM"
-    ]
+    ],
+    anchor_externally=True  # Triggers Bitcoin anchoring
 )
 
 # Export verifiable audit trail
 pn.export_audit("code_review_2025_001.json")
 ```
 
-Decision categories logged:
+Decision categories logged (RiskLevel enum):
 - CRITICAL: Security vulnerabilities requiring immediate fix
 - HIGH: Significant issues affecting stability or security
 - MEDIUM: Code quality issues affecting maintainability
-- LOW: Minor improvements and suggestions
-- INFO: Positive observations and best practices noted
+- LOW: Minor improvements, suggestions, and positive observations
 
 ## Communication Protocol
 
@@ -304,9 +304,10 @@ print('Findings:', audit['chain_length'])
 print('Merkle root:', audit['merkle_root'][:16] + '...')
 print('Agent DID:', audit['identity']['did'][:30] + '...')
 
-# Count by severity
+# Count by severity (action is nested in decision.decision.action)
 decisions = audit.get('decisions', [])
-critical = sum(1 for d in decisions if 'CRITICAL' in d.get('action', ''))
+critical = sum(1 for d in decisions
+               if 'CRITICAL' in d.get('decision', {}).get('action', ''))
 print(f'Critical issues: {critical}')
 EOF
 
