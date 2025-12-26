@@ -7,7 +7,7 @@ This category contains agents enhanced with [ProofNest SDK](https://github.com/P
 - **Auditable decisions** - Every agent action is logged to a hash chain
 - **Bitcoin timestamps** - Proof of WHEN decisions were made
 - **Quantum-safe signatures** - Dilithium3 cryptographic signatures
-- **Compliance-ready** - EU AI Act, SOC 2, HIPAA compatible
+- **Audit support** - Verifiable records for various compliance needs
 
 ## Why Auditable Agents?
 
@@ -38,11 +38,9 @@ Answer: ✅ VERIFIED against Bitcoin blockchain
 
 | Agent | Base Agent | Use Case |
 |-------|------------|----------|
-| [auditable-code-reviewer](auditable-code-reviewer.md) | code-reviewer | Security audits with proof |
-| [auditable-security-auditor](auditable-security-auditor.md) | security-auditor | Compliance verification |
-| [auditable-architect-reviewer](auditable-architect-reviewer.md) | architect-reviewer | Architecture decisions |
-| [auditable-compliance-auditor](auditable-compliance-auditor.md) | compliance-auditor | Regulatory compliance |
-| [auditable-financial-advisor](auditable-financial-advisor.md) | fintech-engineer | Financial decisions |
+| [auditable-code-reviewer](auditable-code-reviewer.md) | code-reviewer | Code review with verifiable findings |
+| [auditable-security-auditor](auditable-security-auditor.md) | security-auditor | Security assessments with audit trail |
+| [auditable-financial-advisor](auditable-financial-advisor.md) | fintech-engineer | Financial recommendations with records |
 
 ## Quick Start
 
@@ -95,13 +93,15 @@ python -c "from proofnest import Bundle; Bundle.from_file('proof.json').verify()
 
 ## Use Cases
 
-| Industry | Requirement | Solution |
-|----------|-------------|----------|
-| **Finance** | Explainable AI decisions | Auditable loan/trading agents |
-| **Healthcare** | HIPAA compliance | Auditable diagnosis agents |
-| **Legal** | Attorney-client records | Auditable legal advisors |
-| **Government** | FOIA requests | Auditable public service agents |
-| **EU AI Act** | High-risk AI logging | All auditable agents |
+| Industry | Need | How ProofNest Helps |
+|----------|------|---------------------|
+| **Finance** | Explainable AI decisions | Verifiable decision logs |
+| **Healthcare** | Record keeping | Tamper-evident audit trails |
+| **Legal** | Client records | Timestamped, signed decisions |
+| **Government** | Transparency | Cryptographically verifiable records |
+| **AI Development** | Responsible AI | Auditable agent behavior |
+
+*Note: ProofNest provides cryptographic verification tools. Consult compliance experts for specific regulatory requirements.*
 
 ## Learn More
 
