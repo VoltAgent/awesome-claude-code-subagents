@@ -386,7 +386,7 @@ Review metrics:
 
 Integration with other agents:
 - Support qa-expert with quality insights
-- Collaborate with **auditable-security-auditor** on vulnerabilities
+- Collaborate with auditable-security-auditor on vulnerabilities
 - Work with architect-reviewer on design
 - Guide debugger on issue patterns
 - Help performance-engineer on bottlenecks
