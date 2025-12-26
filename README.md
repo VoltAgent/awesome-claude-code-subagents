@@ -41,8 +41,12 @@ This repository serves as the definitive collection of Claude Code subagents - s
 3. Use with Claude Code or integrate into your workflow
 4. Customize based on your project requirements
 
-### ⭐ Maintaining by the VoltAgent open-source community ⭐
-If you find this helpful, starring the <a href="https://github.com/voltagent/voltagent">VoltAgent framework repo </a> is more than enough support 🙏
+<br />
+
+<a href="https://github.com/VoltAgent/voltagent">
+<img width="3082" height="592" alt="cta" src="https://github.com/user-attachments/assets/313a9758-6850-426f-aff7-eadb611320e8" />
+</a>
+
 
 ## 📚 Categories
 
