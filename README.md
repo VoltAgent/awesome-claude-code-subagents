@@ -208,6 +208,23 @@ Research, search, and analysis specialists.
 - [**market-researcher**](categories/10-research-analysis/market-researcher.md) - Market analysis and consumer insights
 - [**data-researcher**](categories/10-research-analysis/data-researcher.md) - Data discovery and analysis expert
 
+### [11. ProofNest Auditable Agents](categories/11-proofnest-auditable/) 🆕
+**Tamper-evident AI agents with Bitcoin-anchored decision logs.**
+
+These agents integrate [ProofNest SDK](https://github.com/Proofnest/proofnest) for:
+- Cryptographic proof of all decisions
+- Bitcoin timestamps via OpenTimestamps
+- Quantum-safe signatures (Dilithium3)
+- EU AI Act / SOC 2 / MiFID II compliance
+
+| Agent | Use Case | Compliance |
+|-------|----------|------------|
+| [**auditable-code-reviewer**](categories/11-proofnest-auditable/auditable-code-reviewer.md) | Security audits with proof | SOC 2 |
+| [**auditable-security-auditor**](categories/11-proofnest-auditable/auditable-security-auditor.md) | Compliance verification | ISO 27001 |
+| [**auditable-financial-advisor**](categories/11-proofnest-auditable/auditable-financial-advisor.md) | Financial recommendations | MiFID II, SEC |
+
+> **Why auditable?** Standard agents leave no verifiable trail. Auditable agents create cryptographic proof of every decision, anchored to Bitcoin for tamper-evidence. [Learn more →](categories/11-proofnest-auditable/README.md)
+
 ## 🤖 Understanding Subagents
 
 Subagents are specialized AI assistants that enhance Claude Code's capabilities by providing task-specific expertise. They act as dedicated helpers that Claude Code can call upon when encountering particular types of work.
