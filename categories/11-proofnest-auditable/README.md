@@ -57,17 +57,20 @@ Copy any auditable agent definition to your `.claude/agents/` folder.
 ### 3. Verify Decisions
 
 ```python
-from proofnest import Bundle
+import json
 
-# Load proof from agent output
-bundle = Bundle.from_file("decision.proof.json")
+# Load exported audit trail
+with open('audit_export.json') as f:
+    audit = json.load(f)
 
-# Verify cryptographic integrity
-assert bundle.verify()  # True = tamper-evident
+# Verify chain integrity
+print(f"Chain verified: {audit['verified']}")
+print(f"Decisions: {audit['chain_length']}")
+print(f"Merkle root: {audit['merkle_root'][:16]}...")
+print(f"Agent DID: {audit['identity']['did'][:30]}...")
 
-# Check Bitcoin anchor
-print(bundle.anchor.bitcoin_block)  # Block #820000
-print(bundle.anchor.timestamp)       # 2025-12-26T14:00:00Z
+# Check Bitcoin anchor status
+print(f"Security: {audit['security_status']}")
 ```
 
 ## Integration Pattern
@@ -88,7 +91,7 @@ Decision logging:
 
 Verification:
 pip install proofnest
-python -c "from proofnest import Bundle; Bundle.from_file('proof.json').verify()"
+python3 -c "import json; audit=json.load(open('audit.json')); print('Verified:', audit['verified'])"
 ```
 
 ## Use Cases

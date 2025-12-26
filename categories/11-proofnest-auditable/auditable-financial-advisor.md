@@ -155,7 +155,7 @@ pn.decide(
 )
 
 # Export verifiable audit trail
-pn.export_audit("recommendation_CLI-12345_2025.json")
+pn.export_audit("advisory_CLI-12345_2025.json")
 ```
 
 ## Communication Protocol
