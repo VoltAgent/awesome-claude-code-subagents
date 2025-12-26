@@ -137,23 +137,34 @@ All risk assessments are recorded:
 }
 ```
 
-## Audit Trail for Regulators
+## Verification
 
-Regulators can verify any recommendation:
+Verify recommendation integrity programmatically:
 
-```bash
-# Verify recommendation integrity
-proofnest verify recommendation_REC-2025-12345.proof.json
+```python
+import json
 
-# Output:
-# Recommendation ID: REC-2025-12345
-# Client: CLI-12345
-# Timestamp: 2025-12-26T14:30:00Z (Bitcoin Block #820000)
-# Advisor: did:pn:advisor_456
-# Suitability Score: 0.87
-# Hash Chain: VALID
-# Signature: VALID
-# Status: VERIFIED - Cryptographically sound
+with open('recommendation_REC-2025-12345.json') as f:
+    audit = json.load(f)
+
+print(f"Verified: {audit['verified']}")
+print(f"Decisions: {audit['chain_length']}")
+print(f"Merkle root: {audit['merkle_root'][:16]}...")
+print(f"Advisor DID: {audit['identity']['did'][:30]}...")
+
+# Get recommendation details
+if audit['decisions']:
+    rec = audit['decisions'][0]['decision']
+    print(f"Action: {rec['action']}")
+```
+
+Output:
+```
+Verified: True
+Decisions: 1
+Merkle root: 7f3a8b2c9d4e5f6a...
+Advisor DID: did:pn:auditable-financial-a...
+Action: RECOMMEND: Allocate 60% to diversified equity ETFs
 ```
 
 ## Client Dispute Resolution
@@ -201,20 +212,31 @@ If connected to execution:
 
 ## Audit Reporting
 
-Generate audit reports:
+Generate audit reports from exported chains:
 
 ```python
-# Monthly audit report
-from proofnest import Bundle
+import json
+from pathlib import Path
 
-bundles = Bundle.load_period("2025-12")
-report = {
-    "period": "December 2025",
-    "total_recommendations": len(bundles),
-    "average_suitability": sum(b.suitability for b in bundles) / len(bundles),
-    "bitcoin_anchored": sum(1 for b in bundles if b.anchor.confirmed),
-    "compliance_rate": 1.0  # All recommendations logged
-}
+# Load exported audit files
+audit_dir = Path("./audits/2025-12/")
+reports = []
+
+for audit_file in audit_dir.glob("*.json"):
+    with open(audit_file) as f:
+        audit = json.load(f)
+        reports.append({
+            "file": audit_file.name,
+            "decisions": audit["chain_length"],
+            "verified": audit["verified"],
+            "merkle_root": audit["merkle_root"]
+        })
+
+# Summary report
+print(f"Period: December 2025")
+print(f"Total audit files: {len(reports)}")
+print(f"Total decisions: {sum(r['decisions'] for r in reports)}")
+print(f"All verified: {all(r['verified'] for r in reports)}")
 ```
 
 ---

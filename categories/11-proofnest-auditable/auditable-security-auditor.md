@@ -179,21 +179,35 @@ Final report with cryptographic proof:
 }
 ```
 
-## Regulatory Reporting
+## Verification
 
-Auditors and regulators can verify:
+Verify audit integrity programmatically:
 
-```bash
-# Verify audit integrity
-proofnest verify audit_sec_2025_001.proof.json
+```python
+import json
 
-# Output:
-# Audit ID: SEC-2025-001
-# Findings: 155
-# Hash Chain: VALID
-# Bitcoin Anchor: Block #820000 (2025-12-26)
-# Signature: VALID (did:pn:auditor_123)
-# Status: VERIFIED - Cryptographically sound
+with open('audit_sec_2025_001.json') as f:
+    audit = json.load(f)
+
+print(f"Audit verified: {audit['verified']}")
+print(f"Findings: {audit['chain_length']}")
+print(f"Merkle root: {audit['merkle_root'][:16]}...")
+print(f"Agent DID: {audit['identity']['did'][:30]}...")
+
+# Count by severity
+decisions = audit.get('decisions', [])
+critical = sum(1 for d in decisions
+               if 'CRITICAL' in d.get('decision', {}).get('action', ''))
+print(f"Critical findings: {critical}")
+```
+
+Output:
+```
+Audit verified: True
+Findings: 155
+Merkle root: 7f3a8b2c9d4e5f6a...
+Agent DID: did:pn:auditable-security-aud...
+Critical findings: 3
 ```
 
 ## Delivery Notification
