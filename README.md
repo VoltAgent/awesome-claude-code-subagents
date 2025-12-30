@@ -199,6 +199,7 @@ Agent coordination and meta-programming.
 - [**knowledge-synthesizer**](categories/09-meta-orchestration/knowledge-synthesizer.md) - Knowledge aggregation expert
 - [**multi-agent-coordinator**](categories/09-meta-orchestration/multi-agent-coordinator.md) - Advanced multi-agent orchestration
 - [**performance-monitor**](categories/09-meta-orchestration/performance-monitor.md) - Agent performance optimization
+- [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
 
