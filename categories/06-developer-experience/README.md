@@ -71,6 +71,11 @@ Refactoring master improving code structure without changing behavior. Expert in
 
 **Use when:** Refactoring complex code, eliminating code smells, implementing design patterns, improving code structure, or preparing code for new features.
 
+### [**slack-expert**](slack-expert.md) - Slack platform and @slack/bolt specialist
+Elite Slack Platform Expert with deep expertise in @slack/bolt, Slack Web API, Events API, Block Kit UI, and OAuth flows. Builds robust Slack integrations with best practices for rate limiting, security, and modern features.
+
+**Use when:** Building Slack bots, implementing slash commands, creating Block Kit interfaces, reviewing Slack code, setting up OAuth flows, or integrating with Slack's Events API.
+
 ### [**tooling-engineer**](tooling-engineer.md) - Developer tooling specialist
 Tooling expert building and integrating developer tools. Masters IDE configurations, linters, formatters, and custom tooling. Creates development environments that boost productivity.
 
@@ -89,6 +94,7 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 | Modernize legacy code | **legacy-modernizer** |
 | Build MCP integrations | **mcp-developer** |
 | Refactor code | **refactoring-specialist** |
+| Build Slack integrations | **slack-expert** |
 | Build dev tools | **tooling-engineer** |
 
 ## =� Common DX Patterns
