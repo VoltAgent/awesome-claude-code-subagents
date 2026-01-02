@@ -45,6 +45,11 @@ Expert in maintaining and modernizing .NET Framework 4.8 enterprise applications
 
 **Use when:** Maintaining legacy .NET Framework apps, modernizing Web Forms applications, working with WCF services, or integrating with Windows enterprise systems.
 
+### [**elixir-expert**](elixir-expert.md) - Elixir and OTP specialist
+Elixir language expert focusing on fault-tolerant, concurrent systems using OTP patterns. Masters Phoenix, LiveView, and distributed systems on the BEAM VM. Builds highly available applications with "let it crash" philosophy.
+
+**Use when:** Building fault-tolerant systems, creating real-time apps with Phoenix LiveView, implementing distributed Elixir clusters, or leveraging OTP patterns for reliability.
+
 ### [**flutter-expert**](flutter-expert.md) - Flutter 3+ cross-platform mobile expert
 Mobile development specialist creating beautiful, natively compiled applications from a single codebase. Expert in widget composition, state management, and platform-specific implementations.
 
@@ -150,6 +155,7 @@ Vue.js framework specialist mastering the Composition API, reactivity system, an
 | Django | **django-developer** | Python web apps, REST APIs |
 | .NET Core | **dotnet-core-expert** | Cross-platform .NET, microservices |
 | .NET Framework | **dotnet-framework-4.8-expert** | Legacy enterprise apps, Windows services |
+| Elixir | **elixir-expert** | Fault-tolerant systems, Phoenix/LiveView |
 | Flutter | **flutter-expert** | Cross-platform mobile apps |
 | Go | **golang-pro** | Concurrent systems, microservices |
 | Java | **java-architect** | Enterprise applications |
@@ -189,6 +195,10 @@ Vue.js framework specialist mastering the Composition API, reactivity system, an
 - **rust-engineer** for safety-critical systems
 - **cpp-pro** for performance-critical applications
 - **golang-pro** for concurrent systems
+
+**Real-time & Distributed:**
+- **elixir-expert** for fault-tolerant distributed systems
+- **elixir-expert** + Phoenix LiveView for real-time web apps
 
 ##    Getting Started
 
