@@ -2,7 +2,7 @@
 
 Data & AI subagents are your specialists in the world of data engineering, machine learning, and artificial intelligence. These experts handle everything from building robust data pipelines to training sophisticated ML models, from optimizing databases to deploying AI systems at scale. They bridge the gap between raw data and intelligent applications, ensuring your data-driven solutions are efficient, scalable, and impactful.
 
-## <¯ When to Use Data & AI Subagents
+## When to Use Data & AI Subagents
 
 Use these subagents when you need to:
 - **Build data pipelines** for ETL/ELT workflows
@@ -14,7 +14,7 @@ Use these subagents when you need to:
 - **Deploy ML models** with MLOps best practices
 - **Analyze data** for business insights
 
-## =Ë Available Subagents
+## Available Subagents
 
 ### [**ai-engineer**](ai-engineer.md) - AI system design and deployment expert
 AI systems specialist building production-ready artificial intelligence solutions. Masters model deployment, scaling, and integration. Bridges the gap between AI research and real-world applications.
@@ -76,7 +76,7 @@ Prompt engineering expert crafting effective prompts for AI models. Masters prom
 
 **Use when:** Designing prompts for LLMs, optimizing AI responses, implementing prompt strategies, testing prompt effectiveness, or building prompt-based applications.
 
-## =€ Quick Selection Guide
+## Quick Selection Guide
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
@@ -93,7 +93,7 @@ Prompt engineering expert crafting effective prompts for AI models. Masters prom
 | Optimize PostgreSQL | **postgres-pro** |
 | Design AI prompts | **prompt-engineer** |
 
-## =¡ Common Data & AI Patterns
+## Common Data & AI Patterns
 
 **End-to-End ML System:**
 - **data-engineer** for data pipeline
@@ -119,7 +119,7 @@ Prompt engineering expert crafting effective prompts for AI models. Masters prom
 - **ai-engineer** for deployment
 - **data-engineer** for data flow
 
-## <¬ Getting Started
+## Getting Started
 
 1. **Define your data/AI objectives** clearly
 2. **Assess your data landscape** and requirements
@@ -127,7 +127,7 @@ Prompt engineering expert crafting effective prompts for AI models. Masters prom
 4. **Provide data context** and constraints
 5. **Follow best practices** for implementation
 
-## =Ú Best Practices
+## Best Practices
 
 - **Start with data quality:** Good models need good data
 - **Iterate quickly:** ML is experimental by nature

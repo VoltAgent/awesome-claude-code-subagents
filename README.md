@@ -26,13 +26,7 @@
 
 ## What is this?
 
-This repository serves as the definitive collection of Claude Code subagents - specialized AI agents designed for specific development tasks. Each subagent is:
-
-- **Production-ready**: Tested in real-world scenarios
-- **Best practices compliant**: Following industry standards and patterns
-- **Optimized tool access**: Each agent has role-specific tool permissions
-- **Continuously maintained**: Regular updates with new capabilities
-- **Community-driven**: Open to contributions and improvements
+This repository serves as the definitive collection of Claude Code subagents - specialized AI assitants designed for specific development tasks. 
 
 ## Quick Start
 
@@ -351,10 +345,7 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## 👥 Maintainers
 
-This repository is maintained by the [VoltAgent](https://github.com/voltagent/voltagent) team:
-
-- Core maintainers of the VoltAgent open-source AI agent framework and community member
-- Committed to best practices and production readiness
+This repository is maintained by the [VoltAgent](https://github.com/voltagent/voltagent) team and community:
 
 ## 📄 License
 

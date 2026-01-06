@@ -2,7 +2,7 @@
 
 Business & Product subagents bridge the gap between technology and business value. These specialists understand both technical implementation and business strategy, helping teams build products that users love and businesses thrive on. From product strategy to customer success, from business analysis to technical writing, they ensure technology serves real business needs and delivers measurable value.
 
-## <¯ When to Use Business & Product Subagents
+## When to Use Business & Product Subagents
 
 Use these subagents when you need to:
 - **Define product strategy** and roadmaps
@@ -14,7 +14,7 @@ Use these subagents when you need to:
 - **Manage projects** effectively with Agile methods
 - **Bridge technical and business** communication
 
-## =Ë Available Subagents
+## Available Subagents
 
 ### [**business-analyst**](business-analyst.md) - Requirements specialist
 Business analysis expert translating business needs into technical requirements. Masters stakeholder communication, process analysis, and solution design. Ensures technology solves real business problems.
@@ -66,7 +66,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 
 **Use when:** Conducting user interviews, running usability tests, analyzing user behavior, creating personas, or validating product decisions.
 
-## =€ Quick Selection Guide
+## Quick Selection Guide
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
@@ -81,7 +81,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | Write documentation | **technical-writer** |
 | Research users | **ux-researcher** |
 
-## =¡ Common Business Patterns
+## Common Business Patterns
 
 **Product Development:**
 - **product-manager** for vision
@@ -107,7 +107,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 - **technical-writer** for self-service
 - **sales-engineer** for adoption
 
-## <¬ Getting Started
+## Getting Started
 
 1. **Identify business objectives** clearly
 2. **Choose specialists** that align with goals
@@ -115,7 +115,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 4. **Foster collaboration** between specialists
 5. **Measure business impact** continuously
 
-## =Ú Best Practices
+## Best Practices
 
 - **User-centric approach:** Always consider the end user
 - **Data-driven decisions:** Measure and validate
