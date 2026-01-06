@@ -2,7 +2,7 @@
 
 Infrastructure subagents are your DevOps and cloud computing experts, specializing in building, deploying, and maintaining modern infrastructure. These specialists handle everything from CI/CD pipelines to cloud architecture, from container orchestration to database administration. They ensure your applications run reliably, scale efficiently, and deploy seamlessly across any environment.
 
-## <¯ When to Use Infrastructure Subagents
+## When to Use Infrastructure Subagents
 
 Use these subagents when you need to:
 - **Design cloud architectures** for scalability and reliability
@@ -14,7 +14,7 @@ Use these subagents when you need to:
 - **Respond to incidents** and ensure high availability
 - **Secure infrastructure** and implement best practices
 
-## =Ë Available Subagents
+## Available Subagents
 
 ### [**azure-infra-engineer**](azure-infra-engineer.md) - Azure cloud infrastructure and automation specialist  
 Expert in Azure resource design, virtual networking, identity integration, and infrastructure-as-code patterns via PowerShell, Bicep, and Az modules.
@@ -86,7 +86,7 @@ Deep expertise in automating AD, DNS, DHCP, GPO, server configuration, and domai
 
 **Use when:** Managing domain infrastructure, modifying AD objects, updating DNS/DHCP records, automating GPO tasks, or performing server-level automation in enterprise environments.
 
-## =€ Quick Selection Guide
+## Quick Selection Guide
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
@@ -103,7 +103,7 @@ Deep expertise in automating AD, DNS, DHCP, GPO, server configuration, and domai
 | Implement SRE practices | **sre-engineer** |
 | Write infrastructure code | **terraform-engineer** |
 
-## =¡ Common Infrastructure Patterns
+## Common Infrastructure Patterns
 
 **Cloud-Native Application:**
 - **cloud-architect** for architecture design
@@ -129,7 +129,7 @@ Deep expertise in automating AD, DNS, DHCP, GPO, server configuration, and domai
 - **sre-engineer** for prevention
 - **security-engineer** for security incidents
 
-## <¬ Getting Started
+## Getting Started
 
 1. **Assess your infrastructure needs** and current challenges
 2. **Choose the appropriate specialist** based on your requirements
@@ -137,7 +137,7 @@ Deep expertise in automating AD, DNS, DHCP, GPO, server configuration, and domai
 4. **Share existing configurations** if applicable
 5. **Follow the specialist's recommendations** for best practices
 
-## =Ú Best Practices
+## Best Practices
 
 - **Start with architecture:** Design before implementation
 - **Automate everything:** Manual processes don't scale
