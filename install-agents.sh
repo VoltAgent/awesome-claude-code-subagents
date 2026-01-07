@@ -17,10 +17,67 @@ BOLD='\033[1m'
 # Configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CATEGORIES_DIR="$SCRIPT_DIR/categories"
-CLAUDE_AGENTS_DIR="$HOME/.claude/agents"
+GLOBAL_AGENTS_DIR="$HOME/.claude/agents"
+LOCAL_AGENTS_DIR=".claude/agents"
+CLAUDE_AGENTS_DIR=""  # Will be set by select_install_mode
+INSTALL_MODE=""  # "global" or "local"
 
-# Ensure agents directory exists
-mkdir -p "$CLAUDE_AGENTS_DIR"
+# Function to check if local .claude directory exists
+has_local_claude_dir() {
+    [[ -d ".claude" ]]
+}
+
+# Function to select installation mode
+select_install_mode() {
+    show_header
+    echo -e "${BOLD}Select installation mode:${NC}\n"
+
+    echo -e "  ${YELLOW}1)${NC} Global installation ${CYAN}(~/.claude/agents/)${NC}"
+    echo -e "     Available for all projects"
+    echo ""
+
+    if has_local_claude_dir; then
+        echo -e "  ${YELLOW}2)${NC} Local installation ${CYAN}(.claude/agents/)${NC}"
+        echo -e "     Only for current project"
+    else
+        echo -e "  ${BLUE}2)${NC} Local installation ${CYAN}(not available)${NC}"
+        echo -e "     ${YELLOW}No .claude/ directory found in current directory${NC}"
+    fi
+    echo ""
+    echo -e "  ${YELLOW}q)${NC} Quit"
+    echo ""
+
+    read -p "Enter your choice: " choice
+
+    case "$choice" in
+        1)
+            CLAUDE_AGENTS_DIR="$GLOBAL_AGENTS_DIR"
+            INSTALL_MODE="global"
+            mkdir -p "$CLAUDE_AGENTS_DIR"
+            ;;
+        2)
+            if has_local_claude_dir; then
+                CLAUDE_AGENTS_DIR="$LOCAL_AGENTS_DIR"
+                INSTALL_MODE="local"
+                mkdir -p "$CLAUDE_AGENTS_DIR"
+            else
+                echo -e "\n${RED}Local installation not available. No .claude/ directory found.${NC}"
+                sleep 2
+                select_install_mode
+                return
+            fi
+            ;;
+        q|Q)
+            echo -e "\n${GREEN}Goodbye!${NC}"
+            exit 0
+            ;;
+        *)
+            echo -e "${RED}Invalid choice. Please try again.${NC}"
+            sleep 1
+            select_install_mode
+            ;;
+    esac
+}
 
 # Function to display a header
 show_header() {
@@ -30,6 +87,13 @@ show_header() {
     echo "║           Claude Code Agents Installer                       ║"
     echo "╚══════════════════════════════════════════════════════════════╝"
     echo -e "${NC}"
+    if [[ -n "$INSTALL_MODE" ]]; then
+        if [[ "$INSTALL_MODE" == "global" ]]; then
+            echo -e "${BLUE}Mode: Global (~/.claude/agents/)${NC}\n"
+        else
+            echo -e "${BLUE}Mode: Local (.claude/agents/)${NC}\n"
+        fi
+    fi
 }
 
 # Function to get category display name (remove number prefix)
@@ -309,6 +373,7 @@ confirm_and_apply() {
 
 # Main loop
 main() {
+    select_install_mode
     while true; do
         select_category
         while select_agents "$SELECTED_CATEGORY"; do
