@@ -2,7 +2,7 @@
 
 Developer Experience subagents are your productivity multipliers, focusing on making development faster, easier, and more enjoyable. These specialists handle everything from code refactoring to documentation, from build optimization to Git workflows. They remove friction from the development process, automate repetitive tasks, and help teams work more efficiently with better tools and practices.
 
-## <� When to Use Developer Experience Subagents
+## When to Use Developer Experience Subagents
 
 Use these subagents when you need to:
 - **Refactor legacy code** for better maintainability
@@ -14,7 +14,7 @@ Use these subagents when you need to:
 - **Modernize codebases** with latest practices
 - **Improve developer productivity** across teams
 
-## =� Available Subagents
+## Available Subagents
 
 ### [**build-engineer**](build-engineer.md) - Build system specialist
 Build optimization expert making compilation and bundling lightning fast. Masters various build tools, optimization techniques, and caching strategies. Reduces build times from minutes to seconds.
@@ -71,12 +71,17 @@ Refactoring master improving code structure without changing behavior. Expert in
 
 **Use when:** Refactoring complex code, eliminating code smells, implementing design patterns, improving code structure, or preparing code for new features.
 
+### [**slack-expert**](slack-expert.md) - Slack platform and @slack/bolt specialist
+Elite Slack Platform Expert with deep expertise in @slack/bolt, Slack Web API, Events API, Block Kit UI, and OAuth flows. Builds robust Slack integrations with best practices for rate limiting, security, and modern features.
+
+**Use when:** Building Slack bots, implementing slash commands, creating Block Kit interfaces, reviewing Slack code, setting up OAuth flows, or integrating with Slack's Events API.
+
 ### [**tooling-engineer**](tooling-engineer.md) - Developer tooling specialist
 Tooling expert building and integrating developer tools. Masters IDE configurations, linters, formatters, and custom tooling. Creates development environments that boost productivity.
 
 **Use when:** Setting up development tools, creating custom tooling, configuring IDEs, implementing code quality tools, or building developer platforms.
 
-## =� Quick Selection Guide
+## Quick Selection Guide
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
@@ -89,9 +94,10 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 | Modernize legacy code | **legacy-modernizer** |
 | Build MCP integrations | **mcp-developer** |
 | Refactor code | **refactoring-specialist** |
+| Build Slack integrations | **slack-expert** |
 | Build dev tools | **tooling-engineer** |
 
-## =� Common DX Patterns
+## Common DX Patterns
 
 **Legacy Modernization:**
 - **legacy-modernizer** for strategy
@@ -117,7 +123,7 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 - **git-workflow-manager** for code review
 - **documentation-engineer** for standards
 
-## <� Getting Started
+## Getting Started
 
 1. **Identify pain points** in your development process
 2. **Choose relevant specialists** for improvement
@@ -125,7 +131,7 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 4. **Implement improvements** incrementally
 5. **Measure impact** on developer productivity
 
-## =� Best Practices
+## Best Practices
 
 - **Automate repetitive tasks:** Time saved compounds
 - **Document everything:** Future developers will thank you

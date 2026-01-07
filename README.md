@@ -1,5 +1,5 @@
 <a href="https://github.com/VoltAgent/voltagent">
-<img width="1500" height="500" alt="Group 32" src="https://github.com/user-attachments/assets/286b21c6-7dd5-453a-9360-677151939f4a" />
+<img width="1500" height="500" alt="Group 32" src="https://github.com/user-attachments/assets/55b97c47-8506-4be0-b18f-f5384d063cbb" />
 </a>
 
 <br />
@@ -26,13 +26,7 @@
 
 ## What is this?
 
-This repository serves as the definitive collection of Claude Code subagents - specialized AI agents designed for specific development tasks. Each subagent is:
-
-- **Production-ready**: Tested in real-world scenarios
-- **Best practices compliant**: Following industry standards and patterns
-- **Optimized tool access**: Each agent has role-specific tool permissions
-- **Continuously maintained**: Regular updates with new capabilities
-- **Community-driven**: Open to contributions and improvements
+This repository serves as the definitive collection of Claude Code subagents - specialized AI assitants designed for specific development tasks. 
 
 ## Quick Start
 
@@ -86,6 +80,7 @@ Language-specific experts with deep framework knowledge.
 - [**django-developer**](categories/02-language-specialists/django-developer.md) - Django 4+ web development expert
 - [**dotnet-core-expert**](categories/02-language-specialists/dotnet-core-expert.md) - .NET 8 cross-platform specialist
 - [**dotnet-framework-4.8-expert**](categories/02-language-specialists/dotnet-framework-4.8-expert.md) - .NET Framework legacy enterprise specialist
+- [**elixir-expert**](categories/02-language-specialists/elixir-expert.md) - Elixir and OTP fault-tolerant systems expert
 - [**flutter-expert**](categories/02-language-specialists/flutter-expert.md) - Flutter 3+ cross-platform mobile expert
 - [**golang-pro**](categories/02-language-specialists/golang-pro.md) - Go concurrency specialist
 - [**java-architect**](categories/02-language-specialists/java-architect.md) - Enterprise Java expert
@@ -169,6 +164,7 @@ Tooling and developer productivity experts.
 - [**powershell-ui-architect**](categories/06-developer-experience/powershell-ui-architect.md) - PowerShell UI/UX specialist for WinForms, WPF, Metro frameworks, and TUIs
 - [**powershell-module-architect**](categories/06-developer-experience/powershell-module-architect.md) - PowerShell module and profile architecture specialist
 - [**refactoring-specialist**](categories/06-developer-experience/refactoring-specialist.md) - Code refactoring expert
+- [**slack-expert**](categories/06-developer-experience/slack-expert.md) - Slack platform and @slack/bolt specialist
 - [**tooling-engineer**](categories/06-developer-experience/tooling-engineer.md) - Developer tooling specialist
 
 ### [07. Specialized Domains](categories/07-specialized-domains/)
@@ -211,6 +207,7 @@ Agent coordination and meta-programming.
 - [**knowledge-synthesizer**](categories/09-meta-orchestration/knowledge-synthesizer.md) - Knowledge aggregation expert
 - [**multi-agent-coordinator**](categories/09-meta-orchestration/multi-agent-coordinator.md) - Advanced multi-agent orchestration
 - [**performance-monitor**](categories/09-meta-orchestration/performance-monitor.md) - Agent performance optimization
+- [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
 
@@ -360,10 +357,7 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## 👥 Maintainers
 
-This repository is maintained by the [VoltAgent](https://github.com/voltagent/voltagent) team:
-
-- Core maintainers of the VoltAgent open-source AI agent framework and community member
-- Committed to best practices and production readiness
+This repository is maintained by the [VoltAgent](https://github.com/voltagent/voltagent) team and community:
 
 ## 📄 License
 
