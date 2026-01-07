@@ -36,17 +36,19 @@ This repository serves as the definitive collection of Claude Code subagents - s
 
 ## Quick Start
 
-### Option 1: Interactive Installer (Recommended)
-```bash
-./install-agents.sh
-```
-This interactive script lets you browse categories, select agents, and install/uninstall them with a single command.
-
-### Option 2: Manual Installation
+### Option 1: Manual Installation
 1. Browse categories to find the subagent you need
 2. Copy the subagent `.md` file to `~/.claude/agents/` (global) or `.claude/agents/` (project)
 3. Use with Claude Code or integrate into your workflow
 4. Customize based on your project requirements
+
+### Option 2: Interactive Installer
+```bash
+git clone https://github.com/VoltAgent/awesome-claude-code-subagents.git
+cd awesome-claude-code-subagents
+./install-agents.sh
+```
+This interactive script lets you browse categories, select agents, and install/uninstall them with a single command.
 
 <br />
 
