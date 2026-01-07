@@ -2,7 +2,7 @@
 
 Specialized Domains subagents are your experts in specific technology verticals and industries. These specialists bring deep knowledge of domain-specific challenges, regulations, and best practices. From blockchain and IoT to fintech and gaming, they understand the unique requirements and patterns of their specialized fields, helping you build applications that excel in these complex domains.
 
-## <� When to Use Specialized Domains Subagents
+## When to Use Specialized Domains Subagents
 
 Use these subagents when you need to:
 - **Build blockchain applications** and smart contracts
@@ -14,7 +14,7 @@ Use these subagents when you need to:
 - **Create mobile applications** with native features
 - **Design financial algorithms** for trading systems
 
-## =� Available Subagents
+## Available Subagents
 
 ### [**api-documenter**](api-documenter.md) - API documentation specialist
 API documentation expert creating developer-friendly API docs. Masters OpenAPI/Swagger, interactive documentation, and API best practices. Makes APIs discoverable and easy to integrate.
@@ -71,7 +71,7 @@ SEO expert driving organic traffic through search optimization. Masters technica
 
 **Use when:** Optimizing for search engines, implementing structured data, improving site speed, building content strategies, or analyzing search performance.
 
-## =� Quick Selection Guide
+## Quick Selection Guide
 
 | Domain | Use this subagent | Best For |
 |--------|-------------------|----------|
@@ -87,7 +87,7 @@ SEO expert driving organic traffic through search optimization. Masters technica
 | Risk Management | **risk-manager** | Risk assessment, compliance |
 | SEO/Search | **seo-specialist** | Search optimization, rankings |
 
-## =� Common Domain Patterns
+## Common Domain Patterns
 
 **Fintech Application:**
 - **fintech-engineer** for compliance
@@ -119,7 +119,7 @@ SEO expert driving organic traffic through search optimization. Masters technica
 - **mobile-app-developer** for mobile commerce
 - **risk-manager** for fraud prevention
 
-## <� Getting Started
+## Getting Started
 
 1. **Understand domain requirements** and constraints
 2. **Choose appropriate specialists** for your domain
@@ -127,7 +127,7 @@ SEO expert driving organic traffic through search optimization. Masters technica
 4. **Plan for domain-specific challenges** early
 5. **Leverage domain expertise** throughout development
 
-## =� Best Practices
+## Best Practices
 
 - **Domain knowledge matters:** Understand the field deeply
 - **Compliance is critical:** Many domains have regulations
