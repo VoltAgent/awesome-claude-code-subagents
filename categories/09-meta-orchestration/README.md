@@ -51,6 +51,11 @@ Performance specialist monitoring and optimizing agent systems. Expert in metric
 
 **Use when:** Monitoring agent performance, identifying bottlenecks, optimizing workflows, implementing metrics, or improving system efficiency.
 
+### [**sugar**](https://github.com/roboticforce/sugar) - Autonomous development system
+AI-powered autonomous development system with persistent task queue, test-driven execution, and specialized agent routing. Runs Claude Code as a background service, processing development tasks from a prioritized queue with automatic test verification.
+
+**Use when:** Running Claude Code autonomously in the background, managing a queue of development tasks, ensuring test-driven task execution, or routing tasks to specialized agents based on task type (bug fixes, features, refactoring, tests, documentation).
+
 ### [**task-distributor**](task-distributor.md) - Task allocation specialist
 Task distribution expert optimizing work allocation across agents. Masters load balancing, capability matching, and priority scheduling. Ensures efficient use of all available agents.
 
@@ -71,6 +76,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Combine knowledge sources | **knowledge-synthesizer** |
 | Scale agent operations | **multi-agent-coordinator** |
 | Monitor performance | **performance-monitor** |
+| Run autonomous background tasks | **sugar** |
 | Distribute tasks | **task-distributor** |
 | Automate workflows | **workflow-orchestrator** |
 
