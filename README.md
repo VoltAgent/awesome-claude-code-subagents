@@ -52,6 +52,12 @@ chmod +x install-agents.sh
 ```
 Downloads agents directly from GitHub without cloning the repository. Requires `curl`.
 
+### Option 4: Agent Installer (use Claude Code to install agents)
+```bash
+curl -s https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/categories/09-meta-orchestration/agent-installer.md -o ~/.claude/agents/agent-installer.md
+```
+Then in Claude Code: "Use the agent-installer to show me available categories" or "Find PHP agents and install php-pro globally".
+
 <br />
 
 <a href="https://github.com/VoltAgent/voltagent">
