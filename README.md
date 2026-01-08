@@ -44,6 +44,14 @@ cd awesome-claude-code-subagents
 ```
 This interactive script lets you browse categories, select agents, and install/uninstall them with a single command.
 
+### Option 3: Standalone Installer (no clone required)
+```bash
+curl -sO https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/install-agents.sh
+chmod +x install-agents.sh
+./install-agents.sh
+```
+Downloads agents directly from GitHub without cloning the repository. Requires `curl`.
+
 <br />
 
 <a href="https://github.com/VoltAgent/voltagent">
