@@ -185,6 +185,7 @@ Product management and business analysis.
 - [**scrum-master**](categories/08-business-product/scrum-master.md) - Agile methodology expert
 - [**technical-writer**](categories/08-business-product/technical-writer.md) - Technical documentation specialist
 - [**ux-researcher**](categories/08-business-product/ux-researcher.md) - User research expert
+- [**yc-sv-decision-framework**](https://github.com/founderjourney/yc-sv-development-framework) - Development decision-making expert based on YC/SV principles from Paul Graham, Sam Altman, Michael Seibel, Patrick Collison, and Brian Chesky
 
 ### [09. Meta & Orchestration](categories/09-meta-orchestration/)
 Agent coordination and meta-programming.
