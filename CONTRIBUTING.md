@@ -43,6 +43,22 @@ When you add a new agent, you MUST update these files:
    - Follow the standard template structure
    - Include all required sections
 
+### Adding a Tool
+
+Tools are Claude Code skills that enhance the catalog experience (discovery, browsing, management).
+
+1. **Create a folder** in `tools/` with your tool name
+2. **Include required files**:
+   - `README.md` - Installation and usage documentation
+   - Command files (`.md`) - One per command, with YAML frontmatter
+   - Helper scripts (`.sh`, `.py`) - Shared utilities if needed
+3. **Follow skill best practices**:
+   - Use descriptive `name` and `description` in frontmatter
+   - Include trigger phrases in descriptions
+   - Handle errors gracefully with user-friendly messages
+4. **Update the main README.md** - Add your tool to the 🧰 Tools section
+5. **Test locally** before submitting
+
 ### Code of Conduct
 
 - Be respectful and inclusive

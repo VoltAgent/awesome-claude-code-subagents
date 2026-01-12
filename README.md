@@ -329,6 +329,23 @@ Each subagent's `tools` field specifies Claude Code built-in tools, optimized fo
 
 Each agent has minimal necessary permissions. You can extend agents by adding MCP servers or external tools to the `tools` field.
 
+## 🧰 Tools
+
+### [subagent-catalog](tools/subagent-catalog/)
+Claude Code skill for browsing and fetching subagents from this catalog.
+
+| Command | Description |
+|---------|-------------|
+| `/subagent-catalog:search <query>` | Find agents by name, description, or category |
+| `/subagent-catalog:fetch <name>` | Get full agent definition |
+| `/subagent-catalog:list` | Browse all categories |
+| `/subagent-catalog:invalidate` | Refresh cache |
+
+**Installation:**
+```bash
+cp -r tools/subagent-catalog ~/.claude/commands/
+```
+
 ## 🔧 MCP Tools & Resources
 
 If you're using MCP servers with these agents, feel free to add them here.
