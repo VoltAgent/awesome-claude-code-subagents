@@ -1,0 +1,26 @@
+{
+  "name": "voltagent-dev-exp",
+  "version": "1.0.0",
+  "description": "Tooling and developer productivity experts - CLI tools, documentation, DX optimization",
+  "author": {
+    "name": "VoltAgent Community",
+    "url": "https://github.com/VoltAgent"
+  },
+  "repository": "https://github.com/VoltAgent/awesome-claude-code-subagents",
+  "license": "MIT",
+  "agents": [
+    "./build-engineer.md",
+    "./cli-developer.md",
+    "./dependency-manager.md",
+    "./documentation-engineer.md",
+    "./dx-optimizer.md",
+    "./git-workflow-manager.md",
+    "./legacy-modernizer.md",
+    "./mcp-developer.md",
+    "./powershell-module-architect.md",
+    "./powershell-ui-architect.md",
+    "./refactoring-specialist.md",
+    "./slack-expert.md",
+    "./tooling-engineer.md"
+  ]
+}
