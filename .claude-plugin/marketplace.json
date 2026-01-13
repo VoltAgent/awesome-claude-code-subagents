@@ -1,0 +1,93 @@
+{
+  "name": "voltagent-subagents",
+  "owner": {
+    "name": "VoltAgent Community",
+    "url": "https://github.com/VoltAgent"
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Curated collection of 127 specialized Claude Code subagents organized into 10 focused categories"
+  },
+  "plugins": [
+    {
+      "name": "voltagent-core-dev",
+      "source": "./categories/01-core-development",
+      "description": "Essential development subagents for everyday coding tasks - backend, frontend, fullstack, mobile, and API design",
+      "version": "1.0.0",
+      "category": "development",
+      "keywords": ["backend", "frontend", "fullstack", "mobile", "api", "microservices"]
+    },
+    {
+      "name": "voltagent-lang",
+      "source": "./categories/02-language-specialists",
+      "description": "Language-specific expert agents with deep framework knowledge - Python, TypeScript, Go, Rust, Java, and more",
+      "version": "1.0.0",
+      "category": "development",
+      "keywords": ["python", "typescript", "golang", "rust", "java", "react", "vue", "angular"]
+    },
+    {
+      "name": "voltagent-infra",
+      "source": "./categories/03-infrastructure",
+      "description": "DevOps, cloud, and deployment specialists - Kubernetes, Terraform, AWS, Azure, GCP, and SRE",
+      "version": "1.0.0",
+      "category": "infrastructure",
+      "keywords": ["devops", "kubernetes", "terraform", "aws", "azure", "gcp", "sre", "cloud"]
+    },
+    {
+      "name": "voltagent-qa-sec",
+      "source": "./categories/04-quality-security",
+      "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
+      "version": "1.0.0",
+      "category": "quality",
+      "keywords": ["testing", "security", "code-review", "qa", "penetration-testing", "compliance"]
+    },
+    {
+      "name": "voltagent-data-ai",
+      "source": "./categories/05-data-ai",
+      "description": "Data engineering, ML, and AI specialists - data pipelines, machine learning, LLM architecture",
+      "version": "1.0.0",
+      "category": "data",
+      "keywords": ["data-engineering", "machine-learning", "ai", "llm", "mlops", "nlp"]
+    },
+    {
+      "name": "voltagent-dev-exp",
+      "source": "./categories/06-developer-experience",
+      "description": "Tooling and developer productivity experts - CLI tools, documentation, DX optimization",
+      "version": "1.0.0",
+      "category": "tooling",
+      "keywords": ["developer-experience", "cli", "documentation", "tooling", "build", "dx"]
+    },
+    {
+      "name": "voltagent-domains",
+      "source": "./categories/07-specialized-domains",
+      "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments",
+      "version": "1.0.0",
+      "category": "specialized",
+      "keywords": ["blockchain", "fintech", "gaming", "iot", "payments", "embedded"]
+    },
+    {
+      "name": "voltagent-biz",
+      "source": "./categories/08-business-product",
+      "description": "Product management and business analysis - product strategy, project management, UX research",
+      "version": "1.0.0",
+      "category": "business",
+      "keywords": ["product-management", "business-analysis", "ux", "scrum", "project-management"]
+    },
+    {
+      "name": "voltagent-meta",
+      "source": "./categories/09-meta-orchestration",
+      "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation. Works best with other voltagent plugins installed.",
+      "version": "1.0.0",
+      "category": "orchestration",
+      "keywords": ["multi-agent", "orchestration", "workflow", "coordination", "meta"]
+    },
+    {
+      "name": "voltagent-research",
+      "source": "./categories/10-research-analysis",
+      "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting",
+      "version": "1.0.0",
+      "category": "research",
+      "keywords": ["research", "analysis", "market-research", "competitive-analysis", "trends"]
+    }
+  ]
+}
