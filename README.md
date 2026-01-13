@@ -28,12 +28,25 @@
 
 This repository serves as the definitive collection of Claude Code subagents - specialized AI assitants designed for specific development tasks. 
 
-## Quick Start
+## Installation
 
-1. Browse categories to find the subagent you need
-2. Copy the subagent definition
-3. Use with Claude Code or integrate into your workflow
-4. Customize based on your project requirements
+### As Claude Code Plugin (Recommended)
+
+Install directly for one-click access to all 127 subagents:
+
+```bash
+claude plugins add github:VoltAgent/awesome-claude-code-subagents
+```
+
+Once installed, Claude Code automatically discovers and uses the appropriate subagent based on your task.
+
+### Manual Installation
+
+1. Clone this repository
+2. Copy desired agent files to:
+   - `~/.claude/agents/` for global access
+   - `.claude/agents/` for project-specific use
+3. Customize based on your project requirements
 
 <br />
 
