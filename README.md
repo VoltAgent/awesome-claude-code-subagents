@@ -32,48 +32,44 @@ This repository serves as the definitive collection of Claude Code subagents - s
 
 ### As Claude Code Plugin (Recommended)
 
-Install individual categories based on your needs:
-
+**Step 1: Add the marketplace**
 ```bash
-# Core development (backend, frontend, fullstack, mobile)
-claude plugin install github:VoltAgent/awesome-claude-code-subagents/categories/01-core-development
-
-# Language specialists (Python, TypeScript, Go, Rust, etc.)
-claude plugin install github:VoltAgent/awesome-claude-code-subagents/categories/02-language-specialists
-
-# Infrastructure (Kubernetes, Terraform, DevOps, cloud)
-claude plugin install github:VoltAgent/awesome-claude-code-subagents/categories/03-infrastructure
-
-# Quality & Security (code review, testing, security audits)
-claude plugin install github:VoltAgent/awesome-claude-code-subagents/categories/04-quality-security
-
-# Data & AI (ML, data engineering, LLM architecture)
-claude plugin install github:VoltAgent/awesome-claude-code-subagents/categories/05-data-ai
-
-# Developer Experience (CLI tools, documentation, DX)
-claude plugin install github:VoltAgent/awesome-claude-code-subagents/categories/06-developer-experience
-
-# Specialized Domains (blockchain, fintech, gaming, IoT)
-claude plugin install github:VoltAgent/awesome-claude-code-subagents/categories/07-specialized-domains
-
-# Business & Product (product management, UX research)
-claude plugin install github:VoltAgent/awesome-claude-code-subagents/categories/08-business-product
-
-# Meta & Orchestration (multi-agent coordination)
-claude plugin install github:VoltAgent/awesome-claude-code-subagents/categories/09-meta-orchestration
-
-# Research & Analysis (market research, competitive analysis)
-claude plugin install github:VoltAgent/awesome-claude-code-subagents/categories/10-research-analysis
+claude plugin marketplace add github:VoltAgent/awesome-claude-code-subagents
 ```
 
-**Install all categories:**
+**Step 2: Install plugins by category**
 ```bash
-for dir in categories/*/; do
-  claude plugin install "github:VoltAgent/awesome-claude-code-subagents/$dir"
-done
+# Install specific categories
+claude plugin install voltagent-core-dev   # Backend, frontend, fullstack, mobile
+claude plugin install voltagent-lang       # Python, TypeScript, Go, Rust, etc.
+claude plugin install voltagent-infra      # Kubernetes, Terraform, DevOps, cloud
+claude plugin install voltagent-qa-sec     # Code review, testing, security audits
+claude plugin install voltagent-data-ai    # ML, data engineering, LLM architecture
+claude plugin install voltagent-dev-exp    # CLI tools, documentation, DX
+claude plugin install voltagent-domains    # Blockchain, fintech, gaming, IoT
+claude plugin install voltagent-biz        # Product management, UX research
+claude plugin install voltagent-meta       # Multi-agent orchestration
+claude plugin install voltagent-research   # Market research, competitive analysis
+```
+
+**Install all categories at once:**
+```bash
+claude plugin install voltagent-core-dev voltagent-lang voltagent-infra \
+  voltagent-qa-sec voltagent-data-ai voltagent-dev-exp voltagent-domains \
+  voltagent-biz voltagent-meta voltagent-research
 ```
 
 > **Note**: The `voltagent-meta` orchestration agents work best when other categories are installed.
+
+### Local Development & Testing
+
+```bash
+# Test a specific category plugin locally (before publishing)
+claude --plugin-dir categories/02-language-specialists
+
+# Verify agents are loaded
+# Ask Claude: "What agents are available?"
+```
 
 ### Manual Installation
 
