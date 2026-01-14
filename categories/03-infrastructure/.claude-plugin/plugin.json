@@ -1,0 +1,27 @@
+{
+  "name": "voltagent-infra",
+  "version": "1.0.0",
+  "description": "DevOps, cloud, and deployment specialists - Kubernetes, Terraform, AWS, Azure, GCP, and SRE",
+  "author": {
+    "name": "VoltAgent Community",
+    "url": "https://github.com/VoltAgent"
+  },
+  "repository": "https://github.com/VoltAgent/awesome-claude-code-subagents",
+  "license": "MIT",
+  "agents": [
+    "./azure-infra-engineer.md",
+    "./cloud-architect.md",
+    "./database-administrator.md",
+    "./deployment-engineer.md",
+    "./devops-engineer.md",
+    "./devops-incident-responder.md",
+    "./incident-responder.md",
+    "./kubernetes-specialist.md",
+    "./network-engineer.md",
+    "./platform-engineer.md",
+    "./security-engineer.md",
+    "./sre-engineer.md",
+    "./terraform-engineer.md",
+    "./windows-infra-admin.md"
+  ]
+}

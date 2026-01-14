@@ -1,0 +1,23 @@
+{
+  "name": "voltagent-core-dev",
+  "version": "1.0.0",
+  "description": "Essential development subagents for everyday coding tasks - backend, frontend, fullstack, mobile, and API design",
+  "author": {
+    "name": "VoltAgent Community",
+    "url": "https://github.com/VoltAgent"
+  },
+  "repository": "https://github.com/VoltAgent/awesome-claude-code-subagents",
+  "license": "MIT",
+  "agents": [
+    "./api-designer.md",
+    "./backend-developer.md",
+    "./electron-pro.md",
+    "./frontend-developer.md",
+    "./fullstack-developer.md",
+    "./graphql-architect.md",
+    "./microservices-architect.md",
+    "./mobile-developer.md",
+    "./ui-designer.md",
+    "./websocket-engineer.md"
+  ]
+}

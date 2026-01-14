@@ -1,0 +1,27 @@
+{
+  "name": "voltagent-qa-sec",
+  "version": "1.0.0",
+  "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
+  "author": {
+    "name": "VoltAgent Community",
+    "url": "https://github.com/VoltAgent"
+  },
+  "repository": "https://github.com/VoltAgent/awesome-claude-code-subagents",
+  "license": "MIT",
+  "agents": [
+    "./accessibility-tester.md",
+    "./ad-security-reviewer.md",
+    "./architect-reviewer.md",
+    "./chaos-engineer.md",
+    "./code-reviewer.md",
+    "./compliance-auditor.md",
+    "./debugger.md",
+    "./error-detective.md",
+    "./penetration-tester.md",
+    "./performance-engineer.md",
+    "./powershell-security-hardening.md",
+    "./qa-expert.md",
+    "./security-auditor.md",
+    "./test-automator.md"
+  ]
+}
