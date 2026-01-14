@@ -23,7 +23,6 @@
 
 # Awesome Claude Code Subagents 
 
-
 ## What is this?
 
 This repository serves as the definitive collection of Claude Code subagents - specialized AI assitants designed for specific development tasks. 
@@ -47,13 +46,35 @@ See [Categories](#-categories) below for all available plugins.
 
 > **Note**: The `voltagent-meta` orchestration agents work best when other categories installed.
 
-### Manual Installation
+### Option 1: Manual Installation
 
 1. Clone this repository
 2. Copy desired agent files to:
    - `~/.claude/agents/` for global access
    - `.claude/agents/` for project-specific use
 3. Customize based on your project requirements
+
+### Option 2: Interactive Installer
+```bash
+git clone https://github.com/VoltAgent/awesome-claude-code-subagents.git
+cd awesome-claude-code-subagents
+./install-agents.sh
+```
+This interactive script lets you browse categories, select agents, and install/uninstall them with a single command.
+
+### Option 3: Standalone Installer (no clone required)
+```bash
+curl -sO https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/install-agents.sh
+chmod +x install-agents.sh
+./install-agents.sh
+```
+Downloads agents directly from GitHub without cloning the repository. Requires `curl`.
+
+### Option 4: Agent Installer (use Claude Code to install agents)
+```bash
+curl -s https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/categories/09-meta-orchestration/agent-installer.md -o ~/.claude/agents/agent-installer.md
+```
+Then in Claude Code: "Use the agent-installer to show me available categories" or "Find PHP agents and install php-pro globally".
 
 <br />
 
@@ -139,6 +160,7 @@ DevOps, cloud, and deployment specialists.
 Testing, security, and code quality experts.
 
 - [**accessibility-tester**](categories/04-quality-security/accessibility-tester.md) - A11y compliance expert
+- [**ad-security-reviewer**](categories/04-quality-security/ad-security-reviewer.md) - Active Directory security and GPO audit specialist
 - [**architect-reviewer**](categories/04-quality-security/architect-reviewer.md) - Architecture review specialist
 - [**chaos-engineer**](categories/04-quality-security/chaos-engineer.md) - System resilience testing expert
 - [**code-reviewer**](categories/04-quality-security/code-reviewer.md) - Code quality guardian
@@ -147,6 +169,7 @@ Testing, security, and code quality experts.
 - [**error-detective**](categories/04-quality-security/error-detective.md) - Error analysis and resolution expert
 - [**penetration-tester**](categories/04-quality-security/penetration-tester.md) - Ethical hacking specialist
 - [**performance-engineer**](categories/04-quality-security/performance-engineer.md) - Performance optimization expert
+- [**powershell-security-hardening**](categories/04-quality-security/powershell-security-hardening.md) - PowerShell security hardening and compliance specialist
 - [**qa-expert**](categories/04-quality-security/qa-expert.md) - Test automation specialist
 - [**security-auditor**](categories/04-quality-security/security-auditor.md) - Security vulnerability expert
 - [**test-automator**](categories/04-quality-security/test-automator.md) - Test automation framework expert
@@ -227,9 +250,11 @@ Product management and business analysis.
 
 Agent coordination and meta-programming.
 
+- [**agent-installer**](categories/09-meta-orchestration/agent-installer.md) - Browse and install agents from this repository via GitHub
 - [**agent-organizer**](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
 - [**context-manager**](categories/09-meta-orchestration/context-manager.md) - Context optimization expert
 - [**error-coordinator**](categories/09-meta-orchestration/error-coordinator.md) - Error handling and recovery specialist
+- [**it-ops-orchestrator**](categories/09-meta-orchestration/it-ops-orchestrator.md) - IT operations workflow orchestration specialist
 - [**knowledge-synthesizer**](categories/09-meta-orchestration/knowledge-synthesizer.md) - Knowledge aggregation expert
 - [**multi-agent-coordinator**](categories/09-meta-orchestration/multi-agent-coordinator.md) - Advanced multi-agent orchestration
 - [**performance-monitor**](categories/09-meta-orchestration/performance-monitor.md) - Agent performance optimization
