@@ -1,0 +1,25 @@
+{
+  "name": "voltagent-domains",
+  "version": "1.0.0",
+  "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments",
+  "author": {
+    "name": "VoltAgent Community",
+    "url": "https://github.com/VoltAgent"
+  },
+  "repository": "https://github.com/VoltAgent/awesome-claude-code-subagents",
+  "license": "MIT",
+  "agents": [
+    "./api-documenter.md",
+    "./blockchain-developer.md",
+    "./embedded-systems.md",
+    "./fintech-engineer.md",
+    "./game-developer.md",
+    "./iot-engineer.md",
+    "./m365-admin.md",
+    "./mobile-app-developer.md",
+    "./payment-integration.md",
+    "./quant-analyst.md",
+    "./risk-manager.md",
+    "./seo-specialist.md"
+  ]
+}
