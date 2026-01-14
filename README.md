@@ -23,18 +23,36 @@
 
 # Awesome Claude Code Subagents 
 
-
 ## What is this?
 
 This repository serves as the definitive collection of Claude Code subagents - specialized AI assitants designed for specific development tasks. 
 
-## Quick Start
+## Installation
+
+### As Claude Code Plugin (Recommended)
+
+```bash
+claude plugin marketplace add VoltAgent/awesome-claude-code-subagents
+claude plugin install <plugin-name>
+```
+
+Examples:
+```bash
+claude plugin install voltagent-lang    # Language specialists
+claude plugin install voltagent-infra   # Infrastructure & DevOps
+```
+
+See [Categories](#-categories) below for all available plugins.
+
+> **Note**: The `voltagent-meta` orchestration agents work best when other categories installed.
 
 ### Option 1: Manual Installation
-1. Browse categories to find the subagent you need
-2. Copy the subagent `.md` file to `~/.claude/agents/` (global) or `.claude/agents/` (project)
-3. Use with Claude Code or integrate into your workflow
-4. Customize based on your project requirements
+
+1. Clone this repository
+2. Copy desired agent files to:
+   - `~/.claude/agents/` for global access
+   - `.claude/agents/` for project-specific use
+3. Customize based on your project requirements
 
 ### Option 2: Interactive Installer
 ```bash
@@ -68,6 +86,8 @@ Then in Claude Code: "Use the agent-installer to show me available categories" o
 ## 📚 Categories
 
 ### [01. Core Development](categories/01-core-development/)
+**Plugin:** `voltagent-core-dev`
+
 Essential development subagents for everyday coding tasks.
 
 - [**api-designer**](categories/01-core-development/api-designer.md) - REST and GraphQL API architect
@@ -83,6 +103,8 @@ Essential development subagents for everyday coding tasks.
 - [**wordpress-master**](categories/08-business-product/wordpress-master.md) - WordPress development and optimization expert
 
 ### [02. Language Specialists](categories/02-language-specialists/)
+**Plugin:** `voltagent-lang`
+
 Language-specific experts with deep framework knowledge.
 - [**typescript-pro**](categories/02-language-specialists/typescript-pro.md) - TypeScript specialist
 - [**sql-pro**](categories/02-language-specialists/sql-pro.md) - Database query expert
@@ -113,6 +135,8 @@ Language-specific experts with deep framework knowledge.
 
 
 ### [03. Infrastructure](categories/03-infrastructure/)
+**Plugin:** `voltagent-infra`
+
 DevOps, cloud, and deployment specialists.
 
 - [**azure-infra-engineer**](categories/03-infrastructure/azure-infra-engineer.md) - Azure infrastructure and Az PowerShell automation expert
@@ -131,6 +155,8 @@ DevOps, cloud, and deployment specialists.
 - [**windows-infra-admin**](categories/03-infrastructure/windows-infra-admin.md) - Active Directory, DNS, DHCP, and GPO automation specialist
 
 ### [04. Quality & Security](categories/04-quality-security/)
+**Plugin:** `voltagent-qa-sec`
+
 Testing, security, and code quality experts.
 
 - [**accessibility-tester**](categories/04-quality-security/accessibility-tester.md) - A11y compliance expert
@@ -149,6 +175,8 @@ Testing, security, and code quality experts.
 - [**test-automator**](categories/04-quality-security/test-automator.md) - Test automation framework expert
 
 ### [05. Data & AI](categories/05-data-ai/)
+**Plugin:** `voltagent-data-ai`
+
 Data engineering, ML, and AI specialists.
 
 - [**ai-engineer**](categories/05-data-ai/ai-engineer.md) - AI system design and deployment expert
@@ -165,6 +193,8 @@ Data engineering, ML, and AI specialists.
 - [**prompt-engineer**](categories/05-data-ai/prompt-engineer.md) - Prompt optimization specialist
 
 ### [06. Developer Experience](categories/06-developer-experience/)
+**Plugin:** `voltagent-dev-exp`
+
 Tooling and developer productivity experts.
 
 - [**build-engineer**](categories/06-developer-experience/build-engineer.md) - Build system specialist
@@ -182,6 +212,8 @@ Tooling and developer productivity experts.
 - [**tooling-engineer**](categories/06-developer-experience/tooling-engineer.md) - Developer tooling specialist
 
 ### [07. Specialized Domains](categories/07-specialized-domains/)
+**Plugin:** `voltagent-domains`
+
 Domain-specific technology experts.
 
 - [**api-documenter**](categories/07-specialized-domains/api-documenter.md) - API documentation specialist
@@ -198,6 +230,8 @@ Domain-specific technology experts.
 - [**seo-specialist**](categories/07-specialized-domains/seo-specialist.md) - Search engine optimization expert
 
 ### [08. Business & Product](categories/08-business-product/)
+**Plugin:** `voltagent-biz`
+
 Product management and business analysis.
 
 - [**business-analyst**](categories/08-business-product/business-analyst.md) - Requirements specialist
@@ -212,6 +246,8 @@ Product management and business analysis.
 - [**ux-researcher**](categories/08-business-product/ux-researcher.md) - User research expert
 
 ### [09. Meta & Orchestration](categories/09-meta-orchestration/)
+**Plugin:** `voltagent-meta`
+
 Agent coordination and meta-programming.
 
 - [**agent-installer**](categories/09-meta-orchestration/agent-installer.md) - Browse and install agents from this repository via GitHub
@@ -227,6 +263,8 @@ Agent coordination and meta-programming.
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
 
 ### [10. Research & Analysis](categories/10-research-analysis/)
+**Plugin:** `voltagent-research`
+
 Research, search, and analysis specialists.
 
 - [**research-analyst**](categories/10-research-analysis/research-analyst.md) - Comprehensive research specialist

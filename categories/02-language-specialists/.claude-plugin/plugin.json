@@ -1,0 +1,39 @@
+{
+  "name": "voltagent-lang",
+  "version": "1.0.0",
+  "description": "Language-specific expert agents with deep framework knowledge - Python, TypeScript, Go, Rust, Java, and more",
+  "author": {
+    "name": "VoltAgent Community",
+    "url": "https://github.com/VoltAgent"
+  },
+  "repository": "https://github.com/VoltAgent/awesome-claude-code-subagents",
+  "license": "MIT",
+  "agents": [
+    "./angular-architect.md",
+    "./cpp-pro.md",
+    "./csharp-developer.md",
+    "./django-developer.md",
+    "./dotnet-core-expert.md",
+    "./dotnet-framework-4.8-expert.md",
+    "./elixir-expert.md",
+    "./flutter-expert.md",
+    "./golang-pro.md",
+    "./java-architect.md",
+    "./javascript-pro.md",
+    "./kotlin-specialist.md",
+    "./laravel-specialist.md",
+    "./nextjs-developer.md",
+    "./php-pro.md",
+    "./powershell-5.1-expert.md",
+    "./powershell-7-expert.md",
+    "./python-pro.md",
+    "./rails-expert.md",
+    "./react-specialist.md",
+    "./rust-engineer.md",
+    "./spring-boot-engineer.md",
+    "./sql-pro.md",
+    "./swift-expert.md",
+    "./typescript-pro.md",
+    "./vue-expert.md"
+  ]
+}

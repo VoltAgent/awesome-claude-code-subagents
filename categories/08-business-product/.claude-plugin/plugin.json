@@ -1,0 +1,24 @@
+{
+  "name": "voltagent-biz",
+  "version": "1.0.0",
+  "description": "Product management and business analysis - product strategy, project management, UX research",
+  "author": {
+    "name": "VoltAgent Community",
+    "url": "https://github.com/VoltAgent"
+  },
+  "repository": "https://github.com/VoltAgent/awesome-claude-code-subagents",
+  "license": "MIT",
+  "agents": [
+    "./business-analyst.md",
+    "./content-marketer.md",
+    "./customer-success-manager.md",
+    "./legal-advisor.md",
+    "./product-manager.md",
+    "./project-manager.md",
+    "./sales-engineer.md",
+    "./scrum-master.md",
+    "./technical-writer.md",
+    "./ux-researcher.md",
+    "./wordpress-master.md"
+  ]
+}
