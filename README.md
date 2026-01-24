@@ -440,6 +440,7 @@ They are not security-audited and should be reviewed before production use.
 
 - [VoltAgent Framework](https://github.com/voltagent/voltagent)
 - [Claude Code Documentation](https://docs.anthropic.com/claude-code)
+- [Open Agent](https://github.com/Th0rgal/openagent) - Self-hosted control plane for Claude Code with isolated container workspaces and real-time mission streaming
 - [Community Discord](https://s.voltagent.dev/discord)
 
 ---
