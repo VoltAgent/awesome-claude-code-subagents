@@ -14,6 +14,11 @@
 <div align="center">
     
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+<a href="https://github.com/VoltAgent/voltagent">
+  <img alt="VoltAgent" src="https://cdn.voltagent.dev/website/logo/logo-2-svg.svg" height="20" />
+</a> 
+
+![Subagent Count](https://img.shields.io/badge/subagents-126+-blue?style=flat-square)
 [![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-claude-code-subagents?label=Last%20update&style=flat-square)](https://github.com/VoltAgent/awesome-claude-code-subagents)
 [![Discord](https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://s.voltagent.dev/discord)
 [![GitHub forks](https://img.shields.io/github/forks/VoltAgent/awesome-claude-code-subagents?style=social)](https://github.com/VoltAgent/awesome-claude-code-subagents/network/members)
