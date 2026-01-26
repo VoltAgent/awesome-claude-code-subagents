@@ -84,7 +84,7 @@ Then in Claude Code: "Use the agent-installer to show me available categories" o
 <br />
 
 <a href="https://github.com/VoltAgent/voltagent">
-<img width="3082" height="592" alt="cta" src="https://github.com/user-attachments/assets/313a9758-6850-426f-aff7-eadb611320e8" />
+<img width="1390" height="296" alt="social" src="https://github.com/user-attachments/assets/4c40affa-8e20-443a-9ec5-1abb6679b170" />
 </a>
 
 
