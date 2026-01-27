@@ -46,6 +46,12 @@ Data investigation specialist extracting insights from complex datasets. Masters
 
 **Use when:** Analyzing datasets, discovering data patterns, performing statistical analysis, mining for insights, or investigating data anomalies.
 
+
+### [**infinite-gratitude**](https://github.com/sstklen/infinite-gratitude) - Multi-agent parallel research skill
+Parallel research orchestrator spawning 10+ specialized agents simultaneously. Masters large-scale information gathering, distributed analysis, and research synthesis. Dramatically accelerates research by parallelizing across multiple AI agents.
+
+**Use when:** Conducting extensive research requiring multiple perspectives, analyzing large topics requiring parallel investigation, or gathering comprehensive information quickly.
+
 ## Quick Selection Guide
 
 | If you need to... | Use this subagent |
@@ -56,6 +62,7 @@ Data investigation specialist extracting insights from complex datasets. Masters
 | Analyze competitors | **competitive-analyst** |
 | Understand markets | **market-researcher** |
 | Analyze data patterns | **data-researcher** |
+| Parallel multi-agent research | **infinite-gratitude** |
 
 ## Common Research Patterns
 
