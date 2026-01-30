@@ -28,9 +28,7 @@
 
 # Awesome Claude Code Subagents 
 
-## What is this?
-
-This repository serves as the definitive collection of Claude Code subagents - specialized AI assitants designed for specific development tasks. 
+This repository serves as the definitive collection of Claude Code subagents, specialized AI assitants designed for specific development tasks. 
 
 ## Installation
 
@@ -334,39 +332,6 @@ Your subagent becomes immediately available. Claude Code will automatically enga
 Note: When naming conflicts occur, project-specific subagents override global ones.
 
 
-
-## 🛠️ How to Use Subagents
-
-### Setting Up in Claude Code
-1. Place subagent files in `.claude/agents/` within your project
-2. Claude Code automatically detects and loads the subagents
-3. Invoke them naturally in conversation or let Claude decide when to use them
-
-### Creating New Subagents - Step by Step
-
-**Step 1: Launch the Agent Interface**
-```bash
-/agents
-```
-
-**Step 2: Choose "Create New Agent"**
-- Decide on project-level (current project) or user-level (all projects) scope
-
-**Step 3: Configure Your Agent**
-- **Recommended approach**: Let Claude draft an initial version, then customize
-- Write a comprehensive description of the agent's role and activation scenarios  
-- Grant specific tool permissions (or leave blank for full access)
-- Browse available tools through the interface for easy selection
-- Edit the system prompt directly by pressing `e` for advanced customization
-
-**Step 4: Save and Start Using**
-- Your agent is instantly ready for use
-- Claude automatically delegates appropriate tasks to it
-- Or manually invoke it:
-```
-> Ask the code-reviewer agent to examine my pull request
-```
-
 ## 📖 Subagent Structure
 
 Each subagent follows a standardized template:
@@ -416,9 +381,7 @@ Claude Code skill for browsing and fetching subagents from this catalog.
 cp -r tools/subagent-catalog ~/.claude/commands/
 ```
 
-## 🔧 MCP Tools & Resources
 
-If you're using MCP servers with these agents, feel free to add them here.
 
 ## 🤝 Contributing
 
@@ -426,29 +389,16 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 - Submit new subagents via PR
 - Improve existing definitions
-- Add new MCP tool integrations
-- Share usage examples
 - Report issues and bugs
 
-## 👥 Maintainers
+## Contributor ♥️ Thanks
+![Contributors](https://contrib.rocks/image?repo=voltagent/awesome-claude-code-subagents&max=500&columns=20&anon=1)
 
-This repository is maintained by the [VoltAgent](https://github.com/voltagent/voltagent) team and community:
 
 ## 📄 License
 
 MIT License - see [LICENSE](LICENSE)
 
-* This repository provides example subagents and guidelines only.
-They are not security-audited and should be reviewed before production use.
+This repository is a curated collection of subagent definitions contributed by both the maintainers and the community. All subagents are provided "as is" without warranty. We do not audit or guarantee the security or correctness of any subagent. Review before use, the maintainers accept no liability for any issues arising from their use.
 
-## 🔗 Related Resources
-
-- [VoltAgent Framework](https://github.com/voltagent/voltagent)
-- [Claude Code Documentation](https://docs.anthropic.com/claude-code)
-- [Community Discord](https://s.voltagent.dev/discord)
-
----
-
-<p align="center">
-  Made with ❤️ by the VoltAgent Community
-</p>
+If you find an issue with a listed subagent or want your contribution removed, please [open an issue](https://github.com/VoltAgent/awesome-claude-code-subagents/issues) and we'll address it promptly.
