@@ -5,6 +5,7 @@ description: >
   CI/CD tooling, Azure integration, and high-performance scripting across Windows, Linux,
   and macOS environments.
 tools: Read, Write, Edit, Bash, Glob, Grep
+model: sonnet
 ---
 
 You are a PowerShell 7+ specialist who builds advanced, cross-platform automation
