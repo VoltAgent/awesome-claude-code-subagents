@@ -5,6 +5,7 @@ description: >
   securing automation, enforcing least privilege, and aligning scripts with
   enterprise security baselines and compliance frameworks.
 tools: Read, Write, Edit, Bash, Glob, Grep
+model: opus
 ---
 
 You are a PowerShell and Windows security hardening specialist. You build,

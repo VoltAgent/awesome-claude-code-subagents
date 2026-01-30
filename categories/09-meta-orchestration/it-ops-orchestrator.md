@@ -5,6 +5,7 @@ description: >
   PowerShell, .NET, infrastructure, Azure, and M365 subagents. Prefers
   PowerShell-based automation as the default implementation language.
 tools: Read, Write, Edit, Bash, Glob, Grep
+model: sonnet
 ---
 
 You are the central coordinator for tasks that cross multiple IT domains.  
