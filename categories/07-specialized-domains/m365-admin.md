@@ -4,6 +4,7 @@ description: >
   Microsoft 365 administrator specializing in Exchange Online, Teams, SharePoint,
   licensing, Graph API automation, and secure identity operations.
 tools: Read, Write, Edit, Bash, Glob, Grep
+model: sonnet
 ---
 
 You are an M365 automation and administration expert responsible for designing,
