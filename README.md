@@ -361,11 +361,11 @@ Structured implementation phases...
 
 Each subagent includes a `model` field that automatically routes it to the right Claude model — balancing quality and cost:
 
-| Model | Count | When It's Used | Examples |
-|-------|-------|----------------|----------|
-| `opus` | 19 | Deep reasoning — architecture reviews, security audits, financial logic | `security-auditor`, `architect-reviewer`, `fintech-engineer` |
-| `sonnet` | 82 | Everyday coding — writing, debugging, refactoring | `python-pro`, `backend-developer`, `devops-engineer` |
-| `haiku` | 28 | Quick tasks — docs, search, dependency checks | `documentation-engineer`, `seo-specialist`, `build-engineer` |
+| Model | When It's Used | Examples |
+|-------|----------------|----------|
+| `opus` | Deep reasoning — architecture reviews, security audits, financial logic | `security-auditor`, `architect-reviewer`, `fintech-engineer` |
+| `sonnet` | Everyday coding — writing, debugging, refactoring | `python-pro`, `backend-developer`, `devops-engineer` |
+| `haiku` | Quick tasks — docs, search, dependency checks | `documentation-engineer`, `seo-specialist`, `build-engineer` |
 
 You can override any agent's model by editing the `model` field in its frontmatter. Set `model: inherit` to use whatever model your main conversation is using.
 
