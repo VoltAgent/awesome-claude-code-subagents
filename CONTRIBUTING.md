@@ -79,7 +79,7 @@ Tools are Claude Code skills that enhance the catalog experience (discovery, bro
 
 ### Quality Guidelines
 
-- Subagents should be production-ready
+- Subagents should be well-structured and tested
 - Include clear documentation
 - Provide practical examples
 - Ensure compatibility with Claude Code
@@ -87,3 +87,5 @@ Tools are Claude Code skills that enhance the catalog experience (discovery, bro
 ## 📝 License
 
 By contributing, you agree that your contributions will be licensed under the MIT License.
+
+All subagents in this repository are provided "as is" without warranty. The maintainers do not audit or guarantee the security or correctness of any contribution and accept no liability for any issues arising from their use.
