@@ -332,39 +332,6 @@ Your subagent becomes immediately available. Claude Code will automatically enga
 Note: When naming conflicts occur, project-specific subagents override global ones.
 
 
-
-## 🛠️ How to Use Subagents
-
-### Setting Up in Claude Code
-1. Place subagent files in `.claude/agents/` within your project
-2. Claude Code automatically detects and loads the subagents
-3. Invoke them naturally in conversation or let Claude decide when to use them
-
-### Creating New Subagents - Step by Step
-
-**Step 1: Launch the Agent Interface**
-```bash
-/agents
-```
-
-**Step 2: Choose "Create New Agent"**
-- Decide on project-level (current project) or user-level (all projects) scope
-
-**Step 3: Configure Your Agent**
-- **Recommended approach**: Let Claude draft an initial version, then customize
-- Write a comprehensive description of the agent's role and activation scenarios  
-- Grant specific tool permissions (or leave blank for full access)
-- Browse available tools through the interface for easy selection
-- Edit the system prompt directly by pressing `e` for advanced customization
-
-**Step 4: Save and Start Using**
-- Your agent is instantly ready for use
-- Claude automatically delegates appropriate tasks to it
-- Or manually invoke it:
-```
-> Ask the code-reviewer agent to examine my pull request
-```
-
 ## 📖 Subagent Structure
 
 Each subagent follows a standardized template:
