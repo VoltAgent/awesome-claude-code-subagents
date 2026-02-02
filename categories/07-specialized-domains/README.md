@@ -139,3 +139,7 @@ SEO expert driving organic traffic through search optimization. Masters technica
 - **Test thoroughly:** Domain-specific edge cases matter
 
 Choose your specialized domain expert and build industry-leading applications!
+### [**upload-post**](upload-post.md) - Social media publishing specialist
+Social media automation expert publishing content across 10+ platforms via API. Masters multi-platform posting, content scheduling, and format adaptation. Automates content distribution workflows.
+
+**Use when:** Automating social media publishing, scheduling content, building multi-platform posting workflows, integrating with n8n/Make/Zapier, or managing social accounts programmatically.

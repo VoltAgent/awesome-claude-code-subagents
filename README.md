@@ -231,6 +231,7 @@ Domain-specific technology experts.
 - [**quant-analyst**](categories/07-specialized-domains/quant-analyst.md) - Quantitative analysis specialist
 - [**risk-manager**](categories/07-specialized-domains/risk-manager.md) - Risk assessment and management expert
 - [**seo-specialist**](categories/07-specialized-domains/seo-specialist.md) - Search engine optimization expert
+- [**upload-post**](categories/07-specialized-domains/upload-post.md) - Social media publishing automation specialist
 
 ### [08. Business & Product](categories/08-business-product/)
 **Plugin:** `voltagent-biz`
