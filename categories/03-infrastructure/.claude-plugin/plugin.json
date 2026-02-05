@@ -22,6 +22,7 @@
     "./security-engineer.md",
     "./sre-engineer.md",
     "./terraform-engineer.md",
+    "./terragrunt-expert.md",
     "./windows-infra-admin.md"
   ]
 }
