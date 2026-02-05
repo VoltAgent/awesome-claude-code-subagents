@@ -155,6 +155,7 @@ DevOps, cloud, and deployment specialists.
 - [**security-engineer**](categories/03-infrastructure/security-engineer.md) - Infrastructure security specialist
 - [**sre-engineer**](categories/03-infrastructure/sre-engineer.md) - Site reliability engineering expert
 - [**terraform-engineer**](categories/03-infrastructure/terraform-engineer.md) - Infrastructure as Code expert
+- [**terragrunt-expert**](categories/03-infrastructure/terragrunt-expert.md) - Terragrunt orchestration and DRY IaC specialist
 - [**windows-infra-admin**](categories/03-infrastructure/windows-infra-admin.md) - Active Directory, DNS, DHCP, and GPO automation specialist
 
 ### [04. Quality & Security](categories/04-quality-security/)

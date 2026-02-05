@@ -81,6 +81,11 @@ IaC specialist using Terraform for infrastructure automation. Masters module des
 
 **Use when:** Writing Terraform code, designing IaC architecture, managing Terraform state, creating reusable modules, or automating infrastructure provisioning.
 
+### [**terragrunt-expert**](terragrunt-expert.md) - Terragrunt orchestration and DRY IaC specialist
+Senior Terragrunt expert orchestrating OpenTofu/Terraform infrastructure at scale. Masters stack architecture, unit composition, dependency management, and DRY configuration patterns. Ensures enterprise-grade infrastructure automation with focus on code reuse and maintainability.
+
+**Use when:** Orchestrating Terraform modules with Terragrunt, implementing DRY configurations across environments, managing complex dependency graphs, designing multi-account/multi-region infrastructure, or migrating from monolithic Terraform to modular Terragrunt stacks.
+
 ### [**windows-infra-admin**](windows-infra-admin.md) - Windows infrastructure and Active Directory automation expert  
 Deep expertise in automating AD, DNS, DHCP, GPO, server configuration, and domain services using PowerShell. Focuses on safe change workflows, idempotent operations, and enterprise-grade operational patterns.
 
@@ -102,6 +107,7 @@ Deep expertise in automating AD, DNS, DHCP, GPO, server configuration, and domai
 | Secure infrastructure | **security-engineer** |
 | Implement SRE practices | **sre-engineer** |
 | Write infrastructure code | **terraform-engineer** |
+| Orchestrate Terraform/OpenTofu modules | **terragrunt-expert** |
 
 ## Common Infrastructure Patterns
 
@@ -122,6 +128,12 @@ Deep expertise in automating AD, DNS, DHCP, GPO, server configuration, and domai
 - **deployment-engineer** for deployment automation
 - **devops-engineer** for tooling
 - **cloud-architect** for infrastructure
+
+**IaC at Scale:**
+- **terragrunt-expert** for orchestration and DRY configs
+- **terraform-engineer** for module development
+- **cloud-architect** for multi-cloud strategy
+- **security-engineer** for compliance
 
 **Incident Management:**
 - **incident-responder** for critical incidents
