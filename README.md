@@ -1,53 +1,40 @@
-<a href="https://github.com/VoltAgent/voltagent">
-<img width="1500" height="500" alt="Group 32" src="https://github.com/user-attachments/assets/55b97c47-8506-4be0-b18f-f5384d063cbb" />
-</a>
-
-<br />
-<br/>
-
 <div align="center">
-    <strong>The awesome collection of Claude Code subagents.</strong>
+    <strong>An awesome collection of Claude Code subagents.</strong>
     <br />
     <br />
 </div>
 
 <div align="center">
-    
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-<a href="https://github.com/VoltAgent/voltagent">
-  <img alt="VoltAgent" src="https://cdn.voltagent.dev/website/logo/logo-2-svg.svg" height="20" />
-</a> 
 
-![Subagent Count](https://img.shields.io/badge/subagents-126+-blue?style=flat-square)
-[![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-claude-code-subagents?label=Last%20update&style=flat-square)](https://github.com/VoltAgent/awesome-claude-code-subagents)
-[![Discord](https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://s.voltagent.dev/discord)
-[![GitHub forks](https://img.shields.io/github/forks/VoltAgent/awesome-claude-code-subagents?style=social)](https://github.com/VoltAgent/awesome-claude-code-subagents/network/members)
-    
+![Subagent Count](https://img.shields.io/badge/subagents-128+-blue?style=flat-square)
+[![Last Update](https://img.shields.io/github/last-commit/laywill/awesome-claude-code-subagents?label=Last%20update&style=flat-square)](https://github.com/laywill/awesome-claude-code-subagents)
+[![GitHub forks](https://img.shields.io/github/forks/laywill/awesome-claude-code-subagents?style=social)](https://github.com/laywill/awesome-claude-code-subagents/network/members)
+
 </div>
 
+# Awesome Claude Code Subagents
 
-# Awesome Claude Code Subagents 
-
-This repository serves as the definitive collection of Claude Code subagents, specialized AI assitants designed for specific development tasks. 
+This repository serves as the definitive collection of Claude Code subagents, specialized AI assitants designed for specific development tasks.
 
 ## Installation
 
 ### As Claude Code Plugin (Recommended)
 
 ```bash
-claude plugin marketplace add VoltAgent/awesome-claude-code-subagents
+claude plugin marketplace add laywill/awesome-claude-code-subagents
 claude plugin install <plugin-name>
 ```
 
 Examples:
+
 ```bash
-claude plugin install voltagent-lang    # Language specialists
-claude plugin install voltagent-infra   # Infrastructure & DevOps
+claude plugin install laywill-lang    # Language specialists
+claude plugin install laywill-infra   # Infrastructure & DevOps
 ```
 
 See [Categories](#-categories) below for all available plugins.
 
-> **Note**: The `voltagent-meta` orchestration agents work best when other categories installed.
+> **Note**: The `laywill-meta` orchestration agents work best when other categories installed.
 
 ### Option 1: Manual Installation
 
@@ -58,38 +45,44 @@ See [Categories](#-categories) below for all available plugins.
 3. Customize based on your project requirements
 
 ### Option 2: Interactive Installer
+
 ```bash
-git clone https://github.com/VoltAgent/awesome-claude-code-subagents.git
+git clone https://github.com/laywill/awesome-claude-code-subagents.git
 cd awesome-claude-code-subagents
 ./install-agents.sh
 ```
+
 This interactive script lets you browse categories, select agents, and install/uninstall them with a single command.
 
 ### Option 3: Standalone Installer (no clone required)
+
 ```bash
-curl -sO https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/install-agents.sh
+curl -sO https://raw.githubusercontent.com/laywill/awesome-claude-code-subagents/main/install-agents.sh
 chmod +x install-agents.sh
 ./install-agents.sh
 ```
+
 Downloads agents directly from GitHub without cloning the repository. Requires `curl`.
 
 ### Option 4: Agent Installer (use Claude Code to install agents)
+
 ```bash
-curl -s https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/categories/09-meta-orchestration/agent-installer.md -o ~/.claude/agents/agent-installer.md
+curl -s https://raw.githubusercontent.com/laywill/awesome-claude-code-subagents/main/categories/09-meta-orchestration/agent-installer.md -o ~/.claude/agents/agent-installer.md
 ```
+
 Then in Claude Code: "Use the agent-installer to show me available categories" or "Find PHP agents and install php-pro globally".
 
 <br />
 
-<a href="https://github.com/VoltAgent/voltagent">
+<a href="https://github.com/laywill/laywill">
 <img width="1390" height="296" alt="social" src="https://github.com/user-attachments/assets/4c40affa-8e20-443a-9ec5-1abb6679b170" />
 </a>
-
 
 ## 📚 Categories
 
 ### [01. Core Development](categories/01-core-development/)
-**Plugin:** `voltagent-core-dev`
+
+**Plugin:** `laywill-core-dev`
 
 Essential development subagents for everyday coding tasks.
 
@@ -106,9 +99,11 @@ Essential development subagents for everyday coding tasks.
 - [**wordpress-master**](categories/08-business-product/wordpress-master.md) - WordPress development and optimization expert
 
 ### [02. Language Specialists](categories/02-language-specialists/)
-**Plugin:** `voltagent-lang`
+
+**Plugin:** `laywill-lang`
 
 Language-specific experts with deep framework knowledge.
+
 - [**typescript-pro**](categories/02-language-specialists/typescript-pro.md) - TypeScript specialist
 - [**sql-pro**](categories/02-language-specialists/sql-pro.md) - Database query expert
 - [**swift-expert**](categories/02-language-specialists/swift-expert.md) - iOS and macOS specialist
@@ -136,9 +131,9 @@ Language-specific experts with deep framework knowledge.
 - [**rust-engineer**](categories/02-language-specialists/rust-engineer.md) - Systems programming expert
 - [**spring-boot-engineer**](categories/02-language-specialists/spring-boot-engineer.md) - Spring Boot 3+ microservices expert
 
-
 ### [03. Infrastructure](categories/03-infrastructure/)
-**Plugin:** `voltagent-infra`
+
+**Plugin:** `laywill-infra`
 
 DevOps, cloud, and deployment specialists.
 
@@ -158,7 +153,8 @@ DevOps, cloud, and deployment specialists.
 - [**windows-infra-admin**](categories/03-infrastructure/windows-infra-admin.md) - Active Directory, DNS, DHCP, and GPO automation specialist
 
 ### [04. Quality & Security](categories/04-quality-security/)
-**Plugin:** `voltagent-qa-sec`
+
+**Plugin:** `laywill-qa-sec`
 
 Testing, security, and code quality experts.
 
@@ -178,7 +174,8 @@ Testing, security, and code quality experts.
 - [**test-automator**](categories/04-quality-security/test-automator.md) - Test automation framework expert
 
 ### [05. Data & AI](categories/05-data-ai/)
-**Plugin:** `voltagent-data-ai`
+
+**Plugin:** `laywill-data-ai`
 
 Data engineering, ML, and AI specialists.
 
@@ -196,7 +193,8 @@ Data engineering, ML, and AI specialists.
 - [**prompt-engineer**](categories/05-data-ai/prompt-engineer.md) - Prompt optimization specialist
 
 ### [06. Developer Experience](categories/06-developer-experience/)
-**Plugin:** `voltagent-dev-exp`
+
+**Plugin:** `laywill-dev-exp`
 
 Tooling and developer productivity experts.
 
@@ -215,7 +213,8 @@ Tooling and developer productivity experts.
 - [**tooling-engineer**](categories/06-developer-experience/tooling-engineer.md) - Developer tooling specialist
 
 ### [07. Specialized Domains](categories/07-specialized-domains/)
-**Plugin:** `voltagent-domains`
+
+**Plugin:** `laywill-domains`
 
 Domain-specific technology experts.
 
@@ -233,7 +232,8 @@ Domain-specific technology experts.
 - [**seo-specialist**](categories/07-specialized-domains/seo-specialist.md) - Search engine optimization expert
 
 ### [08. Business & Product](categories/08-business-product/)
-**Plugin:** `voltagent-biz`
+
+**Plugin:** `laywill-biz`
 
 Product management and business analysis.
 
@@ -249,7 +249,8 @@ Product management and business analysis.
 - [**ux-researcher**](categories/08-business-product/ux-researcher.md) - User research expert
 
 ### [09. Meta & Orchestration](categories/09-meta-orchestration/)
-**Plugin:** `voltagent-meta`
+
+**Plugin:** `laywill-meta`
 
 Agent coordination and meta-programming.
 
@@ -266,7 +267,8 @@ Agent coordination and meta-programming.
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
 
 ### [10. Research & Analysis](categories/10-research-analysis/)
-**Plugin:** `voltagent-research`
+
+**Plugin:** `laywill-research`
 
 Research, search, and analysis specialists.
 
@@ -283,16 +285,16 @@ Subagents are specialized AI assistants that enhance Claude Code's capabilities 
 
 ### What Makes Subagents Special?
 
-**Independent Context Windows**  
+**Independent Context Windows**
 Every subagent operates within its own isolated context space, preventing cross-contamination between different tasks and maintaining clarity in the primary conversation thread.
 
-**Domain-Specific Intelligence**  
+**Domain-Specific Intelligence**
 Subagents come equipped with carefully crafted instructions tailored to their area of expertise, resulting in superior performance on specialized tasks.
 
-**Shared Across Projects**  
+**Shared Across Projects**
 After creating a subagent, you can utilize it throughout various projects and distribute it among team members to ensure consistent development practices.
 
-**Granular Tool Permissions**  
+**Granular Tool Permissions**
 You can configure each subagent with specific tool access rights, enabling fine-grained control over which capabilities are available for different task types.
 
 ### Core Advantages
@@ -305,11 +307,13 @@ You can configure each subagent with specific tool access rights, enabling fine-
 ### Getting Started with Subagents
 
 **1. Access the Subagent Manager**
+
 ```bash
 /agents
 ```
 
 **2. Create Your Subagent**
+
 - Choose between project-specific or global subagents
 - Let Claude generate an initial version, then refine it to your needs
 - Provide detailed descriptions of the subagent's purpose and activation triggers
@@ -318,19 +322,19 @@ You can configure each subagent with specific tool access rights, enabling fine-
 
 **3. Deploy and Utilize**
 Your subagent becomes immediately available. Claude Code will automatically engage it when suitable, or you can explicitly request its help:
+
 ```
 > Have the code-reviewer subagent analyze my latest commits
 ```
 
 ### Subagent Storage Locations
 
-| Type | Path | Availability | Precedence |
-|------|------|--------------|------------|
-| Project Subagents | `.claude/agents/` | Current project only | Higher |
-| Global Subagents | `~/.claude/agents/` | All projects | Lower |
+| Type              | Path                | Availability         | Precedence |
+| ----------------- | ------------------- | -------------------- | ---------- |
+| Project Subagents | `.claude/agents/`   | Current project only | Higher     |
+| Global Subagents  | `~/.claude/agents/` | All projects         | Lower      |
 
 Note: When naming conflicts occur, project-specific subagents override global ones.
-
 
 ## 📖 Subagent Structure
 
@@ -361,17 +365,18 @@ Structured implementation phases...
 
 Each subagent includes a `model` field that automatically routes it to the right Claude model — balancing quality and cost:
 
-| Model | When It's Used | Examples |
-|-------|----------------|----------|
-| `opus` | Deep reasoning — architecture reviews, security audits, financial logic | `security-auditor`, `architect-reviewer`, `fintech-engineer` |
-| `sonnet` | Everyday coding — writing, debugging, refactoring | `python-pro`, `backend-developer`, `devops-engineer` |
-| `haiku` | Quick tasks — docs, search, dependency checks | `documentation-engineer`, `seo-specialist`, `build-engineer` |
+| Model    | When It's Used                                                          | Examples                                                     |
+| -------- | ----------------------------------------------------------------------- | ------------------------------------------------------------ |
+| `opus`   | Deep reasoning — architecture reviews, security audits, financial logic | `security-auditor`, `architect-reviewer`, `fintech-engineer` |
+| `sonnet` | Everyday coding — writing, debugging, refactoring                       | `python-pro`, `backend-developer`, `devops-engineer`         |
+| `haiku`  | Quick tasks — docs, search, dependency checks                           | `documentation-engineer`, `seo-specialist`, `build-engineer` |
 
 You can override any agent's model by editing the `model` field in its frontmatter. Set `model: inherit` to use whatever model your main conversation is using.
 
 ### Tool Assignment Philosophy
 
 Each subagent's `tools` field specifies Claude Code built-in tools, optimized for their role:
+
 - **Read-only agents** (reviewers, auditors): `Read, Grep, Glob` - analyze without modifying
 - **Research agents** (analysts, researchers): `Read, Grep, Glob, WebFetch, WebSearch` - gather information
 - **Code writers** (developers, engineers): `Read, Write, Edit, Bash, Glob, Grep` - create and execute
@@ -382,21 +387,21 @@ Each agent has minimal necessary permissions. You can extend agents by adding MC
 ## 🧰 Tools
 
 ### [subagent-catalog](tools/subagent-catalog/)
+
 Claude Code skill for browsing and fetching subagents from this catalog.
 
-| Command | Description |
-|---------|-------------|
+| Command                            | Description                                   |
+| ---------------------------------- | --------------------------------------------- |
 | `/subagent-catalog:search <query>` | Find agents by name, description, or category |
-| `/subagent-catalog:fetch <name>` | Get full agent definition |
-| `/subagent-catalog:list` | Browse all categories |
-| `/subagent-catalog:invalidate` | Refresh cache |
+| `/subagent-catalog:fetch <name>`   | Get full agent definition                     |
+| `/subagent-catalog:list`           | Browse all categories                         |
+| `/subagent-catalog:invalidate`     | Refresh cache                                 |
 
 **Installation:**
+
 ```bash
 cp -r tools/subagent-catalog ~/.claude/commands/
 ```
-
-
 
 ## 🤝 Contributing
 
@@ -407,8 +412,8 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 - Report issues and bugs
 
 ## Contributor ♥️ Thanks
-![Contributors](https://contrib.rocks/image?repo=voltagent/awesome-claude-code-subagents&max=500&columns=20&anon=1)
 
+![Contributors](https://contrib.rocks/image?repo=laywill/awesome-claude-code-subagents&max=500&columns=20&anon=1)
 
 ## 📄 License
 
@@ -416,4 +421,4 @@ MIT License - see [LICENSE](LICENSE)
 
 This repository is a curated collection of subagent definitions contributed by both the maintainers and the community. All subagents are provided "as is" without warranty. We do not audit or guarantee the security or correctness of any subagent. Review before use, the maintainers accept no liability for any issues arising from their use.
 
-If you find an issue with a listed subagent or want your contribution removed, please [open an issue](https://github.com/VoltAgent/awesome-claude-code-subagents/issues) and we'll address it promptly.
+If you find an issue with a listed subagent or want your contribution removed, please [open an issue](https://github.com/laywill/awesome-claude-code-subagents/issues) and we'll address it promptly.

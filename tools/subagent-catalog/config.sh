@@ -7,7 +7,7 @@ set -euo pipefail
 # --- CONFIG ---
 readonly SUBAGENT_CATALOG_TTL_SECONDS=$((12 * 60 * 60))   # 12 hours
 readonly SUBAGENT_CATALOG_CACHE_FILE="$HOME/.claude/cache/subagent-catalog.md"
-readonly SUBAGENT_CATALOG_REPO_URL="https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main"
+readonly SUBAGENT_CATALOG_REPO_URL="https://raw.githubusercontent.com/laywill/awesome-claude-code-subagents/main"
 
 export SUBAGENT_CATALOG_TTL_SECONDS SUBAGENT_CATALOG_CACHE_FILE SUBAGENT_CATALOG_REPO_URL
 

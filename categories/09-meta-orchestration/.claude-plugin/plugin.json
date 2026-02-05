@@ -1,12 +1,12 @@
 {
-  "name": "voltagent-meta",
-  "version": "1.0.0",
-  "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation. Works best with other voltagent plugins installed.",
+  "name": "laywill-meta",
+  "version": "1.1.0",
+  "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation. Works best with other laywill plugins installed.",
   "author": {
-    "name": "VoltAgent Community",
-    "url": "https://github.com/VoltAgent"
+    "name": "laywill Community",
+    "url": "https://github.com/laywill"
   },
-  "repository": "https://github.com/VoltAgent/awesome-claude-code-subagents",
+  "repository": "https://github.com/laywill/awesome-claude-code-subagents",
   "license": "MIT",
   "agents": [
     "./agent-organizer.md",

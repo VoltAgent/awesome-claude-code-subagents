@@ -19,9 +19,9 @@ You can:
 
 ## GitHub API Endpoints
 
-- Categories list: `https://api.github.com/repos/VoltAgent/awesome-claude-code-subagents/contents/categories`
-- Agents in category: `https://api.github.com/repos/VoltAgent/awesome-claude-code-subagents/contents/categories/{category-name}`
-- Raw agent file: `https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/categories/{category-name}/{agent-name}.md`
+- Categories list: `https://api.github.com/repos/laywill/awesome-claude-code-subagents/contents/categories`
+- Agents in category: `https://api.github.com/repos/laywill/awesome-claude-code-subagents/contents/categories/{category-name}`
+- Raw agent file: `https://raw.githubusercontent.com/laywill/awesome-claude-code-subagents/main/categories/{category-name}/{agent-name}.md`
 
 ## Workflow
 

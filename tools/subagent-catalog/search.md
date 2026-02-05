@@ -16,8 +16,8 @@ Find agents by name, description, or category.
 
 | Agent | Description |
 |-------|-------------|
-| [kubernetes-specialist](https://github.com/VoltAgent/awesome-claude-code-subagents/blob/main/categories/03-infrastructure/kubernetes-specialist.md) | Container orchestration master |
-| [devops-engineer](https://github.com/VoltAgent/awesome-claude-code-subagents/blob/main/categories/03-infrastructure/devops-engineer.md) | CI/CD and automation expert |
+| [kubernetes-specialist](https://github.com/laywill/awesome-claude-code-subagents/blob/main/categories/03-infrastructure/kubernetes-specialist.md) | Container orchestration master |
+| [devops-engineer](https://github.com/laywill/awesome-claude-code-subagents/blob/main/categories/03-infrastructure/devops-engineer.md) | CI/CD and automation expert |
 
 → use `/subagent-catalog:fetch <name>` to get full definition
 ```

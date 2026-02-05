@@ -1,6 +1,6 @@
 # subagent-catalog
 
-A Claude Code skill for browsing and fetching subagents from the [awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents) catalog.
+A Claude Code skill for browsing and fetching subagents from the [awesome-claude-code-subagents](https://github.com/laywill/awesome-claude-code-subagents) catalog.
 
 ## Installation
 

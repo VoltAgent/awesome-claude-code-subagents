@@ -24,8 +24,8 @@ INSTALL_MODE=""  # "global" or "local"
 SOURCE_MODE=""  # "local" or "remote"
 
 # GitHub API configuration
-GITHUB_API_BASE="https://api.github.com/repos/VoltAgent/awesome-claude-code-subagents/contents"
-GITHUB_RAW_BASE="https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main"
+GITHUB_API_BASE="https://api.github.com/repos/laywill/awesome-claude-code-subagents/contents"
+GITHUB_RAW_BASE="https://raw.githubusercontent.com/laywill/awesome-claude-code-subagents/main"
 
 # Cache for remote data
 REMOTE_CATEGORIES=()

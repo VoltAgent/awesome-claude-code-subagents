@@ -17,6 +17,7 @@ Thank you for your interest in contributing to this collection!
 ### Subagent Requirements
 
 Each subagent should include:
+
 - Clear role definition
 - List of expertise areas
 - Required MCP tools (if any)
@@ -38,7 +39,7 @@ When you add a new agent, you MUST update these files:
    - Add detailed agent description in the "Available Subagents" section
    - Update the "Quick Selection Guide" table
    - If applicable, add to "Common Technology Stacks" section
-   
+
 3. **Your Agent File** (e.g., `categories/02-language-specialists/your-agent.md`)
    - Follow the standard template structure
    - Include all required sections

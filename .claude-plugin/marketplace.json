@@ -1,93 +1,236 @@
 {
-  "name": "voltagent-subagents",
-  "owner": {
-    "name": "VoltAgent Community",
-    "url": "https://github.com/VoltAgent"
-  },
   "metadata": {
-    "version": "1.0.0",
-    "description": "Curated collection of 127 specialized Claude Code subagents organized into 10 focused categories"
+    "description": "Curated collection of specialized Claude Code subagents organized into focused categories",
+    "version": "1.1.0"
+  },
+  "name": "laywill-subagents",
+  "owner": {
+    "name": "laywill",
+    "url": "https://github.com/laywill"
   },
   "plugins": [
     {
-      "name": "voltagent-core-dev",
-      "source": "./categories/01-core-development",
+      "category": "development",
       "description": "Essential development subagents for everyday coding tasks - backend, frontend, fullstack, mobile, and API design",
-      "version": "1.0.0",
-      "category": "development",
-      "keywords": ["backend", "frontend", "fullstack", "mobile", "api", "microservices"]
+      "keywords": [
+        "api",
+        "backend",
+        "electron",
+        "frontend",
+        "fullstack",
+        "graphql",
+        "microservices",
+        "mobile",
+        "ui",
+        "websocket"
+      ],
+      "name": "laywill-core-dev",
+      "source": "./categories/01-core-development",
+      "version": "1.1.0"
     },
     {
-      "name": "voltagent-lang",
-      "source": "./categories/02-language-specialists",
+      "category": "development",
       "description": "Language-specific expert agents with deep framework knowledge - Python, TypeScript, Go, Rust, Java, and more",
-      "version": "1.0.0",
-      "category": "development",
-      "keywords": ["python", "typescript", "golang", "rust", "java", "react", "vue", "angular"]
+      "keywords": [
+        "angular",
+        "cpp",
+        "csharp",
+        "django",
+        "dotnet",
+        "elixir",
+        "flutter",
+        "golang",
+        "java",
+        "javascript",
+        "kotlin",
+        "laravel",
+        "nextjs",
+        "php",
+        "powershell",
+        "python",
+        "rails",
+        "react",
+        "rust",
+        "spring-boot",
+        "sql",
+        "swift",
+        "typescript",
+        "vue"
+      ],
+      "name": "laywill-lang",
+      "source": "./categories/02-language-specialists",
+      "version": "1.1.0"
     },
     {
-      "name": "voltagent-infra",
-      "source": "./categories/03-infrastructure",
-      "description": "DevOps, cloud, and deployment specialists - Kubernetes, Terraform, AWS, Azure, GCP, and SRE",
-      "version": "1.0.0",
       "category": "infrastructure",
-      "keywords": ["devops", "kubernetes", "terraform", "aws", "azure", "gcp", "sre", "cloud"]
+      "description": "DevOps, cloud, and deployment specialists - Kubernetes, Terraform, AWS, Azure, GCP, and SRE",
+      "keywords": [
+        "aws",
+        "azure",
+        "cloud",
+        "database",
+        "deployment",
+        "devops",
+        "gcp",
+        "incident-response",
+        "kubernetes",
+        "network",
+        "platform",
+        "security",
+        "sre",
+        "terraform",
+        "windows-server"
+      ],
+      "name": "laywill-infra",
+      "source": "./categories/03-infrastructure",
+      "version": "1.1.0"
     },
     {
-      "name": "voltagent-qa-sec",
-      "source": "./categories/04-quality-security",
-      "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
-      "version": "1.0.0",
       "category": "quality",
-      "keywords": ["testing", "security", "code-review", "qa", "penetration-testing", "compliance"]
+      "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
+      "keywords": [
+        "accessibility",
+        "ad-security",
+        "architectural-review",
+        "audit",
+        "chaos-engineering",
+        "code-review",
+        "compliance",
+        "debugging",
+        "error-detection",
+        "penetration-testing",
+        "performance",
+        "powershell-security",
+        "qa",
+        "security",
+        "testing"
+      ],
+      "name": "laywill-qa-sec",
+      "source": "./categories/04-quality-security",
+      "version": "1.1.0"
     },
     {
-      "name": "voltagent-data-ai",
-      "source": "./categories/05-data-ai",
-      "description": "Data engineering, ML, and AI specialists - data pipelines, machine learning, LLM architecture",
-      "version": "1.0.0",
       "category": "data",
-      "keywords": ["data-engineering", "machine-learning", "ai", "llm", "mlops", "nlp"]
+      "description": "Data engineering, ML, and AI specialists - data pipelines, machine learning, LLM architecture",
+      "keywords": [
+        "ai",
+        "data-analytics",
+        "data-engineering",
+        "data-science",
+        "database-optimization",
+        "llm",
+        "machine-learning",
+        "mlops",
+        "nlp",
+        "postgresql",
+        "prompts"
+      ],
+      "name": "laywill-data-ai",
+      "source": "./categories/05-data-ai",
+      "version": "1.1.0"
     },
     {
-      "name": "voltagent-dev-exp",
-      "source": "./categories/06-developer-experience",
-      "description": "Tooling and developer productivity experts - CLI tools, documentation, DX optimization",
-      "version": "1.0.0",
       "category": "tooling",
-      "keywords": ["developer-experience", "cli", "documentation", "tooling", "build", "dx"]
+      "description": "Tooling and developer productivity experts - CLI tools, documentation, DX optimization",
+      "keywords": [
+        "build",
+        "cli",
+        "dependency-management",
+        "developer-experience",
+        "documentation",
+        "dx",
+        "git-workflow",
+        "legacy-code",
+        "mcp",
+        "powershell-modules",
+        "powershell-ui",
+        "refactoring",
+        "slack",
+        "tooling"
+      ],
+      "name": "laywill-dev-exp",
+      "source": "./categories/06-developer-experience",
+      "version": "1.1.0"
     },
     {
-      "name": "voltagent-domains",
-      "source": "./categories/07-specialized-domains",
-      "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments",
-      "version": "1.0.0",
       "category": "specialized",
-      "keywords": ["blockchain", "fintech", "gaming", "iot", "payments", "embedded"]
+      "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments",
+      "keywords": [
+        "api-documentation",
+        "apps",
+        "blockchain",
+        "embedded",
+        "fintech",
+        "gaming",
+        "iot",
+        "m365",
+        "mobile",
+        "payments",
+        "quantitative-finance",
+        "risk-management",
+        "seo"
+      ],
+      "name": "laywill-domains",
+      "source": "./categories/07-specialized-domains",
+      "version": "1.1.0"
     },
     {
-      "name": "voltagent-biz",
-      "source": "./categories/08-business-product",
-      "description": "Product management and business analysis - product strategy, project management, UX research",
-      "version": "1.0.0",
       "category": "business",
-      "keywords": ["product-management", "business-analysis", "ux", "scrum", "project-management"]
+      "description": "Product management and business analysis - product strategy, project management, UX research",
+      "keywords": [
+        "business-analysis",
+        "content-marketing",
+        "customer-success",
+        "legal",
+        "product-management",
+        "project-management",
+        "sales",
+        "scrum",
+        "technical-writing",
+        "ux",
+        "wordpress"
+      ],
+      "name": "laywill-biz",
+      "source": "./categories/08-business-product",
+      "version": "1.1.0"
     },
     {
-      "name": "voltagent-meta",
-      "source": "./categories/09-meta-orchestration",
-      "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation. Works best with other voltagent plugins installed.",
-      "version": "1.0.0",
       "category": "orchestration",
-      "keywords": ["multi-agent", "orchestration", "workflow", "coordination", "meta"]
+      "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation. Works best with other laywill plugins installed.",
+      "keywords": [
+        "agent-installation",
+        "agent-organization",
+        "context-management",
+        "errors",
+        "it-ops",
+        "knowledge-management",
+        "coordination",
+        "performance",
+        "task-management",
+        "meta",
+        "multi-agent",
+        "orchestration",
+        "workflow"
+      ],
+      "name": "laywill-meta",
+      "source": "./categories/09-meta-orchestration",
+      "version": "1.1.0"
     },
     {
-      "name": "voltagent-research",
-      "source": "./categories/10-research-analysis",
-      "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting",
-      "version": "1.0.0",
       "category": "research",
-      "keywords": ["research", "analysis", "market-research", "competitive-analysis", "trends"]
+      "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting",
+      "keywords": [
+        "analysis",
+        "competitive-analysis",
+        "data-research",
+        "market-research",
+        "research",
+        "search",
+        "trends"
+      ],
+      "name": "laywill-research",
+      "source": "./categories/10-research-analysis",
+      "version": "1.1.0"
     }
   ]
 }

@@ -1,12 +1,12 @@
 {
-  "name": "voltagent-infra",
-  "version": "1.0.0",
+  "name": "laywill-infra",
+  "version": "1.1.0",
   "description": "DevOps, cloud, and deployment specialists - Kubernetes, Terraform, AWS, Azure, GCP, and SRE",
   "author": {
-    "name": "VoltAgent Community",
-    "url": "https://github.com/VoltAgent"
+    "name": "laywill Community",
+    "url": "https://github.com/laywill"
   },
-  "repository": "https://github.com/VoltAgent/awesome-claude-code-subagents",
+  "repository": "https://github.com/laywill/awesome-claude-code-subagents",
   "license": "MIT",
   "agents": [
     "./azure-infra-engineer.md",

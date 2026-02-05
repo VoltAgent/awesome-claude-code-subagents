@@ -1,12 +1,12 @@
 {
-  "name": "voltagent-domains",
-  "version": "1.0.0",
+  "name": "laywill-domains",
+  "version": "1.1.0",
   "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments",
   "author": {
-    "name": "VoltAgent Community",
-    "url": "https://github.com/VoltAgent"
+    "name": "laywill Community",
+    "url": "https://github.com/laywill"
   },
-  "repository": "https://github.com/VoltAgent/awesome-claude-code-subagents",
+  "repository": "https://github.com/laywill/awesome-claude-code-subagents",
   "license": "MIT",
   "agents": [
     "./api-documenter.md",
