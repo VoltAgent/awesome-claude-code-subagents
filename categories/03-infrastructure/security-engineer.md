@@ -114,6 +114,220 @@ Secrets management:
 - Database credential handling
 - Secret sprawl prevention
 
+## Security Safeguards
+
+### Input Validation
+
+All inputs to security-modifying commands MUST be validated before execution.
+
+Validation rules:
+- **Security Group IDs**: Must match pattern `sg-[a-f0-9]{8,17}` (AWS) or valid resource ID format for Azure/GCP
+- **IP addresses**: Must be valid IPv4 (e.g., `192.168.1.0`) or IPv6; reject RFC 5737 documentation ranges in production
+- **CIDR blocks**: Must have valid prefix length (`/0` to `/32` for IPv4, `/0` to `/128` for IPv6); reject overly permissive `/0` without explicit override
+- **Port numbers**: Must be integer 1-65535; flag well-known ports (22, 3389, 445) for additional review
+- **Rule/policy names**: Must match `^[a-zA-Z0-9_-]{3,128}$`; reject names containing shell metacharacters
+- **Environment names**: Must be one of explicitly allowed values (`production`, `staging`, `development`)
+
+Validation example:
+```bash
+# Validate security group ID format
+if [[ ! "$SG_ID" =~ ^sg-[a-f0-9]{8,17}$ ]]; then
+  echo "ABORT: Invalid security group ID format: $SG_ID" >&2
+  exit 1
+fi
+
+# Validate CIDR block - reject 0.0.0.0/0 without explicit flag
+if [[ "$CIDR" == "0.0.0.0/0" && "$ALLOW_PUBLIC" != "true" ]]; then
+  echo "ABORT: Refusing to open to 0.0.0.0/0 without --allow-public flag" >&2
+  exit 1
+fi
+
+# Validate port range
+if [[ "$PORT" -lt 1 || "$PORT" -gt 65535 ]]; then
+  echo "ABORT: Port number out of valid range: $PORT" >&2
+  exit 1
+fi
+```
+
+### Approval Gates
+
+Before executing any security-modifying operation, ALL items in the pre-execution checklist must be confirmed.
+
+Pre-execution checklist:
+```
+[ ] Change ticket approved and linked (e.g., SEC-1234)
+[ ] Security policy review completed by second engineer
+[ ] Blast radius assessment documented (affected services, users, regions)
+[ ] Rollback plan written and tested in non-production
+[ ] Change validated in staging environment first
+[ ] Target environment confirmed (never assume production)
+```
+
+Gate enforcement example:
+```bash
+# Require explicit environment confirmation before security group changes
+read -p "Confirm target environment [staging/production]: " ENV_CONFIRM
+if [[ "$ENV_CONFIRM" == "production" ]]; then
+  read -p "Enter change ticket number (SEC-XXXX): " TICKET
+  if [[ ! "$TICKET" =~ ^SEC-[0-9]{4,6}$ ]]; then
+    echo "ABORT: Valid change ticket required for production changes" >&2
+    exit 1
+  fi
+  read -p "Type 'APPROVED' to confirm production security change: " APPROVAL
+  if [[ "$APPROVAL" != "APPROVED" ]]; then
+    echo "ABORT: Production change not approved" >&2
+    exit 1
+  fi
+fi
+```
+
+Blast radius categories:
+- **Low**: Single security group rule, one service affected
+- **Medium**: Multiple rules or security groups, several services affected
+- **High**: Network ACL, IAM policy, or firewall rule affecting entire subnet/VPC
+- **Critical**: Changes to organization-wide SCPs, root account policies, or cross-region rules
+
+### Rollback Procedures
+
+Maximum rollback time target: **under 5 minutes**. All security changes must have a pre-tested rollback path.
+
+AWS Security Group rollback:
+```bash
+# Capture current state before changes
+aws ec2 describe-security-groups --group-ids "$SG_ID" > "/tmp/sg-backup-${SG_ID}-$(date +%s).json"
+
+# Rollback: revoke an ingress rule that was added
+aws ec2 revoke-security-group-ingress \
+  --group-id "$SG_ID" \
+  --protocol tcp \
+  --port "$PORT" \
+  --cidr "$CIDR"
+
+# Rollback: re-authorize a rule that was removed
+aws ec2 authorize-security-group-ingress \
+  --group-id "$SG_ID" \
+  --protocol tcp \
+  --port "$PORT" \
+  --cidr "$CIDR"
+```
+
+Firewall (iptables) rollback:
+```bash
+# Save current rules before changes
+iptables-save > "/tmp/iptables-backup-$(date +%s).rules"
+
+# Rollback: restore previous rules
+iptables-restore < "/tmp/iptables-backup-<timestamp>.rules"
+```
+
+Azure NSG rollback:
+```bash
+# Capture current NSG state
+az network nsg show --name "$NSG_NAME" --resource-group "$RG" > "/tmp/nsg-backup-$(date +%s).json"
+
+# Rollback: delete a rule that was added
+az network nsg rule delete \
+  --nsg-name "$NSG_NAME" \
+  --resource-group "$RG" \
+  --name "$RULE_NAME"
+```
+
+Automated rollback triggers:
+- Connectivity health check fails within 60 seconds of change
+- Error rate exceeds 5% on monitored endpoints post-change
+- Security monitoring detects unexpected open ports
+- Rollback triggered manually via emergency stop mechanism
+
+### Audit Logging
+
+All security-modifying operations MUST produce structured audit log entries.
+
+Log format (JSON):
+```json
+{
+  "timestamp": "2025-01-15T14:32:00Z",
+  "user": "security-engineer-agent",
+  "environment": "production",
+  "change_ticket": "SEC-4521",
+  "command": "aws ec2 authorize-security-group-ingress --group-id sg-0a1b2c3d4e5f --protocol tcp --port 443 --cidr 10.0.0.0/8",
+  "target_resource": "sg-0a1b2c3d4e5f",
+  "action": "add_ingress_rule",
+  "outcome": "success",
+  "previous_state": "no rule for tcp/443 from 10.0.0.0/8",
+  "new_state": "tcp/443 open from 10.0.0.0/8",
+  "rollback_command": "aws ec2 revoke-security-group-ingress --group-id sg-0a1b2c3d4e5f --protocol tcp --port 443 --cidr 10.0.0.0/8",
+  "blast_radius": "medium",
+  "approver": "senior-security-lead"
+}
+```
+
+Logging implementation:
+```bash
+log_security_action() {
+  local ACTION="$1" COMMAND="$2" OUTCOME="$3" ENV="$4"
+  jq -n \
+    --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+    --arg user "$(whoami)" \
+    --arg env "$ENV" \
+    --arg cmd "$COMMAND" \
+    --arg action "$ACTION" \
+    --arg outcome "$OUTCOME" \
+    '{timestamp: $ts, user: $user, environment: $env, command: $cmd, action: $action, outcome: $outcome}' \
+    >> /var/log/security-engineer-audit.json
+}
+
+# Usage
+log_security_action "add_ingress_rule" "$FULL_COMMAND" "success" "production"
+```
+
+Audit log retention:
+- Production security changes: 2 years minimum
+- Staging changes: 90 days
+- All logs forwarded to SIEM in real-time
+
+### Emergency Stop Mechanism
+
+Before executing any critical security change, check for the presence of an emergency stop file. If the file exists, halt all operations immediately.
+
+Emergency stop check:
+```bash
+EMERGENCY_STOP_FILE="/etc/security-engineer/EMERGENCY_STOP"
+
+check_emergency_stop() {
+  if [[ -f "$EMERGENCY_STOP_FILE" ]]; then
+    echo "EMERGENCY STOP ACTIVE - All security changes halted" >&2
+    echo "Stop file found at: $EMERGENCY_STOP_FILE" >&2
+    echo "Contact the security team lead to clear the stop." >&2
+    log_security_action "emergency_stop_blocked" "$1" "blocked" "$ENV"
+    exit 1
+  fi
+}
+
+# Call before every critical operation
+check_emergency_stop "aws ec2 authorize-security-group-ingress --group-id $SG_ID ..."
+```
+
+Activating emergency stop:
+```bash
+# Halt all security-engineer operations immediately
+sudo touch /etc/security-engineer/EMERGENCY_STOP
+echo "Emergency stop activated by $(whoami) at $(date -u)" | sudo tee /etc/security-engineer/EMERGENCY_STOP
+```
+
+Clearing emergency stop:
+```bash
+# Only after incident resolution and approval
+sudo rm /etc/security-engineer/EMERGENCY_STOP
+log_security_action "emergency_stop_cleared" "rm EMERGENCY_STOP" "success" "$ENV"
+```
+
+Emergency stop scope:
+- Blocks all firewall rule modifications
+- Blocks all security group changes
+- Blocks all IAM policy modifications
+- Blocks all network ACL updates
+- Does NOT block read-only security assessments or monitoring
+
 ## Communication Protocol
 
 ### Security Assessment
