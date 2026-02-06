@@ -126,6 +126,8 @@ On-call practices:
 
 ## Security Safeguards
 
+> **Environment adaptability**: Ask the user about their environment once at session start and adapt proportionally. Homelabs/sandboxes do not need change tickets or on-call notifications. Items marked *(if available)* can be skipped when infrastructure doesn't exist. **Never block the user** because a formal process is unavailable — note the skipped safeguard and continue.
+
 ### Input Validation
 
 All inputs MUST be validated before use in any SRE operation. Reject and log any input that fails validation.
@@ -198,7 +200,7 @@ MANDATORY pre-execution checklist before any SRE remediation or infrastructure c
 ```yaml
 approval_gate:
   required_checks:
-    - name: "Change ticket exists"
+    - name: "Change ticket exists *(if available)*"
       check: "Verify change request is filed and approved in ticketing system"
       command: |
         # Validate change ticket reference
@@ -457,6 +459,83 @@ auto_remediate() {
   sre_audit_log "$action" "$target" "completed" "Auto-remediation finished"
 }
 ```
+
+### Blast Radius Controls
+
+SRE auto-remediation and operational changes MUST limit blast radius to prevent cascading failures. Progressive rollout is required for all changes.
+
+Auto-remediation blast radius limits:
+```yaml
+auto_remediation_limits:
+  service_restart:
+    max_per_incident: 1
+    rationale: "Single service restart prevents cascading dependency failures"
+
+  capacity_changes:
+    max_scaling_percentage: 10
+    rationale: "Limit auto-scaling to 10% capacity change per action to prevent resource exhaustion"
+    example: "If current replicas = 20, max auto-scale to 22 (not 40)"
+
+  circuit_breaker:
+    failure_threshold: 3
+    failure_window: "5 minutes"
+    action: "Halt all auto-remediation, require manual intervention"
+    rationale: "3 consecutive auto-remediation failures indicate systemic issue"
+```
+
+Chaos engineering blast radius controls:
+```yaml
+chaos_experiment_limits:
+  initial_traffic_percentage: 1
+  rationale: "Start chaos experiments with 1% of traffic to minimize impact"
+
+  instance_targeting:
+    initial_scope: "single instance"
+    progression: "1 instance → 1 AZ → multi-AZ"
+
+  experiment_duration:
+    max_initial: "5 minutes"
+    requires_approval: "> 15 minutes"
+```
+
+Incident response blast radius containment:
+```bash
+# ALWAYS isolate before scaling/restarting
+incident_response_order() {
+  echo "1. Isolate affected service (circuit break, traffic redirect)"
+  echo "2. Assess blast radius of incident (affected services, users, regions)"
+  echo "3. Contain: prevent spread to dependent services"
+  echo "4. Remediate: fix isolated service"
+  echo "5. Gradually restore traffic"
+}
+```
+
+Progressive escalation for auto-remediation:
+```yaml
+escalation_ladder:
+  level_1_automated_fix:
+    actions: ["restart_pod", "scale_within_10_percent", "clear_cache"]
+    max_attempts: 1
+    next_level_trigger: "Action fails or does not resolve SLO violation"
+
+  level_2_on_call_notification:
+    action: "Page on-call engineer *(if available)*"
+    context: "Include: incident details, attempted remediations, current SLO burn rate"
+    timeout: "15 minutes"
+    next_level_trigger: "No response or issue unresolved"
+
+  level_3_manual_intervention:
+    action: "Escalate to incident commander, halt auto-remediation"
+    required_when: "Auto-remediation exhausted or blast radius expanding"
+```
+
+Blast radius limits by environment:
+| Environment | Max Services Affected | Max Auto-Remediation Actions | Approval Required |
+|-------------|----------------------|------------------------------|-------------------|
+| Development | Unlimited | Unlimited | Never |
+| Staging | 5 services | 10 actions/hour | > 3 services |
+| Production | 1 service at a time | 3 actions/hour | Always for >10% capacity change |
+| Critical Production | 1 service, manual approval | Manual only | Always |
 
 ## Communication Protocol
 
