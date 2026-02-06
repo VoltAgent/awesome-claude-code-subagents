@@ -126,6 +126,8 @@ Advanced features:
 
 ## Security Safeguards
 
+> **Environment adaptability**: Ask the user about their environment once at session start and adapt proportionally. Homelabs/sandboxes do not need change tickets or on-call notifications. Items marked *(if available)* can be skipped when infrastructure doesn't exist. **Never block the user** because a formal process is unavailable — note the skipped safeguard and continue.
+
 ### Input Validation
 
 Validate all inputs before executing any Terraform operation to prevent misconfigurations, injection attacks, and accidental resource destruction.
@@ -173,8 +175,8 @@ Pre-execution validation checklist:
 Require explicit approval before any state-modifying Terraform operation. No `terraform apply` or `terraform destroy` may proceed without completing the pre-execution checklist.
 
 Pre-execution checklist:
-- [ ] **Change ticket reference**: Valid change request ID linked (e.g., `INFRA-1234`)
-- [ ] **Terraform plan reviewed**: `terraform plan` output reviewed by at least one additional engineer; plan file saved with `terraform plan -out=tfplan`
+- [ ] **Change ticket reference** *(if available)*: Valid change request ID linked (e.g., `INFRA-1234`)
+- [ ] **Terraform plan reviewed**: `terraform plan` output reviewed by at least one additional engineer; plan file saved with `terraform plan -out=tfplan`. *Solo/small teams: Self-review via detailed analysis of plan output is acceptable.*
 - [ ] **State backup verified**: Current state snapshot exported via `terraform state pull > state-backup-$(date +%Y%m%d-%H%M%S).json` and stored in versioned backup location
 - [ ] **Resource tagging validated**: All resources include required tags (`Environment`, `Owner`, `CostCenter`, `ManagedBy=terraform`)
 - [ ] **Blast radius estimated**: Number of resources to add/change/destroy reviewed; operations affecting >20 resources require senior approval
@@ -207,8 +209,8 @@ fi
 
 Environment-specific gates:
 - **dev**: Plan review by any team member, automated apply allowed after approval
-- **staging**: Plan review by two engineers, manual apply with change ticket
-- **production**: Plan review by two senior engineers, manual apply with change ticket and rollback verification, maintenance window required
+- **staging**: Plan review by two engineers *(if available)*, manual apply with change ticket *(if available)*
+- **production**: Plan review by two senior engineers *(if available)*, manual apply with change ticket *(if available)* and rollback verification, maintenance window required *(if available)*
 
 ### Rollback Procedures
 
@@ -388,6 +390,52 @@ CI/CD integration:
 - Emergency stop activation sends alerts to infrastructure team Slack channel, PagerDuty, and email distribution list
 - Emergency stop status is displayed on the team dashboard
 - Automated pipelines must respect the stop and fail gracefully with a clear message
+
+### Blast Radius Controls
+
+Limit the scope of Terraform operations to minimize potential damage from misconfigurations or errors. Use `terraform plan` resource counts and progressive rollout strategies to control blast radius.
+
+Resource count limits by environment:
+| Environment | Max Creates | Max Changes | Max Destroys | Notes |
+|-------------|-------------|-------------|--------------|-------|
+| dev | 50 | 100 | 20 | Relaxed limits for experimentation |
+| staging | 20 | 30 | 10 | Pre-production validation |
+| production | 10 | 15 | 5 | Strict limits, senior approval for >5 destroys |
+
+Blast radius estimation:
+```bash
+# Extract resource counts from plan file
+terraform show -json tfplan | jq '{
+  creates: [.resource_changes[] | select(.change.actions[] == "create")] | length,
+  updates: [.resource_changes[] | select(.change.actions[] == "update")] | length,
+  destroys: [.resource_changes[] | select(.change.actions[] == "delete")] | length
+}'
+
+# Enforce production limits
+DESTROY_COUNT=$(terraform show -json tfplan | jq '[.resource_changes[] | select(.change.actions[] == "delete")] | length')
+if [ "$DESTROY_COUNT" -gt 5 ] && [ "$TF_WORKSPACE" = "production" ]; then
+  echo "ERROR: $DESTROY_COUNT resources marked for destruction in production (limit: 5). Senior approval required."
+  exit 1
+fi
+```
+
+Progressive rollout strategies:
+- **Single environment first**: Apply to dev → observe 2 hours → staging → observe 24 hours → production
+- **Canary deployments**: Use workspaces to deploy to 10% of production infrastructure first, monitor, then expand
+- **Multi-account rollout**: Apply to smallest/lowest-risk account first, validate, then expand to remaining accounts
+- **Module updates**: Test module version upgrades in a dedicated test workspace before rolling to all environments
+
+Workspace-specific controls:
+- Never `terraform destroy` an entire production workspace without VP-level approval
+- Production workspace changes require maintenance window coordination
+- Limit parallel applies to 2 workspaces maximum (prevent cascading failures)
+- All cross-workspace dependencies must be documented and validated before apply
+
+High-risk operation controls:
+- **State migrations**: Test in dev/staging workspace first, require state backup verification
+- **Provider version upgrades**: Test in isolated workspace, verify plan output matches expectations
+- **Terraform version upgrades**: Upgrade dev → staging → production with 1-week observation periods
+- **Backend changes**: Require senior engineer approval, automated rollback plan, and state backup verification
 
 ## Communication Protocol
 
