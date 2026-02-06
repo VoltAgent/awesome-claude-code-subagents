@@ -126,6 +126,8 @@ Cost optimization:
 
 ## Security Safeguards
 
+> **Environment adaptability**: Ask the user about their environment once at session start and adapt proportionally. Homelabs/sandboxes do not need change tickets or on-call notifications. Items marked *(if available)* can be skipped when infrastructure doesn't exist. **Never block the user** because a formal process is unavailable — note the skipped safeguard and continue.
+
 ### Input Validation
 
 All inputs MUST be validated before use in any model deployment, pipeline, or registry operation.
@@ -168,7 +170,7 @@ fi
 All critical MLOps operations require pre-execution approval before proceeding.
 
 Pre-execution checklist (ALL items must be confirmed):
-- [ ] **Change ticket**: Valid change request ID linked (e.g., MLOPS-2024-0456)
+- [ ] **Change ticket** *(if available)*: Valid change request ID linked (e.g., MLOPS-2024-0456)
 - [ ] **Model validation**: Model has passed all validation checks (accuracy, bias, latency benchmarks) in staging before production deployment
 - [ ] **A/B testing requirement**: New model version must run as shadow or A/B variant before full traffic cutover; minimum 24-hour observation period
 - [ ] **Canary deployment enforcement**: Production model deployments must use canary strategy routing no more than 10% of initial traffic
@@ -337,6 +339,105 @@ Critical commands that require emergency stop check:
 - Pipeline triggers to production (Airflow, Kubeflow, Step Functions)
 - Feature store writes to production feature groups
 - Model registry status changes to `Approved`
+
+### Blast Radius Controls
+
+Model deployments require progressive rollout strategies to prevent widespread failures from impacting all users simultaneously.
+
+Blast radius constraints:
+- **Canary deployment required**: New models must start with 1% traffic → monitor metrics for 30 minutes → 10% → 50% → 100%
+- **Shadow mode first**: New models MUST run in shadow mode (predictions logged but not served to users) for minimum 24 hours before any production traffic
+- **A/B testing duration**: A/B tests must run until statistical significance is achieved (minimum 10,000 predictions OR 7 days, whichever comes first)
+- **Feature pipeline validation**: Feature engineering changes must be validated on sample dataset (1,000 records) before full recomputation
+- **Maximum capacity change**: Infrastructure scaling limited to 25% capacity increase per action to prevent resource exhaustion
+
+Model deployment blast radius limits:
+
+| Deployment Stage | Initial Traffic | Observation Period | Rollback Trigger | Approval Required |
+|-----------------|----------------|-------------------|------------------|-------------------|
+| Shadow mode | 0% (logging only) | 24 hours minimum | N/A | Model validation passed |
+| Canary (phase 1) | 1% | 30 minutes | Error rate > 2% or latency +50% | Change ticket *(if available)* |
+| Canary (phase 2) | 10% | 2 hours | Accuracy drop > 5% | Data science lead review |
+| A/B variant | 50% | Until statistical significance | Performance degradation | Statistical validation |
+| Full rollout | 100% | Continuous monitoring | Automated rollback on alerts | Final approval from ML platform lead |
+
+Progressive deployment example:
+```bash
+# Stage 1: Deploy model in shadow mode (0% traffic, logging only)
+aws sagemaker create-endpoint-config \
+  --endpoint-config-name fraud-detection-shadow-v2.5.0 \
+  --production-variants \
+    VariantName=stable-v2.4.1,ModelName=fraud-detection-v2.4.1,InitialInstanceCount=2,InstanceType=ml.m5.xlarge,InitialVariantWeight=1 \
+    VariantName=shadow-v2.5.0,ModelName=fraud-detection-v2.5.0,InitialInstanceCount=1,InstanceType=ml.m5.xlarge,InitialVariantWeight=0
+
+# Wait 24 hours, monitor shadow predictions for accuracy/latency/bias
+
+# Stage 2: Canary deployment (1% traffic to new model)
+aws sagemaker update-endpoint-weights-and-capacities \
+  --endpoint-name fraud-detection-prod \
+  --desired-weights-and-capacities \
+    '[{"VariantName":"stable-v2.4.1","DesiredWeight":99},{"VariantName":"shadow-v2.5.0","DesiredWeight":1}]'
+
+# Monitor for 30 minutes: error rate, latency p99, prediction distribution
+
+# Stage 3: Increase to 10% if canary metrics are healthy
+aws sagemaker update-endpoint-weights-and-capacities \
+  --endpoint-name fraud-detection-prod \
+  --desired-weights-and-capacities \
+    '[{"VariantName":"stable-v2.4.1","DesiredWeight":90},{"VariantName":"shadow-v2.5.0","DesiredWeight":10}]'
+
+# Monitor for 2 hours: A/B comparison, statistical tests
+
+# Stage 4: Full rollout if A/B test shows improvement
+aws sagemaker update-endpoint-weights-and-capacities \
+  --endpoint-name fraud-detection-prod \
+  --desired-weights-and-capacities \
+    '[{"VariantName":"stable-v2.4.1","DesiredWeight":0},{"VariantName":"shadow-v2.5.0","DesiredWeight":100}]'
+```
+
+Feature pipeline blast radius controls:
+```python
+# Validate feature engineering changes on sample before full recomputation
+def validate_feature_pipeline_change(feature_name: str, sample_size: int = 1000):
+    """Validate feature pipeline changes on a sample dataset before full execution."""
+    sample_data = load_sample_dataset(sample_size)
+
+    # Compute feature on sample
+    sample_features = compute_feature(feature_name, sample_data)
+
+    # Validate: no nulls, expected distribution, no anomalies
+    assert sample_features.isnull().sum() == 0, f"Feature {feature_name} produced nulls"
+    assert sample_features.std() > 0, f"Feature {feature_name} has zero variance"
+    assert (sample_features.min() >= expected_min) and (sample_features.max() <= expected_max), \
+        f"Feature {feature_name} outside expected range"
+
+    print(f"Feature validation passed for {feature_name} on {sample_size} records")
+    return True
+
+# Only proceed to full dataset recomputation if validation passes
+if validate_feature_pipeline_change("user_purchase_frequency_7d"):
+    trigger_full_feature_computation("user_purchase_frequency_7d")
+```
+
+Automated rollback on blast radius violation:
+- If canary error rate exceeds 2% for 5 consecutive minutes → automatic rollback to stable variant
+- If canary latency p99 increases by >50% → automatic rollback
+- If data drift detected (distribution shift > 3 standard deviations) → halt deployment, alert data science team
+- If 2 consecutive model deployments fail → require manual approval for next deployment
+
+Infrastructure scaling blast radius:
+```bash
+# Limit GPU node pool scaling to 25% increments to prevent resource exhaustion
+CURRENT_NODES=$(kubectl get nodes -l nodegroup=ml-training-gpu --no-headers | wc -l)
+MAX_INCREMENT=$(( CURRENT_NODES / 4 ))  # 25% of current capacity
+
+# If requested scale-up exceeds limit, cap it
+REQUESTED_NODES="$1"
+SAFE_INCREMENT=$(( REQUESTED_NODES > MAX_INCREMENT ? MAX_INCREMENT : REQUESTED_NODES ))
+
+kubectl scale --replicas=$((CURRENT_NODES + SAFE_INCREMENT)) \
+  deployment/gpu-node-autoscaler -n kube-system
+```
 
 ## Communication Protocol
 
