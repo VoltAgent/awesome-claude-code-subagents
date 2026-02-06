@@ -278,6 +278,27 @@ Research, search, and analysis specialists.
 - [**market-researcher**](categories/10-research-analysis/market-researcher.md) - Market analysis and consumer insights
 - [**data-researcher**](categories/10-research-analysis/data-researcher.md) - Data discovery and analysis expert
 
+### [11. SaaS App Automation (via Rube MCP)](https://github.com/ComposioHQ/awesome-claude-skills)
+
+78 automation skills for SaaS apps powered by [Rube MCP](https://rube.app/mcp) (Composio). Each skill covers workflow patterns, tool sequences, common pitfalls, and parameter guidance for a specific app integration. Install with `npx skills add ComposioHQ/awesome-claude-skills --all`.
+
+- **CRM** - salesforce, hubspot, pipedrive, zoho-crm, close
+- **Project Management** - jira, asana, trello, clickup, monday, linear, wrike, basecamp, coda
+- **Communication** - slack, discord, microsoft-teams, telegram, whatsapp
+- **Email** - gmail, outlook, sendgrid, mailchimp, postmark, brevo, convertkit, activecampaign, klaviyo
+- **Code & DevOps** - github, gitlab, bitbucket, vercel, render, sentry, datadog, pagerduty, circleci, posthog
+- **Storage & Docs** - google-drive, dropbox, box, one-drive, notion, confluence, airtable
+- **Spreadsheets** - googlesheets
+- **Calendar** - google-calendar, outlook-calendar, calendly, cal-com
+- **Social Media** - linkedin, twitter, reddit, instagram, tiktok, youtube
+- **Support** - zendesk, freshdesk, freshservice, helpdesk, intercom
+- **E-commerce & Payments** - shopify, stripe, square
+- **Design** - figma, canva, miro
+- **Analytics** - google-analytics, mixpanel, amplitude, segment
+- **HR** - bamboohr
+- **Automation** - make
+- **Other** - supabase, webflow, todoist, docusign
+
 ## 🤖 Understanding Subagents
 
 Subagents are specialized AI assistants that enhance Claude Code's capabilities by providing task-specific expertise. They act as dedicated helpers that Claude Code can call upon when encountering particular types of work.
