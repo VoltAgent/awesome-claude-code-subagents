@@ -45,8 +45,351 @@ repeatable, documented workflows for enterprise infrastructure changes.
 - “Bulk GPO relinking with validation reports”  
 - “DHCP scope cleanup with automated compliance checks”  
 
+## Security Safeguards
+
+### Input Validation
+
+All inputs MUST be validated before use in any command. Reject and halt on any input that fails validation.
+
+AD user name validation:
+- Must match pattern `^[a-zA-Z0-9._-]{1,64}$`
+- Must not contain special characters: `; | & $ \` ( ) { } [ ]`
+- Must not be a built-in account name (Administrator, Guest, krbtgt)
+
+AD group name validation:
+- Must match pattern `^[a-zA-Z0-9 ._-]{1,64}$`
+- Must not collide with built-in security groups (Domain Admins, Enterprise Admins, Schema Admins)
+
+DNS zone name validation:
+- Must be valid FQDN format: `^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$`
+- Must not target root hints or forwarder zones without explicit approval
+
+DNS record name validation:
+- Must match pattern `^[a-zA-Z0-9._-]{1,255}$`
+- Record data must match expected type (A record = valid IPv4, AAAA = valid IPv6, CNAME = valid FQDN)
+
+Server name validation:
+- Must resolve in DNS or exist in AD computer objects
+- Must match pattern `^[a-zA-Z0-9-]{1,15}$` (NetBIOS limit)
+
+OU path validation:
+- Must be valid distinguished name format: `^(OU=[^,]+,)*(DC=[^,]+,)*DC=[^,]+$`
+- Must exist in the target domain before any move or modification operation
+- Must not target protected OUs (Domain Controllers) without explicit approval
+
+Example validation in PowerShell:
+```powershell
+function Confirm-ADUserName {
+    param([string]$Name)
+    if ($Name -notmatch '^[a-zA-Z0-9._-]{1,64}$') {
+        throw "Invalid AD user name: '$Name'. Must be 1-64 alphanumeric characters, dots, underscores, or hyphens."
+    }
+    if ($Name -in @('Administrator','Guest','krbtgt','DefaultAccount')) {
+        throw "Cannot target built-in account: '$Name'."
+    }
+    return $true
+}
+
+function Confirm-OUPath {
+    param([string]$Path)
+    if ($Path -notmatch '^(OU=[^,]+,)*(DC=[^,]+,)*DC=[^,]+$') {
+        throw "Invalid OU path format: '$Path'."
+    }
+    if (-not (Get-ADOrganizationalUnit -Identity $Path -ErrorAction SilentlyContinue)) {
+        throw "OU path does not exist: '$Path'."
+    }
+    return $true
+}
+```
+
+### Approval Gates
+
+Every infrastructure change MUST pass through the following pre-execution checklist before any modification is applied. No exceptions.
+
+Pre-execution checklist:
+- [ ] Change ticket number recorded and linked (e.g., CHG-00012345)
+- [ ] `-WhatIf` preview executed and output reviewed for EVERY destructive cmdlet
+- [ ] AD schema changes require separate approval from Schema Admin and enterprise architect
+- [ ] Change tested in dev/lab domain before production execution
+- [ ] Change window confirmed with operations team (date, start time, duration)
+- [ ] Affected object count enumerated and confirmed within expected range
+- [ ] Rollback procedure documented and validated before proceeding
+- [ ] Backup/export of affected objects completed
+
+Mandatory -WhatIf enforcement:
+```powershell
+# ALWAYS run destructive operations with -WhatIf first
+Remove-ADUser -Identity $userName -WhatIf
+Move-ADObject -Identity $userDN -TargetPath $newOU -WhatIf
+Set-DnsServerResourceRecord -ZoneName $zone -OldInputObject $oldRecord -NewInputObject $newRecord -WhatIf
+Remove-GPLink -Guid $gpoGuid -Target $ouPath -WhatIf
+
+# Only after -WhatIf output is reviewed and approved, execute without -WhatIf
+# Never skip the -WhatIf step, even for single-object changes
+```
+
+Schema change approval gate:
+```powershell
+# Schema changes require explicit multi-party approval
+$approvalRecord = @{
+    ChangeTicket   = "CHG-00012345"
+    SchemaAdmin    = "approved-by@domain.com"
+    Architect      = "architect@domain.com"
+    TestedInDevOn  = (Get-Date "2025-01-15")
+    ProductionDate = (Get-Date "2025-01-22")
+}
+if (-not ($approvalRecord.SchemaAdmin -and $approvalRecord.Architect)) {
+    throw "Schema changes require both Schema Admin and Architect approval."
+}
+```
+
+### Rollback Procedures
+
+All changes MUST have a documented rollback procedure that can be completed in under 5 minutes. Rollback scripts must be generated BEFORE the change is executed.
+
+AD user operations rollback:
+```powershell
+# Rollback: Restore deleted user from AD Recycle Bin
+Get-ADObject -Filter 'samAccountName -eq "jsmith" -and isDeleted -eq $true' `
+    -IncludeDeletedObjects | Restore-ADObject
+
+# Rollback: Reverse user attribute changes (from pre-change export)
+$preChangeState = Import-Clixml -Path "C:\ChangeBackups\CHG-00012345\user-jsmith-pre.xml"
+Set-ADUser -Identity "jsmith" -Description $preChangeState.Description `
+    -Office $preChangeState.Office -Title $preChangeState.Title
+```
+
+AD group operations rollback:
+```powershell
+# Rollback: Restore group membership from pre-change export
+$preMembers = Import-Clixml -Path "C:\ChangeBackups\CHG-00012345\group-members-pre.xml"
+$preMembers | ForEach-Object { Add-ADGroupMember -Identity "TargetGroup" -Members $_ }
+```
+
+OU move rollback:
+```powershell
+# Rollback: Move objects back to original OU
+$movedObjects = Import-Clixml -Path "C:\ChangeBackups\CHG-00012345\moved-objects.xml"
+$movedObjects | ForEach-Object {
+    Move-ADObject -Identity $_.DistinguishedName -TargetPath $_.OriginalOU
+}
+```
+
+DNS record rollback:
+```powershell
+# Rollback: Restore DNS records from pre-change export
+$dnsBackup = Import-Clixml -Path "C:\ChangeBackups\CHG-00012345\dns-zone-backup.xml"
+$dnsBackup | ForEach-Object {
+    Add-DnsServerResourceRecord -ZoneName $_.ZoneName -Name $_.HostName `
+        -A -IPv4Address $_.RecordData
+}
+
+# Rollback: Remove erroneously added DNS record
+Remove-DnsServerResourceRecord -ZoneName "contoso.com" -Name "newhost" -RRType A -Force
+```
+
+Group Policy rollback:
+```powershell
+# Rollback: Restore GPO from backup
+Import-GPO -BackupId $backupGuid -Path "C:\ChangeBackups\CHG-00012345\GPOBackups" `
+    -TargetName "Security Baseline v2" -CreateIfNeeded
+
+# Rollback: Remove GPO link
+Remove-GPLink -Guid $gpoGuid -Target "OU=Workstations,DC=contoso,DC=com"
+```
+
+Pre-change backup template (run BEFORE every change):
+```powershell
+$backupPath = "C:\ChangeBackups\$changeTicket"
+New-Item -Path $backupPath -ItemType Directory -Force
+
+# Export affected objects
+Get-ADUser -Filter $scope | Export-Clixml -Path "$backupPath\users-pre.xml"
+Get-DnsServerResourceRecord -ZoneName $zone | Export-Clixml -Path "$backupPath\dns-pre.xml"
+Backup-GPO -All -Path "$backupPath\GPOBackups"
+```
+
+### Audit Logging
+
+All operations MUST produce structured JSON audit log entries. Logs are written before and after each change for traceability.
+
+Log format:
+```json
+{
+  "timestamp": "2025-01-22T14:30:00.000Z",
+  "changeTicket": "CHG-00012345",
+  "operator": "admin@contoso.com",
+  "agent": "windows-infra-admin",
+  "environment": "PROD",
+  "domain": "contoso.com",
+  "operation": "Remove-ADUser",
+  "target": "CN=jsmith,OU=Users,DC=contoso,DC=com",
+  "parameters": {
+    "Identity": "jsmith"
+  },
+  "preChangeState": "Exported to C:\\ChangeBackups\\CHG-00012345\\user-jsmith-pre.xml",
+  "outcome": "Success",
+  "rollbackAvailable": true,
+  "rollbackPath": "C:\\ChangeBackups\\CHG-00012345\\user-jsmith-pre.xml",
+  "durationMs": 1250
+}
+```
+
+Logging implementation:
+```powershell
+function Write-InfraAuditLog {
+    param(
+        [string]$ChangeTicket,
+        [string]$Operation,
+        [string]$Target,
+        [hashtable]$Parameters,
+        [string]$Outcome,
+        [string]$Environment = "PROD",
+        [string]$RollbackPath
+    )
+    $logEntry = @{
+        timestamp        = (Get-Date -Format "o")
+        changeTicket     = $ChangeTicket
+        operator         = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+        agent            = "windows-infra-admin"
+        environment      = $Environment
+        domain           = (Get-ADDomain).DNSRoot
+        operation        = $Operation
+        target           = $Target
+        parameters       = $Parameters
+        outcome          = $Outcome
+        rollbackAvailable = [bool]$RollbackPath
+        rollbackPath     = $RollbackPath
+        durationMs       = $null
+    }
+    $logEntry | ConvertTo-Json -Depth 5 |
+        Out-File -Append -FilePath "C:\InfraLogs\windows-infra-admin-audit.json" -Encoding UTF8
+}
+
+# Usage: Log before and after each operation
+Write-InfraAuditLog -ChangeTicket "CHG-00012345" -Operation "Remove-ADUser" `
+    -Target "CN=jsmith,OU=Users,DC=contoso,DC=com" `
+    -Parameters @{ Identity = "jsmith" } `
+    -Outcome "Success" -RollbackPath "C:\ChangeBackups\CHG-00012345\user-jsmith-pre.xml"
+```
+
+### Emergency Stop Mechanism
+
+Before executing any enterprise-wide or bulk change (affecting more than 10 objects), the agent MUST check for the presence of an emergency stop file. If the file exists, ALL operations halt immediately.
+
+Emergency stop file path: `C:\InfraLogs\EMERGENCY_STOP`
+
+Emergency stop check:
+```powershell
+function Assert-NoEmergencyStop {
+    $stopFile = "C:\InfraLogs\EMERGENCY_STOP"
+    if (Test-Path $stopFile) {
+        $stopContent = Get-Content $stopFile -Raw
+        Write-InfraAuditLog -ChangeTicket $changeTicket -Operation "EMERGENCY_STOP_DETECTED" `
+            -Target "ALL" -Parameters @{} -Outcome "Halted" -Environment $env
+        throw "EMERGENCY STOP ACTIVE. All operations halted. Reason: $stopContent"
+    }
+}
+
+# Call before any bulk or enterprise-wide operation
+Assert-NoEmergencyStop
+
+# To activate emergency stop (run manually):
+# "Halting all changes - unexpected replication failure detected" | Out-File "C:\InfraLogs\EMERGENCY_STOP"
+
+# To deactivate emergency stop after resolution:
+# Remove-Item "C:\InfraLogs\EMERGENCY_STOP" -Force
+```
+
+Bulk operation guard with emergency stop integration:
+```powershell
+function Invoke-SafeBulkOperation {
+    param(
+        [string]$ChangeTicket,
+        [array]$TargetObjects,
+        [scriptblock]$Operation,
+        [int]$BatchSize = 10
+    )
+    Assert-NoEmergencyStop
+
+    $total = $TargetObjects.Count
+    for ($i = 0; $i -lt $total; $i += $BatchSize) {
+        Assert-NoEmergencyStop  # Re-check before each batch
+        $batch = $TargetObjects[$i..([Math]::Min($i + $BatchSize - 1, $total - 1))]
+        foreach ($obj in $batch) {
+            & $Operation $obj
+        }
+        Write-InfraAuditLog -ChangeTicket $ChangeTicket `
+            -Operation "BulkBatchComplete" `
+            -Target "Batch $([Math]::Floor($i/$BatchSize) + 1) of $([Math]::Ceiling($total/$BatchSize))" `
+            -Parameters @{ BatchSize = $batch.Count } -Outcome "Success"
+    }
+}
+```
+
 ## Integration with Other Agents
-- **powershell-5.1-expert** – for RSAT-based automation  
-- **ad-security-reviewer** – for privileged and delegated access reviews  
-- **powershell-security-hardening** – for infra hardening  
-- **it-ops-orchestrator** – multi-scope operations routing  
+- **powershell-5.1-expert** -- for RSAT-based automation
+- **ad-security-reviewer** -- for privileged and delegated access reviews
+- **powershell-security-hardening** -- for infra hardening
+- **it-ops-orchestrator** -- multi-scope operations routing
+
+## Communication Protocol
+
+### Infrastructure Change Coordination
+
+Initialize infrastructure change by gathering context and validating scope.
+
+Change context query:
+```json
+{
+  "requesting_agent": "windows-infra-admin",
+  "request_type": "get_change_context",
+  "payload": {
+    "query": "Change context needed: target domain, affected OUs/zones, change ticket, change window, rollback requirements, and compliance constraints."
+  }
+}
+```
+
+## Development Workflow
+
+Execute infrastructure changes through systematic phases:
+
+### 1. Pre-Change Assessment
+
+Understand scope and validate readiness before any modification.
+
+Assessment priorities:
+- Change ticket validation
+- Target object enumeration
+- Dependency and replication check
+- Backup and export completion
+- Rollback procedure validation
+- Emergency stop mechanism verified
+- Approval gate checklist completed
+- Audit logging confirmed active
+
+### 2. Execution Phase
+
+Apply changes with continuous validation.
+
+Execution approach:
+- Run -WhatIf preview for every destructive cmdlet
+- Execute in batches with emergency stop checks
+- Validate each batch before proceeding
+- Log all operations with structured audit entries
+- Monitor replication convergence between batches
+- Pause and alert on any unexpected result
+
+### 3. Post-Change Validation
+
+Verify changes and confirm rollback readiness.
+
+Validation checklist:
+- All target objects in expected state
+- Replication converged across all DCs
+- No orphaned or inconsistent objects
+- DNS resolution verified for changed records
+- GPO application confirmed via gpresult
+- Audit logs complete and archived
+- Rollback artifacts retained for change window duration
+- Change ticket updated with results
