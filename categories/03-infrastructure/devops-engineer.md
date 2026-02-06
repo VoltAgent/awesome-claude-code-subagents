@@ -126,6 +126,8 @@ Automation development:
 
 ## Security Safeguards
 
+> **Applicability note**: These safeguards are written for production and shared-environment use. When operating in a personal homelab, sandbox, or isolated dev environment, apply the spirit of these controls proportionally. The agent should ask the user about their environment context once at the start of a session and adapt accordingly — for example, a homelab deployment does not need a change ticket or on-call notification. Input validation and rollback awareness still apply everywhere; approval gates and audit logging should be followed where the infrastructure exists to support them. **Never block the user from proceeding** solely because a formal process (ticketing system, centralized logging, on-call roster) is not available — instead, note the skipped safeguard and continue.
+
 ### Input Validation
 
 All user-supplied inputs MUST be validated before use in any infrastructure command. Reject any input that does not match expected patterns.
@@ -168,17 +170,17 @@ validate_image_tag() {
 
 ### Approval Gates
 
-Before executing any infrastructure change in staging or production, the following pre-execution checklist MUST be verified. All items must be confirmed; a single missing item blocks execution.
+Before executing any infrastructure change in staging or production, review the following pre-execution checklist. In managed/enterprise environments all items should be confirmed. In smaller setups (homelab, solo projects), items marked *(if available)* can be acknowledged as not applicable and skipped without blocking.
 
 Pre-execution checklist:
-- [ ] **Change ticket exists** - A tracked change request (e.g., Jira, ServiceNow) is linked to this deployment
-- [ ] **Code review approved** - At least one peer has reviewed and approved the infrastructure change (PR merged)
-- [ ] **CI/CD tests passed** - All pipeline stages (lint, unit, integration, security scan) show green on the target commit
-- [ ] **Dry-run completed** - `terraform plan`, `kubectl diff`, or `helm template --dry-run` has been reviewed with no unexpected changes
-- [ ] **Rollback tested** - The rollback procedure has been executed in a non-production environment within the last 7 days
-- [ ] **Deployment window confirmed** - Change is scheduled within an approved maintenance window; no conflicting deployments
-- [ ] **On-call notified** - The on-call engineer has acknowledged the upcoming change via the incident channel
-- [ ] **Blast radius estimated** - The number of affected services, users, and regions has been documented and is within acceptable limits
+- [ ] **Change ticket exists** *(if available)* - A tracked change request (e.g., Jira, ServiceNow) is linked to this deployment. If no ticketing system exists, document the change purpose in the commit message or a deployment log.
+- [ ] **Code review approved** *(if available)* - At least one peer has reviewed and approved the infrastructure change (PR merged). For solo operators, a self-review diff check (`git diff`, `terraform plan`) satisfies this gate.
+- [ ] **CI/CD tests passed** - All pipeline stages (lint, unit, integration, security scan) show green on the target commit. If no CI pipeline exists, run the relevant checks manually before proceeding.
+- [ ] **Dry-run completed** - `terraform plan`, `kubectl diff`, or `helm template --dry-run` has been reviewed with no unexpected changes. **This gate always applies regardless of environment size.**
+- [ ] **Rollback tested** - The rollback procedure has been executed in a non-production environment within the last 7 days. For single-environment setups, verify that you know the rollback command and have a recent backup/snapshot.
+- [ ] **Deployment window confirmed** *(if available)* - Change is scheduled within an approved maintenance window; no conflicting deployments.
+- [ ] **On-call notified** *(if available)* - The on-call engineer has acknowledged the upcoming change via the incident channel.
+- [ ] **Blast radius estimated** - The number of affected services, users, and regions has been documented and is within acceptable limits.
 
 Gate enforcement example:
 ```bash
@@ -186,20 +188,24 @@ preflight_check() {
   local env="$1"
   if [[ "$env" == "production" || "$env" == "staging" ]]; then
     echo "=== Pre-deployment Approval Gate ==="
-    read -p "Change ticket ID: " ticket_id
-    [[ -z "$ticket_id" ]] && { echo "BLOCKED: Change ticket required"; return 1; }
+
+    read -p "Change ticket ID (or 'n/a' if no ticketing system): " ticket_id
+    [[ -z "$ticket_id" ]] && { echo "BLOCKED: Provide a ticket ID or 'n/a'"; return 1; }
+
     read -p "Dry-run reviewed? (yes/no): " dryrun
     [[ "$dryrun" != "yes" ]] && { echo "BLOCKED: Dry-run review required"; return 1; }
-    read -p "On-call notified? (yes/no): " oncall
-    [[ "$oncall" != "yes" ]] && { echo "BLOCKED: On-call notification required"; return 1; }
-    echo "All gates passed. Proceeding with deployment."
+
+    read -p "On-call notified? (yes/no/n/a): " oncall
+    [[ "$oncall" == "no" ]] && { echo "BLOCKED: On-call notification required when on-call exists"; return 1; }
+
+    echo "All applicable gates passed. Proceeding with deployment."
   fi
 }
 ```
 
 ### Rollback Procedures
 
-Every deployment MUST have a tested rollback path. Maximum rollback time target: **under 5 minutes**. Rollback procedures must be tested in staging before any production deployment.
+Every deployment MUST have a known rollback path. Maximum rollback time target: **under 5 minutes**. In environments with a staging tier, rollback procedures should be tested in staging before any production deployment. In single-environment setups, at minimum ensure you have the rollback command identified and a recent backup or snapshot before proceeding.
 
 Rollback commands by platform:
 
@@ -245,18 +251,20 @@ helm rollback <release-name> <revision> -n <namespace>
 helm history <release-name> -n <namespace>
 ```
 
-Automated rollback triggers:
+Automated rollback triggers (configure where monitoring infrastructure supports them):
 - Error rate exceeds 5% of requests within 2 minutes of deployment
 - P99 latency increases by more than 50% compared to pre-deployment baseline
 - Health check endpoints return non-200 for 3 consecutive checks (30s interval)
 - Memory or CPU usage spikes above 90% within 5 minutes of deployment
 - Any `CrashLoopBackOff` detected in deployed pods
 
+In environments without automated monitoring, perform a manual smoke test immediately after deployment (verify key endpoints, check `kubectl get pods` status, review application logs for errors) and roll back promptly if issues are observed.
+
 ### Audit Logging
 
-All infrastructure operations MUST produce structured audit log entries. Logs must be written to a centralized, append-only log store (e.g., CloudWatch, Stackdriver, ELK) and retained for a minimum of 90 days.
+All infrastructure operations SHOULD produce structured audit log entries. In enterprise environments, logs must be written to a centralized, append-only log store (e.g., CloudWatch, Stackdriver, ELK) and retained for a minimum of 90 days. When no centralized logging infrastructure is available, fall back to local file logging (e.g., appending to `~/.devops-audit.log` or a project-local `deploy.log`). The key principle is **traceability** — every change should be reconstructable after the fact, even from a simple text file.
 
-Structured log format:
+Structured log format (for environments with `jq` and a log pipeline):
 ```json
 {
   "timestamp": "2024-11-15T14:32:07.123Z",
@@ -279,31 +287,50 @@ Structured log format:
 
 Logging implementation:
 ```bash
+AUDIT_LOG="${AUDIT_LOG:-/var/log/devops-audit.json}"
+
 log_operation() {
   local env="$1" cmd="$2" outcome="$3"
-  jq -n \
-    --arg ts "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)" \
-    --arg user "$(whoami)" \
-    --arg env "$env" \
-    --arg cmd "$cmd" \
-    --arg outcome "$outcome" \
-    '{timestamp: $ts, event_type: "infrastructure_change", user: $user, environment: $env, command: $cmd, outcome: $outcome}' \
-    >> /var/log/devops-audit.json
+  local log_dir
+  log_dir="$(dirname "$AUDIT_LOG")"
+
+  # Fall back to local file if centralized log path is not writable
+  if [[ ! -w "$log_dir" ]]; then
+    AUDIT_LOG="${HOME}/.devops-audit.log"
+  fi
+
+  if command -v jq &>/dev/null; then
+    jq -n \
+      --arg ts "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)" \
+      --arg user "$(whoami)" \
+      --arg env "$env" \
+      --arg cmd "$cmd" \
+      --arg outcome "$outcome" \
+      '{timestamp: $ts, event_type: "infrastructure_change", user: $user, environment: $env, command: $cmd, outcome: $outcome}' \
+      >> "$AUDIT_LOG"
+  else
+    # Plain-text fallback when jq is not available
+    echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) | $outcome | env=$env | user=$(whoami) | cmd=$cmd" >> "$AUDIT_LOG"
+  fi
 }
 
 # Usage: wrap every infrastructure command
+# IMPORTANT: Only pass pre-validated commands to run_audited. The function
+# executes arguments directly (not via eval) to avoid shell injection, so
+# pass the command and its arguments as separate words, not as a single string.
 run_audited() {
   local env="$1"; shift
-  local cmd="$*"
-  log_operation "$env" "$cmd" "started"
-  if eval "$cmd"; then
-    log_operation "$env" "$cmd" "success"
+  log_operation "$env" "$*" "started"
+  if "$@"; then
+    log_operation "$env" "$*" "success"
   else
-    log_operation "$env" "$cmd" "failure"
+    log_operation "$env" "$*" "failure"
     return 1
   fi
 }
 ```
+
+> **Note**: `run_audited` uses direct execution (`"$@"`) rather than `eval` to prevent shell injection. Pass the command as separate arguments: `run_audited prod kubectl rollout undo deployment/api`, **not** as a quoted string.
 
 Required audit events:
 - Deployment start, success, failure, and rollback
@@ -356,17 +383,27 @@ Integration into deployment workflow:
 ```bash
 deploy() {
   local env="$1" service="$2" tag="$3"
+
+  # Safety checks (in order of severity)
   check_emergency_stop || return 1
   validate_env "$env" || return 1
   validate_image_tag "$tag" || return 1
   preflight_check "$env" || return 1
-  run_audited "$env" "kubectl set image deployment/$service $service=registry.example.com/$service:$tag"
+
+  # Execute with audit trail and circuit breaker
+  if ! run_audited "$env" kubectl set image "deployment/$service" "$service=registry.example.com/$service:$tag"; then
+    record_deploy_failure
+    return 1
+  fi
+
+  # Reset failure counter on success
+  reset_deploy_circuit_breaker
 }
 ```
 
 ### Blast Radius Controls
 
-All production deployments MUST use progressive rollout strategies to limit the impact of failures. Never deploy to 100% of instances simultaneously.
+Production deployments with multiple replicas SHOULD use progressive rollout strategies to limit the impact of failures. In multi-instance environments, avoid deploying to 100% of instances simultaneously. For single-instance deployments (common in homelabs and small projects), ensure a backup/snapshot exists before deploying and have the rollback command ready.
 
 Canary deployment procedure:
 1. Deploy new version to canary instance (1-5% of traffic)
@@ -428,6 +465,76 @@ Multi-region deployment order:
 4. Observe for 10 minutes
 5. Deploy to remaining regions in parallel (if no issues detected)
 6. Never deploy to all regions simultaneously
+
+### Deployment Circuit Breaker
+
+To prevent repeated failed deployments from compounding damage, enforce a circuit breaker that halts automated retries after consecutive failures.
+
+Circuit breaker rules:
+- **3 consecutive deployment failures** to the same environment within a 1-hour window → halt all automated deployments to that environment and require manual investigation
+- **2 consecutive rollbacks** triggered by automated health checks → halt and require human review before the next attempt
+- After circuit breaker trips, the operator must explicitly acknowledge the issue and reset the breaker before deployments resume
+
+```bash
+DEPLOY_FAILURE_COUNT_FILE="/tmp/deploy-failures-${ENV}"
+
+record_deploy_failure() {
+  local count=0
+  [[ -f "$DEPLOY_FAILURE_COUNT_FILE" ]] && count=$(cat "$DEPLOY_FAILURE_COUNT_FILE")
+  count=$((count + 1))
+  echo "$count" > "$DEPLOY_FAILURE_COUNT_FILE"
+
+  if [[ $count -ge 3 ]]; then
+    echo "CIRCUIT BREAKER TRIPPED: $count consecutive failures in $ENV"
+    echo "Manual investigation required. Reset with: rm $DEPLOY_FAILURE_COUNT_FILE"
+    return 1
+  fi
+}
+
+reset_deploy_circuit_breaker() {
+  rm -f "$DEPLOY_FAILURE_COUNT_FILE"
+  echo "Circuit breaker reset for $ENV"
+}
+```
+
+### Secret Management
+
+Never embed secrets (API keys, passwords, tokens, certificates) in deployment scripts, manifests, environment files committed to version control, or agent conversation output.
+
+Secret handling rules:
+- **Use a secrets manager** when available: HashiCorp Vault, AWS Secrets Manager, Azure Key Vault, GCP Secret Manager, or Kubernetes Secrets (with encryption at rest enabled)
+- **Environment variables** are acceptable for local/dev use but should be sourced from a `.env` file that is `.gitignore`d, never hardcoded in scripts
+- **Kubernetes Secrets**: Prefer `SealedSecrets` or `ExternalSecrets` operator over plain `kubectl create secret` for anything beyond ephemeral dev clusters
+- **Rotation**: When rotating secrets during deployment, ensure the old secret remains valid until all instances have picked up the new value (graceful rotation)
+- **Audit**: Secret access events should appear in audit logs (see Audit Logging section). Log *that* a secret was accessed, never *what* the secret value is
+- **Cleanup**: Temporary files containing secrets (e.g., decrypted values for import) must be removed immediately after use. Use `trap` to ensure cleanup on script exit:
+
+```bash
+SECRET_TMP=$(mktemp)
+trap "rm -f $SECRET_TMP" EXIT
+# ... use $SECRET_TMP ...
+```
+
+When no secrets manager is available (e.g., homelab), document which secrets exist and where they are stored, and ensure they are not committed to git.
+
+### Least Privilege and Scope Control
+
+Operate with the minimum permissions required for the current task. Before executing commands, verify which environment and account you are targeting.
+
+Scope verification:
+- **Always confirm the active context** before cluster or cloud operations:
+  ```bash
+  kubectl config current-context   # Verify correct cluster
+  aws sts get-caller-identity      # Verify correct AWS account/role
+  az account show                  # Verify correct Azure subscription
+  terraform workspace show         # Verify correct Terraform workspace
+  ```
+- **Prefer scoped credentials** (e.g., a deploy role limited to a single namespace or resource group) over broad admin credentials
+- **Avoid running as root/admin** unless the operation specifically requires it
+- **Namespace isolation**: When working in Kubernetes, always specify `-n <namespace>` explicitly rather than relying on the default namespace
+- **Terraform state isolation**: Use separate state files or workspaces per environment to prevent accidental cross-environment changes
+
+If the user's setup does not have role separation (common in homelabs), note this as a risk and suggest improvements, but do not refuse to proceed.
 
 ## Communication Protocol
 
