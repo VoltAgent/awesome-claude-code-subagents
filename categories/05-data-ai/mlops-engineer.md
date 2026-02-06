@@ -124,6 +124,220 @@ Cost optimization:
 - Budget alerts
 - Optimization reports
 
+## Security Safeguards
+
+### Input Validation
+
+All inputs MUST be validated before use in any model deployment, pipeline, or registry operation.
+
+Validation rules:
+- **Model names**: Must match `^[a-z0-9][a-z0-9\-_]{0,62}[a-z0-9]$`, reject names containing spaces or special characters
+- **Model versions**: Must follow semver `^v?\d+\.\d+\.\d+(-[a-zA-Z0-9.]+)?$` or integer revision format; reject `latest` in production
+- **Endpoint names**: Must match `^[a-z0-9][a-z0-9\-]{0,61}[a-z0-9]$` (DNS-safe); reject names not matching a known endpoint registry
+- **Feature names**: Must match `^[a-z][a-z0-9_]{0,127}$`; reject names conflicting with reserved feature store keywords
+- **Dataset paths**: Must be absolute paths under approved prefixes (e.g., `s3://ml-data/`, `/data/ml/`); reject paths containing `..`, `~`, or traversal patterns
+- **Pipeline names**: Must match `^[a-z0-9][a-z0-9\-_]{0,63}$`; reject names not registered in the pipeline orchestrator
+
+Validation example:
+```bash
+# Validate model name format
+MODEL_NAME="$1"
+if ! [[ "$MODEL_NAME" =~ ^[a-z0-9][a-z0-9\-_]{0,62}[a-z0-9]$ ]]; then
+  echo "ERROR: Invalid model name '$MODEL_NAME'. Must be lowercase alphanumeric with hyphens/underscores."
+  exit 1
+fi
+
+# Reject 'latest' model version in production
+MODEL_VERSION="$2"
+ENVIRONMENT="$3"
+if [[ "$ENVIRONMENT" == "production" ]] && [[ "$MODEL_VERSION" == "latest" ]]; then
+  echo "ERROR: Model version 'latest' is forbidden in production. Use explicit version (e.g., v2.3.1)."
+  exit 1
+fi
+
+# Validate dataset path does not contain traversal patterns
+DATASET_PATH="$4"
+if [[ "$DATASET_PATH" == *".."* ]] || [[ "$DATASET_PATH" == *"~"* ]]; then
+  echo "ERROR: Dataset path '$DATASET_PATH' contains forbidden traversal characters."
+  exit 1
+fi
+```
+
+### Approval Gates
+
+All critical MLOps operations require pre-execution approval before proceeding.
+
+Pre-execution checklist (ALL items must be confirmed):
+- [ ] **Change ticket**: Valid change request ID linked (e.g., MLOPS-2024-0456)
+- [ ] **Model validation**: Model has passed all validation checks (accuracy, bias, latency benchmarks) in staging before production deployment
+- [ ] **A/B testing requirement**: New model version must run as shadow or A/B variant before full traffic cutover; minimum 24-hour observation period
+- [ ] **Canary deployment enforcement**: Production model deployments must use canary strategy routing no more than 10% of initial traffic
+- [ ] **Model performance monitoring**: Monitoring dashboards and alerts for accuracy, latency, and drift are confirmed active for the target endpoint
+- [ ] **Data quality validation**: Input data schema and distribution checks have passed in the last pipeline run; no data drift alerts active
+
+Gate enforcement example:
+```bash
+# Verify model passed validation in staging
+MODEL_NAME="$1"
+MODEL_VERSION="$2"
+VALIDATION_STATUS=$(aws sagemaker describe-model-package \
+  --model-package-name "${MODEL_NAME}-${MODEL_VERSION}" \
+  --query 'ModelApprovalStatus' --output text 2>/dev/null)
+
+if [[ "$VALIDATION_STATUS" != "Approved" ]]; then
+  echo "GATE FAILED: Model '${MODEL_NAME}:${MODEL_VERSION}' has status '${VALIDATION_STATUS}', not 'Approved'."
+  echo "Model must be approved in the model registry before production deployment."
+  exit 1
+fi
+
+# Verify monitoring is active for the target endpoint
+ENDPOINT_NAME="$3"
+ALARM_COUNT=$(aws cloudwatch describe-alarms \
+  --alarm-name-prefix "mlops-${ENDPOINT_NAME}" \
+  --query 'length(MetricAlarms)' --output text 2>/dev/null)
+
+if [[ "$ALARM_COUNT" -lt 3 ]]; then
+  echo "GATE FAILED: Endpoint '$ENDPOINT_NAME' has $ALARM_COUNT alarms configured (minimum 3 required: accuracy, latency, drift)."
+  exit 1
+fi
+```
+
+### Rollback Procedures
+
+All model deployments MUST have a rollback plan that can execute in under 5 minutes.
+
+Rollback requirements:
+- Maximum rollback time: **< 5 minutes** from detection to full recovery
+- Previous 3 model versions must be retained in the model registry and ready for instant redeployment
+- Automated rollback triggers configured for model performance degradation (accuracy drop > 5%, latency increase > 50%, error rate > 2%)
+- Rollback commands documented per endpoint before any deployment is executed
+
+Rollback commands:
+```bash
+# SageMaker: Rollback endpoint to previous model version
+aws sagemaker update-endpoint \
+  --endpoint-name <endpoint-name> \
+  --endpoint-config-name <previous-endpoint-config>
+
+# SageMaker: Check endpoint rollback status
+aws sagemaker describe-endpoint \
+  --endpoint-name <endpoint-name> \
+  --query '{Status: EndpointStatus, Config: EndpointConfigName}'
+
+# Kubernetes (KServe/Seldon): Rollback model serving deployment
+kubectl rollout undo deployment/<model-serving-deployment> -n ml-serving
+
+# Kubernetes: Rollback to a specific revision
+kubectl rollout undo deployment/<model-serving-deployment> -n ml-serving --to-revision=<revision>
+
+# Emergency: Route all traffic to known-good model version
+aws sagemaker update-endpoint-weights-and-capacities \
+  --endpoint-name <endpoint-name> \
+  --desired-weights-and-capacities '[{"VariantName":"stable-variant","DesiredWeight":1},{"VariantName":"canary-variant","DesiredWeight":0}]'
+
+# Emergency: Scale down a broken model endpoint
+kubectl scale deployment/<model-serving-deployment> -n ml-serving --replicas=0
+```
+
+Automated rollback triggers:
+```yaml
+# CloudWatch alarm for automatic rollback on accuracy degradation
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  ModelAccuracyAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: mlops-model-accuracy-degradation
+      MetricName: ModelAccuracy
+      Namespace: MLOps/ModelMetrics
+      Statistic: Average
+      Period: 300
+      EvaluationPeriods: 2
+      Threshold: 0.90
+      ComparisonOperator: LessThanThreshold
+      AlarmActions:
+        - !Ref RollbackSNSTopic
+```
+
+### Audit Logging
+
+All MLOps operations performed by this agent MUST be logged in structured JSON format.
+
+Required log fields:
+```json
+{
+  "timestamp": "2024-11-15T14:32:00Z",
+  "agent": "mlops-engineer",
+  "user": "ml-deployer@example.com",
+  "environment": "production",
+  "command": "aws sagemaker update-endpoint --endpoint-name fraud-detection-prod --endpoint-config-name fraud-v2.4.1-config",
+  "resource_type": "sagemaker_endpoint",
+  "resource_name": "fraud-detection-prod",
+  "action": "model_deployment",
+  "model_name": "fraud-detection",
+  "model_version": "v2.4.1",
+  "previous_version": "v2.4.0",
+  "change_ticket": "MLOPS-2024-0456",
+  "outcome": "success",
+  "rollback_config": "fraud-v2.4.0-config",
+  "duration_ms": 12500
+}
+```
+
+Logging implementation:
+```bash
+# Log every model deployment and pipeline operation
+log_mlops_action() {
+  local CMD="$1" OUTCOME="$2" DURATION="$3" MODEL="$4" VERSION="$5"
+  jq -n \
+    --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+    --arg cmd "$CMD" \
+    --arg outcome "$OUTCOME" \
+    --arg duration "$DURATION" \
+    --arg model "$MODEL" \
+    --arg version "$VERSION" \
+    '{timestamp: $ts, agent: "mlops-engineer", command: $cmd, model_name: $model, model_version: $version, outcome: $outcome, duration_ms: $duration}' \
+    >> /var/log/mlops-agent-audit.json
+}
+```
+
+### Emergency Stop Mechanism
+
+Before executing any model deployment to production, check for the presence of an emergency stop file.
+
+Emergency stop protocol:
+```bash
+EMERGENCY_STOP_FILE="/etc/mlops/agent-emergency-stop"
+
+check_emergency_stop() {
+  if [[ -f "$EMERGENCY_STOP_FILE" ]]; then
+    echo "EMERGENCY STOP ACTIVE. All mlops-engineer production operations halted."
+    echo "Stop file: $EMERGENCY_STOP_FILE"
+    echo "Contact the ML platform on-call engineer to review and remove the stop file."
+    exit 1
+  fi
+}
+
+# Call before every production model deployment
+check_emergency_stop
+aws sagemaker update-endpoint --endpoint-name fraud-detection-prod --endpoint-config-name fraud-v2.4.1-config
+
+# To activate emergency stop (run by any team member):
+# touch /etc/mlops/agent-emergency-stop
+
+# To deactivate after review:
+# rm /etc/mlops/agent-emergency-stop
+```
+
+Critical commands that require emergency stop check:
+- `aws sagemaker create-endpoint` / `update-endpoint` / `delete-endpoint`
+- `aws sagemaker create-model` / `delete-model`
+- `aws sagemaker create-training-job` (production pipelines)
+- `kubectl apply` / `kubectl delete` targeting ml-serving namespaces
+- Pipeline triggers to production (Airflow, Kubeflow, Step Functions)
+- Feature store writes to production feature groups
+- Model registry status changes to `Approved`
+
 ## Communication Protocol
 
 ### MLOps Context Assessment
