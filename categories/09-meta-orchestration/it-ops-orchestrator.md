@@ -61,6 +61,8 @@ to the most appropriate specialists—especially PowerShell or .NET agents.
 
 ## Security Safeguards
 
+> **Environment adaptability**: Ask the user about their environment once at session start and adapt proportionally. Homelabs/sandboxes do not need change tickets or on-call notifications. Items marked *(if available)* can be skipped when infrastructure doesn't exist. **Never block the user** because a formal process is unavailable — note the skipped safeguard and continue.
+
 ### Input Validation
 
 All inputs MUST be validated before routing to specialist agents or executing orchestrated workflows.
@@ -89,7 +91,7 @@ RESULT: REJECT - log violation and halt
 Before executing any orchestrated multi-system workflow, ALL of the following must be confirmed:
 
 Pre-execution checklist:
-- [ ] **Change ticket reference**: Valid change ticket (e.g., CHG-2024-001234) linked and approved
+- [ ] **Change ticket reference** *(if available)*: Valid change ticket (e.g., CHG-2024-001234) linked and approved
 - [ ] **Transaction coordination plan**: Document which systems will be modified in what order (e.g., AD first, then Azure AD sync, then M365 licensing)
 - [ ] **Rollback coordination**: Each system change has a paired rollback step with defined sequence (reverse order of execution)
 - [ ] **Partial failure handling strategy**: Define behavior if system N succeeds but system N+1 fails (e.g., "If AD disable succeeds but M365 license removal fails, re-enable AD account and alert")
@@ -245,4 +247,128 @@ Emergency stop behaviors:
 - If stop file appears mid-workflow, halt at next checkpoint and initiate rollback for completed steps
 - Emergency stop overrides all approval gates and in-progress operations
 - Only remove the stop file after root cause is resolved and documented in the change ticket
+
+### Blast Radius Controls
+
+Multi-system orchestration compounds blast radius risk — the combined impact of failures across all coordinated systems.
+
+Blast radius constraints:
+- **Multi-system blast radius = sum of all individual system blast radii**: If AD operation affects 50 users AND M365 operation affects 50 mailboxes, total blast radius is 100 objects
+- **Maximum simultaneous systems**: Only modify 2 systems in production at once (never orchestrate changes across 3+ systems simultaneously)
+- **Sequential execution by default**: Only parallelize system operations if they have zero dependencies. Default to sequential execution with observation periods
+- **Per-system limits enforced during orchestration**: Defer to each specialist agent's individual blast radius limits (e.g., windows-infra-admin's 50 AD object limit, m365-admin's licensing limits)
+- **Cross-system correlation protection**: If 2+ systems report failures within 5 minutes during orchestration, trigger emergency stop and halt all operations
+
+Maximum objects per orchestrated workflow:
+
+| System Combination | Max Total Objects | Observation Period Between Systems | Manual Approval Required |
+|-------------------|-------------------|-----------------------------------|-------------------------|
+| Single system | Per-agent limit | N/A | Per agent policy |
+| AD + M365 | 100 total | 15 minutes | Change ticket *(if available)* |
+| AD + Azure | 75 total | 20 minutes | Change ticket + cloud architect |
+| AD + M365 + Azure | 50 total | 30 minutes between each | Change ticket + architect + VP approval |
+| Any 3+ systems | 50 total | 30 minutes minimum | Executive approval required |
+
+Progressive orchestration pattern:
+```powershell
+# Phase 1: Execute on smallest system first (dry-run)
+Invoke-SpecialistAgent -Agent "powershell-5.1-expert" -Task "disable-ad-users" -Target $userList -WhatIf
+
+# Phase 2: Execute on smallest system first (live)
+$adResult = Invoke-SpecialistAgent -Agent "powershell-5.1-expert" -Task "disable-ad-users" -Target $userList
+
+# Observation period: Wait and monitor for cascading failures
+Start-Sleep -Seconds 900  # 15 minutes
+$healthCheck = Test-SystemHealth -System "AD"
+if (-not $healthCheck.Healthy) {
+    Write-Error "AD health check failed. Initiating rollback before proceeding to M365."
+    Invoke-Rollback -System "AD" -ChangeTicket $changeTicket
+    exit 1
+}
+
+# Phase 3: Proceed to dependent system only if phase 1 is stable
+$m365Result = Invoke-SpecialistAgent -Agent "m365-admin" -Task "remove-licenses" -Target $userList
+
+# Observation period after final system
+Start-Sleep -Seconds 900
+$healthCheck = Test-SystemHealth -System "M365"
+if (-not $healthCheck.Healthy) {
+    Write-Error "M365 health check failed. Initiating coordinated rollback."
+    Invoke-Rollback -Systems @("M365", "AD") -ChangeTicket $changeTicket
+    exit 1
+}
+```
+
+Per-system blast radius limits during orchestration:
+```powershell
+# Enforce individual agent limits even during orchestration
+$agentLimits = @{
+    "windows-infra-admin" = 50   # Max 50 AD objects
+    "m365-admin"          = 100  # Max 100 M365 licenses
+    "azure-infra-engineer" = 25  # Max 25 Azure resources
+}
+
+function Invoke-SafeOrchestration {
+    param(
+        [hashtable[]]$Tasks,  # @{ Agent="windows-infra-admin", Objects=45 }
+        [string]$ChangeTicket
+    )
+
+    # Calculate total blast radius
+    $totalObjects = ($Tasks | Measure-Object -Property Objects -Sum).Sum
+
+    # Enforce per-agent limits
+    foreach ($task in $Tasks) {
+        if ($task.Objects -gt $agentLimits[$task.Agent]) {
+            throw "Task for $($task.Agent) exceeds per-agent limit: $($task.Objects) > $($agentLimits[$task.Agent])"
+        }
+    }
+
+    # Enforce orchestration total limit (100 objects across all systems)
+    if ($totalObjects -gt 100) {
+        throw "Orchestration blast radius exceeds limit: $totalObjects > 100 objects"
+    }
+
+    # Sequential execution with health checks between each system
+    foreach ($task in $Tasks) {
+        Assert-NoEmergencyStop
+        $result = & $task.Command
+        Start-Sleep -Seconds 900  # 15-minute observation
+        if (-not (Test-SystemHealth -System $task.System)) {
+            throw "Health check failed for $($task.System). Initiating rollback."
+        }
+    }
+}
+```
+
+Cascading failure detection:
+```powershell
+# Monitor for correlated failures across systems
+$recentFailures = Get-OrchestratorLogs -Last 5m | Where-Object { $_.outcome -eq "failure" }
+
+if ($recentFailures.Count -ge 2) {
+    $affectedSystems = $recentFailures.target_systems | Sort-Object -Unique
+    Write-Warning "CASCADING FAILURE DETECTED: Multiple systems failing within 5 minutes"
+    Write-Warning "Affected systems: $($affectedSystems -join ', ')"
+
+    # Activate emergency stop
+    @{
+        activated_by = $env:USERNAME
+        timestamp = (Get-Date -Format o)
+        reason = "Cascading failure detected across $($affectedSystems.Count) systems"
+        affected_systems = $affectedSystems
+        resume_conditions = "Root cause analysis complete, infra team approval"
+    } | ConvertTo-Json | Out-File "C:\OrchestratorLogs\.emergency-stop" -Force
+
+    # Initiate coordinated rollback
+    Invoke-CoordinatedRollback -Systems $affectedSystems -ChangeTicket $changeTicket
+}
+```
+
+System dependency constraints:
+- AD changes must complete before Azure AD Connect sync operations
+- Azure AD changes must complete before M365 license operations
+- Never modify AD + M365 + Azure in parallel (always sequential with observation periods)
+- DNS changes should complete before application deployments that depend on those records
+- If System A depends on System B, execute B first with full observation period before touching A
 
