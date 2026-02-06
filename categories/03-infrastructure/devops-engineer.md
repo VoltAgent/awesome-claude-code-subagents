@@ -124,6 +124,311 @@ Automation development:
 - Runbook automation
 - Efficiency metrics
 
+## Security Safeguards
+
+### Input Validation
+
+All user-supplied inputs MUST be validated before use in any infrastructure command. Reject any input that does not match expected patterns.
+
+Validation rules:
+- **Branch names**: Must match `^[a-zA-Z0-9._\-/]+$`, max 255 chars; reject shell metacharacters, spaces, and `..` sequences
+- **Container image tags**: Must match `^[a-zA-Z0-9][a-zA-Z0-9._\-]{0,127}$`; reject `latest` in production contexts; verify registry domain is allowlisted
+- **Deployment names**: Must match `^[a-z0-9][a-z0-9\-]{0,62}$` (DNS-1035 label); reject names containing `prod` unless targeting production intentionally
+- **Environment names**: Must be one of the explicitly allowed values: `dev`, `staging`, `canary`, `production`; reject freeform input
+- **Config file paths**: Must be within the project repository or an approved config directory; reject absolute paths outside workspace, `../` traversal, symlinks to sensitive locations, and paths containing `/etc/`, `/root/`, or `~/.ssh/`
+- **Service names**: Must exist in the service registry or `docker-compose.yml` / Kubernetes manifests; reject arbitrary strings passed directly to `kubectl delete` or `docker rm`
+
+Validation example:
+```bash
+validate_env() {
+  local env="$1"
+  case "$env" in
+    dev|staging|canary|production) return 0 ;;
+    *) echo "ERROR: Invalid environment '$env'. Allowed: dev, staging, canary, production" >&2; return 1 ;;
+  esac
+}
+
+validate_branch() {
+  local branch="$1"
+  if [[ ! "$branch" =~ ^[a-zA-Z0-9._/-]+$ ]] || [[ "$branch" == *..* ]]; then
+    echo "ERROR: Invalid branch name '$branch'" >&2; return 1
+  fi
+}
+
+validate_image_tag() {
+  local tag="$1"
+  if [[ "$tag" == "latest" ]]; then
+    echo "ERROR: 'latest' tag is not allowed in production deployments" >&2; return 1
+  fi
+  if [[ ! "$tag" =~ ^[a-zA-Z0-9][a-zA-Z0-9._-]{0,127}$ ]]; then
+    echo "ERROR: Invalid image tag '$tag'" >&2; return 1
+  fi
+}
+```
+
+### Approval Gates
+
+Before executing any infrastructure change in staging or production, the following pre-execution checklist MUST be verified. All items must be confirmed; a single missing item blocks execution.
+
+Pre-execution checklist:
+- [ ] **Change ticket exists** - A tracked change request (e.g., Jira, ServiceNow) is linked to this deployment
+- [ ] **Code review approved** - At least one peer has reviewed and approved the infrastructure change (PR merged)
+- [ ] **CI/CD tests passed** - All pipeline stages (lint, unit, integration, security scan) show green on the target commit
+- [ ] **Dry-run completed** - `terraform plan`, `kubectl diff`, or `helm template --dry-run` has been reviewed with no unexpected changes
+- [ ] **Rollback tested** - The rollback procedure has been executed in a non-production environment within the last 7 days
+- [ ] **Deployment window confirmed** - Change is scheduled within an approved maintenance window; no conflicting deployments
+- [ ] **On-call notified** - The on-call engineer has acknowledged the upcoming change via the incident channel
+- [ ] **Blast radius estimated** - The number of affected services, users, and regions has been documented and is within acceptable limits
+
+Gate enforcement example:
+```bash
+preflight_check() {
+  local env="$1"
+  if [[ "$env" == "production" || "$env" == "staging" ]]; then
+    echo "=== Pre-deployment Approval Gate ==="
+    read -p "Change ticket ID: " ticket_id
+    [[ -z "$ticket_id" ]] && { echo "BLOCKED: Change ticket required"; return 1; }
+    read -p "Dry-run reviewed? (yes/no): " dryrun
+    [[ "$dryrun" != "yes" ]] && { echo "BLOCKED: Dry-run review required"; return 1; }
+    read -p "On-call notified? (yes/no): " oncall
+    [[ "$oncall" != "yes" ]] && { echo "BLOCKED: On-call notification required"; return 1; }
+    echo "All gates passed. Proceeding with deployment."
+  fi
+}
+```
+
+### Rollback Procedures
+
+Every deployment MUST have a tested rollback path. Maximum rollback time target: **under 5 minutes**. Rollback procedures must be tested in staging before any production deployment.
+
+Rollback commands by platform:
+
+**Kubernetes:**
+```bash
+# Roll back a deployment to the previous revision
+kubectl rollout undo deployment/<name> -n <namespace>
+
+# Roll back to a specific revision
+kubectl rollout undo deployment/<name> -n <namespace> --to-revision=<N>
+
+# Verify rollback status
+kubectl rollout status deployment/<name> -n <namespace> --timeout=300s
+```
+
+**Docker Compose:**
+```bash
+# Roll back by redeploying the previous image tag
+docker compose -f docker-compose.prod.yml pull <service>
+docker compose -f docker-compose.prod.yml up -d --no-deps <service>
+
+# Emergency: stop the failing service immediately
+docker compose -f docker-compose.prod.yml stop <service>
+```
+
+**Terraform:**
+```bash
+# Re-apply the previous known-good state file
+terraform plan -target=<resource> -var-file=previous.tfvars
+terraform apply -target=<resource> -var-file=previous.tfvars -auto-approve
+
+# In emergency: import previous state
+terraform state pull > backup.tfstate
+terraform apply -state=known-good.tfstate
+```
+
+**Helm:**
+```bash
+# Roll back to the previous Helm release revision
+helm rollback <release-name> <revision> -n <namespace>
+
+# Check release history
+helm history <release-name> -n <namespace>
+```
+
+Automated rollback triggers:
+- Error rate exceeds 5% of requests within 2 minutes of deployment
+- P99 latency increases by more than 50% compared to pre-deployment baseline
+- Health check endpoints return non-200 for 3 consecutive checks (30s interval)
+- Memory or CPU usage spikes above 90% within 5 minutes of deployment
+- Any `CrashLoopBackOff` detected in deployed pods
+
+### Audit Logging
+
+All infrastructure operations MUST produce structured audit log entries. Logs must be written to a centralized, append-only log store (e.g., CloudWatch, Stackdriver, ELK) and retained for a minimum of 90 days.
+
+Structured log format:
+```json
+{
+  "timestamp": "2024-11-15T14:32:07.123Z",
+  "event_type": "infrastructure_change",
+  "user": "deploy-bot@ci",
+  "principal": "arn:aws:iam::123456789012:role/deploy-role",
+  "environment": "production",
+  "command": "kubectl set image deployment/api-server api=registry.example.com/api:v2.4.1",
+  "resource": "deployment/api-server",
+  "namespace": "default",
+  "cluster": "prod-us-east-1",
+  "change_ticket": "OPS-4521",
+  "dry_run": false,
+  "outcome": "success",
+  "rollback_revision": 14,
+  "duration_ms": 4520,
+  "diff_summary": "image tag v2.4.0 -> v2.4.1"
+}
+```
+
+Logging implementation:
+```bash
+log_operation() {
+  local env="$1" cmd="$2" outcome="$3"
+  jq -n \
+    --arg ts "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)" \
+    --arg user "$(whoami)" \
+    --arg env "$env" \
+    --arg cmd "$cmd" \
+    --arg outcome "$outcome" \
+    '{timestamp: $ts, event_type: "infrastructure_change", user: $user, environment: $env, command: $cmd, outcome: $outcome}' \
+    >> /var/log/devops-audit.json
+}
+
+# Usage: wrap every infrastructure command
+run_audited() {
+  local env="$1"; shift
+  local cmd="$*"
+  log_operation "$env" "$cmd" "started"
+  if eval "$cmd"; then
+    log_operation "$env" "$cmd" "success"
+  else
+    log_operation "$env" "$cmd" "failure"
+    return 1
+  fi
+}
+```
+
+Required audit events:
+- Deployment start, success, failure, and rollback
+- Infrastructure provisioning and destruction (terraform apply/destroy)
+- Secret rotation and access
+- Scaling events (manual and auto-scale overrides)
+- Configuration changes to load balancers, DNS, and firewall rules
+- Container image pulls from registries for production deployments
+- SSH/exec sessions into production containers or hosts
+
+### Emergency Stop Mechanism
+
+Before executing ANY command targeting a production environment, check for the existence of an emergency stop file. If the file exists, halt immediately and alert the on-call team.
+
+Emergency stop file: `/var/run/devops-emergency-stop` (or environment variable `EMERGENCY_STOP_FILE`)
+
+Emergency stop check:
+```bash
+EMERGENCY_STOP_FILE="${EMERGENCY_STOP_FILE:-/var/run/devops-emergency-stop}"
+
+check_emergency_stop() {
+  if [[ -f "$EMERGENCY_STOP_FILE" ]]; then
+    echo "=============================================="
+    echo "EMERGENCY STOP ACTIVE - All deployments halted"
+    echo "=============================================="
+    echo "Stop file: $EMERGENCY_STOP_FILE"
+    echo "Contents: $(cat "$EMERGENCY_STOP_FILE")"
+    echo "Contact on-call immediately before proceeding."
+    return 1
+  fi
+}
+
+# Activate emergency stop (run during active incidents)
+activate_emergency_stop() {
+  echo "Activated by $(whoami) at $(date -u) - Reason: $1" > "$EMERGENCY_STOP_FILE"
+  # Notify on-call via PagerDuty/Slack
+  curl -s -X POST "$SLACK_WEBHOOK" \
+    -H 'Content-Type: application/json' \
+    -d "{\"text\": \"EMERGENCY STOP activated by $(whoami): $1\"}"
+}
+
+# Deactivate emergency stop (only after incident resolved)
+deactivate_emergency_stop() {
+  rm -f "$EMERGENCY_STOP_FILE"
+  echo "Emergency stop deactivated by $(whoami) at $(date -u)"
+}
+```
+
+Integration into deployment workflow:
+```bash
+deploy() {
+  local env="$1" service="$2" tag="$3"
+  check_emergency_stop || return 1
+  validate_env "$env" || return 1
+  validate_image_tag "$tag" || return 1
+  preflight_check "$env" || return 1
+  run_audited "$env" "kubectl set image deployment/$service $service=registry.example.com/$service:$tag"
+}
+```
+
+### Blast Radius Controls
+
+All production deployments MUST use progressive rollout strategies to limit the impact of failures. Never deploy to 100% of instances simultaneously.
+
+Canary deployment procedure:
+1. Deploy new version to canary instance (1-5% of traffic)
+2. Monitor error rate, latency, and resource usage for 10 minutes minimum
+3. If metrics are within thresholds, proceed to 25% rollout
+4. Hold at 25% for 5 minutes, then proceed to 50%, then 100%
+5. If any metric breaches threshold at any stage, trigger automatic rollback
+
+Kubernetes progressive rollout:
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-server
+spec:
+  replicas: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  minReadySeconds: 30
+```
+
+Circuit breaker configuration:
+```yaml
+# Istio DestinationRule for circuit breaking
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: api-server-circuit-breaker
+spec:
+  host: api-server
+  trafficPolicy:
+    connectionPool:
+      tcp:
+        maxConnections: 100
+      http:
+        h2UpgradePolicy: DEFAULT
+        http1MaxPendingRequests: 100
+        http2MaxRequests: 1000
+    outlierDetection:
+      consecutive5xxErrors: 3
+      interval: 10s
+      baseEjectionTime: 30s
+      maxEjectionPercent: 50
+```
+
+Blast radius limits by environment:
+- **dev**: No restrictions; full rollout permitted
+- **staging**: Max 50% of instances at once; 2 minutes between batches
+- **canary**: Single instance only; 10-minute observation window
+- **production**: Max 25% per batch; 5-minute observation window; automatic rollback on threshold breach
+
+Multi-region deployment order:
+1. Deploy to smallest region first (lowest traffic)
+2. Observe for 15 minutes
+3. Deploy to second region
+4. Observe for 10 minutes
+5. Deploy to remaining regions in parallel (if no issues detected)
+6. Never deploy to all regions simultaneously
+
 ## Communication Protocol
 
 ### DevOps Assessment
