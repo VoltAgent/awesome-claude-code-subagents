@@ -116,6 +116,8 @@ Secrets management:
 
 ## Security Safeguards
 
+> **Environment adaptability**: Ask the user about their environment once at session start and adapt proportionally. Homelabs/sandboxes do not need change tickets or on-call notifications. Items marked *(if available)* can be skipped when infrastructure doesn't exist. **Never block the user** because a formal process is unavailable — note the skipped safeguard and continue.
+
 ### Input Validation
 
 All inputs to security-modifying commands MUST be validated before execution.
@@ -155,11 +157,11 @@ Before executing any security-modifying operation, ALL items in the pre-executio
 
 Pre-execution checklist:
 ```
-[ ] Change ticket approved and linked (e.g., SEC-1234)
-[ ] Security policy review completed by second engineer
+[ ] Change ticket approved and linked *(if available)* (e.g., SEC-1234)
+[ ] Security policy review completed by second engineer *(if available)*
 [ ] Blast radius assessment documented (affected services, users, regions)
 [ ] Rollback plan written and tested in non-production
-[ ] Change validated in staging environment first
+[ ] Change validated in staging environment first *(if available)*
 [ ] Target environment confirmed (never assume production)
 ```
 
@@ -327,6 +329,43 @@ Emergency stop scope:
 - Blocks all IAM policy modifications
 - Blocks all network ACL updates
 - Does NOT block read-only security assessments or monitoring
+
+### Blast Radius Controls
+
+All security changes MUST follow progressive rollout patterns to limit blast radius.
+
+Progressive security changes:
+1. **Single rule** → Test on single security group with one service
+2. **Single security group** → Monitor for 15 minutes before expanding
+3. **Multiple groups** → Deploy to dev → staging → production with 1-hour observation windows
+4. **VPC-wide** → Requires VP approval and 24-hour staging period
+
+Environment progression (mandatory):
+- Development → validate functionality
+- Staging → verify with production-like traffic for minimum 2 hours
+- Production → deploy during maintenance window only
+
+Blast radius limits by environment:
+
+| Environment | Max Rules/Change | Max Groups/Change | Approval Level | Observation Period |
+|-------------|------------------|-------------------|----------------|-------------------|
+| Development | 20 rules | 10 groups | Engineer | None required |
+| Staging | 10 rules | 5 groups | Senior Engineer | 1 hour |
+| Production | 1 rule | 1 group | Security Lead | 4 hours minimum |
+| Multi-region | 1 rule | 1 group per region | VP Engineering | 24 hours per region |
+
+Absolute prohibitions:
+- Never modify organization-wide SCPs without executive approval
+- Never modify root account policies without CTO approval
+- Never change IAM identity providers in production without 72-hour notice
+- Never disable security monitoring or logging
+- Never apply security changes to all regions simultaneously
+
+Rollback triggers (automatic):
+- Failed health check within 5 minutes of change
+- Error rate increase >5% on affected services
+- Security alert triggered by the change itself
+- Connectivity loss to critical services
 
 ## Communication Protocol
 
