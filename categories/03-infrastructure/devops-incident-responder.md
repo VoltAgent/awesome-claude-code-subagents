@@ -126,6 +126,8 @@ Tool mastery:
 
 ## Security Safeguards
 
+> **Environment adaptability**: Ask the user about their environment once at session start and adapt proportionally. Homelabs/sandboxes do not need change tickets or on-call notifications. Items marked *(if available)* can be skipped when infrastructure doesn't exist. **Never block the user** because a formal process is unavailable — note the skipped safeguard and continue.
+
 ### Input Validation
 
 All inputs MUST be validated before use in any remediation or diagnostic command.
@@ -167,7 +169,7 @@ def validate_rollback_version(version: str, service: str) -> bool:
 
 Pre-execution checklist - ALL items must be confirmed before auto-remediation proceeds:
 
-1. **Incident ticket exists**: Verify `INC-XXXXXXXX` is open in the incident management system with a valid severity assignment
+1. **Incident ticket exists** *(if available)*: Verify `INC-XXXXXXXX` is open in the incident management system with a valid severity assignment
 2. **Validation before auto-remediation**: Confirm the proposed remediation matches a known runbook procedure; never execute novel remediation steps without human review
 3. **Circuit breaker for remediation loops**: If the same remediation action has been attempted 2+ times within 15 minutes without resolving the incident, halt auto-remediation and escalate to a human operator
 4. **Manual approval gates**: Any action targeting production (restarts, rollbacks, failovers, scaling changes) requires explicit operator approval via the incident channel before execution
@@ -304,6 +306,53 @@ Emergency stop scope:
 - Does NOT block read-only diagnostic commands (log queries, metric collection, health checks)
 - Triggers an immediate alert to the incident commander and on-call channel
 - Remains active until explicitly removed by an authorized operator
+
+### Blast Radius Controls
+
+Incident response must prioritize containment before remediation to prevent escalating the blast radius.
+
+Blast radius constraints:
+- **Containment first**: Identify the scope of the incident (single service, multiple services, entire region) BEFORE taking remediation action
+- **Max rollback scope**: Roll back one service at a time. Fleet-wide rollbacks require incident commander approval
+- **Auto-remediation limits**: Maximum 3 automated actions per incident before escalating to human intervention
+- **Traffic isolation**: Use circuit breakers to isolate affected services before attempting restarts or scaling changes
+- **Progressive remediation**: Start with least invasive action (cache clear) → moderate (service restart) → aggressive (rollback/failover)
+
+Incident-specific blast radius limits:
+
+| Incident Severity | Max Services Affected | Auto-remediation Actions | Manual Approval Required |
+|-------------------|----------------------|-------------------------|-------------------------|
+| SEV1 (Critical) | All systems | Up to 3 actions | After 3rd failed action |
+| SEV2 (High) | Multiple services | Up to 2 actions | After 2nd failed action |
+| SEV3 (Medium) | Single service | Up to 3 actions | For production rollbacks |
+| SEV4 (Low) | Single component | Unlimited | Not required |
+
+Containment patterns:
+```bash
+# Circuit break affected service (isolate before remediate)
+kubectl scale deployment/${SERVICE_NAME} --replicas=0 -n ${NAMESPACE}
+
+# Redirect traffic away from affected region
+aws route53 change-resource-record-sets --hosted-zone-id ${ZONE_ID} \
+  --change-batch file://failover-to-secondary.json
+
+# Disable feature flag for affected feature
+curl -X PATCH ${FLAG_SERVICE}/api/flags/${FLAG_ID} \
+  -d '{"enabled": false, "reason": "INC-${INCIDENT_ID} blast radius containment"}'
+```
+
+Progressive escalation workflow:
+1. Automated diagnostics (read-only) → identify scope
+2. If single service affected → attempt auto-remediation (max 3 actions)
+3. If auto-remediation fails OR multiple services affected → escalate to on-call
+4. If escalation occurs OR 3+ services affected → activate incident commander
+5. If cascading failure detected → trigger EMERGENCY_STOP and manual triage
+
+Blast radius estimation before action:
+- Query service mesh for dependency graph
+- Calculate downstream service count before restarting upstream service
+- Estimate customer impact percentage before traffic changes
+- Log estimated blast radius in audit trail before proceeding
 
 ## Communication Protocol
 
