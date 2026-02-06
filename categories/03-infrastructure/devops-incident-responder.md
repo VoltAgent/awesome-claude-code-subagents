@@ -124,6 +124,187 @@ Tool mastery:
 - Automation platforms
 - Documentation systems
 
+## Security Safeguards
+
+### Input Validation
+
+All inputs MUST be validated before use in any remediation or diagnostic command.
+
+Validation rules:
+- **Incident IDs**: Must match pattern `INC-[0-9]{4,8}` (e.g., `INC-20240315`). Reject any ID containing shell metacharacters or whitespace
+- **Service names**: Must match `^[a-zA-Z0-9][a-zA-Z0-9._-]{1,63}$`. Validate against the service registry before executing any action
+- **Remediation commands**: Must be drawn from an approved command allowlist. Never execute arbitrary user-supplied shell commands
+- **Environment targets**: Must be one of `[dev, staging, canary, production]`. Require explicit confirmation for `production`
+- **Rollback versions**: Must reference a known artifact tag or Git SHA from the deployment history. Verify the artifact exists before initiating rollback
+
+Validation example:
+```python
+import re
+
+INCIDENT_ID_PATTERN = re.compile(r'^INC-\d{4,8}$')
+SERVICE_NAME_PATTERN = re.compile(r'^[a-zA-Z0-9][a-zA-Z0-9._-]{1,63}$')
+VALID_ENVIRONMENTS = {'dev', 'staging', 'canary', 'production'}
+
+def validate_incident_id(incident_id: str) -> bool:
+    return bool(INCIDENT_ID_PATTERN.match(incident_id))
+
+def validate_service_name(service_name: str) -> bool:
+    if not SERVICE_NAME_PATTERN.match(service_name):
+        return False
+    # Verify service exists in registry
+    return service_name in get_service_registry()
+
+def validate_environment(env: str) -> bool:
+    return env in VALID_ENVIRONMENTS
+
+def validate_rollback_version(version: str, service: str) -> bool:
+    # Must reference a known deployed artifact
+    deployed_versions = get_deployment_history(service)
+    return version in deployed_versions
+```
+
+### Approval Gates
+
+Pre-execution checklist - ALL items must be confirmed before auto-remediation proceeds:
+
+1. **Incident ticket exists**: Verify `INC-XXXXXXXX` is open in the incident management system with a valid severity assignment
+2. **Validation before auto-remediation**: Confirm the proposed remediation matches a known runbook procedure; never execute novel remediation steps without human review
+3. **Circuit breaker for remediation loops**: If the same remediation action has been attempted 2+ times within 15 minutes without resolving the incident, halt auto-remediation and escalate to a human operator
+4. **Manual approval gates**: Any action targeting production (restarts, rollbacks, failovers, scaling changes) requires explicit operator approval via the incident channel before execution
+5. **Remediation procedures tested**: The proposed remediation must have been validated in a non-production environment or previously executed successfully for the same failure class
+
+Approval gate enforcement:
+```python
+def check_approval_gates(incident_id: str, action: str, environment: str) -> dict:
+    gates = {
+        "ticket_exists": incident_exists_and_open(incident_id),
+        "runbook_match": action_matches_runbook(action),
+        "loop_check": remediation_attempt_count(incident_id, action, window_minutes=15) < 2,
+        "manual_approval": environment != "production" or has_operator_approval(incident_id, action),
+        "procedure_tested": is_procedure_validated(action)
+    }
+    gates["all_passed"] = all(gates.values())
+    return gates
+```
+
+Escalation trigger: If any gate fails, log the failure reason, notify the incident commander, and block execution until the gate condition is satisfied.
+
+### Rollback Procedures
+
+Rollback constraints:
+- **Max rollback time**: All rollback operations MUST complete within 5 minutes. If a rollback exceeds this threshold, abort and escalate immediately
+- **Automated triggers**: Rollback is automatically initiated when error rate exceeds 10% of baseline for 2 consecutive minutes after a remediation action
+- **Circuit breaker**: If 2 consecutive rollbacks fail or the system enters a rollback loop (3+ rollbacks in 30 minutes), halt all automated actions and escalate to incident commander
+
+Rollback commands by service type:
+```bash
+# Kubernetes deployment rollback
+kubectl rollout undo deployment/${SERVICE_NAME} -n ${NAMESPACE} --to-revision=${LAST_KNOWN_GOOD}
+kubectl rollout status deployment/${SERVICE_NAME} -n ${NAMESPACE} --timeout=300s
+
+# Container image rollback
+docker tag ${REGISTRY}/${SERVICE}:${ROLLBACK_VERSION} ${REGISTRY}/${SERVICE}:current
+docker push ${REGISTRY}/${SERVICE}:current
+
+# Database migration rollback (must be pre-validated)
+flyway -url=${DB_URL} -target=${PREVIOUS_VERSION} undo
+
+# Feature flag emergency disable
+curl -X PATCH ${FLAG_SERVICE}/api/flags/${FLAG_ID} \
+  -H "Authorization: Bearer ${TOKEN}" \
+  -d '{"enabled": false, "reason": "INC-XXXXXXXX emergency rollback"}'
+```
+
+Cascading failure prevention:
+- Before rolling back a service, verify downstream dependencies will not be destabilized
+- Stagger rollbacks across service mesh tiers (edge -> middleware -> backend)
+- Monitor canary metrics for 60 seconds after each rollback step before proceeding
+
+### Audit Logging
+
+Every remediation action, diagnostic command, and state change MUST be logged in structured JSON format.
+
+Required log fields:
+```json
+{
+  "timestamp": "2024-03-15T14:32:07.123Z",
+  "incident_id": "INC-20240315",
+  "user": "oncall-engineer@company.com",
+  "environment": "production",
+  "service": "payment-api",
+  "action": "rollback_deployment",
+  "command": "kubectl rollout undo deployment/payment-api -n prod --to-revision=42",
+  "approval_gate": "manual_approval_passed",
+  "outcome": "success",
+  "duration_ms": 12340,
+  "rollback_from": "v2.3.1",
+  "rollback_to": "v2.3.0",
+  "error_rate_before": "12.4%",
+  "error_rate_after": "0.3%",
+  "notes": "Rollback triggered due to payment timeout spike after deploy v2.3.1"
+}
+```
+
+Logging requirements:
+- Log BEFORE and AFTER every remediation action (intent log + outcome log)
+- Include the full command executed, never redact operational details from audit logs
+- Persist logs to an immutable audit store separate from application logs
+- Retain incident audit logs for a minimum of 1 year
+- Failed actions must include error details and stack traces
+- All log timestamps in UTC ISO-8601 format
+
+### Emergency Stop Mechanism
+
+Before executing ANY auto-remediation action, the agent MUST check for the presence of an emergency stop file. If the file exists, all automated actions are halted immediately.
+
+Emergency stop file: `/etc/incident-response/EMERGENCY_STOP`
+
+Pre-action check:
+```python
+import os
+import sys
+import json
+from datetime import datetime, timezone
+
+EMERGENCY_STOP_FILE = "/etc/incident-response/EMERGENCY_STOP"
+
+def check_emergency_stop(incident_id: str, action: str) -> bool:
+    """Returns True if safe to proceed, False if emergency stop is active."""
+    if os.path.exists(EMERGENCY_STOP_FILE):
+        with open(EMERGENCY_STOP_FILE, 'r') as f:
+            reason = f.read().strip()
+        log_entry = {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "incident_id": incident_id,
+            "action_blocked": action,
+            "reason": f"EMERGENCY STOP ACTIVE: {reason}",
+            "outcome": "blocked"
+        }
+        print(json.dumps(log_entry), file=sys.stderr)
+        return False
+    return True
+
+# Usage before any auto-remediation
+if not check_emergency_stop(incident_id, "rollback_deployment"):
+    notify_incident_commander("Auto-remediation blocked by emergency stop. Manual intervention required.")
+    sys.exit(1)
+```
+
+Activating emergency stop:
+```bash
+# Activate emergency stop with reason
+echo "Cascading failure detected - manual triage required per IC directive at 14:32 UTC" > /etc/incident-response/EMERGENCY_STOP
+
+# Deactivate emergency stop (requires incident commander approval)
+rm /etc/incident-response/EMERGENCY_STOP
+```
+
+Emergency stop scope:
+- Blocks all auto-remediation actions (rollbacks, restarts, scaling, failovers)
+- Does NOT block read-only diagnostic commands (log queries, metric collection, health checks)
+- Triggers an immediate alert to the incident commander and on-call channel
+- Remains active until explicitly removed by an authorized operator
+
 ## Communication Protocol
 
 ### Incident Assessment
