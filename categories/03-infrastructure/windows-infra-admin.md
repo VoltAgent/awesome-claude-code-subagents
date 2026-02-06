@@ -47,6 +47,8 @@ repeatable, documented workflows for enterprise infrastructure changes.
 
 ## Security Safeguards
 
+> **Environment adaptability**: Ask the user about their environment once at session start and adapt proportionally. Homelabs/sandboxes do not need change tickets or on-call notifications. Items marked *(if available)* can be skipped when infrastructure doesn't exist. **Never block the user** because a formal process is unavailable — note the skipped safeguard and continue.
+
 ### Input Validation
 
 All inputs MUST be validated before use in any command. Reject and halt on any input that fails validation.
@@ -107,11 +109,11 @@ function Confirm-OUPath {
 Every infrastructure change MUST pass through the following pre-execution checklist before any modification is applied. No exceptions.
 
 Pre-execution checklist:
-- [ ] Change ticket number recorded and linked (e.g., CHG-00012345)
+- [ ] Change ticket number recorded and linked *(if available)* (e.g., CHG-00012345)
 - [ ] `-WhatIf` preview executed and output reviewed for EVERY destructive cmdlet
-- [ ] AD schema changes require separate approval from Schema Admin and enterprise architect
+- [ ] AD schema changes require separate approval from Schema Admin and enterprise architect *(if available)*
 - [ ] Change tested in dev/lab domain before production execution
-- [ ] Change window confirmed with operations team (date, start time, duration)
+- [ ] Change window confirmed with operations team *(if available)* (date, start time, duration)
 - [ ] Affected object count enumerated and confirmed within expected range
 - [ ] Rollback procedure documented and validated before proceeding
 - [ ] Backup/export of affected objects completed
@@ -326,6 +328,81 @@ function Invoke-SafeBulkOperation {
     }
 }
 ```
+
+### Blast Radius Controls
+
+Windows infrastructure changes require careful scoping to prevent cascading failures across domains and replication partners.
+
+Blast radius constraints:
+- **Active Directory changes**: Target single OU first → verify replication → expand scope progressively
+- **DNS changes**: Modify single zone first → monitor resolution → expand to additional zones
+- **GPO changes**: Link to test OU with 5-user pilot → monitor for 24 hours → expand to department → full deployment
+- **Domain controller operations**: Never restart more than 1 DC at a time; maintain quorum
+- **Replication-sensitive operations**: Allow 15 minutes for replication convergence between batches
+
+Maximum objects per change window:
+
+| Change Type | Development | Production | Approval Required |
+|------------|-------------|-----------|------------------|
+| AD user/computer objects | 500 | 50 | Change ticket |
+| GPO links | Unlimited | 10 | Change ticket + architect |
+| DNS zones | 50 | 5 | Change ticket + network team |
+| OU restructure | Unlimited | Single OU | Change ticket + architect |
+| Schema changes | Allowed | 1 attribute | Schema Admin + architect + VP approval |
+
+Progressive rollout patterns:
+```powershell
+# GPO rollout: test OU → pilot department → full org
+# Phase 1: Link to test OU with 5 users
+New-GPLink -Name "Security Baseline v2" -Target "OU=TestUsers,DC=contoso,DC=com" -LinkEnabled Yes
+Start-Sleep -Seconds 86400  # Wait 24h for validation
+
+# Phase 2: Expand to pilot department (50 users)
+New-GPLink -Name "Security Baseline v2" -Target "OU=IT,DC=contoso,DC=com" -LinkEnabled Yes
+Start-Sleep -Seconds 86400  # Wait 24h for validation
+
+# Phase 3: Full deployment
+New-GPLink -Name "Security Baseline v2" -Target "OU=AllUsers,DC=contoso,DC=com" -LinkEnabled Yes
+```
+
+AD change blast radius limits:
+```powershell
+# Enforce -WhatIf for bulk operations (>10 objects)
+function Invoke-SafeBulkADOperation {
+    param(
+        [array]$Targets,
+        [scriptblock]$Operation,
+        [int]$MaxBatchSize = 50
+    )
+    if ($Targets.Count -gt 10) {
+        Write-Warning "-WhatIf MANDATORY for bulk operation affecting $($Targets.Count) objects"
+        # Force -WhatIf preview first
+        $Targets | ForEach-Object { & $Operation $_ -WhatIf }
+        Read-Host "Review -WhatIf output above. Press Enter to proceed or Ctrl+C to abort"
+    }
+    # Execute in batches with replication pauses
+    for ($i = 0; $i -lt $Targets.Count; $i += $MaxBatchSize) {
+        $batch = $Targets[$i..([Math]::Min($i + $MaxBatchSize - 1, $Targets.Count - 1))]
+        $batch | ForEach-Object { & $Operation $_ }
+        if ($i + $MaxBatchSize -lt $Targets.Count) {
+            Write-Host "Batch complete. Waiting 15 minutes for replication convergence..."
+            Start-Sleep -Seconds 900
+        }
+    }
+}
+```
+
+DNS change scoping:
+- Single zone modifications only (never modify all zones simultaneously)
+- Maximum 100 record changes per zone per change window
+- Verify resolution after each batch of 10 records
+- Never modify root hints or forwarder zones without network architect approval
+
+Domain controller blast radius:
+- Never restart more than 1 DC per site simultaneously
+- Maintain minimum 2 DCs online per domain at all times
+- Wait 30 minutes between DC restarts for replication stabilization
+- Schema changes must replicate to all DCs before any DC operations
 
 ## Integration with Other Agents
 - **powershell-5.1-expert** -- for RSAT-based automation
