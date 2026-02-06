@@ -124,6 +124,271 @@ Advanced features:
 - Local provisioners
 - Custom functions
 
+## Security Safeguards
+
+### Input Validation
+
+Validate all inputs before executing any Terraform operation to prevent misconfigurations, injection attacks, and accidental resource destruction.
+
+Validation targets:
+- **Resource names**: Must match `^[a-z][a-z0-9_-]{2,62}$`, reject names containing `..`, `//`, or shell metacharacters
+- **Variable values**: Type-check against declared variable types, reject values exceeding length limits or containing unexpected characters
+- **State file paths**: Must resolve to expected backend paths, reject traversal sequences (`../`), validate S3 bucket/key or Azure storage account patterns
+- **Module sources**: Validate registry paths match `namespace/name/provider` format, Git URLs use HTTPS with pinned refs, reject `file://` paths outside workspace
+- **Workspace names**: Must match `^[a-z][a-z0-9-]{1,89}$`, reject `default` in production pipelines, validate against allowed workspace list
+- **Provider versions**: Must use exact version pins or pessimistic constraints (`~>`), reject unconstrained provider versions
+- **Backend configurations**: Validate encryption is enabled, access controls are set, and region/location matches organizational policy
+
+Validation implementation:
+```hcl
+variable "environment" {
+  type        = string
+  description = "Target deployment environment"
+  validation {
+    condition     = contains(["dev", "staging", "production"], var.environment)
+    error_message = "Environment must be dev, staging, or production."
+  }
+}
+
+variable "resource_name" {
+  type        = string
+  description = "Name for the resource"
+  validation {
+    condition     = can(regex("^[a-z][a-z0-9-]{2,62}$", var.resource_name))
+    error_message = "Resource name must be lowercase alphanumeric with hyphens, 3-63 characters."
+  }
+}
+```
+
+Pre-execution validation checklist:
+- All variable values pass declared validation rules
+- Module source pins reference specific version tags or commit SHAs
+- Provider versions are pinned to exact or patch-level constraints
+- State backend path resolves correctly for the target environment
+- No unapproved `terraform import` targets reference external state
+- Workspace selection matches the intended deployment environment
+
+### Approval Gates
+
+Require explicit approval before any state-modifying Terraform operation. No `terraform apply` or `terraform destroy` may proceed without completing the pre-execution checklist.
+
+Pre-execution checklist:
+- [ ] **Change ticket reference**: Valid change request ID linked (e.g., `INFRA-1234`)
+- [ ] **Terraform plan reviewed**: `terraform plan` output reviewed by at least one additional engineer; plan file saved with `terraform plan -out=tfplan`
+- [ ] **State backup verified**: Current state snapshot exported via `terraform state pull > state-backup-$(date +%Y%m%d-%H%M%S).json` and stored in versioned backup location
+- [ ] **Resource tagging validated**: All resources include required tags (`Environment`, `Owner`, `CostCenter`, `ManagedBy=terraform`)
+- [ ] **Blast radius estimated**: Number of resources to add/change/destroy reviewed; operations affecting >20 resources require senior approval
+- [ ] **Rollback plan tested**: Rollback procedure documented and verified against a non-production environment
+- [ ] **Sensitive outputs reviewed**: No secrets, passwords, or private keys exposed in plan output or state
+- [ ] **Cost impact assessed**: Estimated monthly cost delta reviewed and approved by budget owner
+
+Approval enforcement:
+```bash
+# Verify plan file exists and is recent (< 1 hour old)
+PLAN_AGE=$(( $(date +%s) - $(stat -c %Y tfplan 2>/dev/null || echo 0) ))
+if [ "$PLAN_AGE" -gt 3600 ]; then
+  echo "ERROR: Plan file is stale (>1 hour). Re-run terraform plan."
+  exit 1
+fi
+
+# Verify state backup exists
+if [ ! -f "state-backup-*.json" ] && ! ls state-backup-*.json 1>/dev/null 2>&1; then
+  echo "ERROR: No state backup found. Run: terraform state pull > state-backup-$(date +%Y%m%d-%H%M%S).json"
+  exit 1
+fi
+
+# Check blast radius
+DESTROY_COUNT=$(terraform show -json tfplan | jq '[.resource_changes[] | select(.change.actions[] == "delete")] | length')
+if [ "$DESTROY_COUNT" -gt 5 ]; then
+  echo "WARNING: $DESTROY_COUNT resources marked for destruction. Senior approval required."
+  exit 1
+fi
+```
+
+Environment-specific gates:
+- **dev**: Plan review by any team member, automated apply allowed after approval
+- **staging**: Plan review by two engineers, manual apply with change ticket
+- **production**: Plan review by two senior engineers, manual apply with change ticket and rollback verification, maintenance window required
+
+### Rollback Procedures
+
+All Terraform operations must support rollback within 5 minutes. Maintain state backups and documented recovery procedures for every apply operation.
+
+State backup and restore:
+```bash
+# Pre-apply: Create state backup
+terraform state pull > "state-backups/pre-apply-$(date +%Y%m%d-%H%M%S).json"
+
+# Rollback: Restore previous state
+terraform state push "state-backups/pre-apply-20250115-143022.json"
+
+# Verify restored state matches infrastructure
+terraform plan  # Should show no changes if state matches reality
+```
+
+Rollback strategies by operation type:
+- **Resource creation**: `terraform destroy -target=module.new_resource` to remove newly created resources
+- **Resource modification**: `terraform apply` with previous variable values from version control, or `terraform state push` with pre-change state backup
+- **Resource destruction**: Restore from state backup and re-import if resources still exist: `terraform import aws_instance.example i-1234567890abcdef0`
+- **Module upgrade**: Pin module back to previous version in source and re-apply
+- **State migration**: Restore state backup from versioned storage and reconfigure backend
+
+Automated rollback triggers:
+- Apply fails with errors affecting >50% of targeted resources
+- Health checks fail within 5 minutes post-apply (HTTP endpoints, DNS resolution, connectivity tests)
+- Monitoring alerts fire for resources modified in the apply (CPU, memory, error rates)
+- Cost estimate exceeds approved threshold by >20%
+
+Rollback command reference:
+```bash
+# Targeted resource rollback
+terraform apply -target=aws_instance.web -var-file=previous.tfvars
+
+# Full state rollback
+terraform state push state-backups/last-known-good.json
+terraform apply -refresh-only  # Reconcile state with actual infrastructure
+
+# Emergency: Remove resource from state without destroying
+terraform state rm aws_instance.problematic
+
+# Emergency: Import existing resource into state
+terraform import aws_security_group.main sg-0123456789abcdef0
+```
+
+Maximum rollback time targets:
+- Single resource rollback: < 2 minutes
+- Module rollback: < 3 minutes
+- Full environment rollback: < 5 minutes
+
+### Audit Logging
+
+Log all Terraform operations in structured JSON format for compliance, troubleshooting, and security forensics. Every plan, apply, destroy, import, and state operation must produce an audit record.
+
+Audit log format:
+```json
+{
+  "timestamp": "2025-01-15T14:30:22Z",
+  "user": "engineer@company.com",
+  "agent": "terraform-engineer",
+  "environment": "production",
+  "workspace": "prod-us-east-1",
+  "command": "terraform apply",
+  "plan_file": "tfplan-20250115-143022",
+  "change_ticket": "INFRA-1234",
+  "resources_affected": {
+    "create": 3,
+    "update": 1,
+    "destroy": 0
+  },
+  "outcome": "success",
+  "duration_seconds": 127,
+  "state_version": "v42",
+  "state_backup_path": "s3://tf-state-backups/prod/pre-apply-20250115-143022.json",
+  "cost_delta_monthly_usd": 45.20,
+  "approval_by": "senior-eng@company.com",
+  "git_commit": "abc123f",
+  "error_message": null
+}
+```
+
+Required audit events:
+- `terraform init` — backend configuration and provider initialization
+- `terraform plan` — planned changes summary, variable inputs used
+- `terraform apply` — resources created/modified/destroyed, duration, outcome
+- `terraform destroy` — all resources targeted, approval chain
+- `terraform import` — resource address and ID imported
+- `terraform state mv/rm/push/pull` — state manipulation with before/after checksums
+- `terraform workspace new/select/delete` — workspace lifecycle operations
+- Manual state edits or backend migrations
+
+Audit log implementation:
+```bash
+# Wrapper function for audited terraform execution
+tf_audit() {
+  local CMD="$*"
+  local START=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+  local OUTCOME="success"
+  local ERR_MSG=""
+
+  terraform $CMD 2>&1 | tee "tf-output-$(date +%s).log"
+  local EXIT_CODE=${PIPESTATUS[0]}
+
+  if [ $EXIT_CODE -ne 0 ]; then
+    OUTCOME="failure"
+    ERR_MSG="Exit code: $EXIT_CODE"
+  fi
+
+  jq -n \
+    --arg ts "$START" \
+    --arg user "$(git config user.email)" \
+    --arg env "$TF_WORKSPACE" \
+    --arg cmd "terraform $CMD" \
+    --arg outcome "$OUTCOME" \
+    --arg err "$ERR_MSG" \
+    '{timestamp: $ts, user: $user, environment: $env, command: $cmd, outcome: $outcome, error_message: $err}' \
+    >> terraform-audit.log
+}
+```
+
+Log retention and access:
+- Retain audit logs for minimum 90 days in append-only storage
+- Ship logs to centralized SIEM or log aggregation platform
+- Restrict log deletion to security team only
+- Include audit logs in compliance reporting and incident investigations
+
+### Emergency Stop Mechanism
+
+Implement an emergency stop that halts all Terraform apply and destroy operations immediately. The emergency stop takes precedence over all other automation and approval processes.
+
+Emergency stop file:
+```bash
+# Emergency stop file path (checked before every apply/destroy)
+EMERGENCY_STOP_FILE="/etc/terraform/EMERGENCY_STOP"
+# Alternative project-level stop file
+PROJECT_STOP_FILE=".terraform/EMERGENCY_STOP"
+
+# Check before any state-modifying operation
+if [ -f "$EMERGENCY_STOP_FILE" ] || [ -f "$PROJECT_STOP_FILE" ]; then
+  echo "EMERGENCY STOP ACTIVE — All terraform apply/destroy operations are halted."
+  echo "Reason: $(cat $EMERGENCY_STOP_FILE $PROJECT_STOP_FILE 2>/dev/null)"
+  echo "Contact the infrastructure team lead to resolve and remove the stop file."
+  exit 1
+fi
+```
+
+Activating emergency stop:
+```bash
+# Activate global emergency stop
+echo "Security incident INFRA-9999: Suspicious state modifications detected. — $(whoami) $(date -u)" \
+  | sudo tee /etc/terraform/EMERGENCY_STOP
+
+# Activate project-level emergency stop
+echo "Rollback in progress for failed production deploy. — $(whoami) $(date -u)" \
+  > .terraform/EMERGENCY_STOP
+```
+
+Deactivating emergency stop:
+```bash
+# Only after root cause is resolved and approved by infrastructure lead
+sudo rm /etc/terraform/EMERGENCY_STOP
+# or
+rm .terraform/EMERGENCY_STOP
+```
+
+Emergency stop triggers:
+- Security incident involving infrastructure credentials or state file compromise
+- Unexpected resource destruction detected in monitoring
+- State file corruption or inconsistency discovered
+- Compliance violation flagged by policy-as-code scanning
+- Cost anomaly exceeding 200% of baseline detected
+- Active incident response where infrastructure changes could worsen impact
+
+CI/CD integration:
+- All pipeline stages running `terraform apply` or `terraform destroy` must check for the emergency stop file before execution
+- Emergency stop activation sends alerts to infrastructure team Slack channel, PagerDuty, and email distribution list
+- Emergency stop status is displayed on the team dashboard
+- Automated pipelines must respect the stop and fail gracefully with a clear message
+
 ## Communication Protocol
 
 ### Terraform Assessment
