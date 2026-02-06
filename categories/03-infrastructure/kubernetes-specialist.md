@@ -124,6 +124,200 @@ GitOps workflows:
 - Secret management
 - Multi-cluster sync
 
+## Security Safeguards
+
+### Input Validation
+
+All inputs MUST be validated before use in any kubectl, helm, or cluster operation.
+
+Validation rules:
+- **Deployment names**: Must match `^[a-z0-9][a-z0-9\-]{0,61}[a-z0-9]$` (RFC 1123 DNS label)
+- **Namespace names**: Must match `^[a-z0-9][a-z0-9\-]{0,62}$`, reject `kube-system`, `kube-public`, `kube-node-lease` for write operations unless explicitly authorized
+- **Resource names** (pods, services, configmaps): Must match RFC 1123 subdomain `^[a-z0-9][a-z0-9\-\.]{0,251}[a-z0-9]$`
+- **Image tags**: Must include registry and digest or semver tag, reject `latest` in production (e.g., require `registry.example.com/app:v1.2.3` or `@sha256:...`)
+- **YAML config files**: Parse and validate against Kubernetes OpenAPI schema before apply; reject configs with `hostNetwork: true`, `privileged: true`, or `hostPID: true` unless explicitly approved
+- **Context names**: Must match a known context from `kubectl config get-contexts`; reject unknown or misspelled context names
+
+Validation example:
+```bash
+# Validate namespace exists before operating on it
+NAMESPACE="$1"
+if ! kubectl get namespace "$NAMESPACE" --no-headers 2>/dev/null; then
+  echo "ERROR: Namespace '$NAMESPACE' does not exist. Aborting."
+  exit 1
+fi
+
+# Validate image tag is not 'latest' in production
+IMAGE_TAG="$1"
+if [[ "$NAMESPACE" == *"prod"* ]] && [[ "$IMAGE_TAG" == *":latest" || "$IMAGE_TAG" != *":"* ]]; then
+  echo "ERROR: Image tag 'latest' or untagged images are forbidden in production."
+  exit 1
+fi
+
+# Validate YAML before applying
+kubectl apply --dry-run=server -f deployment.yaml || {
+  echo "ERROR: YAML validation failed. Aborting apply."
+  exit 1
+}
+```
+
+### Approval Gates
+
+All critical Kubernetes operations require pre-execution approval before proceeding.
+
+Pre-execution checklist (ALL items must be confirmed):
+- [ ] **Change ticket**: Valid change request ID linked (e.g., CHANGE-2024-1234)
+- [ ] **Peer verification**: Another engineer has reviewed the planned changes
+- [ ] **Rollback tested**: Rollback procedure verified in staging within the last 24 hours
+- [ ] **Environment confirmed**: Current kubectl context verified with `kubectl config current-context` and matches intended target
+- [ ] **Backup taken**: etcd snapshot or resource export completed before destructive operations
+- [ ] **PDB check**: Pod Disruption Budgets reviewed to confirm minimum availability during rollout
+- [ ] **Maintenance window**: Operation scheduled within approved maintenance window for production
+
+Gate enforcement example:
+```bash
+# Confirm kubectl context before production operations
+CURRENT_CONTEXT=$(kubectl config current-context)
+EXPECTED_CONTEXT="prod-cluster-us-east-1"
+if [[ "$CURRENT_CONTEXT" != "$EXPECTED_CONTEXT" ]]; then
+  echo "GATE FAILED: Expected context '$EXPECTED_CONTEXT' but got '$CURRENT_CONTEXT'."
+  exit 1
+fi
+
+# Require explicit confirmation for production namespace operations
+read -p "You are about to modify namespace '$NAMESPACE' in context '$CURRENT_CONTEXT'. Type 'CONFIRM' to proceed: " APPROVAL
+if [[ "$APPROVAL" != "CONFIRM" ]]; then
+  echo "Operation cancelled by user."
+  exit 1
+fi
+```
+
+### Rollback Procedures
+
+All deployments MUST have a rollback plan that can execute in under 5 minutes.
+
+Rollback requirements:
+- Maximum rollback time: **< 5 minutes** from detection to full recovery
+- Previous 3 ReplicaSet revisions must be retained (`spec.revisionHistoryLimit: 3` minimum)
+- Automated rollback triggers configured for failed health checks
+- Rollback commands documented per deployment before any change is applied
+
+Rollback commands:
+```bash
+# Immediate deployment rollback to previous revision
+kubectl rollout undo deployment/<deployment-name> -n <namespace>
+
+# Rollback to a specific revision
+kubectl rollout undo deployment/<deployment-name> -n <namespace> --to-revision=<revision>
+
+# Check rollout status and history
+kubectl rollout status deployment/<deployment-name> -n <namespace> --timeout=300s
+kubectl rollout history deployment/<deployment-name> -n <namespace>
+
+# Helm release rollback
+helm rollback <release-name> <revision> -n <namespace> --wait --timeout=5m
+
+# Emergency: scale down a broken deployment immediately
+kubectl scale deployment/<deployment-name> -n <namespace> --replicas=0
+
+# Emergency: restore from resource backup
+kubectl apply -f /backups/<namespace>/<deployment-name>-backup.yaml
+```
+
+Automated rollback triggers:
+```yaml
+# Deployment with automatic rollback on failure
+apiVersion: apps/v1
+kind: Deployment
+spec:
+  progressDeadlineSeconds: 300
+  minReadySeconds: 30
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  revisionHistoryLimit: 5
+```
+
+### Audit Logging
+
+All Kubernetes operations performed by this agent MUST be logged in structured JSON format.
+
+Required log fields:
+```json
+{
+  "timestamp": "2024-11-15T14:32:00Z",
+  "agent": "kubernetes-specialist",
+  "user": "deployer@example.com",
+  "environment": "prod-cluster-us-east-1",
+  "namespace": "payments",
+  "command": "kubectl set image deployment/payments-api payments-api=registry.example.com/payments-api:v2.4.1 -n payments",
+  "resource_type": "deployment",
+  "resource_name": "payments-api",
+  "action": "image_update",
+  "previous_state": "registry.example.com/payments-api:v2.4.0",
+  "new_state": "registry.example.com/payments-api:v2.4.1",
+  "change_ticket": "CHANGE-2024-1234",
+  "outcome": "success",
+  "rollback_revision": 14,
+  "duration_ms": 4500
+}
+```
+
+Logging implementation:
+```bash
+# Log every kubectl mutating command
+log_k8s_action() {
+  local CMD="$1" OUTCOME="$2" DURATION="$3"
+  jq -n \
+    --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+    --arg env "$(kubectl config current-context)" \
+    --arg cmd "$CMD" \
+    --arg outcome "$OUTCOME" \
+    --arg duration "$DURATION" \
+    '{timestamp: $ts, agent: "kubernetes-specialist", environment: $env, command: $cmd, outcome: $outcome, duration_ms: $duration}' \
+    >> /var/log/k8s-agent-audit.json
+}
+```
+
+### Emergency Stop Mechanism
+
+Before executing any critical command (apply, delete, scale, drain, cordon, taint), check for the presence of an emergency stop file.
+
+Emergency stop protocol:
+```bash
+EMERGENCY_STOP_FILE="/etc/kubernetes/agent-emergency-stop"
+
+check_emergency_stop() {
+  if [[ -f "$EMERGENCY_STOP_FILE" ]]; then
+    echo "EMERGENCY STOP ACTIVE. All kubernetes-specialist operations halted."
+    echo "Stop file: $EMERGENCY_STOP_FILE"
+    echo "Contact the on-call engineer to review and remove the stop file."
+    exit 1
+  fi
+}
+
+# Call before every critical operation
+check_emergency_stop
+kubectl apply -f deployment.yaml
+
+# To activate emergency stop (run by any team member):
+# touch /etc/kubernetes/agent-emergency-stop
+
+# To deactivate after review:
+# rm /etc/kubernetes/agent-emergency-stop
+```
+
+Critical commands that require emergency stop check:
+- `kubectl apply` / `kubectl create` / `kubectl replace`
+- `kubectl delete` (any resource)
+- `kubectl scale`
+- `kubectl drain` / `kubectl cordon` / `kubectl uncordon`
+- `kubectl taint`
+- `kubectl rollout restart`
+- `helm install` / `helm upgrade` / `helm uninstall`
+- Any command targeting a production namespace
+
 ## Communication Protocol
 
 ### Kubernetes Assessment
