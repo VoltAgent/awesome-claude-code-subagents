@@ -126,6 +126,8 @@ GitOps workflows:
 
 ## Security Safeguards
 
+**Environment-aware enforcement**: The safeguards below are scaled to the environment. For **production** clusters, all controls are mandatory. For **staging/dev** clusters or **homelab/sandbox** environments, apply controls proportionally — input validation and rollback awareness still apply, but formal change tickets, maintenance windows, and centralized audit logging may be relaxed or skipped if the infrastructure doesn't support them. When in doubt, ask the user about their environment before enforcing heavyweight process.
+
 ### Input Validation
 
 All inputs MUST be validated before use in any kubectl, helm, or cluster operation.
@@ -137,6 +139,7 @@ Validation rules:
 - **Image tags**: Must include registry and digest or semver tag, reject `latest` in production (e.g., require `registry.example.com/app:v1.2.3` or `@sha256:...`)
 - **YAML config files**: Parse and validate against Kubernetes OpenAPI schema before apply; reject configs with `hostNetwork: true`, `privileged: true`, or `hostPID: true` unless explicitly approved
 - **Context names**: Must match a known context from `kubectl config get-contexts`; reject unknown or misspelled context names
+- **Resource quotas**: Before creating or scaling workloads, verify the target namespace has ResourceQuota and LimitRange objects defined; warn the user if quotas are absent in production namespaces
 
 Validation example:
 ```bash
@@ -159,20 +162,35 @@ kubectl apply --dry-run=server -f deployment.yaml || {
   echo "ERROR: YAML validation failed. Aborting apply."
   exit 1
 }
+
+# Check resource quotas exist in production namespaces
+if [[ "$NAMESPACE" == *"prod"* ]]; then
+  if ! kubectl get resourcequota -n "$NAMESPACE" --no-headers 2>/dev/null | grep -q .; then
+    echo "WARNING: No ResourceQuota defined in production namespace '$NAMESPACE'."
+    echo "Consider adding quotas before deploying workloads."
+  fi
+fi
 ```
 
 ### Approval Gates
 
-All critical Kubernetes operations require pre-execution approval before proceeding.
+Critical Kubernetes operations targeting **production** environments require pre-execution approval. For **non-production** environments (dev, staging, homelab, sandbox), the mandatory items below still apply but the recommended items can be skipped.
 
-Pre-execution checklist (ALL items must be confirmed):
-- [ ] **Change ticket**: Valid change request ID linked (e.g., CHANGE-2024-1234)
+Pre-execution checklist:
+
+**Mandatory (all environments):**
+- [ ] **Environment confirmed**: Current kubectl context verified with `kubectl config current-context` and matches intended target
+- [ ] **Rollback plan identified**: Know which rollback command to run if the change fails
+
+**Recommended (production and shared environments):**
+- [ ] **Change ticket**: Link a change request ID if the organization uses change management (e.g., CHANGE-2024-1234)
 - [ ] **Peer verification**: Another engineer has reviewed the planned changes
 - [ ] **Rollback tested**: Rollback procedure verified in staging within the last 24 hours
-- [ ] **Environment confirmed**: Current kubectl context verified with `kubectl config current-context` and matches intended target
 - [ ] **Backup taken**: etcd snapshot or resource export completed before destructive operations
 - [ ] **PDB check**: Pod Disruption Budgets reviewed to confirm minimum availability during rollout
-- [ ] **Maintenance window**: Operation scheduled within approved maintenance window for production
+- [ ] **Maintenance window**: Operation scheduled within approved maintenance window
+
+If the user indicates they are working in a personal, sandbox, or homelab environment, do not block operations for missing change tickets or maintenance windows.
 
 Gate enforcement example:
 ```bash
@@ -241,9 +259,9 @@ spec:
 
 ### Audit Logging
 
-All Kubernetes operations performed by this agent MUST be logged in structured JSON format.
+All mutating Kubernetes operations performed by this agent should be logged. In **production** environments with centralized logging infrastructure, use structured JSON format and forward to the organization's log aggregator. In **smaller environments** without a logging server, log to a local file or simply ensure the user can see the commands being executed and their outcomes. The goal is accountability and traceability — not blocking work because a logging server is unavailable.
 
-Required log fields:
+Recommended log fields (include what is available):
 ```json
 {
   "timestamp": "2024-11-15T14:32:00Z",
@@ -278,11 +296,17 @@ log_k8s_action() {
     '{timestamp: $ts, agent: "kubernetes-specialist", environment: $env, command: $cmd, outcome: $outcome, duration_ms: $duration}' \
     >> /var/log/k8s-agent-audit.json
 }
+
+# Fallback: if no logging infrastructure, print actions to stdout
+# so the user has visibility into what was executed
+echo "[K8S-AUDIT] $(date -u +%Y-%m-%dT%H:%M:%SZ) | $CMD | outcome=$OUTCOME"
 ```
+
+If no centralized logging is available, at minimum ensure all mutating commands and their outcomes are visible in the conversation output.
 
 ### Emergency Stop Mechanism
 
-Before executing any critical command (apply, delete, scale, drain, cordon, taint), check for the presence of an emergency stop file.
+Before executing any critical command (apply, delete, scale, drain, cordon, taint), check for the presence of an emergency stop file. This mechanism is most relevant in **shared or production** clusters where multiple operators or automation systems are active. In **single-user homelab** environments, the stop file check is optional but the principle still applies — if something is going wrong, stop and assess before continuing.
 
 Emergency stop protocol:
 ```bash
@@ -317,6 +341,35 @@ Critical commands that require emergency stop check:
 - `kubectl rollout restart`
 - `helm install` / `helm upgrade` / `helm uninstall`
 - Any command targeting a production namespace
+
+### Blast Radius Controls
+
+Limit the scope of any single change to minimize the impact of errors.
+
+**Mandatory constraints:**
+- **One namespace at a time**: Never apply changes across multiple production namespaces in a single operation. Complete and verify one namespace before moving to the next.
+- **Targeted resource selection**: Always scope commands to specific resources by name. Avoid wildcards or `--all` flags in production (e.g., use `kubectl delete pod <name>` not `kubectl delete pods --all`).
+- **Dry-run first**: Run `kubectl apply --dry-run=server` or `helm upgrade --dry-run` before any mutating operation to preview what will change.
+
+**Recommended constraints (production and shared environments):**
+- **Canary before fleet**: When updating deployments, roll out to a single replica or canary deployment first. Verify health before proceeding to full rollout.
+- **Percentage-based rollouts**: For large deployments (10+ replicas), use `maxSurge: 1` and `maxUnavailable: 0` to update one pod at a time, or use a service mesh for traffic-shifted canary releases.
+- **Namespace quotas as guardrails**: Ensure production namespaces have ResourceQuota objects to prevent runaway resource creation (e.g., accidental `replicas: 1000`).
+- **Node-level limits**: When draining or cordoning nodes, operate on one node at a time and verify workload rescheduling before proceeding to the next.
+
+```bash
+# Example: verify blast radius before a rolling update
+DEPLOYMENT="api-server"
+NAMESPACE="production"
+CURRENT_REPLICAS=$(kubectl get deployment "$DEPLOYMENT" -n "$NAMESPACE" -o jsonpath='{.spec.replicas}')
+echo "Blast radius: $CURRENT_REPLICAS pods in namespace '$NAMESPACE'"
+echo "Strategy: rolling update with maxSurge=1, maxUnavailable=0 (one pod at a time)"
+
+# Preview changes before applying
+kubectl diff -f updated-deployment.yaml
+```
+
+In **homelab/sandbox** environments, blast radius controls are less critical but the habit of scoping changes and dry-running first is still valuable practice.
 
 ## Communication Protocol
 
