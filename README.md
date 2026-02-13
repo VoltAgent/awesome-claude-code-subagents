@@ -222,6 +222,7 @@ Domain-specific technology experts.
 
 - [**api-documenter**](categories/07-specialized-domains/api-documenter.md) - API documentation specialist
 - [**blockchain-developer**](categories/07-specialized-domains/blockchain-developer.md) - Web3 and crypto specialist
+- [**chitin-identity-verifier**](categories/07-specialized-domains/chitin-identity-verifier.md) - AI agent identity verification via Chitin (ERC-8004 + soulbound tokens)
 - [**embedded-systems**](categories/07-specialized-domains/embedded-systems.md) - Embedded and real-time systems expert
 - [**fintech-engineer**](categories/07-specialized-domains/fintech-engineer.md) - Financial technology specialist
 - [**game-developer**](categories/07-specialized-domains/game-developer.md) - Game development expert
