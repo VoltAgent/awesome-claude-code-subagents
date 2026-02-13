@@ -21,6 +21,11 @@ Orchestration expert managing complex multi-agent collaborations. Masters task d
 
 **Use when:** Coordinating multiple agents, breaking down complex tasks, managing agent dependencies, synthesizing results, or designing agent workflows.
 
+### [**agentsys**](https://github.com/avifenesh/agentsys) - Agent runtime and orchestration system
+Pluggable agent runtime that bundles 12 plugins, 41 agents, and 27 skills for Claude Code, OpenCode, and Codex CLI. Run `/next-task` for end-to-end task workflows, `/audit-project` for multi-agent code review, `/perf` for profiling, `/deslop` for slop cleanup, `/drift-detect` to compare plan vs reality, `/repo-map` for AST mapping. Install: `npm install -g agentsys`.
+
+**Use when:** You want a batteries-included agent runtime — task discovery through PR delivery, code review, perf profiling, or cross-platform agent orchestration across Claude Code, OpenCode, and Codex.
+
 ### [**context-manager**](context-manager.md) - Context optimization expert
 Context specialist maximizing efficiency in AI conversations. Expert in context windows, information prioritization, and memory management. Ensures optimal use of limited context space.
 
@@ -66,6 +71,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
 | Coordinate multiple agents | **agent-organizer** |
+| Full agent runtime with orchestration | **[agentsys](https://github.com/avifenesh/agentsys)** |
 | Manage context efficiently | **context-manager** |
 | Handle system errors | **error-coordinator** |
 | Combine knowledge sources | **knowledge-synthesizer** |
