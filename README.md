@@ -19,7 +19,7 @@
 </a> 
 
 [![AI Agent Papers](https://img.shields.io/badge/AI%20Agent-Research%20Papers-b31b1b)](https://github.com/VoltAgent/awesome-ai-agent-papers)
-![Subagent Count](https://img.shields.io/badge/subagents-126+-blue?style=flat-square)
+![Subagent Count](https://img.shields.io/badge/subagents-127+-blue?style=flat-square)
 [![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-claude-code-subagents?label=Last%20update&style=flat-square)](https://github.com/VoltAgent/awesome-claude-code-subagents)
 [![Discord](https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://s.voltagent.dev/discord)
 [![GitHub forks](https://img.shields.io/github/forks/VoltAgent/awesome-claude-code-subagents?style=social)](https://github.com/VoltAgent/awesome-claude-code-subagents/network/members)
@@ -145,6 +145,7 @@ DevOps, cloud, and deployment specialists.
 - [**azure-infra-engineer**](categories/03-infrastructure/azure-infra-engineer.md) - Azure infrastructure and Az PowerShell automation expert
 - [**cloud-architect**](categories/03-infrastructure/cloud-architect.md) - AWS/GCP/Azure specialist
 - [**database-administrator**](categories/03-infrastructure/database-administrator.md) - Database management expert
+- [**docker-expert**](categories/03-infrastructure/docker-expert.md) - Docker containerization and optimization expert
 - [**deployment-engineer**](categories/03-infrastructure/deployment-engineer.md) - Deployment automation specialist
 - [**devops-engineer**](categories/03-infrastructure/devops-engineer.md) - CI/CD and automation expert
 - [**devops-incident-responder**](categories/03-infrastructure/devops-incident-responder.md) - DevOps incident management
