@@ -4,7 +4,8 @@
       "Bash(for:*)",
       "Bash(do grep -l \"## Communication Protocol\" \"$file\")",
       "Bash(done)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(git status:*)"
     ],
     "deny": [],
     "ask": []
