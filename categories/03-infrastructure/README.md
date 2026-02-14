@@ -31,6 +31,11 @@ Database specialist managing relational and NoSQL databases at scale. Expert in 
 
 **Use when:** Setting up databases, optimizing query performance, implementing backup strategies, designing database schemas, or troubleshooting database issues.
 
+### [**docker-expert**](docker-expert.md) - Docker containerization and optimization specialist
+Expert in production-grade Dockerfiles, multi-stage builds, security hardening, and container performance optimization. Masters image size reduction, build caching, and enterprise deployment patterns.
+
+**Use when:** Building optimized Dockerfiles, reducing image sizes, implementing multi-stage builds, securing container images, configuring Docker Compose, or integrating container builds into CI/CD pipelines.
+
 ### [**deployment-engineer**](deployment-engineer.md) - Deployment automation specialist
 Deployment expert automating application releases across environments. Masters blue-green deployments, canary releases, and rollback strategies. Ensures zero-downtime deployments with confidence.
 
@@ -97,6 +102,7 @@ Deep expertise in automating AD, DNS, DHCP, GPO, server configuration, and domai
 |-------------------|-------------------|
 | Design cloud architecture | **cloud-architect** |
 | Manage databases | **database-administrator** |
+| Build/optimize containers | **docker-expert** |
 | Automate deployments | **deployment-engineer** |
 | Build CI/CD pipelines | **devops-engineer** |
 | Handle DevOps incidents | **devops-incident-responder** |
@@ -113,6 +119,7 @@ Deep expertise in automating AD, DNS, DHCP, GPO, server configuration, and domai
 
 **Cloud-Native Application:**
 - **cloud-architect** for architecture design
+- **docker-expert** for container optimization
 - **kubernetes-specialist** for container orchestration
 - **devops-engineer** for CI/CD pipeline
 - **sre-engineer** for reliability
