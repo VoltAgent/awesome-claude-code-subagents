@@ -10,7 +10,7 @@ This is a curated collection of Claude Code subagent definitions - specialized A
 
 ```
 categories/
-  01-core-development/     # Backend, frontend, fullstack, mobile, etc.
+  01-general-development/     # Backend, frontend, fullstack, mobile, etc.
   02-language-specialists/ # Language/framework experts (TypeScript, Python, etc.)
   03-infrastructure/       # DevOps, cloud, Kubernetes, etc.
   04-quality-security/     # Testing, security auditing, code review

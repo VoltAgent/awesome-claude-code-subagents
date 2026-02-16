@@ -2,13 +2,24 @@
   "permissions": {
     "allow": [
       "Bash(for:*)",
-      "Bash(do grep -l \"## Communication Protocol\" \"$file\")",
       "Bash(done)",
       "Bash(python3:*)",
       "Bash(gh issue view:*)",
       "Bash(gh issue list:*)",
       "Bash(gh pr view:*)",
-      "Bash(gh pr list:*)"
+      "Bash(gh pr list:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git commit:*)",
+      "Bash(git mv:*)",
+      "Bash(git status:*)",
+      "Bash(ls:*)",
+      "Bash(sed:*)",
+      "Bash(awk:*)",
+      "Bash(grep:*)",
+      "Bash(sort:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,0 +1,29 @@
+# Set the default behavior, in case people don't have core.autocrlf set.
+* text=auto
+
+# Force batch scripts to always use CRLF line endings so that if a repo is accessed
+# on a non-Windows system, the batch scripts will still work when checked out.
+*.bat text eol=crlf
+*.BAT text eol=crlf
+*.cmd text eol=crlf
+*.CMD text eol=crlf
+*.ics text eol=crlf
+*.ICS text eol=crlf
+
+# Same as above for Powershell scripts.
+*.ps1 text eol=crlf
+*.psm1 text eol=crlf
+*.psd1 text eol=crlf
+
+# Force shell scripts to always use LF line endings so that if a repo is accessed
+# on a Windows system, the shell scripts will still work when checked out.
+*.sh text eol=lf
+*.sh chmod=+x
+
+# Markdown Files don't need additional permissions
+*.md chmod=640
+
+# Force YAML files to always use LF line endings so that if a repo is accessed
+# on a Windows system, the YAML files will still work when checked out.
+*.yaml text eol=lf
+*.yml text eol=lf
