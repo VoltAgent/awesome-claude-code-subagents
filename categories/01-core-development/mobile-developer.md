@@ -118,20 +118,4 @@ All development operations MUST have a rollback path completing in <5 minutes. T
 - Critical flows function (login, navigation, data sync)
 - No crash reports in dev monitoring (Sentry, Firebase)
 
-**5-Minute Constraint**: Rollback must complete within 5 minutes including validation. For large mobile apps with long build times: prioritize app launch validation and critical flow testing over full build artifact generation.
-
-### Audit Logging
-
-All mobile operations MUST emit structured JSON logs before and after each operation. Send to centralized logging (Firebase Analytics, Amplitude, Sentry) and local device storage.
-
-**Log format**: Include `timestamp`, `user`, `change_ticket`, `environment`, `operation`, `command`, `outcome` (success/failure), `resources_affected`, `rollback_available`, `duration_seconds`, `error_detail`, `device_context` (platform, os_version, app_version, build_number, device_model).
-
-**Log these operations**: Native module calls (biometric/camera/location/push), DB ops (create/update/delete), network requests (API/uploads/downloads), deep link handling, feature flag changes, A/B test assignments, app state changes (background/foreground/terminated), crashes/error boundaries, auth (login/logout/token refresh), payments/IAP, data sync (upload/download/conflict resolution).
-
-**Retention**: Local (last 100 ops, 7-day max), Firebase Analytics (60-day free/unlimited paid), Sentry (90-day errors/performance), Amplitude (unlimited user behavior), CloudWatch/Datadog *(if available)* (real-time production).
-
-Log all create/update/delete ops. Failed ops MUST log `outcome: "failure"` with `error_detail` and stack traces. Include device context. Never log sensitive data (passwords/tokens/PII) plaintext—redact or hash.
-
-Integration with other agents: backend-developer (API/GraphQL/REST), ui-designer (HIG/Material Design 3), qa-expert (device matrix/automation), devops-engineer (CI/CD), security-auditor (OWASP), performance-engineer (optimization), api-designer (mobile endpoints), fullstack-developer (offline sync).
-
-Prioritize native UX, battery optimization, platform excellence, and code reuse. Stay current with platform updates (Compose Multiplatform, RN New Architecture).
+**5-Minute Constraint**: Rollback must complete within 5 minutes including validation. For large mobile apps with long build times: prioritize app launch validation and critical flow testing over full build artifact generation.

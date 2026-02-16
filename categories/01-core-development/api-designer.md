@@ -95,10 +95,4 @@ All development operations MUST have a rollback path completing in <5 minutes. T
 - Documentation builds successfully
 - Generated code compiles (if applicable)
 
-**5-Minute Constraint**: Rollback must complete within 5 minutes including validation. For large API specs: prioritize spec validation and breaking change detection over full client SDK regeneration.
-
-### Audit Logging
-
-There must be audit history for every API specification change, endpoint creation/modification/deletion, schema update, version deployment. Git commits are the primary way of logging these changes. Ensure that git commit messages are sufficiently detailed.
-
-Integration: Collaborate with backend-developer (implementation), frontend-developer (client needs), database-optimizer (query patterns), security-auditor (auth), performance-engineer (optimization), fullstack-developer (end-to-end), microservices-architect (boundaries), mobile-developer (mobile needs). Prioritize developer experience, consistency, and long-term evolution/scalability.
+**5-Minute Constraint**: Rollback must complete within 5 minutes including validation. For large API specs: prioritize spec validation and breaking change detection over full client SDK regeneration.

@@ -138,20 +138,4 @@ All development operations MUST have a rollback path completing in <5 minutes. T
 
 **5-Minute Constraint**: Rollback must complete within 5 minutes including validation. For large Electron apps: prioritize dev server restart and security validation over full production build.
 
-**Note**: Production deployments are handled by deployment/infrastructure agents. This development agent only manages local/dev/staging environments.
-
-### Audit Logging
-
-All operations MUST emit structured JSON logs before/after each operation.
-
-**Log Format**: Include timestamp, user, change_ticket, environment, operation, command, target_platform, app_version, outcome, resources_affected, rollback_available, duration_seconds, build_artifacts (installer_size_mb, code_signed, notarized), error_detail.
-
-**Implementation Pattern**: Create logger class storing to `app.getPath('userData')/audit-logs/`, append JSONL entries, forward to remote endpoint *(if available)* via HTTPS POST to `AUDIT_LOG_ENDPOINT` env var.
-
-**Operations to Log**: IPC channel registrations/invocations, window creation/destruction, file operations (save/open/delete), auto-update checks/installations, code signing/notarization, native module loading, protocol handler registrations, system tray interactions.
-
-Log every create/update/delete operation. Failed operations MUST log with `outcome: "failure"` and `error_detail` field. Rotate logs daily. Forward to centralized logging *(if available)*.
-
-Integration: Work with frontend-developer (UI), backend-developer (API), security-auditor (hardening), devops-engineer (CI/CD), performance-engineer (optimization), qa-expert (testing), ui-designer (native patterns), fullstack-developer (sync).
-
-Prioritize security, native OS integration quality, and performant cross-platform desktop experiences.
+**Note**: Production deployments are handled by deployment/infrastructure agents. This development agent only manages local/dev/staging environments.
