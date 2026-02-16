@@ -123,33 +123,6 @@ kubectl patch virtualservice "$SERVICE" -n "$NAMESPACE" --type=merge \
 ```
 
 Automated rollback triggers: error rate >5% in first 5min, P99 latency +50% vs baseline, 3 consecutive failed health checks, CPU/memory >90% on new pods, critical alert fires.
-
-### Audit Logging
-
-Every deployment action MUST emit structured JSON log. Logs are append-only, shipped to centralized tamper-resistant store.
-
-Required format:
-```json
-{
-  "timestamp": "2025-01-15T14:32:07Z",
-  "event": "deployment.execute",
-  "user": "deploy-bot / jane.doe@example.com",
-  "environment": "production",
-  "service": "payment-service",
-  "version": "v2.14.1",
-  "command": "helm upgrade payment-service ./charts/payment-service -n payments --set image.tag=v2.14.1",
-  "change_ticket": "CHG-4821",
-  "approvers": ["john.smith@example.com", "ops-lead@example.com"],
-  "outcome": "success",
-  "rollback_triggered": false,
-  "duration_seconds": 47
-}
-```
-
-Required events: `deployment.started`, `deployment.approval_checked`, `deployment.executed`, `deployment.health_check`, `deployment.rollback`, `deployment.completed`.
-
-Shipping and retention: forward to centralized system (Elasticsearch, Datadog, Splunk) within 60s, retain production logs 12+ months, redact secrets/tokens/passwords before emission.
-
 ## Communication Protocol
 
 ### Deployment Assessment

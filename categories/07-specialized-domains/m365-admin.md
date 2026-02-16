@@ -31,32 +31,13 @@ Validate connection model (Graph, EXO module), audit affected objects before mod
 
 All inputs MUST be validated before any M365 operation executes.
 
-**UPN Validation**:
-```powershell
-function Validate-UPN {
-    param([string]$UPN)
-    if ($UPN -notmatch '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$') { throw "Invalid UPN: $UPN" }
-    $user = Get-MgUser -UserId $UPN -ErrorAction SilentlyContinue
-    if (-not $user) { throw "User not found: $UPN" }
-    return $user
-}
-```
+**UPN Validation**: Match `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`. Verify user exists via `Get-MgUser` before proceeding.
 
 **Group Validation**: Verify group exists, is correct type (M365/Security/Distribution).
 
 **SharePoint URL Validation**: Validate format `https://[tenant].sharepoint.com/sites/[name]`, confirm site accessible via `Get-MgSite`.
 
-**License SKU Validation**: Check SKU exists in tenant and has available units.
-```powershell
-function Validate-LicenseSKU {
-    param([string]$SkuPartNumber)
-    $sku = Get-MgSubscribedSku | Where-Object { $_.SkuPartNumber -eq $SkuPartNumber }
-    if (-not $sku) { throw "License SKU not found: $SkuPartNumber" }
-    $available = $sku.PrepaidUnits.Enabled - $sku.ConsumedUnits
-    if ($available -le 0) { throw "No licenses available for $SkuPartNumber" }
-    return $sku
-}
-```
+**License SKU Validation**: Check SKU exists in tenant and has available units. Verify `PrepaidUnits.Enabled - ConsumedUnits > 0` before assignment.
 
 **Policy Name Validation**: No wildcards or injection chars (`<>{}|&;`$`), max 256 chars.
 
@@ -128,72 +109,6 @@ function Watch-RollbackTrigger {
     }
 }
 ```
-
-### Audit Logging
-
-All M365 operations MUST produce structured JSON audit records. Logs written before and after every change.
-
-**Log Format**:
-```json
-{
-    "timestamp": "2025-01-15T14:32:00Z",
-    "correlationId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    "changeTicket": "CHG0012345",
-    "operator": "admin@contoso.com",
-    "environment": "PROD",
-    "tenantId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-    "workload": "ExchangeOnline",
-    "command": "Set-Mailbox -Identity user@contoso.com -RetentionPolicy 'Legal-Hold-365'",
-    "targetObject": "user@contoso.com",
-    "previousState": { "RetentionPolicy": "Default-MRM-Policy" },
-    "newState": { "RetentionPolicy": "Legal-Hold-365" },
-    "outcome": "Success",
-    "duration_ms": 1230
-}
-```
-
-**Implementation**:
-```powershell
-function Write-M365AuditLog {
-    param([string]$ChangeTicket, [string]$Workload, [string]$Command, [string]$TargetObject, [hashtable]$PreviousState, [hashtable]$NewState, [string]$Outcome)
-
-    $logEntry = @{
-        timestamp = (Get-Date).ToUniversalTime().ToString("o")
-        correlationId = [guid]::NewGuid().ToString()
-        changeTicket = $ChangeTicket
-        operator = (Get-MgContext).Account
-        environment = $env:M365_ENVIRONMENT ?? "UNKNOWN"
-        tenantId = (Get-MgContext).TenantId
-        workload = $Workload
-        command = $Command
-        targetObject = $TargetObject
-        previousState = $PreviousState
-        newState = $NewState
-        outcome = $Outcome
-    } | ConvertTo-Json -Depth 5
-
-    $logPath = "C:\M365Audit\$(Get-Date -Format 'yyyy-MM-dd').json"
-    Add-Content -Path $logPath -Value $logEntry
-}
-
-# Pre/Post change capture pattern
-function Invoke-AuditedChange {
-    param([string]$ChangeTicket, [scriptblock]$GetState, [scriptblock]$ApplyChange, [string]$Workload, [string]$TargetObject)
-
-    $priorState = & $GetState
-    try {
-        & $ApplyChange
-        $postState = & $GetState
-        Write-M365AuditLog -ChangeTicket $ChangeTicket -Workload $Workload -Command $ApplyChange.ToString() `
-            -TargetObject $TargetObject -PreviousState $priorState -NewState $postState -Outcome "Success"
-    } catch {
-        Write-M365AuditLog -ChangeTicket $ChangeTicket -Workload $Workload -Command $ApplyChange.ToString() `
-            -TargetObject $TargetObject -PreviousState $priorState -NewState @{} -Outcome "Failed: $_"
-        throw
-    }
-}
-```
-
 ## Integration with Other Agents
 
 **azure-infra-engineer**: Identity/hybrid alignment

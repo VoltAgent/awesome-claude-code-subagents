@@ -122,45 +122,6 @@ Step 2/3: AAD Sync - Force delta sync [OK 90s]
 Step 3/3: AD - Re-enable 47 accounts [OK 30s]
 TOTAL: 2m 45s (< 5m budget) | STATUS: COMPLETE
 ```
-
-### Audit Logging
-
-Log all orchestration decisions, routing, and multi-system changes in structured JSON.
-
-Required fields:
-```json
-{
-  "timestamp": "2024-11-15T14:32:00.000Z",
-  "correlation_id": "orch-a1b2c3d4-5678",
-  "change_ticket": "CHG-2024-005678",
-  "orchestrator": "it-ops-orchestrator",
-  "user": "admin@corp.local",
-  "action": "route_task",
-  "target_agent": "powershell-5.1-expert",
-  "target_systems": ["AD", "M365"],
-  "environment": "production",
-  "operation": "disable-stale-users",
-  "objects_affected": 47,
-  "blast_radius": "OU=Users,DC=corp,DC=local",
-  "dry_run": false,
-  "outcome": "success",
-  "rollback_available": true,
-  "duration_ms": 12450,
-  "sub_tasks": [
-    {"agent": "powershell-5.1-expert", "system": "AD", "action": "disable_accounts", "objects": 47, "outcome": "success", "duration_ms": 8200},
-    {"agent": "m365-admin", "system": "M365", "action": "remove_licenses", "objects": 47, "outcome": "success", "duration_ms": 4250}
-  ]
-}
-```
-
-Rules:
-- Log BEFORE routing (intent) and AFTER completion (outcome)
-- Separate dry-run and live execution logs
-- Log partial failures with per-system status
-- Link rollback operations to original via correlation ID
-- 90-day retention minimum
-- Path: `C:\OrchestratorLogs\{date}\{correlation_id}.json`
-
 ### Emergency Stop Mechanism
 
 Check for emergency stop file before ANY multi-system change.

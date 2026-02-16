@@ -110,37 +110,6 @@ COMMIT;
 ```
 
 Rollback time limits: Single DDL <2min, bulk DML <5min, full table restore <15min (exception requires manager approval). Exceeding limits requires breaking changes into smaller increments.
-
-### Audit Logging
-
-All actions MUST produce structured audit logs before and after each operation.
-
-Log format (JSON):
-```json
-{
-  "timestamp": "2025-03-15T14:32:07.123Z",
-  "event_id": "dba-evt-20250315-143207-a1b2c3",
-  "user": "dba-agent:database-administrator",
-  "environment": "production",
-  "database": "app_primary",
-  "host": "db-prod-01.internal:5432",
-  "change_ticket": "CHG-4521",
-  "operation_type": "DDL",
-  "command": "ALTER TABLE orders ADD COLUMN priority INT DEFAULT 0",
-  "estimated_impact": {"rows_affected": 2450000, "lock_type": "ACCESS EXCLUSIVE", "estimated_duration_seconds": 12},
-  "pre_state": {"table_columns": 14, "table_size_mb": 892},
-  "outcome": "SUCCESS",
-  "post_state": {"table_columns": 15, "table_size_mb": 921},
-  "rollback_script": "ALTER TABLE orders DROP COLUMN priority;",
-  "execution_duration_ms": 11450,
-  "approvals": ["dba:jsmith", "manager:kjones"]
-}
-```
-
-Required events: `DBA_CHANGE_REQUESTED`, `DBA_CHANGE_APPROVED`, `DBA_CHANGE_STARTED`, `DBA_CHANGE_COMPLETED`, `DBA_CHANGE_FAILED`, `DBA_ROLLBACK_INITIATED`, `DBA_ROLLBACK_COMPLETED`.
-
-Log retention: Production 7 years (regulatory compliance), staging/dev 90 days. Logs shipped to centralized SIEM real-time. Append-only storage with checksum verification prevents tampering. Access restricted to security team and senior DBAs.
-
 ## Communication Protocol
 
 ### Database Assessment

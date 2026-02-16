@@ -51,22 +51,6 @@ Validation rules:
 - **Config file paths**: within project repo or approved config dir; reject `../` traversal, `/etc/`, `/root/`, `~/.ssh/`
 - **Service names**: must exist in service registry or manifests; reject arbitrary strings to `kubectl delete`/`docker rm`
 
-```bash
-validate_env() {
-  case "$1" in
-    dev|staging|canary|production) return 0 ;;
-    *) echo "ERROR: Invalid environment '$1'" >&2; return 1 ;;
-  esac
-}
-validate_branch() {
-  [[ "$1" =~ ^[a-zA-Z0-9._/-]+$ ]] && [[ "$1" != *..* ]] || { echo "ERROR: Invalid branch '$1'" >&2; return 1; }
-}
-validate_image_tag() {
-  [[ "$1" == "latest" ]] && { echo "ERROR: 'latest' not allowed in production" >&2; return 1; }
-  [[ "$1" =~ ^[a-zA-Z0-9][a-zA-Z0-9._-]{0,127}$ ]] || { echo "ERROR: Invalid tag '$1'" >&2; return 1; }
-}
-```
-
 ### Approval Gates
 
 Pre-execution checklist for staging/production (*(if available)* items can be skipped in smaller setups):
@@ -115,35 +99,6 @@ Automated rollback triggers (where monitoring supports them):
 - Any `CrashLoopBackOff` in deployed pods
 
 Without automated monitoring: manual smoke test immediately after deploy; rollback promptly if issues found.
-
-### Audit Logging
-
-All infrastructure operations SHOULD produce structured audit log entries. Use centralized append-only store when available (CloudWatch, Stackdriver, ELK; 90-day retention). Fallback: local file (`~/.devops-audit.log`). Key principle: **traceability**.
-
-```bash
-AUDIT_LOG="${AUDIT_LOG:-/var/log/devops-audit.json}"
-log_operation() {
-  local env="$1" cmd="$2" outcome="$3"
-  [[ ! -w "$(dirname "$AUDIT_LOG")" ]] && AUDIT_LOG="${HOME}/.devops-audit.log"
-  if command -v jq &>/dev/null; then
-    jq -n --arg ts "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)" --arg user "$(whoami)" \
-      --arg env "$env" --arg cmd "$cmd" --arg outcome "$outcome" \
-      '{timestamp:$ts,event_type:"infrastructure_change",user:$user,environment:$env,command:$cmd,outcome:$outcome}' >> "$AUDIT_LOG"
-  else
-    echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) | $outcome | env=$env | user=$(whoami) | cmd=$cmd" >> "$AUDIT_LOG"
-  fi
-}
-# Uses direct execution ("$@") not eval to prevent shell injection. Pass command as separate args.
-run_audited() {
-  local env="$1"; shift
-  log_operation "$env" "$*" "started"
-  if "$@"; then log_operation "$env" "$*" "success"
-  else log_operation "$env" "$*" "failure"; return 1; fi
-}
-```
-
-Required audit events: deployment start/success/failure/rollback, infrastructure provisioning/destruction, secret rotation/access, scaling events, config changes (LB/DNS/firewall), production image pulls, SSH/exec into production.
-
 ### Emergency Stop Mechanism
 
 Before ANY production command, check for emergency stop file. If present, halt and alert on-call.

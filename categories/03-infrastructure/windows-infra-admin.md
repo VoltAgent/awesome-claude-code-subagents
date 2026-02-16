@@ -39,22 +39,6 @@ Patterns:
 - Server: `^[a-zA-Z0-9-]{1,15}$` (NetBIOS limit), must resolve in DNS or exist in AD
 - OU path: `^(OU=[^,]+,)*(DC=[^,]+,)*DC=[^,]+$`, must exist in domain, exclude protected OUs (Domain Controllers) without approval
 
-```powershell
-function Confirm-ADUserName {
-    param([string]$Name)
-    if ($Name -notmatch '^[a-zA-Z0-9._-]{1,64}$') { throw "Invalid AD user: '$Name'" }
-    if ($Name -in @('Administrator','Guest','krbtgt')) { throw "Cannot target built-in: '$Name'" }
-    return $true
-}
-
-function Confirm-OUPath {
-    param([string]$Path)
-    if ($Path -notmatch '^(OU=[^,]+,)*(DC=[^,]+,)*DC=[^,]+$') { throw "Invalid OU format: '$Path'" }
-    if (-not (Get-ADOrganizationalUnit -Identity $Path -ErrorAction SilentlyContinue)) { throw "OU not found: '$Path'" }
-    return $true
-}
-```
-
 ### Approval Gates
 
 Pre-execution checklist (MUST pass before modification):
@@ -126,50 +110,6 @@ Import-Clixml "C:\ChangeBackups\CHG-00012345\dns-zone-backup.xml" |
 Import-GPO -BackupId $backupGuid -Path "C:\ChangeBackups\CHG-00012345\GPOBackups" -TargetName "Security Baseline v2" -CreateIfNeeded
 Remove-GPLink -Guid $gpoGuid -Target "OU=Workstations,DC=contoso,DC=com"
 ```
-
-### Audit Logging
-
-All operations MUST produce structured JSON audit entries written before and after each change.
-
-```json
-{
-  "timestamp": "2025-01-22T14:30:00Z",
-  "changeTicket": "CHG-00012345",
-  "operator": "admin@contoso.com",
-  "agent": "windows-infra-admin",
-  "environment": "PROD",
-  "domain": "contoso.com",
-  "operation": "Remove-ADUser",
-  "target": "CN=jsmith,OU=Users,DC=contoso,DC=com",
-  "parameters": {"Identity": "jsmith"},
-  "preChangeState": "C:\\ChangeBackups\\CHG-00012345\\user-jsmith-pre.xml",
-  "outcome": "Success",
-  "rollbackAvailable": true,
-  "durationMs": 1250
-}
-```
-
-Implementation:
-```powershell
-function Write-InfraAuditLog {
-    param($ChangeTicket, $Operation, $Target, $Parameters, $Outcome, $Environment = "PROD", $RollbackPath)
-    @{
-        timestamp = (Get-Date -Format "o")
-        changeTicket = $ChangeTicket
-        operator = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-        agent = "windows-infra-admin"
-        environment = $Environment
-        domain = (Get-ADDomain).DNSRoot
-        operation = $Operation
-        target = $Target
-        parameters = $Parameters
-        outcome = $Outcome
-        rollbackAvailable = [bool]$RollbackPath
-        rollbackPath = $RollbackPath
-    } | ConvertTo-Json -Depth 5 | Out-File -Append "C:\InfraLogs\windows-infra-admin-audit.json" -Encoding UTF8
-}
-```
-
 ### Emergency Stop Mechanism
 
 Before bulk/enterprise-wide changes (>10 objects), check for emergency stop file `C:\InfraLogs\EMERGENCY_STOP`. If exists, ALL operations halt immediately.

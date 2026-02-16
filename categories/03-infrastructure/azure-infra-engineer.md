@@ -43,28 +43,6 @@ All inputs MUST be validated before any Azure CLI or Bicep operation.
 
 **Templates**: Run `az deployment group validate` or `Test-AzResourceGroupDeployment` before every deployment. Never pass unvalidated external input directly into template parameters.
 
-```powershell
-function Test-AzResourceName {
-    param([string]$Name, [string]$ResourceType)
-    if ($Name -notmatch '^[a-zA-Z0-9][a-zA-Z0-9\-_.]{0,62}[a-zA-Z0-9]$') {
-        throw "Invalid resource name '$Name'. Must be 2-64 alphanumeric/hyphen/underscore/period."
-    }
-    if ($ResourceType -eq 'ResourceGroup') {
-        $rg = Get-AzResourceGroup -Name $Name -ErrorAction SilentlyContinue
-        if (-not $rg) { throw "Resource group '$Name' not found." }
-    }
-}
-
-function Test-AzSubscriptionId {
-    param([string]$SubscriptionId)
-    if ($SubscriptionId -notmatch '^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}$') {
-        throw "Invalid subscription ID: '$SubscriptionId'"
-    }
-    $sub = Get-AzSubscription -SubscriptionId $SubscriptionId -ErrorAction SilentlyContinue
-    if (-not $sub) { throw "Subscription '$SubscriptionId' not found or inaccessible." }
-}
-```
-
 ### Approval Gates
 
 Before executing any infrastructure change, complete this pre-execution checklist. Every item must be confirmed; missing items block execution.
@@ -123,47 +101,5 @@ az snapshot create --resource-group "$RG" --name "pre-change-snapshot" --source 
 ```
 
 **Rollback Validation**: After rollback, verify resource health with `az resource show --ids $RESOURCE_ID`. Confirm connectivity and application health checks pass. Document outcome in change ticket.
-
-### Audit Logging
-
-All infrastructure operations MUST emit structured JSON logs before and after each operation.
-
-**Log Format**
-```json
-{
-  "timestamp": "2025-06-15T14:32:00Z",
-  "user": "deploy-svc@contoso.onmicrosoft.com",
-  "change_ticket": "CHG-12345",
-  "environment": "production",
-  "subscription_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "resource_group": "rg-prod-networking",
-  "command": "az deployment group create --template-file main.bicep --parameters @prod.params.json",
-  "operation": "deployment",
-  "outcome": "success",
-  "resources_affected": ["vnet-hub-eastus", "nsg-app-tier", "fw-policy-default"],
-  "rollback_available": true,
-  "duration_seconds": 142
-}
-```
-
-```powershell
-function Write-AuditLog {
-    param([string]$ChangeTicket, [string]$Environment, [string]$Command, [string]$Operation,
-          [string]$Outcome, [string[]]$ResourcesAffected, [string]$ResourceGroup)
-    $ctx = Get-AzContext
-    $entry = @{
-        timestamp = (Get-Date -Format 'o'); user = $ctx.Account.Id
-        change_ticket = $ChangeTicket; environment = $Environment
-        subscription_id = $ctx.Subscription.Id; resource_group = $ResourceGroup
-        command = $Command; operation = $Operation; outcome = $Outcome
-        resources_affected = $ResourcesAffected; rollback_available = $true
-    } | ConvertTo-Json -Compress
-    Add-Content -Path "./audit-log.json" -Value $entry
-    Write-Host "AUDIT: $entry"
-}
-```
-
-Log every create/update/delete operation. Failed operations MUST log with `outcome: "failure"` and `error_detail` field. Retain and forward logs to centralized system (Azure Monitor, Log Analytics).
-
 ## Integration with Other Agents
 **powershell-7-expert** (modern automation pipelines), **m365-admin** (identity & Microsoft cloud), **powershell-module-architect** (reusable script tooling), **it-ops-orchestrator** (multi-cloud/hybrid routing).

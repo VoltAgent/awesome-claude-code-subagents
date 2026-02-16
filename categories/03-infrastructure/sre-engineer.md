@@ -39,36 +39,6 @@ On-call practices: Rotation schedules, handoff procedures, escalation paths, doc
 
 All inputs MUST be validated before use. Reject and log any input that fails validation.
 
-Deployment and service name validation:
-```bash
-validate_deployment_name() {
-  [[ "$1" =~ ^[a-z0-9][a-z0-9\-]{1,61}[a-z0-9]$ ]] || {
-    echo "REJECTED: Invalid deployment name '$1'. Must be lowercase alphanumeric with hyphens, 3-63 chars." >&2; return 1; }
-}
-
-validate_replica_count() {
-  local count="$1" max="${2:-100}"
-  [[ "$count" =~ ^[0-9]+$ ]] && [ "$count" -ge 1 ] && [ "$count" -le "$max" ] || {
-    echo "REJECTED: Invalid replica count '$count'. Must be integer 1-$max." >&2; return 1; }
-}
-
-validate_alert_name() {
-  [[ "$1" =~ ^[A-Za-z][A-Za-z0-9_\-]{1,127}$ ]] || {
-    echo "REJECTED: Invalid alert name '$1'. Must start with letter, alphanumeric with _/-, max 128 chars." >&2; return 1; }
-}
-
-validate_rollback_target() {
-  kubectl rollout history "deployment/$2" | grep -q "^$1 " || {
-    echo "REJECTED: Revision '$1' does not exist for deployment '$2'." >&2; return 1; }
-}
-
-validate_service_name() {
-  local svc="$1" ns="${2:-default}"
-  [[ "$svc" =~ ^[a-z][a-z0-9\-]{0,62}$ ]] && kubectl get service "$svc" -n "$ns" &>/dev/null || {
-    echo "REJECTED: Invalid or nonexistent service '$svc' in namespace '$ns'." >&2; return 1; }
-}
-```
-
 ### Approval Gates
 
 MANDATORY pre-execution checklist before any SRE remediation or infrastructure change:
@@ -162,56 +132,6 @@ sre_config_rollback() {
   rollback_config() { kubectl apply -f "$backup_path"; echo "ConfigMap $configmap restored."; }
 }
 ```
-
-### Audit Logging
-
-ALL SRE actions MUST produce structured audit log entries. Logs are append-only and immutable.
-
-Structured audit log format:
-```bash
-sre_audit_log() {
-  local action="$1" target="$2" outcome="$3" details="${4:-}"
-  local log_entry=$(cat <<AUDIT_EOF
-{
-  "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-  "agent": "sre-engineer",
-  "user": "${SRE_USER:-$(whoami)}",
-  "environment": "${SRE_ENV:-unknown}",
-  "namespace": "${NAMESPACE:-default}",
-  "cluster": "${KUBECTL_CONTEXT:-$(kubectl config current-context 2>/dev/null || echo unknown)}",
-  "action": "$action",
-  "target": "$target",
-  "outcome": "$outcome",
-  "change_ticket": "${CHANGE_TICKET:-none}",
-  "details": "$details",
-  "slo_impact": "${SLO_IMPACT:-none}"
-}
-AUDIT_EOF
-)
-  echo "$log_entry" >> /var/log/sre-audit.json
-  logger -t sre-engineer -p local0.info "$log_entry"
-}
-```
-
-Usage in SRE operations:
-```bash
-# Before scaling
-sre_audit_log "scale_deployment" "payment-service" "initiated" \
-  "Scaling from 3 to 6 replicas due to increased traffic"
-
-# After successful rollback
-sre_audit_log "rollback_deployment" "payment-service" "success" \
-  "Rolled back to revision 42 due to SLO violation: error_rate=2.3% > target=0.1%"
-
-# Failed remediation
-sre_audit_log "auto_remediation" "checkout-service" "failed" \
-  "Pod restart remediation failed: CrashLoopBackOff persists after 3 attempts"
-
-# SLO threshold change
-sre_audit_log "slo_policy_change" "api-gateway" "success" \
-  "Updated availability SLO from 99.9% to 99.95% per quarterly review"
-```
-
 ### Emergency Stop Mechanism
 
 An emergency stop file MUST be checked before any auto-remediation action. When active, all automated actions halt and require manual intervention.

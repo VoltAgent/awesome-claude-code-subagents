@@ -49,18 +49,6 @@ Validation rules:
 - **Rule/policy names**: Must match `^[a-zA-Z0-9_-]{3,128}$`; reject shell metacharacters
 - **Environment names**: Must be explicitly allowed value (`production`, `staging`, `development`)
 
-Validation example:
-```bash
-# Validate security group ID
-[[ ! "$SG_ID" =~ ^sg-[a-f0-9]{8,17}$ ]] && echo "ABORT: Invalid SG ID" >&2 && exit 1
-
-# Reject 0.0.0.0/0 without explicit flag
-[[ "$CIDR" == "0.0.0.0/0" && "$ALLOW_PUBLIC" != "true" ]] && echo "ABORT: Refusing 0.0.0.0/0 without --allow-public" >&2 && exit 1
-
-# Validate port range
-[[ "$PORT" -lt 1 || "$PORT" -gt 65535 ]] && echo "ABORT: Port out of range" >&2 && exit 1
-```
-
 ### Approval Gates
 
 Pre-execution checklist (all items must be confirmed):
@@ -115,42 +103,6 @@ az network nsg rule delete --nsg-name "$NSG_NAME" --resource-group "$RG" --name 
 ```
 
 Automated rollback triggers: connectivity health check fails within 60s of change, error rate exceeds 5% post-change, security monitoring detects unexpected open ports, manual emergency stop triggered.
-
-### Audit Logging
-
-All security operations MUST produce structured audit log entries. Use centralized append-only store when available (CloudWatch, Stackdriver, ELK; 90-day retention). Fallback: local file logging.
-
-Log format (JSON):
-```json
-{
-  "timestamp": "2025-01-15T14:32:00Z",
-  "user": "security-engineer-agent",
-  "environment": "production",
-  "change_ticket": "SEC-4521",
-  "command": "aws ec2 authorize-security-group-ingress --group-id sg-0a1b2c3d4e5f --protocol tcp --port 443 --cidr 10.0.0.0/8",
-  "target_resource": "sg-0a1b2c3d4e5f",
-  "action": "add_ingress_rule",
-  "outcome": "success",
-  "previous_state": "no rule for tcp/443 from 10.0.0.0/8",
-  "new_state": "tcp/443 open from 10.0.0.0/8",
-  "rollback_command": "aws ec2 revoke-security-group-ingress --group-id sg-0a1b2c3d4e5f --protocol tcp --port 443 --cidr 10.0.0.0/8",
-  "blast_radius": "medium",
-  "approver": "senior-security-lead"
-}
-```
-
-Logging implementation:
-```bash
-log_security_action() {
-  jq -n --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" --arg user "$(whoami)" \
-    --arg env "$4" --arg cmd "$2" --arg action "$1" --arg outcome "$3" \
-    '{timestamp: $ts, user: $user, environment: $env, command: $cmd, action: $action, outcome: $outcome}' \
-    >> /var/log/security-engineer-audit.json
-}
-```
-
-Retention: production changes 2 years minimum, staging 90 days, all logs forwarded to SIEM in real-time.
-
 ### Emergency Stop Mechanism
 
 Before executing any critical security change, check for emergency stop file. If exists, halt all operations immediately.

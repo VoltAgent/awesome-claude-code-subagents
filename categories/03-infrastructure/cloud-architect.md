@@ -154,49 +154,6 @@ cp terraform.tfstate.backup terraform.tfstate
 terraform plan -out=rollback.tfplan
 terraform apply rollback.tfplan
 ```
-
-### Audit Logging
-
-All cloud architecture operations MUST produce structured audit logs before and after every infrastructure change.
-
-Log format (structured JSON):
-```json
-{
-  "timestamp": "2025-01-15T14:32:07.123Z",
-  "event_id": "evt-a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "agent": "cloud-architect",
-  "user": "infra-engineer@company.com",
-  "action": "modify_infrastructure",
-  "environment": "production",
-  "cloud_provider": "aws",
-  "region": "us-east-1",
-  "change_ticket": "INFRA-4821",
-  "resources": [
-    {
-      "type": "aws_autoscaling_group",
-      "id": "arn:aws:autoscaling:us-east-1:123456789012:autoScalingGroup:my-asg",
-      "change": "update_launch_template",
-      "previous_value": "lt-0abcd1234:v3",
-      "new_value": "lt-0abcd1234:v4"
-    }
-  ],
-  "command": "aws autoscaling update-auto-scaling-group --auto-scaling-group-name my-asg --launch-template LaunchTemplateId=lt-0abcd1234,Version=4",
-  "outcome": "success",
-  "rollback_available": true,
-  "rollback_command": "aws autoscaling update-auto-scaling-group --auto-scaling-group-name my-asg --launch-template LaunchTemplateId=lt-0abcd1234,Version=3",
-  "duration_ms": 2340,
-  "approval_ref": "CAB-2025-0115-003"
-}
-```
-
-Logging requirements: Every operation produces PRE-action (intent) and POST-action (outcome) log entries. Failed operations log error message, error code, stack trace. Sensitive values (credentials, keys, secrets) NEVER appear in logs. Ship logs to centralized immutable log store (AWS CloudTrail + S3 with Object Lock, Azure Monitor + immutable storage, GCP Cloud Audit Logs). Retention: minimum 90 days hot, 1 year cold, 7 years for compliance-regulated environments. All entries include change ticket reference for traceability.
-
-Multi-cloud audit integration:
-- AWS: Enable CloudTrail in all regions, send to centralized S3 bucket with Object Lock
-- Azure: Enable Activity Log and Diagnostic Settings, forward to Log Analytics Workspace
-- GCP: Enable Data Access audit logs, export to BigQuery
-- Cross-cloud: Aggregate via SIEM (Splunk, Datadog, Elastic) with unified schema
-
 ## Communication Protocol
 
 ### Architecture Assessment

@@ -49,26 +49,6 @@ Validation rules:
 - **DNS hostnames**: Conform to RFC 1123; max 253 chars; labels max 63 chars each
 - **BGP AS numbers**: Validate range (1-4294967295 for 4-byte ASN); flag private ASN range (64512-65534, 4200000000-4294967294)
 
-Validation example:
-```bash
-validate_ip() {
-  local ip="$1"
-  [[ ! "$ip" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]] && { echo "REJECTED: Invalid IP format: $ip" >&2; return 1; }
-  for octet in $(echo "$ip" | tr '.' ' '); do
-    (( octet < 0 || octet > 255 )) && { echo "REJECTED: Octet out of range in $ip" >&2; return 1; }
-  done
-  return 0
-}
-
-validate_cidr() {
-  local cidr="$1" ip="${cidr%/*}" prefix="${cidr#*/}"
-  validate_ip "$ip" || return 1
-  (( prefix < 0 || prefix > 32 )) && { echo "REJECTED: Invalid prefix: /$prefix" >&2; return 1; }
-  (( prefix < 16 )) && { echo "WARNING: Broad CIDR /$prefix requires approval" >&2; return 2; }
-  return 0
-}
-```
-
 ### Approval Gates
 
 Network changes carry high blast radius. Every change MUST pass these gates before execution.
@@ -144,72 +124,6 @@ verify_or_rollback() {
   return 0
 }
 ```
-
-### Audit Logging
-
-Every network configuration change MUST be logged in structured JSON format for compliance, forensics, and operational review.
-
-Log format:
-```json
-{
-  "timestamp": "2025-03-15T14:23:01.456Z",
-  "agent": "network-engineer",
-  "user": "engineer@company.com",
-  "change_ticket": "NET-4521",
-  "environment": "production",
-  "action": "route_add",
-  "target": {
-    "resource_type": "route_table",
-    "resource_id": "rtb-abc123",
-    "region": "us-east-1"
-  },
-  "command": "aws ec2 create-route --route-table-id rtb-abc123 --destination-cidr-block 10.20.0.0/16 --gateway-id igw-xyz789",
-  "parameters": {
-    "destination_cidr": "10.20.0.0/16",
-    "gateway": "igw-xyz789"
-  },
-  "outcome": "success",
-  "rollback_available": true,
-  "rollback_command": "aws ec2 delete-route --route-table-id rtb-abc123 --destination-cidr-block 10.20.0.0/16",
-  "pre_state_snapshot": "/var/log/network-audit/snapshots/rtb-abc123-20250315-142258.json",
-  "validation": {
-    "connectivity_check": "passed",
-    "latency_check": "passed",
-    "security_scan": "passed"
-  }
-}
-```
-
-Logging implementation:
-```bash
-log_network_change() {
-  local log_file="/var/log/network-audit/changes.jsonl"
-  local timestamp=$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ")
-  local log_entry=$(cat <<ENTRY
-{
-  "timestamp": "$timestamp",
-  "agent": "network-engineer",
-  "user": "${SUDO_USER:-$(whoami)}",
-  "change_ticket": "${CHANGE_TICKET:-UNTRACKED}",
-  "environment": "${ENVIRONMENT:-unknown}",
-  "action": "$1",
-  "target": "$2",
-  "command": "$3",
-  "outcome": "$4",
-  "rollback_available": true
-}
-ENTRY
-)
-  echo "$log_entry" >> "$log_file"
-  if [[ "${CHANGE_TICKET:-UNTRACKED}" == "UNTRACKED" ]]; then
-    echo "AUDIT WARNING: Network change executed without change ticket." >&2
-    echo "$log_entry" >> "/var/log/network-audit/untracked-changes.jsonl"
-  fi
-}
-```
-
-Audit log retention: retain all network change logs minimum 1 year, untracked changes trigger immediate alert to security team, weekly audit review of all production network changes, log integrity protected via append-only storage and checksums.
-
 ## Communication Protocol
 
 ### Network Assessment

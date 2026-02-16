@@ -53,17 +53,6 @@ Customer ID: Must match expected format (e.g., Stripe `cus_` prefix). Verify cus
 
 Payment method token: Accept ONLY tokenized references (Stripe `pm_`, `tok_` prefixes). NEVER accept raw card numbers (PAN), CVV, or expiration dates. Validate token format, confirm not expired or consumed. If raw card data detected in any field, immediately reject and log PCI violation alert.
 
-```python
-# Stripe PaymentIntent validation
-def validate_payment_input(transaction):
-    assert re.match(r'^pi_[a-zA-Z0-9]{24,}$', transaction['id']), "Invalid transaction ID"
-    assert isinstance(transaction['amount'], int) and transaction['amount'] > 0, "Invalid amount"
-    assert transaction['currency'] in SUPPORTED_CURRENCIES, "Unsupported currency"
-    assert re.match(r'^cus_[a-zA-Z0-9]+$', transaction['customer_id']), "Invalid customer ID"
-    assert re.match(r'^pm_[a-zA-Z0-9]+$', transaction['payment_method']), "Invalid payment token"
-    assert 'card_number' not in transaction, "PCI VIOLATION: Raw card data detected"
-```
-
 ### Approval Gates
 
 All payment system changes require pre-execution approval. No payment code reaches production without passing every gate.
@@ -120,55 +109,6 @@ Automated rollback triggers:
 ```
 
 Feature flags: All new payment features behind flags (LaunchDarkly, Stripe test clocks). Disable flag for instant revert without code deployment. Monitor 30 min after rollback before re-enabling.
-
-### Audit Logging
-
-All payment operations MUST produce structured audit logs. Logs immutable, retained per PCI DSS Req 10 (min 1 year, 3 months immediately accessible).
-
-Required fields per payment event:
-```json
-{
-  "timestamp": "2025-01-15T14:32:07.123Z",
-  "event_type": "payment.charge.created",
-  "user_id": "usr_abc123",
-  "merchant_id": "merch_xyz789",
-  "environment": "production",
-  "command": "stripe.PaymentIntent.create",
-  "payment_intent_id": "pi_3Ox2aB2eZvKYlo2C",
-  "amount": 5000,
-  "currency": "usd",
-  "outcome": "succeeded",
-  "ip_address": "192.168.1.100",
-  "idempotency_key": "order_12345_attempt_1",
-  "trace_id": "trace-7f8a9b0c-1d2e-3f4a"
-}
-```
-
-NEVER log (PCI DSS Req 3.4): Full PAN (mask as `****1234`), CVV/CVC/security codes (never store or log), full magnetic stripe/chip data, cardholder PIN/PIN block, decrypted cardholder data, full API secret keys (mask as `sk_live_****XXXX`).
-
-Log retention: Append-only, tamper-evident storage (AWS CloudTrail, immutable S3 buckets). Restrict access to authorized personnel with audit trail for log access itself. Alert on deletion attempts or access anomalies. Export capability for PCI QSA audits.
-
-Failed transaction logging:
-```json
-{
-  "timestamp": "2025-01-15T14:33:12.456Z",
-  "event_type": "payment.charge.failed",
-  "user_id": "usr_abc123",
-  "environment": "production",
-  "command": "stripe.PaymentIntent.create",
-  "payment_intent_id": "pi_3Ox2bC3fZwLZmp3D",
-  "amount": 12500,
-  "currency": "eur",
-  "outcome": "failed",
-  "failure_code": "card_declined",
-  "failure_message": "Your card was declined.",
-  "decline_code": "insufficient_funds",
-  "card_last4": "4242",
-  "card_brand": "visa",
-  "trace_id": "trace-8a9b0c1d-2e3f-4a5b"
-}
-```
-
 ## Communication Protocol
 
 ### Payment Context Assessment

@@ -53,26 +53,6 @@ Validation rules:
 - **Backstage template params**: Sanitize user variables; reject shell commands or template injection
 - **CI/CD pipeline vars**: Reject `$(`, backticks, unescaped semicolons; enforce allow-list for param names
 
-Validation example:
-```python
-import re
-
-COMPONENT_NAME = re.compile(r'^[a-z][a-z0-9-]{2,62}$')
-CONFIG_KEY = re.compile(r'^[a-zA-Z_][a-zA-Z0-9_.]{0,127}$')
-BLOCKED_SCHEMES = ['http://', 'file://', 'ftp://']
-
-def validate_platform_input(input_type: str, value: str) -> bool:
-    if input_type == "component_name":
-        return bool(COMPONENT_NAME.match(value))
-    elif input_type == "config_key":
-        return bool(CONFIG_KEY.match(value))
-    elif input_type == "service_endpoint":
-        return value.startswith("https://") and not any(s in value for s in BLOCKED_SCHEMES)
-    elif input_type == "tool_name":
-        return value in APPROVED_SERVICE_CATALOG
-    return False
-```
-
 ### Approval Gates
 
 All platform infrastructure changes require approval gates before execution.
@@ -163,45 +143,6 @@ Automated rollback triggers:
 - Backstage portal 5xx errors >30 seconds
 - CI/CD template causes >3 consecutive build failures
 - Crossplane composition drift on >2 resources
-
-### Audit Logging
-
-All platform operations must produce structured audit log entries.
-
-Log format (JSON):
-```json
-{
-  "timestamp": "2024-01-15T14:32:07.123Z",
-  "event_type": "platform_change",
-  "user": "platform-eng@company.com",
-  "service_account": "platform-engineer-sa",
-  "environment": "production",
-  "component": "crossplane-composition",
-  "command": "kubectl apply -f rds-composition-v2.yaml",
-  "change_ticket": "PLAT-4521",
-  "parameters": {
-    "composition_name": "rds-standard",
-    "previous_version": "v1.3.0",
-    "new_version": "v1.4.0",
-    "affected_xrs": 34
-  },
-  "outcome": "success",
-  "rollback_available": true,
-  "duration_ms": 2340,
-  "audit_trail_id": "aud-plat-20240115-143207-a3f2"
-}
-```
-
-Logging requirements:
-- Golden path template changes: log template name, version delta, affected teams
-- CI/CD pipeline modifications: log pipeline ID, stage changed, trigger type
-- Backstage plugin deployments: log plugin name, version, portal impact
-- Crossplane composition updates: log composition name, XRD version, affected composite resources
-- Platform API changes: log endpoint path, method, breaking-change flag
-- Ship logs to centralized SIEM (Elasticsearch, Splunk) within 30 seconds
-- Retain audit logs minimum 365 days
-- Protect log integrity via append-only storage or cryptographic chaining
-
 ## Communication Protocol
 
 ### Platform Assessment

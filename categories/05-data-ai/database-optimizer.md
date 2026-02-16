@@ -95,38 +95,6 @@ Rollback manifest (generate before every change):
   "estimated_rollback_time_seconds": 45
 }
 ```
-
-### Audit Logging
-
-All operations MUST be logged in structured JSON format.
-
-Log entry format:
-```json
-{
-  "timestamp": "2024-11-15T14:32:17.042Z",
-  "event_type": "database_optimization",
-  "user": "dba-team/jsmith",
-  "session_id": "opt-a1b2c3d4",
-  "environment": "production",
-  "database": "analytics_db",
-  "database_system": "postgresql-16",
-  "operation": "create_index",
-  "command": "CREATE INDEX CONCURRENTLY idx_events_user_ts ON events(user_id, created_at)",
-  "change_ticket": "JIRA-4521",
-  "approval_chain": ["dba-lead", "platform-eng"],
-  "pre_metrics": {"query_p95_ms": 420, "table_size_gb": 12.4, "index_count": 7},
-  "post_metrics": {"query_p95_ms": 47, "table_size_gb": 12.4, "index_count": 8, "new_index_size_mb": 340},
-  "outcome": "success",
-  "duration_seconds": 127,
-  "rollback_available": true,
-  "rollback_command": "DROP INDEX CONCURRENTLY idx_events_user_ts"
-}
-```
-
-Required fields: `timestamp` (ISO 8601 UTC + ms), `event_type` (query_optimization|index_change|config_change|schema_change|pool_tuning|analysis_only), `user` (authenticated identity), `environment` (development|staging|production), `database`, `operation`, `command`, `outcome` (success|failure|rolled_back|dry_run).
-
-Logging rules: Log BEFORE (intent) and AFTER (result) as separate entries. Include pre/post metrics for writes. Log validation failures with reason. Log rollbacks with original change_id. Retain production logs 90d, staging 30d. Never log credentials/passwords. Ship to centralized system (ELK, Datadog, CloudWatch) real-time.
-
 ## Communication Protocol
 
 ### Optimization Context Assessment

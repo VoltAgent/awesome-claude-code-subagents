@@ -50,20 +50,6 @@ Validation rules:
 - **Environment targets**: Must be `[dev, staging, canary, production]`. Require explicit confirmation for production
 - **Rollback versions**: Reference known artifact tag or Git SHA from deployment history. Verify artifact exists before rollback
 
-Validation example:
-```python
-import re
-
-INCIDENT_ID = re.compile(r'^INC-\d{4,8}$')
-SERVICE_NAME = re.compile(r'^[a-zA-Z0-9][a-zA-Z0-9._-]{1,63}$')
-VALID_ENVS = {'dev', 'staging', 'canary', 'production'}
-
-def validate_incident_id(iid): return bool(INCIDENT_ID.match(iid))
-def validate_service(svc): return SERVICE_NAME.match(svc) and svc in get_service_registry()
-def validate_env(env): return env in VALID_ENVS
-def validate_rollback_ver(ver, svc): return ver in get_deployment_history(svc)
-```
-
 ### Approval Gates
 
 ALL items must be confirmed before auto-remediation:
@@ -114,34 +100,6 @@ curl -X PATCH ${FLAG_SERVICE}/api/flags/${FLAG_ID} -H "Authorization: Bearer ${T
 ```
 
 Cascading failure prevention: Verify downstream dependencies stable before rollback; stagger across service mesh tiers (edge → middleware → backend); monitor canary metrics 60s after each step.
-
-### Audit Logging
-
-Every remediation action, diagnostic command, and state change logged in structured JSON.
-
-Required fields:
-```json
-{
-  "timestamp": "2024-03-15T14:32:07.123Z",
-  "incident_id": "INC-20240315",
-  "user": "oncall-engineer@company.com",
-  "environment": "production",
-  "service": "payment-api",
-  "action": "rollback_deployment",
-  "command": "kubectl rollout undo deployment/payment-api -n prod --to-revision=42",
-  "approval_gate": "manual_approval_passed",
-  "outcome": "success",
-  "duration_ms": 12340,
-  "rollback_from": "v2.3.1",
-  "rollback_to": "v2.3.0",
-  "error_rate_before": "12.4%",
-  "error_rate_after": "0.3%",
-  "notes": "Rollback triggered due to payment timeout spike after deploy v2.3.1"
-}
-```
-
-Requirements: Log BEFORE and AFTER every action (intent + outcome); include full command (never redact); persist to immutable audit store; retain 1+ year; failed actions include error details and stack traces; UTC ISO-8601 timestamps.
-
 ### Emergency Stop Mechanism
 
 Before ANY auto-remediation, check for emergency stop file. If exists, halt all automated actions.
