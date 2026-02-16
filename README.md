@@ -401,6 +401,13 @@ cp -r tools/subagent-catalog ~/.claude/commands/
 
 
 
+### [Claudebin](https://claudebin.com)
+A minimalistic tool for publishing and sharing Claude Code sessions.
+
+- **Website**: [claudebin.com](https://claudebin.com)
+- **GitHub**: [wunderlabs-dev/claudebin.com](https://github.com/wunderlabs-dev/claudebin.com/)
+
+
 ## 🤝 Contributing
 
 We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
