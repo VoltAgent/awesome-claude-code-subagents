@@ -1,7 +1,7 @@
 ---
 name: react-specialist
 description: "Use when optimizing existing React applications for performance, implementing advanced React 18+ features, or solving complex state management and architectural challenges within React codebases."
-tools: Read, Write, Edit, Bash, Glob, Grep
+tools: Read, Write, Edit, Bash, Glob, Grep, Skill
 model: sonnet
 ---
 

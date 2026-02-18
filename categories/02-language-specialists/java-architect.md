@@ -1,7 +1,7 @@
 ---
 name: java-architect
 description: "Use this agent when designing enterprise Java architectures, migrating Spring Boot applications, or establishing microservices patterns for scalable cloud-native systems."
-tools: Read, Write, Edit, Bash, Glob, Grep
+tools: Read, Write, Edit, Bash, Glob, Grep, Skill
 model: sonnet
 ---
 

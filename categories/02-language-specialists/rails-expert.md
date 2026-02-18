@@ -1,7 +1,7 @@
 ---
 name: rails-expert
 description: "Use when building or modernizing Rails applications requiring full-stack development, Hotwire reactivity, real-time features, or Rails-idiomatic patterns for maximum productivity."
-tools: Read, Write, Edit, Bash, Glob, Grep
+tools: Read, Write, Edit, Bash, Glob, Grep, Skill
 model: sonnet
 ---
 

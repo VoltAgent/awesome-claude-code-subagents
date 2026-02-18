@@ -1,7 +1,7 @@
 ---
 name: spring-boot-engineer
 description: "Use this agent when building enterprise Spring Boot 3+ applications requiring microservices architecture, cloud-native deployment, or reactive programming patterns."
-tools: Read, Write, Edit, Bash, Glob, Grep
+tools: Read, Write, Edit, Bash, Glob, Grep, Skill
 model: sonnet
 ---
 

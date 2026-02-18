@@ -1,7 +1,7 @@
 ---
 name: angular-architect
 description: "Use when architecting enterprise Angular 15+ applications with complex state management, optimizing RxJS patterns, designing micro-frontend systems, or solving performance and scalability challenges in large codebases."
-tools: Read, Write, Edit, Bash, Glob, Grep
+tools: Read, Write, Edit, Bash, Glob, Grep, Skill
 model: sonnet
 ---
 
