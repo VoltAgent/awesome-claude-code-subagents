@@ -1,6 +1,6 @@
 {
   "name": "voltagent-meta",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation. Works best with other voltagent plugins installed.",
   "author": {
     "name": "VoltAgent Community",

@@ -1,6 +1,6 @@
 {
   "name": "voltagent-data-ai",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Data engineering, ML, and AI specialists - data pipelines, machine learning, LLM architecture",
   "author": {
     "name": "VoltAgent Community",
