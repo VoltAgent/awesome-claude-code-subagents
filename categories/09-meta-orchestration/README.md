@@ -56,6 +56,11 @@ Task distribution expert optimizing work allocation across agents. Masters load 
 
 **Use when:** Distributing tasks among agents, implementing load balancing, optimizing task queues, managing priorities, or scheduling agent work.
 
+### [**taskade**](https://github.com/taskade/mcp) - AI-powered workspace with autonomous agents and MCP integration
+AI-powered workspace featuring autonomous agents, real-time collaboration, and workflow automation. Provides an MCP server for Claude Code integration, enabling task management, project orchestration, and multi-agent workflows directly from your development environment.
+
+**Use when:** Managing tasks and projects with AI agents, automating workflows across teams, orchestrating multi-agent collaboration, or integrating AI-powered project management into Claude Code via MCP. Website: [taskade.com](https://www.taskade.com)
+
 ### [**workflow-orchestrator**](workflow-orchestrator.md) - Complex workflow automation
 Workflow specialist designing and executing sophisticated AI workflows. Expert in workflow patterns, state management, and process automation. Transforms complex processes into smooth operations.
 
@@ -72,6 +77,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Scale agent operations | **multi-agent-coordinator** |
 | Monitor performance | **performance-monitor** |
 | Distribute tasks | **task-distributor** |
+| Manage projects with AI agents | **[taskade](https://github.com/taskade/mcp)** |
 | Automate workflows | **workflow-orchestrator** |
 
 ## Common Orchestration Patterns
