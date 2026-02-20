@@ -1,6 +1,6 @@
 {
   "name": "voltagent-core-dev",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Essential development subagents for everyday coding tasks - backend, frontend, fullstack, mobile, and API design",
   "author": {
     "name": "VoltAgent Community",

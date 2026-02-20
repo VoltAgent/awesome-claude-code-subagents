@@ -43,6 +43,18 @@ When you add a new agent, you MUST update these files:
    - Follow the standard template structure
    - Include all required sections
 
+### Versioning Requirements for Plugin Updates
+
+When you modify existing plugin content, you MUST bump versions so users can receive updates via `claude plugin update`.
+
+1. **Bump category plugin version**
+   - File: `categories/<category>/.claude-plugin/plugin.json`
+   - Increment `version` whenever any `*.md` file in that category changes.
+
+2. **Keep marketplace plugin versions in sync**
+   - File: `.claude-plugin/marketplace.json`
+   - Update the corresponding plugin entry version to match the category plugin version.
+
 ### Adding a Tool
 
 Tools are Claude Code skills that enhance the catalog experience (discovery, browsing, management).
