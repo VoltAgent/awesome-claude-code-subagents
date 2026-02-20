@@ -95,10 +95,15 @@ Expert in PowerShell 5.1 scripting for Windows infrastructure, RSAT modules, and
 
 **Use when:** Working with Windows-only automation, legacy modules, on-prem infrastructure, or scripts requiring compatibility with older servers and full .NET Framework.
 
-### [**powershell-7-expert**](powershell-7-expert.md) - Cross-platform PowerShell 7 automation specialist  
+### [**powershell-7-expert**](powershell-7-expert.md) - Cross-platform PowerShell 7 automation specialist
 Expert in modern PowerShell 7+, .NET 6/7 APIs, cross-platform scripting, CI/CD integration, and cloud automation using Az and Microsoft Graph.
 
 **Use when:** Building modern automation tools, cross-platform scripts, Azure integrations, CI/CD cmdlets, or modernization projects moving off Windows PowerShell.
+
+### [**podeweb-specialist**](podeweb-specialist.md) - Pode.Web 0.8.3 dashboard and UI specialist
+PowerShell web UI expert specializing in Pode.Web 0.8.3 components. Knows every parameter set conflict, known bug, and workaround. Generates correct Pode.Web code on the first attempt with an 11-point pre-output checklist. Also covers 5 critical PowerShell 5.1 gotchas.
+
+**Use when:** Building web dashboards with Pode.Web, debugging 400 Bad Request or parameter set conflicts, creating pages with tables/modals/forms, or fixing PS 5.1 issues like `$_` contamination in switch blocks.
 
 ### [**python-pro**](python-pro.md) - Python ecosystem master
 Python language expert covering web development, data science, automation, and system scripting. Masters Pythonic code patterns and the vast Python ecosystem.
@@ -164,6 +169,7 @@ Vue.js framework specialist mastering the Composition API, reactivity system, an
 | Laravel | **laravel-specialist** | PHP web applications |
 | Next.js | **nextjs-developer** | Full-stack React apps |
 | PHP | **php-pro** | Web development, APIs |
+| Pode.Web | **podeweb-specialist** | PowerShell web dashboards, UI pages |
 | Python | **python-pro** | General purpose, data science |
 | Rails | **rails-expert** | Rapid web development |
 | React | **react-specialist** | Modern web UIs |
