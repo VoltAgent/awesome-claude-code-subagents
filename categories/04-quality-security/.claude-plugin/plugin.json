@@ -1,6 +1,6 @@
 {
   "name": "voltagent-qa-sec",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
   "author": {
     "name": "VoltAgent Community",
