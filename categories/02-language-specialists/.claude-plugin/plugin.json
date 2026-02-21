@@ -1,6 +1,6 @@
 {
   "name": "voltagent-lang",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Language-specific expert agents with deep framework knowledge - Python, TypeScript, Go, Rust, Java, and more",
   "author": {
     "name": "VoltAgent Community",

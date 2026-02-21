@@ -1,0 +1,81 @@
+name: Enforce Plugin Version Bump
+
+on:
+  pull_request:
+    paths:
+      - "categories/**"
+      - ".claude-plugin/marketplace.json"
+  workflow_dispatch:
+
+jobs:
+  validate-plugin-versions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate category version bumps and marketplace sync
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          else
+            BASE_SHA="${{ github.event.before }}"
+          fi
+
+          if [ -z "${BASE_SHA}" ] || [ "${BASE_SHA}" = "0000000000000000000000000000000000000000" ]; then
+            BASE_SHA="$(git rev-list --max-parents=0 HEAD)"
+          fi
+
+          echo "Comparing HEAD with base SHA: ${BASE_SHA}"
+          CHANGED_FILES="$(git diff --name-only "${BASE_SHA}"...HEAD)"
+          FAIL=0
+
+          for plugin_json in categories/*/.claude-plugin/plugin.json; do
+            category_dir="$(dirname "$(dirname "${plugin_json}")")"
+
+            if echo "${CHANGED_FILES}" | grep -Eq "^${category_dir}/.*\.md$"; then
+              if git cat-file -e "${BASE_SHA}:${plugin_json}" 2>/dev/null; then
+                old_version="$(git show "${BASE_SHA}:${plugin_json}" | sed -n 's/.*"version":[[:space:]]*"\([^"]*\)".*/\1/p' | head -n1)"
+                new_version="$(sed -n 's/.*"version":[[:space:]]*"\([^"]*\)".*/\1/p' "${plugin_json}" | head -n1)"
+
+                if [ "${old_version}" = "${new_version}" ]; then
+                  echo "::error file=${plugin_json}::Markdown changed under ${category_dir}, but plugin version was not bumped (still ${new_version})."
+                  FAIL=1
+                fi
+              fi
+            fi
+          done
+
+          for plugin_json in categories/*/.claude-plugin/plugin.json; do
+            plugin_name="$(sed -n 's/.*"name":[[:space:]]*"\([^"]*\)".*/\1/p' "${plugin_json}" | head -n1)"
+            category_version="$(sed -n 's/.*"version":[[:space:]]*"\([^"]*\)".*/\1/p' "${plugin_json}" | head -n1)"
+
+            marketplace_version="$(
+              awk -v target="${plugin_name}" '
+                $0 ~ "\"name\": \"" target "\"" { in_plugin = 1; next }
+                in_plugin && $0 ~ "\"version\":" {
+                  gsub(/[, "]/, "", $2)
+                  print $2
+                  exit
+                }
+                in_plugin && $0 ~ "}" { in_plugin = 0 }
+              ' .claude-plugin/marketplace.json
+            )"
+
+            if [ -z "${marketplace_version}" ]; then
+              echo "::error file=.claude-plugin/marketplace.json::Could not find plugin ${plugin_name} in marketplace manifest."
+              FAIL=1
+            elif [ "${marketplace_version}" != "${category_version}" ]; then
+              echo "::error file=.claude-plugin/marketplace.json::Version mismatch for ${plugin_name}: marketplace=${marketplace_version}, category=${category_version}."
+              FAIL=1
+            fi
+          done
+
+          if [ "${FAIL}" -ne 0 ]; then
+            exit 1
+          fi
