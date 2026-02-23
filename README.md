@@ -400,7 +400,8 @@ Claude Code skill for browsing and fetching subagents from this catalog.
 cp -r tools/subagent-catalog ~/.claude/commands/
 ```
 
-
+### [Washin Claude Skills](https://github.com/sstklen/washin-claude-skills)
+112 battle-tested Claude Code skills from 200+ production bugs. Covers Docker/DevOps, API architecture, billing, security, and Hono/Bun patterns. One-command installer with category filtering.
 
 ## 🤝 Contributing
 
