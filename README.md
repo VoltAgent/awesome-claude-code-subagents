@@ -196,6 +196,7 @@ Data engineering, ML, and AI specialists.
 - [**nlp-engineer**](categories/05-data-ai/nlp-engineer.md) - Natural language processing expert
 - [**postgres-pro**](categories/05-data-ai/postgres-pro.md) - PostgreSQL database expert
 - [**prompt-engineer**](categories/05-data-ai/prompt-engineer.md) - Prompt optimization specialist
+- [**videodb-engineer**](categories/05-data-ai/videodb-engineer.md) - The only video skill your agent needs — upload, search inside videos, edit, generate AI media, and stream via VideoDB SDK
 
 ### [06. Developer Experience](categories/06-developer-experience/)
 **Plugin:** `voltagent-dev-exp`
