@@ -189,6 +189,7 @@ Data engineering, ML, and AI specialists.
 - [**data-engineer**](categories/05-data-ai/data-engineer.md) - Data pipeline architect
 - [**data-scientist**](categories/05-data-ai/data-scientist.md) - Analytics and insights expert
 - [**database-optimizer**](categories/05-data-ai/database-optimizer.md) - Database performance specialist
+- [**dna-claude-analysis**](https://github.com/shmlkv/dna-claude-analysis) - Personal genome analysis toolkit with Python scripts analyzing raw DNA data across 17 categories (health risks, ancestry, pharmacogenomics, nutrition, psychology, etc.) and generating terminal-style single-page HTML visualization
 - [**llm-architect**](categories/05-data-ai/llm-architect.md) - Large language model architect
 - [**machine-learning-engineer**](categories/05-data-ai/machine-learning-engineer.md) - Machine learning systems expert
 - [**ml-engineer**](categories/05-data-ai/ml-engineer.md) - Machine learning specialist
