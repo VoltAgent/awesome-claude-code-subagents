@@ -1,6 +1,6 @@
 {
   "name": "voltagent-research",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting",
   "author": {
     "name": "VoltAgent Community",
@@ -13,6 +13,7 @@
     "./data-researcher.md",
     "./market-researcher.md",
     "./research-analyst.md",
+    "./scientific-literature-researcher.md",
     "./search-specialist.md",
     "./trend-analyst.md"
   ]

@@ -46,6 +46,11 @@ Data investigation specialist extracting insights from complex datasets. Masters
 
 **Use when:** Analyzing datasets, discovering data patterns, performing statistical analysis, mining for insights, or investigating data anomalies.
 
+### [**scientific-literature-researcher**](scientific-literature-researcher.md) - Scientific paper search and evidence synthesis
+Scientific literature specialist using [BGPT MCP](https://github.com/connerlambden/bgpt-mcp) to search a database of papers with structured experimental data extracted from full-text studies. Retrieves methods, results, sample sizes, and quality scores to deliver evidence-grounded analysis.
+
+**Use when:** Searching scientific literature, conducting systematic reviews, synthesizing experimental evidence, fact-checking claims against published data, or building evidence-grounded research reports.
+
 ## Quick Selection Guide
 
 | If you need to... | Use this subagent |
@@ -56,6 +61,7 @@ Data investigation specialist extracting insights from complex datasets. Masters
 | Analyze competitors | **competitive-analyst** |
 | Understand markets | **market-researcher** |
 | Analyze data patterns | **data-researcher** |
+| Search scientific papers | **scientific-literature-researcher** |
 
 ## Common Research Patterns
 
