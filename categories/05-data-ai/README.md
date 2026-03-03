@@ -76,6 +76,11 @@ Prompt engineering expert crafting effective prompts for AI models. Masters prom
 
 **Use when:** Designing prompts for LLMs, optimizing AI responses, implementing prompt strategies, testing prompt effectiveness, or building prompt-based applications.
 
+### [**videodb-engineer**](videodb-engineer.md) - The only video skill your agent needs
+Video engineering specialist via the VideoDB Python SDK. Upload any video, connect real-time streams, search inside by what was said or shown, build complex editing workflows with overlays, generate AI media, add subtitles, and get instant streaming links.
+
+**Use when:** Uploading and processing videos, connecting real-time streams, searching inside videos by speech or scene, building complex editing workflows with overlays, generating AI media (images, video, music, voiceovers), adding subtitles, or getting streaming links.
+
 ## Quick Selection Guide
 
 | If you need to... | Use this subagent |
@@ -92,6 +97,7 @@ Prompt engineering expert crafting effective prompts for AI models. Masters prom
 | Process text data | **nlp-engineer** |
 | Optimize PostgreSQL | **postgres-pro** |
 | Design AI prompts | **prompt-engineer** |
+| Process/edit/search videos | **videodb-engineer** |
 
 ## Common Data & AI Patterns
 
