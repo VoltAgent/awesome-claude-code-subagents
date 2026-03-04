@@ -26,6 +26,11 @@ Blockchain expert building decentralized applications and smart contracts. Maste
 
 **Use when:** Building dApps, writing smart contracts, implementing DeFi protocols, creating NFT platforms, or integrating blockchain features.
 
+### [**defi-data-analyst**](defi-data-analyst.md) - Real-time DeFi data specialist
+DeFi data analyst providing live crypto market data via the [defi-mcp](https://github.com/OzorOwn/defi-mcp) MCP server. Retrieves token prices, gas fees, DEX swap quotes, and wallet balances across 9 chains.
+
+**Use when:** Looking up token prices, checking gas fees, getting DEX swap quotes, analyzing wallet balances across chains, or discovering trending tokens.
+
 ### [**embedded-systems**](embedded-systems.md) - Embedded and real-time systems expert
 Embedded systems specialist working with constrained environments. Expert in microcontrollers, RTOS, and hardware interfaces. Builds efficient software for resource-limited devices.
 
@@ -77,6 +82,7 @@ SEO expert driving organic traffic through search optimization. Masters technica
 |--------|-------------------|----------|
 | API Documentation | **api-documenter** | OpenAPI specs, developer portals |
 | Blockchain/Web3 | **blockchain-developer** | Smart contracts, DeFi, NFTs |
+| DeFi Data | **defi-data-analyst** | Token prices, gas fees, swap quotes |
 | Embedded/IoT | **embedded-systems** | Firmware, microcontrollers |
 | Financial Tech | **fintech-engineer** | Banking, payments, compliance |
 | Gaming | **game-developer** | Game engines, multiplayer |
