@@ -46,6 +46,11 @@ Data investigation specialist extracting insights from complex datasets. Masters
 
 **Use when:** Analyzing datasets, discovering data patterns, performing statistical analysis, mining for insights, or investigating data anomalies.
 
+### [**news-researcher**](news-researcher.md) - Real-time news intelligence and current events monitoring
+News intelligence specialist using [newsMCP](https://github.com/pranciskus/newsmcp) to access real-time news events clustered by AI from hundreds of sources. Retrieves events classified across 12 topics and 30+ geographic regions, ranked by importance, with detailed source coverage. Free to use, no API key required.
+
+**Use when:** Monitoring breaking news, tracking current events by topic or region, conducting news-based research, analyzing media coverage, or building real-time intelligence briefings.
+
 ### [**scientific-literature-researcher**](scientific-literature-researcher.md) - Scientific paper search and evidence synthesis
 Scientific literature specialist using [BGPT MCP](https://github.com/connerlambden/bgpt-mcp) to search a database of papers with structured experimental data extracted from full-text studies. Retrieves methods, results, sample sizes, and quality scores to deliver evidence-grounded analysis.
 
@@ -61,6 +66,7 @@ Scientific literature specialist using [BGPT MCP](https://github.com/connerlambd
 | Analyze competitors | **competitive-analyst** |
 | Understand markets | **market-researcher** |
 | Analyze data patterns | **data-researcher** |
+| Monitor real-time news | **news-researcher** |
 | Search scientific papers | **scientific-literature-researcher** |
 
 ## Common Research Patterns

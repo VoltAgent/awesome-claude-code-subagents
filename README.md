@@ -280,6 +280,7 @@ Research, search, and analysis specialists.
 - [**competitive-analyst**](categories/10-research-analysis/competitive-analyst.md) - Competitive intelligence specialist
 - [**market-researcher**](categories/10-research-analysis/market-researcher.md) - Market analysis and consumer insights
 - [**data-researcher**](categories/10-research-analysis/data-researcher.md) - Data discovery and analysis expert
+- [**news-researcher**](categories/10-research-analysis/news-researcher.md) - Real-time news intelligence and current events monitoring via [newsMCP](https://github.com/pranciskus/newsmcp)
 - [**scientific-literature-researcher**](categories/10-research-analysis/scientific-literature-researcher.md) - Scientific paper search and evidence synthesis via [BGPT MCP](https://github.com/connerlambden/bgpt-mcp)
 
 ## 🤖 Understanding Subagents
