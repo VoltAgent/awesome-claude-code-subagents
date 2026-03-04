@@ -401,6 +401,11 @@ Claude Code skill for browsing and fetching subagents from this catalog.
 cp -r tools/subagent-catalog ~/.claude/commands/
 ```
 
+### [LynxPrompt](https://github.com/GeiserX/LynxPrompt)
+Self-hostable platform for managing AI IDE configuration files. Generates, syncs, and shares CLAUDE.md files and agent configs across 30+ AI coding assistants via web UI, REST API, CLI, and federated blueprint marketplace.
+
+- **Website:** [lynxprompt.com](https://lynxprompt.com)
+- **License:** GPL-3.0
 
 
 ## 🤝 Contributing
