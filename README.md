@@ -386,6 +386,9 @@ Each agent has minimal necessary permissions. You can extend agents by adding MC
 
 ## 🧰 Tools
 
+### [agentskill.sh](https://agentskill.sh)
+Browse and install 69,000+ AI agent skills for Claude Code, Cursor, Copilot, Windsurf, Zed, and 20+ AI tools.
+
 ### [subagent-catalog](tools/subagent-catalog/)
 Claude Code skill for browsing and fetching subagents from this catalog.
 
