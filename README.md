@@ -267,6 +267,7 @@ Agent coordination and meta-programming.
 - [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**taskade**](https://github.com/taskade/mcp) - AI-powered workspace with autonomous agents, real-time collaboration, and workflow automation with MCP integration
+- [**x-twitter-scraper**](https://github.com/Xquik-dev/x-twitter-scraper) - X/Twitter data extraction skill & MCP server — 76 API endpoints, 20 extraction tools, account monitoring, and write actions
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
 
 ### [10. Research & Analysis](categories/10-research-analysis/)
