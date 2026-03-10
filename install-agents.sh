@@ -386,7 +386,7 @@ install_selected() {
             local cat_idx="${key%%:*}"
             local agent_idx="${key##*:}"
 
-            # Reload agents for this category to get filename (cached per category)
+            # Reload agents for this category to get filename (reload whenever category changes)
             if [[ "$cat_idx" != "$last_cat" ]]; then
                 load_agents "$cat_idx"
                 last_cat="$cat_idx"
@@ -400,8 +400,7 @@ install_selected() {
             local src="$CATEGORIES_DIR/${CATEGORIES[$cat_idx]}/$agent_file"
             local dst="$LOCAL_AGENTS_DIR/$agent_file"
 
-            if [[ -f "$src" ]]; then
-                cp "$src" "$dst"
+            if [[ -f "$src" ]] && cp "$src" "$dst"; then
                 INSTALLED_FILES+=("$dst")
             fi
         fi
