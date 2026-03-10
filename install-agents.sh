@@ -1,583 +1,443 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Claude Code Agents Installer
-# Interactive script to install/uninstall agents from this repository
+# Claude Code Agents Installer — arrow-key TUI
 
-set -e
+# No set -e: raw terminal mode + set -e can bypass the EXIT trap
 
-# Colors for output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-NC='\033[0m' # No Color
-BOLD='\033[1m'
+# --- ANSI color constants ---
+RED=$'\033[0;31m'
+GREEN=$'\033[0;32m'
+CYAN=$'\033[0;36m'
+BOLD=$'\033[1m'
+DIM=$'\033[2m'
+NC=$'\033[0m'
 
-# Configuration
+# --- Cursor control constants ---
+CURSOR_HIDE=$'\033[?25l'
+CURSOR_SHOW=$'\033[?25h'
+
+# --- Path constants ---
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CATEGORIES_DIR="$SCRIPT_DIR/categories"
-GLOBAL_AGENTS_DIR="$HOME/.claude/agents"
 LOCAL_AGENTS_DIR=".claude/agents"
-CLAUDE_AGENTS_DIR=""  # Will be set by select_install_mode
-INSTALL_MODE=""  # "global" or "local"
-SOURCE_MODE=""  # "local" or "remote"
 
-# GitHub API configuration
-GITHUB_API_BASE="https://api.github.com/repos/VoltAgent/awesome-claude-code-subagents/contents"
-GITHUB_RAW_BASE="https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main"
+# --- Global state ---
+declare -A SELECTED
+MAIN_CURSOR=0
+SUB_CURSOR=0
+CURRENT_CAT=0
+CATEGORIES=()
+AGENTS_FOR_CAT=()
+INSTALLED_FILES=()
+SAVED_STTY=""
 
-# Cache for remote data
-REMOTE_CATEGORIES=()
-REMOTE_AGENTS=()
+# ============================================================
+# Task 2: Terminal management
+# ============================================================
 
-# Function to check if local .claude directory exists
-has_local_claude_dir() {
-    [[ -d ".claude" ]]
+term_setup() {
+    SAVED_STTY=$(stty -g)
+    stty -echo -icanon min 1 time 0
+    printf '%s' "$CURSOR_HIDE"
 }
 
-# Function to check if local categories directory exists
-has_local_categories() {
-    [[ -d "$CATEGORIES_DIR" ]]
+term_restore() {
+    if [[ -n "$SAVED_STTY" ]]; then
+        stty "$SAVED_STTY"
+    fi
+    printf '%s' "$CURSOR_SHOW"
 }
 
-# Function to check if curl is available
-check_curl() {
-    if ! command -v curl &> /dev/null; then
-        echo -e "${RED}Error: curl is required for remote mode but not installed.${NC}"
-        exit 1
-    fi
+trap_handler() {
+    term_restore
+    exit 0
 }
 
-# Function to fetch categories from GitHub API
-fetch_categories_remote() {
-    local response
-    response=$(curl -s "$GITHUB_API_BASE/categories")
+trap trap_handler EXIT INT TERM
 
-    # Check for rate limiting or errors
-    if echo "$response" | grep -q "API rate limit exceeded"; then
-        echo -e "${RED}GitHub API rate limit exceeded. Please try again later or use local mode.${NC}"
-        sleep 3
-        return 1
-    fi
+# ============================================================
+# Task 3: read_key()
+# ============================================================
 
-    if echo "$response" | grep -q '"message"'; then
-        echo -e "${RED}Error fetching from GitHub API.${NC}"
-        sleep 3
-        return 1
-    fi
+read_key() {
+    local byte seq1 seq2
+    IFS= read -r -s -n1 byte
 
-    # Parse JSON response - extract directory names starting with numbers
-    REMOTE_CATEGORIES=()
-    while IFS= read -r line; do
-        if [[ -n "$line" ]]; then
-            REMOTE_CATEGORIES+=("$line")
+    if [[ "$byte" == $'\033' ]]; then
+        IFS= read -r -s -n1 -t 0.1 seq1 || true
+        IFS= read -r -s -n1 -t 0.1 seq2 || true
+        if [[ "$seq1" == "[" && "$seq2" == "A" ]]; then
+            KEY=UP
+        elif [[ "$seq1" == "[" && "$seq2" == "B" ]]; then
+            KEY=DOWN
+        else
+            KEY=ESC
         fi
-    done < <(echo "$response" | grep -o '"name": "[0-9][^"]*"' | sed 's/"name": "//;s/"$//' | sort)
-
-    return 0
-}
-
-# Function to fetch agents from a category via GitHub API
-fetch_agents_remote() {
-    local category="$1"
-    local response
-    response=$(curl -s "$GITHUB_API_BASE/categories/$category")
-
-    # Check for errors
-    if echo "$response" | grep -q '"message"'; then
-        return 1
-    fi
-
-    # Parse JSON response - extract .md files excluding README.md
-    REMOTE_AGENTS=()
-    while IFS= read -r line; do
-        if [[ -n "$line" && "$line" != "README.md" ]]; then
-            REMOTE_AGENTS+=("$line")
-        fi
-    done < <(echo "$response" | grep -o '"name": "[^"]*\.md"' | sed 's/"name": "//;s/"$//' | sort)
-
-    return 0
-}
-
-# Function to download an agent file from GitHub
-download_agent() {
-    local category="$1"
-    local agent_file="$2"
-    local dest_path="$3"
-    local url="$GITHUB_RAW_BASE/categories/$category/$agent_file"
-
-    if curl -sS "$url" -o "$dest_path" 2>/dev/null; then
-        return 0
+    elif [[ "$byte" == "" ]]; then
+        KEY=ENTER
+    elif [[ "$byte" == " " ]]; then
+        KEY=SPACE
     else
-        return 1
+        KEY="$byte"
     fi
 }
 
-# Function to select source mode (local or remote)
-select_source_mode() {
-    # If no local categories, automatically use remote
-    if ! has_local_categories; then
-        SOURCE_MODE="remote"
-        check_curl
-        echo -e "${YELLOW}No local repository found. Using remote mode (GitHub).${NC}"
-        sleep 1
+# ============================================================
+# Task 4: Data-loading functions
+# ============================================================
+
+load_categories() {
+    CATEGORIES=()
+    local dir
+    for dir in "$CATEGORIES_DIR"/[0-9]*/; do
+        if [[ -d "$dir" ]]; then
+            CATEGORIES+=("$(basename "$dir")")
+        fi
+    done
+}
+
+load_agents() {
+    local cat_idx="$1"
+    AGENTS_FOR_CAT=()
+    local f
+    for f in "$CATEGORIES_DIR/${CATEGORIES[$cat_idx]}"/*.md; do
+        if [[ -f "$f" ]]; then
+            local base
+            base="$(basename "$f")"
+            if [[ "$base" != "README.md" ]]; then
+                AGENTS_FOR_CAT+=("$base")
+            fi
+        fi
+    done
+}
+
+get_display_name() {
+    local dirname="$1"
+    # Strip numeric prefix (e.g. "01-"), convert hyphens to spaces, title-case
+    echo "$dirname" | sed 's/^[0-9]*-//' | tr '-' ' ' | \
+        awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2)); print}'
+}
+
+count_selected() {
+    local cat_idx="$1"
+    local count=0
+    local key
+    for key in "${!SELECTED[@]}"; do
+        if [[ "$key" == "${cat_idx}:"* && "${SELECTED[$key]}" == "1" ]]; then
+            (( count++ )) || true
+        fi
+    done
+    echo "$count"
+}
+
+count_all_selected() {
+    local count=0
+    local key
+    for key in "${!SELECTED[@]}"; do
+        if [[ "${SELECTED[$key]}" == "1" ]]; then
+            (( count++ )) || true
+        fi
+    done
+    echo "$count"
+}
+
+# ============================================================
+# Task 5: render_main()
+# ============================================================
+
+render_main() {
+    printf '\033[2J\033[H'
+    printf '%s' "${BOLD}${CYAN}"
+    printf '╔══════════════════════════════════════════════════════════════╗\n'
+    printf '║           Claude Code Agents Installer                       ║\n'
+    printf '╚══════════════════════════════════════════════════════════════╝\n'
+    printf '%s\n' "${NC}"
+    printf '%s\n' "Select a category:"
+    printf '\n'
+
+    local i
+    for i in "${!CATEGORIES[@]}"; do
+        local display
+        display="$(get_display_name "${CATEGORIES[$i]}")"
+        local sel_count
+        sel_count="$(count_selected "$i")"
+
+        if [[ "$i" == "$MAIN_CURSOR" ]]; then
+            printf '%s' "${BOLD}> "
+        else
+            printf '  '
+        fi
+
+        printf '%s' "$display"
+
+        if [[ "$sel_count" -gt 0 ]]; then
+            printf ' %s(%s selected)%s' "${CYAN}" "$sel_count" "${NC}"
+        fi
+
+        if [[ "$i" == "$MAIN_CURSOR" ]]; then
+            printf '%s' "${NC}"
+        fi
+
+        printf '\n'
+    done
+
+    printf '\n'
+    local total
+    total="$(count_all_selected)"
+    printf '%s\n' "${DIM}Total: ${total} selected | Space: open  Enter: install  q: quit${NC}"
+}
+
+# ============================================================
+# Task 6: render_sub()
+# ============================================================
+
+render_sub() {
+    local cat_idx="$1"
+    local cat_name
+    cat_name="$(get_display_name "${CATEGORIES[$cat_idx]}")"
+
+    printf '\033[2J\033[H'
+    printf '%s' "${BOLD}${CYAN}"
+    printf '╔══════════════════════════════════════════════════════════════╗\n'
+    printf '║           Claude Code Agents Installer                       ║\n'
+    printf '╚══════════════════════════════════════════════════════════════╝\n'
+    printf '%s\n' "${NC}"
+    printf 'Category: %s%s%s\n' "${BOLD}" "$cat_name" "${NC}"
+    printf '\n'
+
+    if [[ "${#AGENTS_FOR_CAT[@]}" -eq 0 ]]; then
+        printf '%s\n' "${DIM}No agents in this category${NC}"
+        printf '\n'
+        printf '%s\n' "${DIM}b: back  q: quit${NC}"
         return
     fi
 
-    show_header
-    echo -e "${BOLD}Select source:${NC}\n"
+    local i
+    for i in "${!AGENTS_FOR_CAT[@]}"; do
+        local agent_name="${AGENTS_FOR_CAT[$i]%.md}"
 
-    echo -e "  ${YELLOW}1)${NC} Local files ${CYAN}(from cloned repository)${NC}"
-    echo -e "     Faster, works offline"
-    echo ""
-    echo -e "  ${YELLOW}2)${NC} Remote ${CYAN}(download from GitHub)${NC}"
-    echo -e "     Always up-to-date"
-    echo ""
-    echo -e "  ${YELLOW}q)${NC} Quit"
-    echo ""
-
-    read -p "Enter your choice: " choice
-
-    case "$choice" in
-        1)
-            SOURCE_MODE="local"
-            ;;
-        2)
-            SOURCE_MODE="remote"
-            check_curl
-            ;;
-        q|Q)
-            echo -e "\n${GREEN}Goodbye!${NC}"
-            exit 0
-            ;;
-        *)
-            echo -e "${RED}Invalid choice. Please try again.${NC}"
-            sleep 1
-            select_source_mode
-            ;;
-    esac
-}
-
-# Function to select installation mode
-select_install_mode() {
-    show_header
-    echo -e "${BOLD}Select installation mode:${NC}\n"
-
-    echo -e "  ${YELLOW}1)${NC} Global installation ${CYAN}(~/.claude/agents/)${NC}"
-    echo -e "     Available for all projects"
-    echo ""
-
-    if has_local_claude_dir; then
-        echo -e "  ${YELLOW}2)${NC} Local installation ${CYAN}(.claude/agents/)${NC}"
-        echo -e "     Only for current project"
-    else
-        echo -e "  ${BLUE}2)${NC} Local installation ${CYAN}(not available)${NC}"
-        echo -e "     ${YELLOW}No .claude/ directory found in current directory${NC}"
-    fi
-    echo ""
-    echo -e "  ${YELLOW}q)${NC} Quit"
-    echo ""
-
-    read -p "Enter your choice: " choice
-
-    case "$choice" in
-        1)
-            CLAUDE_AGENTS_DIR="$GLOBAL_AGENTS_DIR"
-            INSTALL_MODE="global"
-            mkdir -p "$CLAUDE_AGENTS_DIR"
-            ;;
-        2)
-            if has_local_claude_dir; then
-                CLAUDE_AGENTS_DIR="$LOCAL_AGENTS_DIR"
-                INSTALL_MODE="local"
-                mkdir -p "$CLAUDE_AGENTS_DIR"
-            else
-                echo -e "\n${RED}Local installation not available. No .claude/ directory found.${NC}"
-                sleep 2
-                select_install_mode
-                return
-            fi
-            ;;
-        q|Q)
-            echo -e "\n${GREEN}Goodbye!${NC}"
-            exit 0
-            ;;
-        *)
-            echo -e "${RED}Invalid choice. Please try again.${NC}"
-            sleep 1
-            select_install_mode
-            ;;
-    esac
-}
-
-# Function to display a header
-show_header() {
-    clear
-    echo -e "${BOLD}${CYAN}"
-    echo "╔══════════════════════════════════════════════════════════════╗"
-    echo "║           Claude Code Agents Installer                       ║"
-    echo "╚══════════════════════════════════════════════════════════════╝"
-    echo -e "${NC}"
-    if [[ -n "$INSTALL_MODE" ]]; then
-        local mode_str=""
-        if [[ "$INSTALL_MODE" == "global" ]]; then
-            mode_str="Global (~/.claude/agents/)"
+        if [[ "$i" == "$SUB_CURSOR" ]]; then
+            printf '%s' "${BOLD}> "
         else
-            mode_str="Local (.claude/agents/)"
+            printf '  '
         fi
 
-        local source_str=""
-        if [[ "$SOURCE_MODE" == "remote" ]]; then
-            source_str=" | Source: GitHub"
+        # Checkbox
+        if [[ "${SELECTED["${cat_idx}:${i}"]:-0}" == "1" ]]; then
+            printf '%s[✓]%s' "${GREEN}" "${NC}"
         else
-            source_str=" | Source: Local"
+            printf '%s[ ]%s' "${DIM}" "${NC}"
         fi
 
-        echo -e "${BLUE}Mode: ${mode_str}${source_str}${NC}\n"
-    fi
-}
+        printf ' %s' "$agent_name"
 
-# Function to get category display name (remove number prefix)
-# Uses awk for Title Case conversion (compatible with macOS and Linux)
-get_category_name() {
-    local dir="$1"
-    echo "$dir" | sed 's/^[0-9]*-//' | tr '-' ' ' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2))}1'
-}
-
-# Function to check if an agent is installed
-is_agent_installed() {
-    local agent_file="$1"
-    local agent_name=$(basename "$agent_file")
-    [[ -f "$CLAUDE_AGENTS_DIR/$agent_name" ]]
-}
-
-# Function to get agent description from frontmatter
-get_agent_description() {
-    local agent_file="$1"
-    grep -A1 "^description:" "$agent_file" 2>/dev/null | head -1 | sed 's/^description: *//' | cut -c1-60
-}
-
-# Function to display category selection menu
-select_category() {
-    show_header
-    echo -e "${BOLD}Select a category:${NC}\n"
-
-    local categories=()
-    local i=1
-
-    if [[ "$SOURCE_MODE" == "remote" ]]; then
-        # Remote mode: fetch from GitHub API
-        echo -e "${CYAN}Fetching categories from GitHub...${NC}\n"
-        if ! fetch_categories_remote; then
-            echo -e "${RED}Failed to fetch categories. Press Enter to retry.${NC}"
-            read
-            select_category
-            return
+        if [[ "$i" == "$SUB_CURSOR" ]]; then
+            printf '%s' "${NC}"
         fi
 
-        for dirname in "${REMOTE_CATEGORIES[@]}"; do
-            categories+=("$dirname")
-            local display_name=$(get_category_name "$dirname")
-            echo -e "  ${YELLOW}$i)${NC} $display_name"
-            ((i++))
-        done
-    else
-        # Local mode: read from filesystem
-        for dir in "$CATEGORIES_DIR"/*/; do
-            if [[ -d "$dir" && $(basename "$dir") != "." ]]; then
-                local dirname=$(basename "$dir")
-                # Skip if it's not a category directory (doesn't start with number)
-                if [[ "$dirname" =~ ^[0-9]+ ]]; then
-                    categories+=("$dirname")
-                    local display_name=$(get_category_name "$dirname")
-                    local agent_count=$(ls "$dir"/*.md 2>/dev/null | grep -v README.md | wc -l | tr -d ' ')
-                    echo -e "  ${YELLOW}$i)${NC} $display_name ${CYAN}($agent_count agents)${NC}"
-                    ((i++))
-                fi
-            fi
-        done
-    fi
+        printf '\n'
+    done
 
-    echo ""
-    echo -e "  ${YELLOW}q)${NC} Quit"
-    echo ""
-
-    read -p "Enter your choice: " choice
-
-    if [[ "$choice" == "q" || "$choice" == "Q" ]]; then
-        echo -e "\n${GREEN}Goodbye!${NC}"
-        exit 0
-    fi
-
-    if [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ${#categories[@]} )); then
-        SELECTED_CATEGORY="${categories[$((choice-1))]}"
-        return 0
-    else
-        echo -e "${RED}Invalid choice. Please try again.${NC}"
-        sleep 1
-        select_category
-    fi
+    printf '\n'
+    printf '%s\n' "${DIM}Space: toggle  Enter: confirm  b: back  q: quit${NC}"
 }
 
-# Function to display agent selection menu with multi-select
-select_agents() {
-    local category="$1"
-    local category_name=$(get_category_name "$category")
+# ============================================================
+# Task 7: init_selections()
+# ============================================================
 
-    # Build list of agents (excluding README.md)
-    local agents=()
-    local agent_states=()
-
-    if [[ "$SOURCE_MODE" == "remote" ]]; then
-        # Remote mode: fetch from GitHub API
-        show_header
-        echo -e "${BOLD}Category: ${CYAN}$category_name${NC}\n"
-        echo -e "${CYAN}Fetching agents from GitHub...${NC}\n"
-
-        if ! fetch_agents_remote "$category"; then
-            echo -e "${RED}Failed to fetch agents. Press Enter to go back.${NC}"
-            read
-            return 1
+init_selections() {
+    local cat_idx="$1"
+    load_agents "$cat_idx"
+    local i
+    for i in "${!AGENTS_FOR_CAT[@]}"; do
+        if [[ ! -v SELECTED["${cat_idx}:${i}"] ]]; then
+            SELECTED["${cat_idx}:${i}"]=0
         fi
+    done
+}
 
-        for agent_file in "${REMOTE_AGENTS[@]}"; do
-            agents+=("$agent_file")
-            # Check if installed (by filename)
-            if [[ -f "$CLAUDE_AGENTS_DIR/$agent_file" ]]; then
-                agent_states+=(1)
-            else
-                agent_states+=(0)
-            fi
-        done
-    else
-        # Local mode: read from filesystem
-        local category_path="$CATEGORIES_DIR/$category"
-        for agent_file in "$category_path"/*.md; do
-            local basename=$(basename "$agent_file")
-            if [[ "$basename" != "README.md" ]]; then
-                agents+=("$basename")
-                if [[ -f "$CLAUDE_AGENTS_DIR/$basename" ]]; then
-                    agent_states+=(1)
-                else
-                    agent_states+=(0)
-                fi
-            fi
-        done
-    fi
+# ============================================================
+# Task 8: run_sub_menu()
+# ============================================================
 
-    # Store original states to calculate changes
-    local original_states=("${agent_states[@]}")
+run_sub_menu() {
+    local cat_idx="$1"
+    init_selections "$cat_idx"
+
+    # Snapshot current selections for this category
+    declare -A snapshot
+    local key
+    for key in "${!SELECTED[@]}"; do
+        if [[ "$key" == "${cat_idx}:"* ]]; then
+            snapshot["$key"]="${SELECTED[$key]}"
+        fi
+    done
+
+    SUB_CURSOR=0
 
     while true; do
-        show_header
-        echo -e "${BOLD}Category: ${CYAN}$category_name${NC}\n"
-        echo -e "Use number keys to toggle selection. ${GREEN}[✓]${NC} = will be installed, ${RED}[ ]${NC} = will be removed\n"
+        load_agents "$cat_idx"
 
-        local i=1
-        for agent_file in "${agents[@]}"; do
-            local agent_name="${agent_file%.md}"
-            local is_installed=""
-            local status_icon=""
-            local status_color=""
+        # Clamp cursor
+        local agent_count="${#AGENTS_FOR_CAT[@]}"
+        if [[ "$agent_count" -gt 0 && "$SUB_CURSOR" -ge "$agent_count" ]]; then
+            SUB_CURSOR=$(( agent_count - 1 ))
+        fi
 
-            if [[ -f "$CLAUDE_AGENTS_DIR/$agent_file" ]]; then
-                is_installed=" ${BLUE}(installed)${NC}"
-            fi
+        render_sub "$cat_idx"
+        read_key
 
-            if [[ ${agent_states[$((i-1))]} -eq 1 ]]; then
-                status_icon="[✓]"
-                status_color="${GREEN}"
-            else
-                status_icon="[ ]"
-                status_color="${RED}"
-            fi
-
-            echo -e "  ${YELLOW}$i)${NC} ${status_color}${status_icon}${NC} $agent_name$is_installed"
-            ((i++))
-        done
-
-        echo ""
-        echo -e "  ${YELLOW}a)${NC} Select all"
-        echo -e "  ${YELLOW}n)${NC} Deselect all"
-        echo -e "  ${YELLOW}c)${NC} Confirm selection"
-        echo -e "  ${YELLOW}b)${NC} Back to categories"
-        echo -e "  ${YELLOW}q)${NC} Quit"
-        echo ""
-
-        read -p "Enter your choice: " choice
-
-        case "$choice" in
-            [0-9]*)
-                if (( choice >= 1 && choice <= ${#agents[@]} )); then
-                    # Toggle selection
-                    local idx=$((choice-1))
-                    if [[ ${agent_states[$idx]} -eq 1 ]]; then
-                        agent_states[$idx]=0
+        case "$KEY" in
+            UP)
+                if [[ "$SUB_CURSOR" -gt 0 ]]; then
+                    (( SUB_CURSOR-- )) || true
+                fi
+                ;;
+            DOWN)
+                if [[ "$agent_count" -gt 0 && "$SUB_CURSOR" -lt $(( agent_count - 1 )) ]]; then
+                    (( SUB_CURSOR++ )) || true
+                fi
+                ;;
+            SPACE)
+                if [[ "$agent_count" -gt 0 ]]; then
+                    local sel_key="${cat_idx}:${SUB_CURSOR}"
+                    if [[ "${SELECTED[$sel_key]:-0}" == "1" ]]; then
+                        SELECTED["$sel_key"]=0
                     else
-                        agent_states[$idx]=1
+                        SELECTED["$sel_key"]=1
                     fi
                 fi
                 ;;
-            a|A)
-                for i in "${!agent_states[@]}"; do
-                    agent_states[$i]=1
-                done
-                ;;
-            n|N)
-                for i in "${!agent_states[@]}"; do
-                    agent_states[$i]=0
-                done
-                ;;
-            c|C)
-                # Calculate changes
-                local to_install=()
-                local to_uninstall=()
-
-                for i in "${!agents[@]}"; do
-                    local agent_file="${agents[$i]}"
-                    local is_selected=${agent_states[$i]}
-
-                    # Check if currently installed
-                    local was_installed=0
-                    if [[ -f "$CLAUDE_AGENTS_DIR/$agent_file" ]]; then
-                        was_installed=1
-                    fi
-
-                    if [[ $was_installed -eq 0 && $is_selected -eq 1 ]]; then
-                        to_install+=("$agent_file")
-                    elif [[ $was_installed -eq 1 && $is_selected -eq 0 ]]; then
-                        to_uninstall+=("$agent_file")
-                    fi
-                done
-
-                confirm_and_apply "$category" "${to_install[*]}" "${to_uninstall[*]}"
-                return
+            ENTER)
+                return 0
                 ;;
             b|B)
-                return 1
+                # Restore snapshot
+                for key in "${!snapshot[@]}"; do
+                    SELECTED["$key"]="${snapshot[$key]}"
+                done
+                return 0
                 ;;
             q|Q)
-                echo -e "\n${GREEN}Goodbye!${NC}"
+                term_restore
                 exit 0
                 ;;
         esac
     done
 }
 
-# Function to confirm and apply changes
-confirm_and_apply() {
-    local category="$1"
-    local install_list="$2"
-    local uninstall_list="$3"
+# ============================================================
+# Task 9: run_main_menu()
+# ============================================================
 
-    # Convert space-separated strings back to arrays
-    IFS=' ' read -ra to_install <<< "$install_list"
-    IFS=' ' read -ra to_uninstall <<< "$uninstall_list"
+run_main_menu() {
+    MAIN_CURSOR=0
 
-    # Filter out empty entries
-    local install_count=0
-    local uninstall_count=0
+    # Re-render on window resize — just set a flag; next loop iteration redraws
+    trap 'render_main' SIGWINCH
 
-    for item in "${to_install[@]}"; do
-        [[ -n "$item" ]] && ((install_count++))
+    while true; do
+        render_main
+        read_key
+
+        local cat_count="${#CATEGORIES[@]}"
+
+        case "$KEY" in
+            UP)
+                if [[ "$MAIN_CURSOR" -gt 0 ]]; then
+                    (( MAIN_CURSOR-- )) || true
+                fi
+                ;;
+            DOWN)
+                if [[ "$MAIN_CURSOR" -lt $(( cat_count - 1 )) ]]; then
+                    (( MAIN_CURSOR++ )) || true
+                fi
+                ;;
+            SPACE)
+                CURRENT_CAT="$MAIN_CURSOR"
+                run_sub_menu "$MAIN_CURSOR"
+                ;;
+            ENTER)
+                install_selected
+                show_summary
+                exit 0
+                ;;
+            q|Q)
+                term_restore
+                exit 0
+                ;;
+        esac
     done
+}
 
-    for item in "${to_uninstall[@]}"; do
-        [[ -n "$item" ]] && ((uninstall_count++))
+# ============================================================
+# Task 10: install_selected() + show_summary()
+# ============================================================
+
+install_selected() {
+    mkdir -p "$LOCAL_AGENTS_DIR"
+    INSTALLED_FILES=()
+
+    local key
+    for key in "${!SELECTED[@]}"; do
+        if [[ "${SELECTED[$key]}" == "1" ]]; then
+            # Parse cat_idx and agent_idx from "cat_idx:agent_idx"
+            local cat_idx="${key%%:*}"
+            local agent_idx="${key##*:}"
+
+            # Reload agents for this category to get filename
+            load_agents "$cat_idx"
+
+            local agent_file="${AGENTS_FOR_CAT[$agent_idx]:-}"
+            if [[ -z "$agent_file" ]]; then
+                continue
+            fi
+
+            local src="$CATEGORIES_DIR/${CATEGORIES[$cat_idx]}/$agent_file"
+            local dst="$LOCAL_AGENTS_DIR/$agent_file"
+
+            if [[ -f "$src" ]]; then
+                cp "$src" "$dst"
+                INSTALLED_FILES+=("$dst")
+            fi
+        fi
     done
+}
 
-    show_header
-    echo -e "${BOLD}Confirmation${NC}\n"
-
-    if [[ $install_count -eq 0 && $uninstall_count -eq 0 ]]; then
-        echo -e "${YELLOW}No changes to apply.${NC}"
-        echo ""
-        read -p "Press Enter to continue..."
+show_summary() {
+    term_restore
+    printf '\n'
+    if [[ "${#INSTALLED_FILES[@]}" -eq 0 ]]; then
+        printf '%s\n' "No agents selected — nothing installed."
         return
     fi
-
-    if [[ $install_count -gt 0 ]]; then
-        echo -e "${GREEN}Agents to install ($install_count):${NC}"
-        for agent_file in "${to_install[@]}"; do
-            if [[ -n "$agent_file" ]]; then
-                echo -e "  ${GREEN}+${NC} ${agent_file%.md}"
-            fi
-        done
-        echo ""
-    fi
-
-    if [[ $uninstall_count -gt 0 ]]; then
-        echo -e "${RED}Agents to uninstall ($uninstall_count):${NC}"
-        for agent_file in "${to_uninstall[@]}"; do
-            if [[ -n "$agent_file" ]]; then
-                echo -e "  ${RED}-${NC} ${agent_file%.md}"
-            fi
-        done
-        echo ""
-    fi
-
-    echo -e "${BOLD}Summary:${NC} ${GREEN}$install_count to install${NC}, ${RED}$uninstall_count to uninstall${NC}"
-    echo ""
-
-    read -p "Apply these changes? (y/N): " confirm
-
-    if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
-        echo ""
-
-        # Perform installations
-        for agent_file in "${to_install[@]}"; do
-            if [[ -n "$agent_file" ]]; then
-                if [[ "$SOURCE_MODE" == "remote" ]]; then
-                    # Download from GitHub
-                    echo -e "${CYAN}Downloading $agent_file...${NC}"
-                    if download_agent "$category" "$agent_file" "$CLAUDE_AGENTS_DIR/$agent_file"; then
-                        echo -e "${GREEN}✓${NC} Installed: $agent_file"
-                    else
-                        echo -e "${RED}✗${NC} Failed to download: $agent_file"
-                    fi
-                else
-                    # Copy from local
-                    local source_path="$CATEGORIES_DIR/$category/$agent_file"
-                    if [[ -f "$source_path" ]]; then
-                        cp "$source_path" "$CLAUDE_AGENTS_DIR/$agent_file"
-                        echo -e "${GREEN}✓${NC} Installed: $agent_file"
-                    fi
-                fi
-            fi
-        done
-
-        # Perform uninstallations
-        for agent_file in "${to_uninstall[@]}"; do
-            if [[ -n "$agent_file" ]]; then
-                if [[ -f "$CLAUDE_AGENTS_DIR/$agent_file" ]]; then
-                    rm "$CLAUDE_AGENTS_DIR/$agent_file"
-                    echo -e "${RED}✓${NC} Uninstalled: $agent_file"
-                fi
-            fi
-        done
-
-        echo ""
-        echo -e "${GREEN}${BOLD}Changes applied successfully!${NC}"
-    else
-        echo -e "${YELLOW}Changes cancelled.${NC}"
-    fi
-
-    echo ""
-    read -p "Press Enter to continue..."
-}
-
-# Main loop
-main() {
-    select_install_mode
-    select_source_mode
-    while true; do
-        select_category
-        while select_agents "$SELECTED_CATEGORY"; do
-            :
-        done
+    printf '%s\n' "Installed agents:"
+    local f
+    for f in "${INSTALLED_FILES[@]}"; do
+        printf '  %s+%s %s\n' "${GREEN}" "${NC}" "$f"
     done
+    printf '\n'
+    printf '%sInstalled %d agent(s) to %s%s\n' \
+        "${BOLD}" "${#INSTALLED_FILES[@]}" "$LOCAL_AGENTS_DIR" "${NC}"
 }
 
-# Run main function
-main
+# ============================================================
+# Task 11: main() entrypoint
+# ============================================================
+
+main() {
+    term_setup
+
+    load_categories
+
+    if [[ "${#CATEGORIES[@]}" -eq 0 ]]; then
+        term_restore
+        printf '%sError: No categories found in %s%s\n' "${RED}" "$CATEGORIES_DIR" "${NC}" >&2
+        exit 1
+    fi
+
+    run_main_menu
+}
+
+main "$@"
