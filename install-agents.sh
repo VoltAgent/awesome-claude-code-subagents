@@ -28,22 +28,22 @@ SUB_CURSOR=0
 CATEGORIES=()
 AGENTS_FOR_CAT=()
 INSTALLED_FILES=()
-SAVED_STTY=""
+TERM_MODIFIED=""
 
 # ============================================================
 # Task 2: Terminal management
 # ============================================================
 
 term_setup() {
-    SAVED_STTY=$(stty -g)
     stty -echo -icanon min 1 time 0
+    TERM_MODIFIED=1
     printf '%s' "$CURSOR_HIDE"
 }
 
 term_restore() {
-    if [[ -n "$SAVED_STTY" ]]; then
-        stty "$SAVED_STTY"
-        SAVED_STTY=""
+    if [[ -n "$TERM_MODIFIED" ]]; then
+        stty echo icanon
+        TERM_MODIFIED=""
     fi
     printf '%s' "$CURSOR_SHOW"
 }
