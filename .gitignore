@@ -15,3 +15,7 @@ build/
 # Claude Code
 .claude/
 .claude_history
+
+# Dolt database files (added by bd init)
+.dolt/
+*.db
