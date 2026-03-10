@@ -16,6 +16,12 @@ Use these subagents when you need to:
 
 ## Available Subagents
 
+### [**agent-almanac**](https://github.com/pjt222/agent-almanac) - Library of 62 subagent definitions
+
+Open-source collection of 62 subagent definitions following the [Agent Skills standard](https://agentskills.io). Agents span core development (r-developer, web-developer, shiny-developer), review (senior-researcher, code-reviewer, senior-software-developer), infrastructure (devops-engineer, mlops-engineer), compliance (gxp-validator, auditor, security-analyst), and specialty domains (survivalist, gardener, mycologist). Each agent definition includes tools, skills, model config, and usage scenarios. Also ships 278 skills and 10 team compositions with coordination patterns (hub-and-spoke, sequential, parallel, timeboxed, adaptive).
+
+**Use when:** You need a large library of ready-made subagent definitions to install or reference, want multi-agent team compositions with defined coordination patterns, or are building agent workflows for R package development, compliance validation, or cross-domain projects.
+
 ### [**agent-organizer**](agent-organizer.md) - Multi-agent coordinator
 Orchestration expert managing complex multi-agent collaborations. Masters task decomposition, agent selection, and result synthesis. Turns complex problems into coordinated solutions.
 
@@ -70,6 +76,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
+| A library of 62 ready-made agents | **[agent-almanac](https://github.com/pjt222/agent-almanac)** |
 | Coordinate multiple agents | **agent-organizer** |
 | Manage context efficiently | **context-manager** |
 | Handle system errors | **error-coordinator** |

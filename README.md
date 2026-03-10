@@ -256,6 +256,7 @@ Product management and business analysis.
 
 Agent coordination and meta-programming.
 
+- [**agent-almanac**](https://github.com/pjt222/agent-almanac) - Library of 62 subagent definitions spanning development, review, infrastructure, compliance, and specialty domains
 - [**agent-installer**](categories/09-meta-orchestration/agent-installer.md) - Browse and install agents from this repository via GitHub
 - [**agent-organizer**](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
 - [**context-manager**](categories/09-meta-orchestration/context-manager.md) - Context optimization expert
