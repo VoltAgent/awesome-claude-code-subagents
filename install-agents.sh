@@ -25,7 +25,6 @@ LOCAL_AGENTS_DIR=".claude/agents"
 declare -A SELECTED
 MAIN_CURSOR=0
 SUB_CURSOR=0
-CURRENT_CAT=0
 CATEGORIES=()
 AGENTS_FOR_CAT=()
 INSTALLED_FILES=()
@@ -44,6 +43,7 @@ term_setup() {
 term_restore() {
     if [[ -n "$SAVED_STTY" ]]; then
         stty "$SAVED_STTY"
+        SAVED_STTY=""
     fi
     printf '%s' "$CURSOR_SHOW"
 }
@@ -61,7 +61,7 @@ trap trap_handler EXIT INT TERM
 
 read_key() {
     local byte seq1 seq2
-    IFS= read -r -s -n1 byte
+    IFS= read -r -s -n1 byte || { KEY=EOF; return; }
 
     if [[ "$byte" == $'\033' ]]; then
         IFS= read -r -s -n1 -t 0.1 seq1 || true
@@ -319,7 +319,7 @@ run_sub_menu() {
                 done
                 return 0
                 ;;
-            q|Q)
+            q|Q|EOF)
                 term_restore
                 exit 0
                 ;;
@@ -334,7 +334,7 @@ run_sub_menu() {
 run_main_menu() {
     MAIN_CURSOR=0
 
-    # Re-render on window resize — just set a flag; next loop iteration redraws
+    # Re-render immediately on window resize
     trap 'render_main' SIGWINCH
 
     while true; do
@@ -355,7 +355,6 @@ run_main_menu() {
                 fi
                 ;;
             SPACE)
-                CURRENT_CAT="$MAIN_CURSOR"
                 run_sub_menu "$MAIN_CURSOR"
                 ;;
             ENTER)
@@ -363,7 +362,7 @@ run_main_menu() {
                 show_summary
                 exit 0
                 ;;
-            q|Q)
+            q|Q|EOF)
                 term_restore
                 exit 0
                 ;;
@@ -380,14 +379,18 @@ install_selected() {
     INSTALLED_FILES=()
 
     local key
+    local last_cat=""
     for key in "${!SELECTED[@]}"; do
         if [[ "${SELECTED[$key]}" == "1" ]]; then
             # Parse cat_idx and agent_idx from "cat_idx:agent_idx"
             local cat_idx="${key%%:*}"
             local agent_idx="${key##*:}"
 
-            # Reload agents for this category to get filename
-            load_agents "$cat_idx"
+            # Reload agents for this category to get filename (cached per category)
+            if [[ "$cat_idx" != "$last_cat" ]]; then
+                load_agents "$cat_idx"
+                last_cat="$cat_idx"
+            fi
 
             local agent_file="${AGENTS_FOR_CAT[$agent_idx]:-}"
             if [[ -z "$agent_file" ]]; then
@@ -427,6 +430,11 @@ show_summary() {
 # ============================================================
 
 main() {
+    if (( BASH_VERSINFO[0] < 4 || (BASH_VERSINFO[0] == 4 && BASH_VERSINFO[1] < 2) )); then
+        printf 'Error: bash 4.2+ required (current: %s)\n' "$BASH_VERSION" >&2
+        exit 1
+    fi
+
     term_setup
 
     load_categories
