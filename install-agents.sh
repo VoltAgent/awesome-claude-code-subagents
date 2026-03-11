@@ -19,7 +19,7 @@ CURSOR_SHOW=$'\033[?25h'
 # --- Path constants ---
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CATEGORIES_DIR="$SCRIPT_DIR/categories"
-LOCAL_AGENTS_DIR=".claude/agents"
+LOCAL_AGENTS_DIR="${CLAUDE_AGENTS_DIR:-.claude/agents}"
 
 # --- Global state ---
 declare -A SELECTED
@@ -428,10 +428,35 @@ show_summary() {
 # Task 11: main() entrypoint
 # ============================================================
 
+install_all() {
+    load_categories
+    if [[ "${#CATEGORIES[@]}" -eq 0 ]]; then
+        printf '%sError: No categories found in %s%s\n' "${RED}" "$CATEGORIES_DIR" "${NC}" >&2
+        exit 1
+    fi
+
+    local cat_idx
+    for cat_idx in "${!CATEGORIES[@]}"; do
+        load_agents "$cat_idx"
+        local agent_idx
+        for agent_idx in "${!AGENTS_FOR_CAT[@]}"; do
+            SELECTED["${cat_idx}:${agent_idx}"]=1
+        done
+    done
+
+    install_selected
+    show_summary
+}
+
 main() {
     if (( BASH_VERSINFO[0] < 4 || (BASH_VERSINFO[0] == 4 && BASH_VERSINFO[1] < 2) )); then
         printf 'Error: bash 4.2+ required (current: %s)\n' "$BASH_VERSION" >&2
         exit 1
+    fi
+
+    if [[ "${1:-}" == "--all" ]]; then
+        install_all
+        return
     fi
 
     term_setup
