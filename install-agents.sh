@@ -19,7 +19,7 @@ CURSOR_SHOW=$'\033[?25h'
 # --- Path constants ---
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CATEGORIES_DIR="$SCRIPT_DIR/categories"
-LOCAL_AGENTS_DIR="${CLAUDE_AGENTS_DIR:-.claude/agents}"
+LOCAL_AGENTS_DIR=".claude/agents"
 
 # --- Global state ---
 declare -A SELECTED
@@ -428,6 +428,10 @@ show_summary() {
 # Task 11: main() entrypoint
 # ============================================================
 
+usage() {
+    printf 'Usage: %s [--all] [--install-dir local|global]\n' "$0" >&2
+}
+
 install_all() {
     load_categories
     if [[ "${#CATEGORIES[@]}" -eq 0 ]]; then
@@ -454,7 +458,31 @@ main() {
         exit 1
     fi
 
-    if [[ "${1:-}" == "--all" ]]; then
+    local do_all=0
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --install-dir)
+                case "${2:-}" in
+                    local)  LOCAL_AGENTS_DIR=".claude/agents" ;;
+                    global) LOCAL_AGENTS_DIR="$HOME/.claude/agents" ;;
+                    *)
+                        usage; exit 1
+                        ;;
+                esac
+                shift 2
+                ;;
+            --all)
+                do_all=1
+                shift
+                ;;
+            *)
+                usage; exit 1
+                ;;
+        esac
+    done
+
+    if [[ "$do_all" -eq 1 ]]; then
         install_all
         return
     fi
