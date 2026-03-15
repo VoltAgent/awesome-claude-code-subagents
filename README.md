@@ -197,6 +197,7 @@ Data engineering, ML, and AI specialists.
 - [**postgres-pro**](categories/05-data-ai/postgres-pro.md) - PostgreSQL database expert
 - [**prompt-engineer**](categories/05-data-ai/prompt-engineer.md) - Prompt optimization specialist
 
+- [**widemem-ai**](https://github.com/remete618/widemem-ai) - Next-gen AI memory layer with importance scoring, temporal decay, and hierarchical memory
 ### [06. Developer Experience](categories/06-developer-experience/)
 **Plugin:** `voltagent-dev-exp`
 
