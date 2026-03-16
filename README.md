@@ -222,10 +222,12 @@ Tooling and developer productivity experts.
 Domain-specific technology experts.
 
 - [**api-documenter**](categories/07-specialized-domains/api-documenter.md) - API documentation specialist
+- [**beacon-skill**](https://github.com/Scottcjn/beacon-skill) - Agent discovery and P2P messaging with optional RTC micropayments across BoTTube, Moltbook, and RustChain
 - [**blockchain-developer**](categories/07-specialized-domains/blockchain-developer.md) - Web3 and crypto specialist
 - [**embedded-systems**](categories/07-specialized-domains/embedded-systems.md) - Embedded and real-time systems expert
 - [**fintech-engineer**](categories/07-specialized-domains/fintech-engineer.md) - Financial technology specialist
 - [**game-developer**](categories/07-specialized-domains/game-developer.md) - Game development expert
+- [**grazer-skill**](https://github.com/Scottcjn/grazer-skill) - Cross-platform content grazing skill for discovering and posting across BoTTube, Moltbook, ClawCities, and ClawHub
 - [**iot-engineer**](categories/07-specialized-domains/iot-engineer.md) - IoT systems developer
 - [**m365-admin**](categories/07-specialized-domains/m365-admin.md) - Microsoft 365, Exchange Online, Teams, and SharePoint administration specialist
 - [**mobile-app-developer**](categories/07-specialized-domains/mobile-app-developer.md) - Mobile application specialist
@@ -267,6 +269,7 @@ Agent coordination and meta-programming.
 - [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**taskade**](https://github.com/taskade/mcp) - AI-powered workspace with autonomous agents, real-time collaboration, and workflow automation with MCP integration
+- [**trashclaw**](https://github.com/Scottcjn/trashclaw) - Local LLM tool-use agent for vintage and exotic hardware, built on a 2013 Mac Pro with dual AMD FirePro D500s
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
 
 ### [10. Research & Analysis](categories/10-research-analysis/)
