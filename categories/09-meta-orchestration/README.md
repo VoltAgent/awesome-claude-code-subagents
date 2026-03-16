@@ -36,6 +36,11 @@ Meta-orchestrator that routes ambiguous infrastructure and operations tasks to t
 
 **Use when:** A task smells like IT operations or infrastructure automation but spans multiple areas (AD, DNS/DHCP, Azure, M365, PowerShell modules). This orchestrator chooses and coordinates the best subagents (e.g., windows-infra-admin, azure-infra-engineer, m365-admin, powershell-5.1-expert, powershell-7-expert, powershell-module-architect) with PowerShell as the default implementation language.
 
+### [**jarvis-orb**](https://github.com/whynowlab/jarvis-orb) - Persistent 4-tier AI memory MCP server with real-time orb visualization
+Persistent memory MCP server featuring a 4-tier memory architecture (episodic, semantic, project, procedural) with temporal scoring, contradiction detection, and entity tracking. Includes a real-time desktop orb that visualizes Claude Code's thought process as animated object flows and event logs.
+
+**Use when:** Adding persistent memory across Claude Code sessions, tracking entities and relationships over time, detecting contradictions in stored knowledge, or visualizing agent reasoning in real time via the desktop orb. GitHub: [whynowlab/jarvis-orb](https://github.com/whynowlab/jarvis-orb)
+
 ### [**knowledge-synthesizer**](knowledge-synthesizer.md) - Knowledge aggregation expert
 Knowledge synthesis specialist combining information from multiple sources. Expert in information fusion, conflict resolution, and insight generation. Creates coherent knowledge from diverse inputs.
 
@@ -73,6 +78,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Coordinate multiple agents | **agent-organizer** |
 | Manage context efficiently | **context-manager** |
 | Handle system errors | **error-coordinator** |
+| Persist memory across sessions | **[jarvis-orb](https://github.com/whynowlab/jarvis-orb)** |
 | Combine knowledge sources | **knowledge-synthesizer** |
 | Scale agent operations | **multi-agent-coordinator** |
 | Monitor performance | **performance-monitor** |
