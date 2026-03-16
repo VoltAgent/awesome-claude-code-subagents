@@ -6,7 +6,7 @@
   },
   "metadata": {
     "version": "1.0.1",
-    "description": "Curated collection of 128 specialized Claude Code subagents organized into 10 focused categories"
+    "description": "Curated collection of 129 specialized Claude Code subagents organized into 10 focused categories"
   },
   "plugins": [
     {
@@ -21,7 +21,7 @@
       "name": "voltagent-lang",
       "source": "./categories/02-language-specialists",
       "description": "Language-specific expert agents with deep framework knowledge - Python, TypeScript, Go, Rust, Java, and more",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "category": "development",
       "keywords": ["python", "typescript", "golang", "rust", "java", "react", "vue", "angular"]
     },
@@ -45,7 +45,7 @@
       "name": "voltagent-data-ai",
       "source": "./categories/05-data-ai",
       "description": "Data engineering, ML, and AI specialists - data pipelines, machine learning, LLM architecture",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "category": "data",
       "keywords": ["data-engineering", "machine-learning", "ai", "llm", "mlops", "nlp"]
     },
