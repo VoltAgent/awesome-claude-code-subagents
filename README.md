@@ -246,6 +246,7 @@ Product management and business analysis.
 - [**product-manager**](categories/08-business-product/product-manager.md) - Product strategy expert
 - [**project-manager**](categories/08-business-product/project-manager.md) - Project management specialist
 - [**sales-engineer**](categories/08-business-product/sales-engineer.md) - Technical sales expert
+- [**senior-product-manager**](categories/08-business-product/senior-product-manager.md) - Advanced PM with SaaS metrics, frameworks, and anti-pattern detection
 - [**scrum-master**](categories/08-business-product/scrum-master.md) - Agile methodology expert
 - [**technical-writer**](categories/08-business-product/technical-writer.md) - Technical documentation specialist
 - [**ux-researcher**](categories/08-business-product/ux-researcher.md) - User research expert

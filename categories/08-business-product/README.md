@@ -51,6 +51,11 @@ Sales engineering specialist bridging technical complexity and customer needs. E
 
 **Use when:** Creating technical demos, handling sales objections, designing POCs, supporting sales teams, or explaining technical value.
 
+### [**senior-product-manager**](senior-product-manager.md) - Advanced PM with SaaS metrics, frameworks, and anti-pattern detection
+Senior PM agent with 6 knowledge domains, 30+ strategic frameworks, 32 SaaS metrics with exact formulas, 12 stakeholder communication templates, and built-in anti-pattern detection. Based on [product-manager-skills](https://github.com/Digidai/product-manager-skills).
+
+**Use when:** Calculating SaaS metrics (LTV, CAC, NRR), applying strategic frameworks (RICE, JTBD, Kano), detecting product anti-patterns, preparing board/exec communications, or doing deep product strategy work.
+
 ### [**scrum-master**](scrum-master.md) - Agile methodology expert
 Agile facilitator ensuring teams work effectively. Masters Scrum framework, team dynamics, and continuous improvement. Removes impediments and fosters high-performing teams.
 
@@ -77,6 +82,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | Shape product vision | **product-manager** |
 | Manage projects | **project-manager** |
 | Support sales | **sales-engineer** |
+| Calculate SaaS metrics & detect anti-patterns | **senior-product-manager** |
 | Run Scrum teams | **scrum-master** |
 | Write documentation | **technical-writer** |
 | Research users | **ux-researcher** |
