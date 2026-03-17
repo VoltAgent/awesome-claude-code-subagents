@@ -263,6 +263,7 @@ Agent coordination and meta-programming.
 - [**it-ops-orchestrator**](categories/09-meta-orchestration/it-ops-orchestrator.md) - IT operations workflow orchestration specialist
 - [**knowledge-synthesizer**](categories/09-meta-orchestration/knowledge-synthesizer.md) - Knowledge aggregation expert
 - [**multi-agent-coordinator**](categories/09-meta-orchestration/multi-agent-coordinator.md) - Advanced multi-agent orchestration
+- [**orch**](https://github.com/oxgeneral/ORCH) - CLI runtime that orchestrates Claude Code, Codex, Cursor, and OpenCode as a typed task queue with state machine (todo→in_progress→review→done), auto-retry, inter-agent messaging, goals system, and TUI dashboard. 1647 tests. MIT TypeScript.
 - [**performance-monitor**](categories/09-meta-orchestration/performance-monitor.md) - Agent performance optimization
 - [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
