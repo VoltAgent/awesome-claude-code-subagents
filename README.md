@@ -281,6 +281,7 @@ Agent coordination and meta-programming.
 - [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**taskade**](https://github.com/taskade/mcp) - AI-powered workspace with autonomous agents, real-time collaboration, and workflow automation with MCP integration
+- [**uctm-pipeline-orchestrator**](categories/09-meta-orchestration/uctm-pipeline-orchestrator.md) - 6-agent pipeline orchestrator with structured XML messaging and sliding window context transfer ([npm](https://www.npmjs.com/package/uctm))
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
 
 ### [10. Research & Analysis](categories/10-research-analysis/)

@@ -61,6 +61,11 @@ AI-powered workspace featuring autonomous agents, real-time collaboration, and w
 
 **Use when:** Managing tasks and projects with AI agents, automating workflows across teams, orchestrating multi-agent collaboration, or integrating AI-powered project management into Claude Code via MCP. Website: [taskade.com](https://www.taskade.com)
 
+### [**uctm-pipeline-orchestrator**](uctm-pipeline-orchestrator.md) - 6-agent pipeline orchestrator ([npm](https://www.npmjs.com/package/uctm))
+End-to-end task pipeline system with 6 specialized subagents (router, planner, scheduler, builder, verifier, committer). Uses structured XML messaging and sliding window context transfer to minimize token usage. Supports 3 execution modes (direct/pipeline/full) and Specification-Driven Development workflow. Install via `npm i -g uctm`.
+
+**Use when:** Running structured development pipelines, automating plan-build-verify-commit workflows, managing multi-TASK WORKs with dependency DAGs, or minimizing context token usage across sequential agent calls. GitHub: [UCJung/uc-taskmanager-claude-agent](https://github.com/UCJung/uc-taskmanager-claude-agent)
+
 ### [**workflow-orchestrator**](workflow-orchestrator.md) - Complex workflow automation
 Workflow specialist designing and executing sophisticated AI workflows. Expert in workflow patterns, state management, and process automation. Transforms complex processes into smooth operations.
 
@@ -78,6 +83,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Monitor performance | **performance-monitor** |
 | Distribute tasks | **task-distributor** |
 | Manage projects with AI agents | **[taskade](https://github.com/taskade/mcp)** |
+| Run plan-build-verify-commit pipelines | **[uctm-pipeline-orchestrator](https://www.npmjs.com/package/uctm)** |
 | Automate workflows | **workflow-orchestrator** |
 
 ## Common Orchestration Patterns
