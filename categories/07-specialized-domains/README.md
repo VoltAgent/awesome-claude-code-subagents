@@ -10,6 +10,7 @@ Use these subagents when you need to:
 - **Create payment systems** with various providers
 - **Build gaming applications** with real-time features
 - **Implement fintech solutions** with compliance
+- **Manage healthcare administration** with regulatory compliance
 - **Develop embedded systems** with hardware constraints
 - **Create mobile applications** with native features
 - **Design financial algorithms** for trading systems
@@ -40,6 +41,11 @@ Fintech expert building secure, compliant financial applications. Masters paymen
 Gaming specialist creating engaging interactive experiences. Expert in game engines, real-time networking, and performance optimization. Builds games that captivate players.
 
 **Use when:** Developing games, implementing game mechanics, optimizing game performance, building multiplayer features, or creating game tools.
+
+### [**healthcare-agents**](https://github.com/ajhcs/healthcare-agents) - Healthcare administration specialists
+Collection of 51 healthcare administration agents with MHA-level expertise across 10 divisions including revenue cycle, compliance, quality, clinical operations, payer relations, and health IT. Features real regulatory citations (CFR, CMS) and operational templates for healthcare organizations.
+
+**Use when:** Managing healthcare revenue cycles, ensuring HIPAA/CMS compliance, optimizing clinical operations, handling payer relations, implementing health IT systems, or navigating healthcare regulatory requirements.
 
 ### [**iot-engineer**](iot-engineer.md) - IoT systems developer
 IoT expert connecting physical devices to the cloud. Masters device protocols, edge computing, and IoT platforms. Creates scalable solutions for the Internet of Things.
@@ -80,6 +86,7 @@ SEO expert driving organic traffic through search optimization. Masters technica
 | Embedded/IoT | **embedded-systems** | Firmware, microcontrollers |
 | Financial Tech | **fintech-engineer** | Banking, payments, compliance |
 | Gaming | **game-developer** | Game engines, multiplayer |
+| Healthcare Admin | **healthcare-agents** | Revenue cycle, compliance, clinical ops |
 | IoT/Connected | **iot-engineer** | Device clouds, sensors |
 | Mobile Apps | **mobile-app-developer** | iOS/Android apps |
 | Payments | **payment-integration** | Payment gateways, PCI |
@@ -106,6 +113,12 @@ SEO expert driving organic traffic through search optimization. Masters technica
 - **fintech-engineer** for financial features
 - **risk-manager** for security
 - **api-documenter** for integration
+
+**Healthcare Organization:**
+- **healthcare-agents** for administration and compliance
+- **risk-manager** for risk assessment
+- **api-documenter** for health IT integrations
+- **fintech-engineer** for billing and revenue cycle
 
 **Gaming Platform:**
 - **game-developer** for game logic
