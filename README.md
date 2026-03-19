@@ -33,7 +33,7 @@
 <div align="center">
 
 
-[![Claude Code Subagents](https://img.shields.io/github/stars/VoltAgent/awesome-claude-code-subagents?style=classic&label=Claude%20Code%20Subagents&color=D97757&logo=claude&logoColor=D97757)](https://github.com/VoltAgent/awesome-claude-code-subagents)
+[![Agent Skills](https://img.shields.io/static/v1?label=%E2%9A%A1%20Agent&message=Skills%2012k&color=black&style=classic)](https://github.com/VoltAgent/awesome-agent-skills)
 [![Codex Subagents][codex-badge]][codex-link]
 [![OpenClaw Skills](https://img.shields.io/github/stars/VoltAgent/awesome-openclaw-skills?style=classic&label=%F0%9F%A6%9E%20OpenClaw%20Skills&color=f53e36)](https://github.com/VoltAgent/awesome-openclaw-skills)
 [![AI Agent Papers](https://img.shields.io/github/stars/VoltAgent/awesome-ai-agent-papers?style=classic&label=AI%20Agent%20Papers&color=b31b1b&logo=arxiv)](https://github.com/VoltAgent/awesome-ai-agent-papers)
