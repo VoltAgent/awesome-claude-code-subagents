@@ -12,9 +12,9 @@
 
 ## Overview
 
-This repository contains 131+ specialised AI agent definitions organised into 10 categories. The definitions in `categories/` use the Claude Code format as the canonical source. The `generate.sh` script produces equivalent definitions for OpenCode.
+This repository contains 131+ specialised AI agent definitions organised into 10 categories. The definitions in `categories/` use the Claude Code format as the canonical source. The `generate.sh` script produces equivalent definitions for OpenCode and Cursor.
 
-Cursor reads `.claude/agents/` and `~/.claude/agents/` natively, so no Cursor-specific generation is needed - the Claude Code definitions work directly.
+Cursor also reads `.claude/agents/` and `~/.claude/agents/` natively for compatibility, but the generated Cursor definitions in `agent-specific/cursor/` add `readonly: true` support for agents that have no write, edit, or bash tools.
 
 ### Agent Storage Locations
 
@@ -22,7 +22,7 @@ Cursor reads `.claude/agents/` and `~/.claude/agents/` natively, so no Cursor-sp
 |------|--------|---------|
 | Claude Code | `~/.claude/agents/` | `.claude/agents/` |
 | OpenCode | `~/.config/opencode/agents/` | `.opencode/agents/` |
-| Cursor | `~/.claude/agents/` (native) | `.claude/agents/` (native) |
+| Cursor | `~/.cursor/agents/` | `.cursor/agents/` |
 
 ---
 
@@ -55,18 +55,28 @@ OpenCode requires generated definitions. Run `generate.sh` first, then `setup.sh
 ```bash
 git clone https://github.com/ampedweb/awesome-subagents.git
 cd awesome-subagents
-./generate.sh                            # generates agent-specific/opencode/
+./generate.sh                            # generates agent-specific/opencode/ and agent-specific/cursor/
 ./setup.sh global                        # symlinks OpenCode into ~/.config/opencode/agents/
 ./setup.sh project /path/to/your-project # symlinks OpenCode into the project
 ```
 
 ### Cursor
 
-Cursor reads `.claude/agents/` natively. Installing for Claude Code (above) covers Cursor automatically - no extra steps required.
+Cursor requires generated definitions for full `readonly` support. Run `generate.sh` first, then `setup.sh`.
+
+```bash
+git clone https://github.com/ampedweb/awesome-subagents.git
+cd awesome-subagents
+./generate.sh                            # generates agent-specific/cursor/ (with readonly: true where applicable)
+./setup.sh global                        # symlinks Cursor into ~/.cursor/agents/
+./setup.sh project /path/to/your-project # symlinks Cursor into the project
+```
+
+Cursor also reads `.claude/agents/` natively, so installing for Claude Code covers basic Cursor support. The generated Cursor definitions additionally apply `readonly: true` to agents that have no write, edit, or bash tools, and map the `model` field to Cursor-native model IDs (`sonnet` -> `claude-4.6-sonnet`, `opus` -> `claude-4.6-opus`, `haiku` -> `claude-4.5-haiku`).
 
 ### Scripts Reference
 
-**`generate.sh`** - Translates Claude Code definitions into OpenCode format.
+**`generate.sh`** - Translates Claude Code definitions into OpenCode and Cursor formats.
 
 | Command | Description |
 |---------|-------------|
@@ -75,13 +85,13 @@ Cursor reads `.claude/agents/` natively. Installing for Claude Code (above) cove
 | `./generate.sh list` | List source agents with details |
 | `./generate.sh help` | Show help |
 
-**`setup.sh`** - Creates or removes symlinks between agent directories and tool config.
+**`setup.sh`** - Creates or removes symlinks between agent directories and tool config. Uses an interactive checkbox selector to choose which tools (Claude Code, OpenCode, Cursor) to link or unlink.
 
 | Command | Description |
 |---------|-------------|
-| `./setup.sh global` | Symlink into global Claude Code and OpenCode config |
+| `./setup.sh global` | Symlink into global config (interactive tool selection) |
 | `./setup.sh project <path>` | Symlink into a project's local config |
-| `./setup.sh unlink global` | Remove global symlinks |
+| `./setup.sh unlink global` | Remove global symlinks (interactive tool selection) |
 | `./setup.sh unlink project <path>` | Remove project symlinks |
 
 ---

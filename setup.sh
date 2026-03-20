@@ -2,18 +2,19 @@
 #
 # Agent Symlink Setup
 #
-# Creates or removes symlinks from Claude Code and OpenCode config directories
-# to the agent definitions in this repository.
+# Creates or removes symlinks from Claude Code, OpenCode, and Cursor config
+# directories to the agent definitions in this repository.
+#
+# Requires bash 4+ (for associative arrays). macOS ships bash 3.2 by default;
+# install a newer version via Homebrew: brew install bash
 #
 # Claude Code symlinks directly from categories/ (no generation needed).
-# OpenCode symlinks from agent-specific/ (run generate.sh first).
-#
-# Cursor reads .claude/agents/ and ~/.claude/agents/ natively, so the Claude
-# Code symlinks work for Cursor automatically with no extra step.
+# OpenCode symlinks from agent-specific/opencode/ (run generate.sh first).
+# Cursor symlinks from agent-specific/cursor/ (run generate.sh first).
 #
 # Usage: ./setup.sh <command> [options]
 # Commands:
-#   global                  Symlink into global Claude Code and OpenCode config
+#   global                  Symlink into global config (interactive tool selection)
 #   project <path>          Symlink into a project's local config
 #   unlink global           Remove global symlinks created by this script
 #   unlink project <path>   Remove project symlinks created by this script
@@ -21,13 +22,66 @@
 
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CLAUDE_SOURCE="$SCRIPT_DIR/categories"
-OUTPUT_DIR="$SCRIPT_DIR/agent-specific"
-OPENCODE_OUTPUT="$OUTPUT_DIR/opencode"
+if (( BASH_VERSINFO[0] < 4 )); then
+    echo "Error: bash 4+ is required. You have bash ${BASH_VERSION}." >&2
+    echo "On macOS, install a newer bash via Homebrew: brew install bash" >&2
+    exit 1
+fi
 
-GLOBAL_CLAUDE_AGENTS="$HOME/.claude/agents"
-GLOBAL_OPENCODE_AGENTS="${XDG_CONFIG_HOME:-$HOME/.config}/opencode/agents"
+# ---------------------------------------------------------------------------
+# Base paths
+# ---------------------------------------------------------------------------
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CATEGORIES_DIR="$SCRIPT_DIR/categories"
+OUTPUT_DIR="$SCRIPT_DIR/agent-specific"
+
+# ---------------------------------------------------------------------------
+# Tool registry
+#
+# To add a new tool:
+#   1. Append its key to TOOL_KEYS (controls checkbox display order)
+#   2. Add one entry to each of the five associative arrays below
+#
+# No changes to any function are needed.
+# ---------------------------------------------------------------------------
+
+TOOL_KEYS=( claude opencode cursor )
+
+declare -A TOOL_LABEL=(
+    [claude]="Claude Code"
+    [opencode]="OpenCode"
+    [cursor]="Cursor"
+)
+
+declare -A TOOL_SOURCE=(
+    [claude]="$CATEGORIES_DIR"
+    [opencode]="$OUTPUT_DIR/opencode"
+    [cursor]="$OUTPUT_DIR/cursor"
+)
+
+declare -A TOOL_GLOBAL_TARGET=(
+    [claude]="$HOME/.claude/agents"
+    [opencode]="${XDG_CONFIG_HOME:-$HOME/.config}/opencode/agents"
+    [cursor]="$HOME/.cursor/agents"
+)
+
+declare -A TOOL_PROJECT_DIR=(
+    [claude]=".claude/agents"
+    [opencode]=".opencode/agents"
+    [cursor]=".cursor/agents"
+)
+
+# true = generated output must exist before linking (run generate.sh first)
+declare -A TOOL_NEEDS_GENERATE=(
+    [claude]=false
+    [opencode]=true
+    [cursor]=true
+)
+
+# ---------------------------------------------------------------------------
+# Colours
+# ---------------------------------------------------------------------------
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -36,20 +90,171 @@ CYAN='\033[0;36m'
 BOLD='\033[1m'
 NC='\033[0m'
 
-log_info()    { echo -e "${GREEN}[INFO]${NC}  $1"; }
-log_warn()    { echo -e "${YELLOW}[WARN]${NC}  $1"; }
-log_error()   { echo -e "${RED}[ERROR]${NC} $1"; }
-log_skip()    { echo -e "${CYAN}[SKIP]${NC}  $1"; }
-log_unlink()  { echo -e "${RED}[UNLINK]${NC} $1"; }
+# ---------------------------------------------------------------------------
+# Logging helpers
+# ---------------------------------------------------------------------------
+
+log_info()   { echo -e "${GREEN}[INFO]${NC}  $1"; }
+log_warn()   { echo -e "${YELLOW}[WARN]${NC}  $1"; }
+log_error()  { echo -e "${RED}[ERROR]${NC} $1"; }
+log_skip()   { echo -e "${CYAN}[SKIP]${NC}  $1"; }
+log_unlink() { echo -e "${RED}[UNLINK]${NC} $1"; }
+
+# ---------------------------------------------------------------------------
+# check_generated <source_dir> <label>
+# Returns 1 (with a warning) if the generated output directory is missing.
+# ---------------------------------------------------------------------------
 
 check_generated() {
-    if [[ ! -d "$OUTPUT_DIR" ]] || [[ -z "$(ls -A "$OUTPUT_DIR" 2>/dev/null)" ]]; then
-        log_warn "agent-specific/ not found or empty. Run ./generate.sh first."
-        log_warn "Skipping OpenCode setup."
+    local dir="$1"
+    local label="$2"
+    if [[ ! -d "$dir" ]] || [[ -z "$(ls -A "$dir" 2>/dev/null)" ]]; then
+        log_warn "$label: agent-specific/ not found or empty. Run ./generate.sh first."
+        log_warn "Skipping $label setup."
         return 1
     fi
     return 0
 }
+
+# ---------------------------------------------------------------------------
+# build_tool_options <mode> <return_var>
+#
+# Builds display strings for the checkbox UI from the tool registry.
+# <mode> is "global" or "project".
+# Stores the resulting array in <return_var>.
+# ---------------------------------------------------------------------------
+
+build_tool_options() {
+    local mode="$1"
+    local _return_var="$2"
+    local _opts=()
+
+    for key in "${TOOL_KEYS[@]}"; do
+        local label="${TOOL_LABEL[$key]}"
+        if [[ "$mode" == "global" ]]; then
+            local target="${TOOL_GLOBAL_TARGET[$key]}"
+            # Shorten $HOME to ~ for display
+            local display="${target/#$HOME/\~}"
+            _opts+=( "$label ($display/)" )
+        else
+            _opts+=( "$label (${TOOL_PROJECT_DIR[$key]}/)" )
+        fi
+    done
+
+    eval "$_return_var"='("${_opts[@]}")'
+}
+
+# ---------------------------------------------------------------------------
+# select_tools <return_var> <option1> [option2] ...
+#
+# Interactive checkbox UI. Renders on /dev/tty so output is never captured
+# by callers. Stores the selected indices (0-based) in <return_var>.
+# Returns 1 if no options are selected.
+# ---------------------------------------------------------------------------
+
+select_tools() {
+    local _return_var="$1"
+    shift
+    local options=("$@")
+    local count=${#options[@]}
+    local selected=()
+    local cursor_pos=0
+
+    for (( i=0; i<count; i++ )); do
+        selected+=( false )
+    done
+
+    render() {
+        for (( i=0; i<count; i++ )); do
+            local mark="[ ]"
+            [[ "${selected[$i]}" == "true" ]] && mark="[x]"
+            if [[ $i -eq $cursor_pos ]]; then
+                printf "  ${BOLD}> $mark %s${NC}\n" "${options[$i]}"
+            else
+                printf "    $mark %s\n" "${options[$i]}"
+            fi
+        done
+        printf "\n"
+        printf "  Space: toggle   Enter: confirm   q/Ctrl-C: abort\n"
+    } >/dev/tty
+
+    tput civis >/dev/tty 2>/dev/null || true
+
+    cleanup_tty() {
+        tput cnorm >/dev/tty 2>/dev/null || true
+        printf "\n" >/dev/tty
+    }
+    trap cleanup_tty EXIT INT TERM
+
+    render
+
+    while true; do
+        local move_up=$(( count + 2 ))
+        tput cuu "$move_up" >/dev/tty 2>/dev/null || true
+
+        render
+
+        local key
+        IFS= read -rsn1 key </dev/tty 2>/dev/null || true
+
+        case "$key" in
+            $'\x1b')
+                local seq1 seq2
+                IFS= read -rsn1 -t 0.1 seq1 </dev/tty 2>/dev/null || seq1=""
+                IFS= read -rsn1 -t 0.1 seq2 </dev/tty 2>/dev/null || seq2=""
+                if [[ "$seq1" == "[" ]]; then
+                    case "$seq2" in
+                        A) (( cursor_pos > 0 )) && (( cursor_pos-- )) || true ;;
+                        B) (( cursor_pos < count - 1 )) && (( cursor_pos++ )) || true ;;
+                    esac
+                fi
+                ;;
+            " ")
+                if [[ "${selected[$cursor_pos]}" == "true" ]]; then
+                    selected[$cursor_pos]=false
+                else
+                    selected[$cursor_pos]=true
+                fi
+                ;;
+            $'\r'|$'\n'|"")
+                break
+                ;;
+            "q"|$'\x03')
+                tput cnorm >/dev/tty 2>/dev/null || true
+                printf "\n\n" >/dev/tty
+                log_error "Aborted."
+                exit 1
+                ;;
+            "j")
+                (( cursor_pos < count - 1 )) && (( cursor_pos++ )) || true
+                ;;
+            "k")
+                (( cursor_pos > 0 )) && (( cursor_pos-- )) || true
+                ;;
+        esac
+    done
+
+    tput cnorm >/dev/tty 2>/dev/null || true
+    trap - EXIT INT TERM
+
+    printf "\n" >/dev/tty
+
+    local _result=()
+    for (( i=0; i<count; i++ )); do
+        [[ "${selected[$i]}" == "true" ]] && _result+=( "$i" )
+    done
+
+    if [[ ${#_result[@]} -eq 0 ]]; then
+        log_error "No tools selected. Nothing to do."
+        return 1
+    fi
+
+    eval "$_return_var"='("${_result[@]}")'
+}
+
+# ---------------------------------------------------------------------------
+# link_category_dirs <source_base> <target_base> <label>
+# ---------------------------------------------------------------------------
 
 link_category_dirs() {
     local source_base="$1"
@@ -99,6 +304,10 @@ link_category_dirs() {
     echo "  $label: $linked linked, $skipped skipped"
 }
 
+# ---------------------------------------------------------------------------
+# unlink_category_dirs <source_base> <target_base> <label>
+# ---------------------------------------------------------------------------
+
 unlink_category_dirs() {
     local source_base="$1"
     local target_base="$2"
@@ -133,20 +342,36 @@ unlink_category_dirs() {
     echo "  $label: $removed symlinks removed"
 }
 
+# ---------------------------------------------------------------------------
+# Commands
+# ---------------------------------------------------------------------------
+
 cmd_global() {
     echo ""
-    echo -e "${BOLD}Claude Code - Global${NC}"
-    echo "  Target: $GLOBAL_CLAUDE_AGENTS"
+    echo -e "${BOLD}Select tools to set up globally:${NC}"
     echo ""
-    link_category_dirs "$CLAUDE_SOURCE" "$GLOBAL_CLAUDE_AGENTS" "Claude Code"
 
-    if check_generated; then
+    local tool_options=()
+    build_tool_options global tool_options
+    local chosen=()
+    select_tools chosen "${tool_options[@]}"
+
+    for idx in "${chosen[@]}"; do
+        local key="${TOOL_KEYS[$idx]}"
+        local label="${TOOL_LABEL[$key]}"
+        local source="${TOOL_SOURCE[$key]}"
+        local target="${TOOL_GLOBAL_TARGET[$key]}"
+
+        if [[ "${TOOL_NEEDS_GENERATE[$key]}" == true ]]; then
+            check_generated "$source" "$label" || continue
+        fi
+
         echo ""
-        echo -e "${BOLD}OpenCode - Global${NC}"
-        echo "  Target: $GLOBAL_OPENCODE_AGENTS"
+        echo -e "${BOLD}$label - Global${NC}"
+        echo "  Target: $target"
         echo ""
-        link_category_dirs "$OPENCODE_OUTPUT" "$GLOBAL_OPENCODE_AGENTS" "OpenCode"
-    fi
+        link_category_dirs "$source" "$target" "$label"
+    done
 
     echo ""
 }
@@ -169,35 +394,58 @@ cmd_project() {
     abs_project="$(cd "$project_path" && pwd)"
 
     echo ""
-    echo -e "${BOLD}Claude Code - Project${NC}"
-    echo "  Target: $abs_project/.claude/agents"
+    echo -e "${BOLD}Select tools to set up in $abs_project:${NC}"
     echo ""
-    link_category_dirs "$CLAUDE_SOURCE" "$abs_project/.claude/agents" "Claude Code"
 
-    if check_generated; then
+    local tool_options=()
+    build_tool_options project tool_options
+    local chosen=()
+    select_tools chosen "${tool_options[@]}"
+
+    for idx in "${chosen[@]}"; do
+        local key="${TOOL_KEYS[$idx]}"
+        local label="${TOOL_LABEL[$key]}"
+        local source="${TOOL_SOURCE[$key]}"
+        local target="$abs_project/${TOOL_PROJECT_DIR[$key]}"
+
+        if [[ "${TOOL_NEEDS_GENERATE[$key]}" == true ]]; then
+            check_generated "$source" "$label" || continue
+        fi
+
         echo ""
-        echo -e "${BOLD}OpenCode - Project${NC}"
-        echo "  Target: $abs_project/.opencode/agents"
+        echo -e "${BOLD}$label - Project${NC}"
+        echo "  Target: $target"
         echo ""
-        link_category_dirs "$OPENCODE_OUTPUT" "$abs_project/.opencode/agents" "OpenCode"
-    fi
+        link_category_dirs "$source" "$target" "$label"
+    done
 
     echo ""
-    log_info "Done. Agents are now available in $abs_project"
+    log_info "Done. Selected agents are now available in $abs_project"
     echo ""
-    log_info "Cursor reads .claude/agents/ natively - no additional setup needed."
 }
 
 cmd_unlink_global() {
     echo ""
-    echo -e "${BOLD}Removing global Claude Code symlinks${NC}"
+    echo -e "${BOLD}Select tools to unlink globally:${NC}"
     echo ""
-    unlink_category_dirs "$CLAUDE_SOURCE" "$GLOBAL_CLAUDE_AGENTS" "Claude Code"
 
-    echo ""
-    echo -e "${BOLD}Removing global OpenCode symlinks${NC}"
-    echo ""
-    unlink_category_dirs "$OPENCODE_OUTPUT" "$GLOBAL_OPENCODE_AGENTS" "OpenCode"
+    local tool_options=()
+    build_tool_options global tool_options
+    local chosen=()
+    select_tools chosen "${tool_options[@]}"
+
+    for idx in "${chosen[@]}"; do
+        local key="${TOOL_KEYS[$idx]}"
+        local label="${TOOL_LABEL[$key]}"
+        local source="${TOOL_SOURCE[$key]}"
+        local target="${TOOL_GLOBAL_TARGET[$key]}"
+
+        echo ""
+        echo -e "${BOLD}Removing global $label symlinks${NC}"
+        echo ""
+        unlink_category_dirs "$source" "$target" "$label"
+    done
+
     echo ""
 }
 
@@ -219,42 +467,74 @@ cmd_unlink_project() {
     abs_project="$(cd "$project_path" && pwd)"
 
     echo ""
-    echo -e "${BOLD}Removing project symlinks from $abs_project${NC}"
+    echo -e "${BOLD}Select tools to unlink from $abs_project:${NC}"
     echo ""
-    unlink_category_dirs "$CLAUDE_SOURCE"   "$abs_project/.claude/agents"   "Claude Code"
-    unlink_category_dirs "$OPENCODE_OUTPUT" "$abs_project/.opencode/agents" "OpenCode"
+
+    local tool_options=()
+    build_tool_options project tool_options
+    local chosen=()
+    select_tools chosen "${tool_options[@]}"
+
+    for idx in "${chosen[@]}"; do
+        local key="${TOOL_KEYS[$idx]}"
+        local label="${TOOL_LABEL[$key]}"
+        local source="${TOOL_SOURCE[$key]}"
+        local target="$abs_project/${TOOL_PROJECT_DIR[$key]}"
+
+        echo ""
+        echo -e "${BOLD}Removing $label symlinks from $abs_project${NC}"
+        echo ""
+        unlink_category_dirs "$source" "$target" "$label"
+    done
+
     echo ""
 }
+
+# ---------------------------------------------------------------------------
+# Usage / main
+# ---------------------------------------------------------------------------
 
 usage() {
     cat << EOF
 Usage: $(basename "$0") <command> [options]
 
+Requires bash 4+. macOS ships bash 3.2; install via Homebrew: brew install bash
+
 Commands:
-    global                  Symlink agents into global Claude Code and OpenCode config
-                            (~/.claude/agents/ and ~/.config/opencode/agents/)
+    global                  Symlink agents into global config directories.
+                            Presents an interactive tool selector - use Space
+                            to toggle Claude Code, OpenCode, and/or Cursor,
+                            then Enter to confirm.
 
-    project <path>          Symlink agents into a project's local config
-                            (<path>/.claude/agents/ and <path>/.opencode/agents/)
+    project <path>          Symlink agents into a project's local config.
+                            Same interactive selector as global.
 
-    unlink global           Remove global symlinks created by this script
+    unlink global           Remove global symlinks created by this script.
+                            Interactive selector to choose which tools to unlink.
 
-    unlink project <path>   Remove project symlinks created by this script
+    unlink project <path>   Remove project symlinks created by this script.
+                            Interactive selector to choose which tools to unlink.
 
     help                    Show this help message
 
+Interactive selector keys:
+    Up/Down or k/j          Move cursor
+    Space                   Toggle selection
+    Enter                   Confirm and proceed
+    q or Ctrl-C             Abort
+
 Notes:
     - Claude Code symlinks directly from categories/ (no generation step needed)
-    - OpenCode requires agent-specific/ to exist (run ./generate.sh first)
-    - If agent-specific/ is missing, the OpenCode step is skipped with a warning
-    - Cursor reads .claude/agents/ and ~/.claude/agents/ natively, so the Claude
-      Code symlinks cover Cursor automatically with no extra step
+    - OpenCode and Cursor require agent-specific/ to exist (run ./generate.sh first)
+    - If agent-specific/ is missing, the affected tool step is skipped with a warning
+    - Cursor definitions include readonly: true for agents without write/edit/bash tools
     - Existing files and non-matching symlinks are never overwritten
     - Re-running is safe (already-linked entries are skipped)
 
 Examples:
     $(basename "$0") global
     $(basename "$0") project ~/dev/my-project
+    $(basename "$0") unlink global
     $(basename "$0") unlink project ~/dev/my-project
 EOF
 }

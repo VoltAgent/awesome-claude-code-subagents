@@ -4,9 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a curated collection of AI coding agent definitions for Claude Code, OpenCode, and Cursor. Agent definitions in `categories/` use the Claude Code format as the canonical source. `generate.sh` translates them into equivalent definitions for OpenCode.
-
-Cursor reads `.claude/agents/` and `~/.claude/agents/` natively, so no Cursor-specific generation is needed.
+This is a curated collection of AI coding agent definitions for Claude Code, OpenCode, and Cursor. Agent definitions in `categories/` use the Claude Code format as the canonical source. `generate.sh` translates them into equivalent definitions for OpenCode and Cursor.
 
 ## Repository Structure
 
@@ -24,6 +22,7 @@ categories/          # Canonical agent definitions (Claude Code format)
   10-research-analysis/    # Research and analysis specialists
 agent-specific/      # Generated output (gitignored, do not edit)
   opencode/          # Generated OpenCode definitions
+  cursor/            # Generated Cursor definitions (with readonly: true where applicable)
 generate.sh          # Translates categories/ into agent-specific/
 setup.sh             # Creates symlinks into tool config directories
 ```
@@ -60,8 +59,8 @@ You are a [role description]...
 
 ## Scripts
 
-- `./generate.sh` - Reads `categories/` and generates equivalent definitions in `agent-specific/opencode/`
-- `./setup.sh` - Creates symlinks from tool config directories into this repository. Claude Code symlinks from `categories/` directly; OpenCode symlinks from `agent-specific/`. Cursor reads `.claude/agents/` natively so no extra step is needed.
+- `./generate.sh` - Reads `categories/` and generates equivalent definitions in `agent-specific/opencode/` and `agent-specific/cursor/`. Cursor definitions include a `model` field mapped from the source (`sonnet` -> `claude-4.6-sonnet`, `opus` -> `claude-4.6-opus`, `haiku` -> `claude-4.5-haiku`) and `readonly: true` for agents that have no Write, Edit, or Bash tools.
+- `./setup.sh` - Creates symlinks from tool config directories into this repository. Uses an interactive checkbox selector so users can choose which tools (Claude Code, OpenCode, Cursor) to link. Claude Code symlinks from `categories/` directly; OpenCode and Cursor symlink from `agent-specific/`.
 
 ## Contributing a New Agent
 
@@ -79,6 +78,6 @@ Format for main README: `- [**agent-name**](path/to/agent.md) - Brief descriptio
 |------|---------|--------|
 | Claude Code | `.claude/agents/` | `~/.claude/agents/` |
 | OpenCode | `.opencode/agents/` | `~/.config/opencode/agents/` |
-| Cursor | `.claude/agents/` (native) | `~/.claude/agents/` (native) |
+| Cursor | `.cursor/agents/` | `~/.cursor/agents/` |
 
 Project-level agents take precedence over global ones with the same name.

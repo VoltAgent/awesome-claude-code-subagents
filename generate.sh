@@ -3,10 +3,7 @@
 # Agent Definition Generator
 #
 # Reads Claude Code subagent definitions from categories/ and generates
-# equivalent definitions for OpenCode.
-#
-# Cursor reads .claude/agents/ natively, so no Cursor-specific generation
-# is needed.
+# equivalent definitions for OpenCode and Cursor.
 #
 # Usage: ./generate.sh [command]
 # Commands:
@@ -21,6 +18,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SOURCE_DIR="$SCRIPT_DIR/categories"
 OUTPUT_DIR="$SCRIPT_DIR/agent-specific"
 OPENCODE_DIR="$OUTPUT_DIR/opencode"
+CURSOR_DIR="$OUTPUT_DIR/cursor"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -33,6 +31,7 @@ log_warn()  { echo -e "${YELLOW}[WARN]${NC}  $1"; }
 log_error() { echo -e "${RED}[ERROR]${NC} $1"; }
 log_debug() { [[ "${DEBUG:-}" == "1" ]] && echo -e "${BLUE}[DEBUG]${NC} $1" || true; }
 
+NAME=""
 DESCRIPTION=""
 MODEL=""
 TOOLS=""
@@ -47,6 +46,7 @@ parse_value() {
 parse_agent_file() {
     local file="$1"
 
+    NAME=""
     DESCRIPTION=""
     MODEL=""
     TOOLS=""
@@ -81,12 +81,13 @@ parse_agent_file() {
         fi
     done <<< "$content"
 
+    NAME=$(parse_value "name" "$frontmatter")
     DESCRIPTION=$(parse_value "description" "$frontmatter")
     MODEL=$(parse_value "model" "$frontmatter")
     TOOLS=$(parse_value "tools" "$frontmatter")
     BODY=$(echo "$body" | sed '/./,$!d')
 
-    log_debug "Parsed: model=$MODEL tools=$TOOLS"
+    log_debug "Parsed: name=$NAME model=$MODEL tools=$TOOLS"
 }
 
 map_model_to_opencode() {
@@ -99,10 +100,35 @@ map_model_to_opencode() {
     esac
 }
 
+map_model_to_cursor() {
+    local model="$1"
+    case "$model" in
+        sonnet) echo "claude-4.6-sonnet" ;;
+        opus)   echo "claude-4.6-opus" ;;
+        haiku)  echo "claude-4.5-haiku" ;;
+        *)      echo "claude-4.6-sonnet" ;;
+    esac
+}
+
 tools_contain() {
     local needle="$1"
     local haystack="$2"
     echo "$haystack" | grep -qi "$needle"
+}
+
+is_readonly_agent() {
+    local tools="$1"
+    if [[ -z "$tools" ]]; then
+        return 1
+    fi
+    local has_write=false has_edit=false has_bash=false
+    tools_contain "Write" "$tools" && has_write=true
+    tools_contain "Edit"  "$tools" && has_edit=true
+    tools_contain "Bash"  "$tools" && has_bash=true
+    if [[ "$has_write" == false ]] && [[ "$has_edit" == false ]] && [[ "$has_bash" == false ]]; then
+        return 0
+    fi
+    return 1
 }
 
 generate_opencode() {
@@ -151,12 +177,42 @@ tools:"
     printf '%s\n' "$BODY" >> "$output_file"
 }
 
+generate_cursor() {
+    local source_file="$1"
+    local output_file="$2"
+
+    parse_agent_file "$source_file"
+
+    local cursor_model
+    cursor_model=$(map_model_to_cursor "$MODEL")
+
+    local fm="---
+name: $NAME
+description: $DESCRIPTION
+model: $cursor_model"
+
+    if is_readonly_agent "$TOOLS"; then
+        fm+="
+readonly: true"
+    fi
+
+    fm+="
+---"
+
+    mkdir -p "$(dirname "$output_file")"
+    printf '%s\n\n' "$fm" > "$output_file"
+    printf '%s\n' "$BODY" >> "$output_file"
+}
+
 generate_all() {
     log_info "Generating agent definitions from source..."
     echo ""
 
     rm -rf "$OPENCODE_DIR"
     mkdir -p "$OPENCODE_DIR"
+
+    rm -rf "$CURSOR_DIR"
+    mkdir -p "$CURSOR_DIR"
 
     local count=0
 
@@ -172,18 +228,21 @@ generate_all() {
         local agent_name="${basename%.md}"
 
         local opencode_out="$OPENCODE_DIR/$rel_dir/$agent_name.md"
+        local cursor_out="$CURSOR_DIR/$rel_dir/$agent_name.md"
 
         generate_opencode "$source_file" "$opencode_out"
+        generate_cursor   "$source_file" "$cursor_out"
 
         log_info "$agent_name"
         (( ++count ))
     done < <(find "$SOURCE_DIR" -name "*.md" -print0 | sort -z)
 
     echo ""
-    log_info "Generated $count agents for OpenCode"
+    log_info "Generated $count agents for OpenCode and Cursor"
     echo ""
-    log_info "Output location:"
+    log_info "Output locations:"
     echo "  OpenCode: $OPENCODE_DIR"
+    echo "  Cursor:   $CURSOR_DIR"
     echo ""
     log_info "Run './setup.sh help' to link agents into your tools"
 }
@@ -217,7 +276,7 @@ usage() {
 Usage: $(basename "$0") [command]
 
 Commands:
-    generate    Generate agent definitions for OpenCode (default)
+    generate    Generate agent definitions for OpenCode and Cursor (default)
     clean       Remove all generated files in agent-specific/
     list        List source agents with model and tool details
     help        Show this help message
@@ -226,9 +285,14 @@ Environment:
     DEBUG=1     Enable debug output
 
 Notes:
-    Cursor reads .claude/agents/ and ~/.claude/agents/ natively, so the
-    Claude Code definitions in categories/ work for Cursor without any
-    generation step.
+    OpenCode definitions are written to agent-specific/opencode/ with model
+    mapping and tool restrictions translated to the OpenCode format.
+
+    Cursor definitions are written to agent-specific/cursor/ with name,
+    description, and model fields. Model mapping: sonnet -> claude-4.6-sonnet,
+    opus -> claude-4.6-opus, haiku -> claude-4.5-haiku. Read-only agents
+    (those without Write, Edit, or Bash tools) additionally receive
+    readonly: true in their frontmatter.
 
 Examples:
     $(basename "$0")              Generate all agent definitions
