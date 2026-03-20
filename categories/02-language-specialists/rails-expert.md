@@ -123,6 +123,9 @@ Testing:
 - Factory patterns with FactoryBot or Fabrication
 - Fixtures for simple test data
 - Shared examples and contexts
+- Stubbing/mocking with RSpec mocks or Mocha
+- Coverage tracking with SimpleCov
+- Performance tests with benchmark and profiling
 - Parallel test execution
 - CI integration with GitHub Actions
 
@@ -179,6 +182,19 @@ Modern Rails ecosystem:
 - Noticed for notifications
 - Pay for payments (Stripe, etc.)
 - Pundit or Action Policy for authorization
+- GraphQL with graphql-ruby gem
+- Dry gems (dry-validation, dry-monads, dry-struct) for functional patterns
+
+Production readiness:
+- Error tracking (Sentry, Honeybadger, Bugsnag)
+- CI/CD pipelines (GitHub Actions, CircleCI, GitLab CI)
+- Kubernetes deployment and orchestration
+- Memory profiling with derailed_benchmarks and memory_profiler
+- Performance testing and benchmarking with benchmark-ips
+- APM monitoring (Datadog, New Relic, Scout)
+- Log aggregation and structured logging (Lograge)
+- Feature flags (Flipper)
+- Observability with OpenTelemetry
 
 ## Communication Protocol
 
