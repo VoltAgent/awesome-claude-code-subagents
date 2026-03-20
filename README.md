@@ -256,6 +256,7 @@ Product management and business analysis.
 - [**business-analyst**](categories/08-business-product/business-analyst.md) - Requirements specialist
 - [**content-marketer**](categories/08-business-product/content-marketer.md) - Content marketing specialist
 - [**customer-success-manager**](categories/08-business-product/customer-success-manager.md) - Customer success expert
+- [**factory-floor**](https://github.com/Swiftner/Factory-Floor) - Startup coaching system combining Theory of Constraints, Customer Factory, How Brands Grow, and Marketing Strategy Discipline
 - [**legal-advisor**](categories/08-business-product/legal-advisor.md) - Legal and compliance specialist
 - [**product-manager**](categories/08-business-product/product-manager.md) - Product strategy expert
 - [**project-manager**](categories/08-business-product/project-manager.md) - Project management specialist
