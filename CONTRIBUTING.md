@@ -1,22 +1,36 @@
-# Contributing to Awesome Claude Subagents
+# Contributing to Awesome Subagents
 
-Thank you for your interest in contributing to this collection!
+Thank you for your interest in contributing to this collection.
 
-## 🤝 How to Contribute
+## How to Contribute
 
-### Adding a New Subagent
+### Adding a New Agent
 
-1. **Choose the right category** - Place your subagent in the most appropriate category folder
-2. **Test your subagent** - Ensure it works with Claude Code
+1. **Choose the right category** - Place your agent in the most appropriate category folder under `categories/`
+2. **Test your agent** - Ensure the definition works with Claude Code (the canonical format)
 3. **Update required files** - When adding a new agent, you must update:
-   - **Main README.md**: Add your agent to the appropriate category section in alphabetical order
-   - **Category README.md**: Add detailed description, update Quick Selection Guide table, and if applicable, Common Technology Stacks
-   - **Your agent .md file**: Create the actual agent definition following the template
-4. **Submit a PR** - Include a clear description of the subagent's purpose
+   - **Main README.md** - Add your agent to the appropriate category section in alphabetical order
+   - **Category README.md** - Add a detailed description and update the Quick Selection Guide table
+   - **Your agent `.md` file** - Create the actual agent definition following the template below
+4. **Submit a PR** - Include a clear description of the agent's purpose
 
-### Subagent Requirements
+### Agent Definition Format
 
-Each subagent should include:
+All agents use the Claude Code frontmatter format as the canonical source. `generate.sh` handles translation to OpenCode and Cursor automatically.
+
+```yaml
+---
+name: agent-name
+description: When this agent should be invoked
+tools: Read, Write, Edit, Bash, Glob, Grep
+model: sonnet
+---
+
+You are a [role description and expertise areas]...
+```
+
+Each agent should include:
+
 - Clear role definition
 - List of expertise areas
 - Required MCP tools (if any)
@@ -25,51 +39,44 @@ Each subagent should include:
 - Example usage scenarios
 - Best practices
 
-### Required Updates When Adding a New Agent
+### Tool Assignment
 
-When you add a new agent, you MUST update these files:
+Use only the minimum tools required for the agent's role:
+
+- **Read-only** (reviewers, auditors): `Read, Grep, Glob`
+- **Research** (analysts, researchers): `Read, Grep, Glob, WebFetch, WebSearch`
+- **Code writers** (developers, engineers): `Read, Write, Edit, Bash, Glob, Grep`
+- **Documentation** (writers, documenters): `Read, Write, Edit, Glob, Grep, WebFetch, WebSearch`
+
+### Model Selection
+
+- `opus` - Deep reasoning tasks (architecture reviews, security audits, financial logic)
+- `sonnet` - Everyday coding tasks (writing, debugging, refactoring)
+- `haiku` - Quick lightweight tasks (docs, search, dependency checks)
+
+### Required Updates When Adding a New Agent
 
 1. **Main README.md**
    - Add your agent link in the appropriate category section
-   - Maintain alphabetical order
+   - Maintain alphabetical order within the category
    - Format: `- [**agent-name**](path/to/agent.md) - Brief description`
 
 2. **Category README.md** (e.g., `categories/02-language-specialists/README.md`)
-   - Add detailed agent description in the "Available Subagents" section
+   - Add a detailed agent description in the "Available Subagents" section
    - Update the "Quick Selection Guide" table
-   - If applicable, add to "Common Technology Stacks" section
-   
-3. **Your Agent File** (e.g., `categories/02-language-specialists/your-agent.md`)
+
+3. **Your agent file** (e.g., `categories/02-language-specialists/your-agent.md`)
    - Follow the standard template structure
    - Include all required sections
 
-### Versioning Requirements for Plugin Updates
+### Pull Request Process
 
-When you modify existing plugin content, you MUST bump versions so users can receive updates via `claude plugin update`.
-
-1. **Bump category plugin version**
-   - File: `categories/<category>/.claude-plugin/plugin.json`
-   - Increment `version` whenever any `*.md` file in that category changes.
-
-2. **Keep marketplace plugin versions in sync**
-   - File: `.claude-plugin/marketplace.json`
-   - Update the corresponding plugin entry version to match the category plugin version.
-
-### Adding a Tool
-
-Tools are Claude Code skills that enhance the catalog experience (discovery, browsing, management).
-
-1. **Create a folder** in `tools/` with your tool name
-2. **Include required files**:
-   - `README.md` - Installation and usage documentation
-   - Command files (`.md`) - One per command, with YAML frontmatter
-   - Helper scripts (`.sh`, `.py`) - Shared utilities if needed
-3. **Follow skill best practices**:
-   - Use descriptive `name` and `description` in frontmatter
-   - Include trigger phrases in descriptions
-   - Handle errors gracefully with user-friendly messages
-4. **Update the main README.md** - Add your tool to the 🧰 Tools section
-5. **Test locally** before submitting
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/new-agent`)
+3. Add your agent following the template
+4. Update all required locations (main README.md, category README.md)
+5. Verify all links work correctly
+6. Submit a pull request with a clear description
 
 ### Code of Conduct
 
@@ -78,26 +85,8 @@ Tools are Claude Code skills that enhance the catalog experience (discovery, bro
 - Test contributions before submitting
 - Follow the existing format and structure
 
-### Pull Request Process
+## Licence
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-subagent`)
-3. Add your subagent following the template
-4. Update ALL required locations:
-   - Main README.md (add to category section in alphabetical order)
-   - Category-specific README.md (add description, update tables)
-5. Verify all links work correctly
-6. Submit a pull request with a clear description
+By contributing, you agree that your contributions will be licensed under the MIT Licence.
 
-### Quality Guidelines
-
-- Subagents should be well-structured and tested
-- Include clear documentation
-- Provide practical examples
-- Ensure compatibility with Claude Code
-
-## 📝 License
-
-By contributing, you agree that your contributions will be licensed under the MIT License.
-
-All subagents in this repository are provided "as is" without warranty. The maintainers do not audit or guarantee the security or correctness of any contribution and accept no liability for any issues arising from their use.
+All agent definitions in this repository are provided "as is" without warranty. The maintainers do not audit or guarantee the security or correctness of any contribution and accept no liability for any issues arising from their use.

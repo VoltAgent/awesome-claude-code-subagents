@@ -1,112 +1,96 @@
-<a href="https://github.com/VoltAgent/voltagent">
-<img width="1500" height="500" alt="Group 32" src="https://github.com/user-attachments/assets/55b97c47-8506-4be0-b18f-f5384d063cbb" />
-</a>
+# Awesome Subagents
 
-<br />
-<br/>
+**A curated collection of AI coding agent definitions for Claude Code, OpenCode, and Cursor.**
 
-<div align="center">
-    <strong>The awesome collection of Claude Code subagents.</strong>
-    <br />
-    <br />
-</div>
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+![Agent Count](https://img.shields.io/badge/agents-131+-blue?style=flat-square)
+[![Last Update](https://img.shields.io/github/last-commit/ampedweb/awesome-subagents?label=Last%20update&style=flat-square)](https://github.com/ampedweb/awesome-subagents)
 
-<div align="center">
-    
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re) 
-![Subagent Count](https://img.shields.io/badge/subagents-127+-blue?style=flat-square)
-[![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-claude-code-subagents?label=Last%20update&style=flat-square)](https://github.com/VoltAgent/awesome-claude-code-subagents)
-<a href="https://github.com/VoltAgent/voltagent">
-  <img alt="VoltAgent" src="https://cdn.voltagent.dev/website/logo/logo-2-svg.svg" height="20" />
-</a>
-[![Discord](https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://s.voltagent.dev/discord)
+> Forked from [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents) and extended to support multiple AI coding tools.
 
-</div>
+---
 
+## Overview
 
-<div align="center">
-    <strong>More awesome collections for developers</strong>
-    <br />
-    <br />
-</div>
+This repository contains 131+ specialised AI agent definitions organised into 10 categories. The definitions in `categories/` use the Claude Code format as the canonical source. The `generate.sh` script produces equivalent definitions for OpenCode.
 
-<div align="center">
+Cursor reads `.claude/agents/` and `~/.claude/agents/` natively, so no Cursor-specific generation is needed - the Claude Code definitions work directly.
 
+### Agent Storage Locations
 
-[![Agent Skills](https://img.shields.io/static/v1?label=%E2%9A%A1%20Agent&message=Skills%2012k&color=black&style=classic)](https://github.com/VoltAgent/awesome-agent-skills)
-[![Codex Subagents][codex-badge]][codex-link]
-[![OpenClaw Skills](https://img.shields.io/github/stars/VoltAgent/awesome-openclaw-skills?style=classic&label=%F0%9F%A6%9E%20OpenClaw%20Skills&color=f53e36)](https://github.com/VoltAgent/awesome-openclaw-skills)
-[![AI Agent Papers](https://img.shields.io/github/stars/VoltAgent/awesome-ai-agent-papers?style=classic&label=AI%20Agent%20Papers&color=b31b1b&logo=arxiv)](https://github.com/VoltAgent/awesome-ai-agent-papers)
+| Tool | Global | Project |
+|------|--------|---------|
+| Claude Code | `~/.claude/agents/` | `.claude/agents/` |
+| OpenCode | `~/.config/opencode/agents/` | `.opencode/agents/` |
+| Cursor | `~/.claude/agents/` (native) | `.claude/agents/` (native) |
 
-</div>
-
-
-# Awesome Claude Code Subagents 
-
-This repository serves as the definitive collection of Claude Code subagents, specialized AI assitants designed for specific development tasks. 
+---
 
 ## Installation
 
-### As Claude Code Plugin (Recommended)
+### Claude Code
+
+Claude Code reads the definitions in `categories/` directly. No generation step is needed.
+
+**Option 1 - Symlink via setup.sh (recommended):**
 
 ```bash
-claude plugin marketplace add VoltAgent/awesome-claude-code-subagents
-claude plugin install <plugin-name>
+git clone https://github.com/ampedweb/awesome-subagents.git
+cd awesome-subagents
+./setup.sh global                        # global access across all projects
+./setup.sh project /path/to/your-project # project-level only
 ```
 
-Examples:
+**Option 2 - Copy manually:**
+
 ```bash
-claude plugin install voltagent-lang    # Language specialists
-claude plugin install voltagent-infra   # Infrastructure & DevOps
+git clone https://github.com/ampedweb/awesome-subagents.git
+cp -r awesome-subagents/categories/* ~/.claude/agents/
 ```
 
-See [Categories](#-categories) below for all available plugins.
+### OpenCode
 
-> **Note**: The `voltagent-meta` orchestration agents work best when other categories installed.
+OpenCode requires generated definitions. Run `generate.sh` first, then `setup.sh`.
 
-### Option 1: Manual Installation
-
-1. Clone this repository
-2. Copy desired agent files to:
-   - `~/.claude/agents/` for global access
-   - `.claude/agents/` for project-specific use
-3. Customize based on your project requirements
-
-### Option 2: Interactive Installer
 ```bash
-git clone https://github.com/VoltAgent/awesome-claude-code-subagents.git
-cd awesome-claude-code-subagents
-./install-agents.sh
+git clone https://github.com/ampedweb/awesome-subagents.git
+cd awesome-subagents
+./generate.sh                            # generates agent-specific/opencode/
+./setup.sh global                        # symlinks OpenCode into ~/.config/opencode/agents/
+./setup.sh project /path/to/your-project # symlinks OpenCode into the project
 ```
-This interactive script lets you browse categories, select agents, and install/uninstall them with a single command.
 
-### Option 3: Standalone Installer (no clone required)
-```bash
-curl -sO https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/install-agents.sh
-chmod +x install-agents.sh
-./install-agents.sh
-```
-Downloads agents directly from GitHub without cloning the repository. Requires `curl`.
+### Cursor
 
-### Option 4: Agent Installer (use Claude Code to install agents)
-```bash
-curl -s https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/categories/09-meta-orchestration/agent-installer.md -o ~/.claude/agents/agent-installer.md
-```
-Then in Claude Code: "Use the agent-installer to show me available categories" or "Find PHP agents and install php-pro globally".
+Cursor reads `.claude/agents/` natively. Installing for Claude Code (above) covers Cursor automatically - no extra steps required.
 
-<br />
+### Scripts Reference
 
-<a href="https://github.com/VoltAgent/voltagent">
-<img width="1390" height="296" alt="social" src="https://github.com/user-attachments/assets/5d8822c0-e97b-4183-a71e-a922ab88e1a0" />
-</a>
+**`generate.sh`** - Translates Claude Code definitions into OpenCode format.
 
+| Command | Description |
+|---------|-------------|
+| `./generate.sh` | Generate all definitions (default) |
+| `./generate.sh clean` | Remove all generated files |
+| `./generate.sh list` | List source agents with details |
+| `./generate.sh help` | Show help |
 
-## 📚 Categories
+**`setup.sh`** - Creates or removes symlinks between agent directories and tool config.
+
+| Command | Description |
+|---------|-------------|
+| `./setup.sh global` | Symlink into global Claude Code and OpenCode config |
+| `./setup.sh project <path>` | Symlink into a project's local config |
+| `./setup.sh unlink global` | Remove global symlinks |
+| `./setup.sh unlink project <path>` | Remove project symlinks |
+
+---
+
+## Categories
 
 ### [01. Core Development](categories/01-core-development/)
-**Plugin:** `voltagent-core-dev`
 
-Essential development subagents for everyday coding tasks.
+Essential development agents for everyday coding tasks.
 
 - [**api-designer**](categories/01-core-development/api-designer.md) - REST and GraphQL API architect
 - [**backend-developer**](categories/01-core-development/backend-developer.md) - Server-side expert for scalable APIs
@@ -120,13 +104,9 @@ Essential development subagents for everyday coding tasks.
 - [**websocket-engineer**](categories/01-core-development/websocket-engineer.md) - Real-time communication specialist
 
 ### [02. Language Specialists](categories/02-language-specialists/)
-**Plugin:** `voltagent-lang`
 
 Language-specific experts with deep framework knowledge.
-- [**typescript-pro**](categories/02-language-specialists/typescript-pro.md) - TypeScript specialist
-- [**sql-pro**](categories/02-language-specialists/sql-pro.md) - Database query expert
-- [**swift-expert**](categories/02-language-specialists/swift-expert.md) - iOS and macOS specialist
-- [**vue-expert**](categories/02-language-specialists/vue-expert.md) - Vue 3 Composition API expert
+
 - [**angular-architect**](categories/02-language-specialists/angular-architect.md) - Angular 15+ enterprise patterns expert
 - [**cpp-pro**](categories/02-language-specialists/cpp-pro.md) - C++ performance expert
 - [**csharp-developer**](categories/02-language-specialists/csharp-developer.md) - .NET ecosystem specialist
@@ -138,31 +118,33 @@ Language-specific experts with deep framework knowledge.
 - [**golang-pro**](categories/02-language-specialists/golang-pro.md) - Go concurrency specialist
 - [**java-architect**](categories/02-language-specialists/java-architect.md) - Enterprise Java expert
 - [**javascript-pro**](categories/02-language-specialists/javascript-pro.md) - JavaScript development expert
-- [**powershell-5.1-expert**](categories/02-language-specialists/powershell-5.1-expert.md) - Windows PowerShell 5.1 and full .NET Framework automation specialist
-- [**powershell-7-expert**](categories/02-language-specialists/powershell-7-expert.md) - Cross-platform PowerShell 7+ automation and modern .NET specialist
 - [**kotlin-specialist**](categories/02-language-specialists/kotlin-specialist.md) - Modern JVM language expert
 - [**laravel-specialist**](categories/02-language-specialists/laravel-specialist.md) - Laravel 10+ PHP framework expert
 - [**nextjs-developer**](categories/02-language-specialists/nextjs-developer.md) - Next.js 14+ full-stack specialist
 - [**php-pro**](categories/02-language-specialists/php-pro.md) - PHP web development expert
+- [**powershell-5.1-expert**](categories/02-language-specialists/powershell-5.1-expert.md) - Windows PowerShell 5.1 and full .NET Framework automation specialist
+- [**powershell-7-expert**](categories/02-language-specialists/powershell-7-expert.md) - Cross-platform PowerShell 7+ automation and modern .NET specialist
 - [**python-pro**](categories/02-language-specialists/python-pro.md) - Python ecosystem master
 - [**rails-expert**](categories/02-language-specialists/rails-expert.md) - Rails 8.1 rapid development expert
 - [**react-specialist**](categories/02-language-specialists/react-specialist.md) - React 18+ modern patterns expert
 - [**rust-engineer**](categories/02-language-specialists/rust-engineer.md) - Systems programming expert
 - [**spring-boot-engineer**](categories/02-language-specialists/spring-boot-engineer.md) - Spring Boot 3+ microservices expert
-
+- [**sql-pro**](categories/02-language-specialists/sql-pro.md) - Database query expert
+- [**swift-expert**](categories/02-language-specialists/swift-expert.md) - iOS and macOS specialist
+- [**typescript-pro**](categories/02-language-specialists/typescript-pro.md) - TypeScript specialist
+- [**vue-expert**](categories/02-language-specialists/vue-expert.md) - Vue 3 Composition API expert
 
 ### [03. Infrastructure](categories/03-infrastructure/)
-**Plugin:** `voltagent-infra`
 
 DevOps, cloud, and deployment specialists.
 
 - [**azure-infra-engineer**](categories/03-infrastructure/azure-infra-engineer.md) - Azure infrastructure and Az PowerShell automation expert
 - [**cloud-architect**](categories/03-infrastructure/cloud-architect.md) - AWS/GCP/Azure specialist
 - [**database-administrator**](categories/03-infrastructure/database-administrator.md) - Database management expert
-- [**docker-expert**](categories/03-infrastructure/docker-expert.md) - Docker containerization and optimization expert
 - [**deployment-engineer**](categories/03-infrastructure/deployment-engineer.md) - Deployment automation specialist
 - [**devops-engineer**](categories/03-infrastructure/devops-engineer.md) - CI/CD and automation expert
 - [**devops-incident-responder**](categories/03-infrastructure/devops-incident-responder.md) - DevOps incident management
+- [**docker-expert**](categories/03-infrastructure/docker-expert.md) - Docker containerisation and optimisation expert
 - [**incident-responder**](categories/03-infrastructure/incident-responder.md) - System incident response expert
 - [**kubernetes-specialist**](categories/03-infrastructure/kubernetes-specialist.md) - Container orchestration master
 - [**network-engineer**](categories/03-infrastructure/network-engineer.md) - Network infrastructure specialist
@@ -173,8 +155,7 @@ DevOps, cloud, and deployment specialists.
 - [**terragrunt-expert**](categories/03-infrastructure/terragrunt-expert.md) - Terragrunt orchestration and DRY IaC specialist
 - [**windows-infra-admin**](categories/03-infrastructure/windows-infra-admin.md) - Active Directory, DNS, DHCP, and GPO automation specialist
 
-### [04. Quality & Security](categories/04-quality-security/)
-**Plugin:** `voltagent-qa-sec`
+### [04. Quality and Security](categories/04-quality-security/)
 
 Testing, security, and code quality experts.
 
@@ -187,19 +168,18 @@ Testing, security, and code quality experts.
 - [**debugger**](categories/04-quality-security/debugger.md) - Advanced debugging specialist
 - [**error-detective**](categories/04-quality-security/error-detective.md) - Error analysis and resolution expert
 - [**penetration-tester**](categories/04-quality-security/penetration-tester.md) - Ethical hacking specialist
-- [**performance-engineer**](categories/04-quality-security/performance-engineer.md) - Performance optimization expert
+- [**performance-engineer**](categories/04-quality-security/performance-engineer.md) - Performance optimisation expert
 - [**powershell-security-hardening**](categories/04-quality-security/powershell-security-hardening.md) - PowerShell security hardening and compliance specialist
 - [**qa-expert**](categories/04-quality-security/qa-expert.md) - Test automation specialist
 - [**security-auditor**](categories/04-quality-security/security-auditor.md) - Security vulnerability expert
 - [**test-automator**](categories/04-quality-security/test-automator.md) - Test automation framework expert
 
-### [05. Data & AI](categories/05-data-ai/)
-**Plugin:** `voltagent-data-ai`
+### [05. Data and AI](categories/05-data-ai/)
 
 Data engineering, ML, and AI specialists.
 
 - [**ai-engineer**](categories/05-data-ai/ai-engineer.md) - AI system design and deployment expert
-- [**data-analyst**](categories/05-data-ai/data-analyst.md) - Data insights and visualization specialist
+- [**data-analyst**](categories/05-data-ai/data-analyst.md) - Data insights and visualisation specialist
 - [**data-engineer**](categories/05-data-ai/data-engineer.md) - Data pipeline architect
 - [**data-scientist**](categories/05-data-ai/data-scientist.md) - Analytics and insights expert
 - [**database-optimizer**](categories/05-data-ai/database-optimizer.md) - Database performance specialist
@@ -209,10 +189,9 @@ Data engineering, ML, and AI specialists.
 - [**mlops-engineer**](categories/05-data-ai/mlops-engineer.md) - MLOps and model deployment expert
 - [**nlp-engineer**](categories/05-data-ai/nlp-engineer.md) - Natural language processing expert
 - [**postgres-pro**](categories/05-data-ai/postgres-pro.md) - PostgreSQL database expert
-- [**prompt-engineer**](categories/05-data-ai/prompt-engineer.md) - Prompt optimization specialist
+- [**prompt-engineer**](categories/05-data-ai/prompt-engineer.md) - Prompt optimisation specialist
 
 ### [06. Developer Experience](categories/06-developer-experience/)
-**Plugin:** `voltagent-dev-exp`
 
 Tooling and developer productivity experts.
 
@@ -220,18 +199,17 @@ Tooling and developer productivity experts.
 - [**cli-developer**](categories/06-developer-experience/cli-developer.md) - Command-line tool creator
 - [**dependency-manager**](categories/06-developer-experience/dependency-manager.md) - Package and dependency specialist
 - [**documentation-engineer**](categories/06-developer-experience/documentation-engineer.md) - Technical documentation expert
-- [**dx-optimizer**](categories/06-developer-experience/dx-optimizer.md) - Developer experience optimization specialist
+- [**dx-optimizer**](categories/06-developer-experience/dx-optimizer.md) - Developer experience optimisation specialist
 - [**git-workflow-manager**](categories/06-developer-experience/git-workflow-manager.md) - Git workflow and branching expert
-- [**legacy-modernizer**](categories/06-developer-experience/legacy-modernizer.md) - Legacy code modernization specialist
+- [**legacy-modernizer**](categories/06-developer-experience/legacy-modernizer.md) - Legacy code modernisation specialist
 - [**mcp-developer**](categories/06-developer-experience/mcp-developer.md) - Model Context Protocol specialist
-- [**powershell-ui-architect**](categories/06-developer-experience/powershell-ui-architect.md) - PowerShell UI/UX specialist for WinForms, WPF, Metro frameworks, and TUIs
 - [**powershell-module-architect**](categories/06-developer-experience/powershell-module-architect.md) - PowerShell module and profile architecture specialist
+- [**powershell-ui-architect**](categories/06-developer-experience/powershell-ui-architect.md) - PowerShell UI/UX specialist for WinForms, WPF, Metro frameworks, and TUIs
 - [**refactoring-specialist**](categories/06-developer-experience/refactoring-specialist.md) - Code refactoring expert
 - [**slack-expert**](categories/06-developer-experience/slack-expert.md) - Slack platform and @slack/bolt specialist
 - [**tooling-engineer**](categories/06-developer-experience/tooling-engineer.md) - Developer tooling specialist
 
-### [07. Specialized Domains](categories/07-specialized-domains/)
-**Plugin:** `voltagent-domains`
+### [07. Specialised Domains](categories/07-specialized-domains/)
 
 Domain-specific technology experts.
 
@@ -246,10 +224,9 @@ Domain-specific technology experts.
 - [**payment-integration**](categories/07-specialized-domains/payment-integration.md) - Payment systems expert
 - [**quant-analyst**](categories/07-specialized-domains/quant-analyst.md) - Quantitative analysis specialist
 - [**risk-manager**](categories/07-specialized-domains/risk-manager.md) - Risk assessment and management expert
-- [**seo-specialist**](categories/07-specialized-domains/seo-specialist.md) - Search engine optimization expert
+- [**seo-specialist**](categories/07-specialized-domains/seo-specialist.md) - Search engine optimisation expert
 
-### [08. Business & Product](categories/08-business-product/)
-**Plugin:** `voltagent-biz`
+### [08. Business and Product](categories/08-business-product/)
 
 Product management and business analysis.
 
@@ -263,181 +240,116 @@ Product management and business analysis.
 - [**scrum-master**](categories/08-business-product/scrum-master.md) - Agile methodology expert
 - [**technical-writer**](categories/08-business-product/technical-writer.md) - Technical documentation specialist
 - [**ux-researcher**](categories/08-business-product/ux-researcher.md) - User research expert
-- [**wordpress-master**](categories/08-business-product/wordpress-master.md) - WordPress development and optimization expert
+- [**wordpress-master**](categories/08-business-product/wordpress-master.md) - WordPress development and optimisation expert
 
-### [09. Meta & Orchestration](categories/09-meta-orchestration/)
-**Plugin:** `voltagent-meta`
+### [09. Meta and Orchestration](categories/09-meta-orchestration/)
 
 Agent coordination and meta-programming.
 
 - [**agent-installer**](categories/09-meta-orchestration/agent-installer.md) - Browse and install agents from this repository via GitHub
 - [**agent-organizer**](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
-- [**context-manager**](categories/09-meta-orchestration/context-manager.md) - Context optimization expert
+- [**context-manager**](categories/09-meta-orchestration/context-manager.md) - Context optimisation expert
 - [**error-coordinator**](categories/09-meta-orchestration/error-coordinator.md) - Error handling and recovery specialist
 - [**it-ops-orchestrator**](categories/09-meta-orchestration/it-ops-orchestrator.md) - IT operations workflow orchestration specialist
 - [**knowledge-synthesizer**](categories/09-meta-orchestration/knowledge-synthesizer.md) - Knowledge aggregation expert
 - [**multi-agent-coordinator**](categories/09-meta-orchestration/multi-agent-coordinator.md) - Advanced multi-agent orchestration
-- [**performance-monitor**](categories/09-meta-orchestration/performance-monitor.md) - Agent performance optimization
-- [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
+- [**performance-monitor**](categories/09-meta-orchestration/performance-monitor.md) - Agent performance optimisation
+- [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate team of AI subagents for repetitive SDLC workflows
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**taskade**](https://github.com/taskade/mcp) - AI-powered workspace with autonomous agents, real-time collaboration, and workflow automation with MCP integration
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
 
-### [10. Research & Analysis](categories/10-research-analysis/)
-**Plugin:** `voltagent-research`
+### [10. Research and Analysis](categories/10-research-analysis/)
 
 Research, search, and analysis specialists.
 
+- [**competitive-analyst**](categories/10-research-analysis/competitive-analyst.md) - Competitive intelligence specialist
+- [**data-researcher**](categories/10-research-analysis/data-researcher.md) - Data discovery and analysis expert
+- [**market-researcher**](categories/10-research-analysis/market-researcher.md) - Market analysis and consumer insights
 - [**research-analyst**](categories/10-research-analysis/research-analyst.md) - Comprehensive research specialist
+- [**scientific-literature-researcher**](categories/10-research-analysis/scientific-literature-researcher.md) - Scientific paper search and evidence synthesis via [BGPT MCP](https://github.com/connerlambden/bgpt-mcp)
 - [**search-specialist**](categories/10-research-analysis/search-specialist.md) - Advanced information retrieval expert
 - [**trend-analyst**](categories/10-research-analysis/trend-analyst.md) - Emerging trends and forecasting expert
-- [**competitive-analyst**](categories/10-research-analysis/competitive-analyst.md) - Competitive intelligence specialist
-- [**market-researcher**](categories/10-research-analysis/market-researcher.md) - Market analysis and consumer insights
-- [**data-researcher**](categories/10-research-analysis/data-researcher.md) - Data discovery and analysis expert
-- [**scientific-literature-researcher**](categories/10-research-analysis/scientific-literature-researcher.md) - Scientific paper search and evidence synthesis via [BGPT MCP](https://github.com/connerlambden/bgpt-mcp)
 
-## 🤖 Understanding Subagents
+---
 
-Subagents are specialized AI assistants that enhance Claude Code's capabilities by providing task-specific expertise. They act as dedicated helpers that Claude Code can call upon when encountering particular types of work.
+## Understanding Agents
 
-### What Makes Subagents Special?
+Specialised agents are AI assistants configured with task-specific instructions, tool permissions, and model selections. They act as dedicated helpers for particular types of work.
 
-**Independent Context Windows**  
-Every subagent operates within its own isolated context space, preventing cross-contamination between different tasks and maintaining clarity in the primary conversation thread.
+### Why Use Specialised Agents?
 
-**Domain-Specific Intelligence**  
-Subagents come equipped with carefully crafted instructions tailored to their area of expertise, resulting in superior performance on specialized tasks.
+**Independent context windows** - Each agent operates in its own isolated context, keeping the primary conversation uncluttered with task-specific detail.
 
-**Shared Across Projects**  
-After creating a subagent, you can utilize it throughout various projects and distribute it among team members to ensure consistent development practices.
+**Domain-specific intelligence** - Agents carry carefully crafted instructions tuned to their area of expertise, producing better results on specialised tasks than a generic assistant.
 
-**Granular Tool Permissions**  
-You can configure each subagent with specific tool access rights, enabling fine-grained control over which capabilities are available for different task types.
+**Reusable across projects** - Once installed, agents are available in every project. They can be shared across a team to ensure consistent approaches to common tasks.
 
-### Core Advantages
+**Granular tool permissions** - Each agent is configured with only the tools it needs. Read-only agents cannot modify files; code-writing agents have full access.
 
-- **Memory Efficiency**: Isolated contexts prevent the main conversation from becoming cluttered with task-specific details
-- **Enhanced Accuracy**: Specialized prompts and configurations lead to better results in specific domains
-- **Workflow Consistency**: Team-wide subagent sharing ensures uniform approaches to common tasks
-- **Security Control**: Tool access can be restricted based on subagent type and purpose
+### Agent Definition Format
 
-### Getting Started with Subagents
-
-**1. Access the Subagent Manager**
-```bash
-/agents
-```
-
-**2. Create Your Subagent**
-- Choose between project-specific or global subagents
-- Let Claude generate an initial version, then refine it to your needs
-- Provide detailed descriptions of the subagent's purpose and activation triggers
-- Configure tool access (leave empty to inherit all available tools)
-- Customize the system prompt using the built-in editor (press `e`)
-
-**3. Deploy and Utilize**
-Your subagent becomes immediately available. Claude Code will automatically engage it when suitable, or you can explicitly request its help:
-```
-> Have the code-reviewer subagent analyze my latest commits
-```
-
-### Subagent Storage Locations
-
-| Type | Path | Availability | Precedence |
-|------|------|--------------|------------|
-| Project Subagents | `.claude/agents/` | Current project only | Higher |
-| Global Subagents | `~/.claude/agents/` | All projects | Lower |
-
-Note: When naming conflicts occur, project-specific subagents override global ones.
-
-
-## 📖 Subagent Structure
-
-Each subagent follows a standardized template:
+The `categories/` definitions use the Claude Code format as the canonical source:
 
 ```yaml
 ---
-name: subagent-name
+name: agent-name
 description: When this agent should be invoked
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: sonnet
 ---
 
 You are a [role description and expertise areas]...
-
-[Agent-specific checklists, patterns, and guidelines]...
-
-## Communication Protocol
-Inter-agent communication specifications...
-
-## Development Workflow
-Structured implementation phases...
 ```
 
-### Tool Assignment Philosophy
+`generate.sh` translates these into the equivalent OpenCode and Cursor formats automatically.
 
-### Smart Model Routing
+### Model Routing
 
-Each subagent includes a `model` field that automatically routes it to the right Claude model — balancing quality and cost:
+Each agent includes a `model` field that routes it to an appropriate model, balancing quality and cost:
 
-| Model | When It's Used | Examples |
-|-------|----------------|----------|
-| `opus` | Deep reasoning — architecture reviews, security audits, financial logic | `security-auditor`, `architect-reviewer`, `fintech-engineer` |
-| `sonnet` | Everyday coding — writing, debugging, refactoring | `python-pro`, `backend-developer`, `devops-engineer` |
-| `haiku` | Quick tasks — docs, search, dependency checks | `documentation-engineer`, `seo-specialist`, `build-engineer` |
+| Model | When it is used | Examples |
+|-------|-----------------|---------|
+| `opus` | Deep reasoning - architecture reviews, security audits, financial logic | `security-auditor`, `architect-reviewer`, `fintech-engineer` |
+| `sonnet` | Everyday coding - writing, debugging, refactoring | `python-pro`, `backend-developer`, `devops-engineer` |
+| `haiku` | Quick tasks - docs, search, dependency checks | `documentation-engineer`, `seo-specialist`, `build-engineer` |
 
-You can override any agent's model by editing the `model` field in its frontmatter. Set `model: inherit` to use whatever model your main conversation is using.
+### Tool Assignment
 
-### Tool Assignment Philosophy
+Each agent's `tools` field specifies the minimum permissions needed for its role:
 
-Each subagent's `tools` field specifies Claude Code built-in tools, optimized for their role:
-- **Read-only agents** (reviewers, auditors): `Read, Grep, Glob` - analyze without modifying
-- **Research agents** (analysts, researchers): `Read, Grep, Glob, WebFetch, WebSearch` - gather information
-- **Code writers** (developers, engineers): `Read, Write, Edit, Bash, Glob, Grep` - create and execute
-- **Documentation agents** (writers, documenters): `Read, Write, Edit, Glob, Grep, WebFetch, WebSearch` - document with research
+| Role type | Tools |
+|-----------|-------|
+| Read-only (reviewers, auditors) | `Read, Grep, Glob` |
+| Research (analysts, researchers) | `Read, Grep, Glob, WebFetch, WebSearch` |
+| Code writers (developers, engineers) | `Read, Write, Edit, Bash, Glob, Grep` |
+| Documentation (writers, documenters) | `Read, Write, Edit, Glob, Grep, WebFetch, WebSearch` |
 
-Each agent has minimal necessary permissions. You can extend agents by adding MCP servers or external tools to the `tools` field.
+---
 
-## 🧰 Tools
+## Related Projects
 
-### [subagent-catalog](tools/subagent-catalog/)
-Claude Code skill for browsing and fetching subagents from this catalog.
+- [**awesome-agent-skills**](https://github.com/VoltAgent/awesome-agent-skills) - Agent skills collection
+- [**awesome-codex-subagents**](https://github.com/VoltAgent/awesome-codex-subagents) - Codex subagent definitions
+- [**awesome-openclaw-skills**](https://github.com/VoltAgent/awesome-openclaw-skills) - OpenClaw skills
+- [**awesome-ai-agent-papers**](https://github.com/VoltAgent/awesome-ai-agent-papers) - AI agent research papers
 
-| Command | Description |
-|---------|-------------|
-| `/subagent-catalog:search <query>` | Find agents by name, description, or category |
-| `/subagent-catalog:fetch <name>` | Get full agent definition |
-| `/subagent-catalog:list` | Browse all categories |
-| `/subagent-catalog:invalidate` | Refresh cache |
+---
 
-**Installation:**
-```bash
-cp -r tools/subagent-catalog ~/.claude/commands/
-```
+## Contributing
 
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-
-## 🤝 Contributing
-
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-- Submit new subagents via PR
+- Add new agent definitions via pull request
 - Improve existing definitions
-- Report issues and bugs
+- Report issues
 
-## Contributor ♥️ Thanks
-![Contributors](https://contrib.rocks/image?repo=voltagent/awesome-claude-code-subagents&max=500&columns=20&anon=1)
+---
 
+## Licence
 
-## 📄 License
+MIT - see [LICENSE](LICENSE)
 
-MIT License - see [LICENSE](LICENSE)
+All agent definitions are provided "as is" without warranty. The maintainers do not audit or guarantee the security or correctness of any definition and accept no liability for issues arising from their use.
 
-This repository is a curated collection of subagent definitions contributed by both the maintainers and the community. All subagents are provided "as is" without warranty. We do not audit or guarantee the security or correctness of any subagent. Review before use, the maintainers accept no liability for any issues arising from their use.
-
-If you find an issue with a listed subagent or want your contribution removed, please [open an issue](https://github.com/VoltAgent/awesome-claude-code-subagents/issues) and we'll address it promptly.
-
-
-[codex-badge]: https://img.shields.io/github/stars/VoltAgent/awesome-codex-subagents?style=classic&label=Codex%20Subagents&color=000000&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0yMi4yODIgOS44MjFhNS45ODUgNS45ODUgMCAwIDAtLjUxNi00LjkxIDYuMDQ2IDYuMDQ2IDAgMCAwLTYuNTEtMi45QTYuMDY1IDYuMDY1IDAgMCAwIDQuOTgxIDQuMThhNS45ODUgNS45ODUgMCAwIDAtMy45OTggMi45IDYuMDQ2IDYuMDQ2IDAgMCAwIC43NDMgNy4wOTcgNS45OCA1Ljk4IDAgMCAwIC41MSA0LjkxMSA2LjA1MSA2LjA1MSAwIDAgMCA2LjUxNSAyLjlBNS45ODUgNS45ODUgMCAwIDAgMTMuMjYgMjRhNi4wNTYgNi4wNTYgMCAwIDAgNS43NzItNC4yMDYgNS45OSA1Ljk5IDAgMCAwIDMuOTk3LTIuOSA2LjA1NiA2LjA1NiAwIDAgMC0uNzQ3LTcuMDczek0xMy4yNiAyMi40M2E0LjQ3NiA0LjQ3NiAwIDAgMS0yLjg3Ni0xLjA0bC4xNDEtLjA4MSA0Ljc3OS0yLjc1OGEuNzk1Ljc5NSAwIDAgMCAuMzkyLS42ODF2LTYuNzM3bDIuMDIgMS4xNjhhLjA3MS4wNzEgMCAwIDEgLjAzOC4wNTJ2NS41ODNhNC41MDQgNC41MDQgMCAwIDEtNC40OTQgNC40OTR6TTMuNiAxOC4zMDRhNC40NyA0LjQ3IDAgMCAxLS41MzUtMy4wMTRsLjE0Mi4wODUgNC43ODMgMi43NTlhLjc3MS43NzEgMCAwIDAgLjc4IDBsNS44NDMtMy4zNjl2Mi4zMzJhLjA4LjA4IDAgMCAxLS4wMzMuMDYyTDkuNzQgMTkuOTVhNC41IDQuNSAwIDAgMS02LjE0LTEuNjQ2ek0yLjM0IDcuODk2YTQuNDg1IDQuNDg1IDAgMCAxIDIuMzY2LTEuOTczVjExLjZhLjc2Ni43NjYgMCAwIDAgLjM4OC42NzZsNS44MTUgMy4zNTUtMi4wMiAxLjE2OGEuMDc2LjA3NiAwIDAgMS0uMDcxIDBsLTQuODMtMi43ODZBNC41MDQgNC41MDQgMCAwIDEgMi4zNCA3Ljg3MnptMTYuNTk3IDMuODU1bC01LjgzMy0zLjM4N0wxNS4xMTkgNy4yYS4wNzYuMDc2IDAgMCAxIC4wNzEgMGw0LjgzIDIuNzkxYTQuNDk0IDQuNDk0IDAgMCAxLS42NzYgOC4xMDV2LTUuNjc4YS43OS43OSAwIDAgMC0uNDA3LS42Njd6bTIuMDEtMy4wMjNsLS4xNDEtLjA4NS00Ljc3NC0yLjc4MmEuNzc2Ljc3NiAwIDAgMC0uNzg1IDBMOS40MDkgOS4yM1Y2Ljg5N2EuMDY2LjA2NiAwIDAgMSAuMDI4LS4wNjFsNC44My0yLjc4N2E0LjUgNC41IDAgMCAxIDYuNjggNC42NnptLTEyLjY0IDQuMTM1bC0yLjAyLTEuMTY0YS4wOC4wOCAwIDAgMS0uMDM4LS4wNTdWNi4wNzVhNC41IDQuNSAwIDAgMSA3LjM3NS0zLjQ1M2wtLjE0Mi4wOEw4LjcwNCA1LjQ2YS43OTUuNzk1IDAgMCAwLS4zOTMuNjgxem0xLjA5Ny0yLjM2NWwyLjYwMi0xLjUgMi42MDcgMS41djIuOTk5bC0yLjU5NyAxLjUtMi42MDctMS41eiIvPjwvc3ZnPg==
-[codex-link]: https://github.com/VoltAgent/awesome-codex-subagents
-
+If you find an issue with a listed agent or want your contribution removed, please [open an issue](https://github.com/ampedweb/awesome-subagents/issues).
