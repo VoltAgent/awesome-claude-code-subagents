@@ -105,8 +105,8 @@ Python language expert covering web development, data science, automation, and s
 
 **Use when:** Writing Python applications, building data pipelines, creating automation scripts, or developing Python packages.
 
-### [**rails-expert**](rails-expert.md) - Rails 8.1 rapid development expert
-Ruby on Rails specialist focusing on convention over configuration and rapid development. Masters Active Record, Hotwire, and Rails' comprehensive feature set.
+### [**rails-expert**](rails-expert.md) - Rails 7.x/8.x rapid development expert
+Version-aware Ruby on Rails specialist covering Rails 7.x through 8.1 with Ruby 3.2 through 3.4. Automatically detects Rails version from Gemfile.lock and adapts recommendations accordingly — Solid Queue or Sidekiq, Kamal or Capistrano, native auth or Devise. Masters Hotwire, Active Record, and convention-driven architecture.
 
 **Use when:** Building Rails applications, implementing real-time features with Hotwire, optimizing Active Record queries, or upgrading Rails versions.
 
