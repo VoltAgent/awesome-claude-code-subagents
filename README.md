@@ -87,13 +87,13 @@ Cursor also reads `.claude/agents/` natively, so installing for Claude Code cove
 | `./generate.sh list` | List source agents with details |
 | `./generate.sh help` | Show help |
 
-**`setup.sh`** - Creates or removes symlinks between agent directories and tool config. Uses an interactive checkbox selector to choose which tools (Claude Code, OpenCode, Cursor) to link or unlink.
+**`setup.sh`** - Creates or removes symlinks between agent directories and tool config. All commands present an interactive checkbox selector to choose which tools (Claude Code, OpenCode, Cursor) to link or unlink.
 
 | Command | Description |
 |---------|-------------|
-| `./setup.sh global` | Symlink into global config (interactive tool selection) |
+| `./setup.sh global` | Symlink into global config |
 | `./setup.sh project <path>` | Symlink into a project's local config |
-| `./setup.sh unlink global` | Remove global symlinks (interactive tool selection) |
+| `./setup.sh unlink global` | Remove global symlinks |
 | `./setup.sh unlink project <path>` | Remove project symlinks |
 
 ---
