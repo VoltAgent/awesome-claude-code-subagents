@@ -41,42 +41,31 @@ OUTPUT_DIR="$SCRIPT_DIR/agent-specific"
 #
 # To add a new tool:
 #   1. Append its key to TOOL_KEYS (controls checkbox display order)
-#   2. Add one entry to each of the five associative arrays below
+#   2. Add a block of five entries to TOOLS below, keyed as "<key>:<property>"
 #
 # No changes to any function are needed.
 # ---------------------------------------------------------------------------
 
 TOOL_KEYS=( claude opencode cursor )
 
-declare -A TOOL_LABEL=(
-    [claude]="Claude Code"
-    [opencode]="OpenCode"
-    [cursor]="Cursor"
-)
+declare -A TOOLS=(
+    [claude:label]="Claude Code"
+    [claude:source]="$CATEGORIES_DIR"
+    [claude:global_target]="$HOME/.claude/agents"
+    [claude:project_dir]=".claude/agents"
+    [claude:needs_generate]=false
 
-declare -A TOOL_SOURCE=(
-    [claude]="$CATEGORIES_DIR"
-    [opencode]="$OUTPUT_DIR/opencode"
-    [cursor]="$OUTPUT_DIR/cursor"
-)
+    [opencode:label]="OpenCode"
+    [opencode:source]="$OUTPUT_DIR/opencode"
+    [opencode:global_target]="${XDG_CONFIG_HOME:-$HOME/.config}/opencode/agents"
+    [opencode:project_dir]=".opencode/agents"
+    [opencode:needs_generate]=true
 
-declare -A TOOL_GLOBAL_TARGET=(
-    [claude]="$HOME/.claude/agents"
-    [opencode]="${XDG_CONFIG_HOME:-$HOME/.config}/opencode/agents"
-    [cursor]="$HOME/.cursor/agents"
-)
-
-declare -A TOOL_PROJECT_DIR=(
-    [claude]=".claude/agents"
-    [opencode]=".opencode/agents"
-    [cursor]=".cursor/agents"
-)
-
-# true = generated output must exist before linking (run generate.sh first)
-declare -A TOOL_NEEDS_GENERATE=(
-    [claude]=false
-    [opencode]=true
-    [cursor]=true
+    [cursor:label]="Cursor"
+    [cursor:source]="$OUTPUT_DIR/cursor"
+    [cursor:global_target]="$HOME/.cursor/agents"
+    [cursor:project_dir]=".cursor/agents"
+    [cursor:needs_generate]=true
 )
 
 # ---------------------------------------------------------------------------
@@ -130,14 +119,13 @@ build_tool_options() {
     local _opts=()
 
     for key in "${TOOL_KEYS[@]}"; do
-        local label="${TOOL_LABEL[$key]}"
+        local label="${TOOLS[$key:label]}"
         if [[ "$mode" == "global" ]]; then
-            local target="${TOOL_GLOBAL_TARGET[$key]}"
-            # Shorten $HOME to ~ for display
+            local target="${TOOLS[$key:global_target]}"
             local display="${target/#$HOME/\~}"
             _opts+=( "$label ($display/)" )
         else
-            _opts+=( "$label (${TOOL_PROJECT_DIR[$key]}/)" )
+            _opts+=( "$label (${TOOLS[$key:project_dir]}/)" )
         fi
     done
 
@@ -358,11 +346,11 @@ cmd_global() {
 
     for idx in "${chosen[@]}"; do
         local key="${TOOL_KEYS[$idx]}"
-        local label="${TOOL_LABEL[$key]}"
-        local source="${TOOL_SOURCE[$key]}"
-        local target="${TOOL_GLOBAL_TARGET[$key]}"
+        local label="${TOOLS[$key:label]}"
+        local source="${TOOLS[$key:source]}"
+        local target="${TOOLS[$key:global_target]}"
 
-        if [[ "${TOOL_NEEDS_GENERATE[$key]}" == true ]]; then
+        if [[ "${TOOLS[$key:needs_generate]}" == true ]]; then
             check_generated "$source" "$label" || continue
         fi
 
@@ -404,11 +392,11 @@ cmd_project() {
 
     for idx in "${chosen[@]}"; do
         local key="${TOOL_KEYS[$idx]}"
-        local label="${TOOL_LABEL[$key]}"
-        local source="${TOOL_SOURCE[$key]}"
-        local target="$abs_project/${TOOL_PROJECT_DIR[$key]}"
+        local label="${TOOLS[$key:label]}"
+        local source="${TOOLS[$key:source]}"
+        local target="$abs_project/${TOOLS[$key:project_dir]}"
 
-        if [[ "${TOOL_NEEDS_GENERATE[$key]}" == true ]]; then
+        if [[ "${TOOLS[$key:needs_generate]}" == true ]]; then
             check_generated "$source" "$label" || continue
         fi
 
@@ -436,9 +424,9 @@ cmd_unlink_global() {
 
     for idx in "${chosen[@]}"; do
         local key="${TOOL_KEYS[$idx]}"
-        local label="${TOOL_LABEL[$key]}"
-        local source="${TOOL_SOURCE[$key]}"
-        local target="${TOOL_GLOBAL_TARGET[$key]}"
+        local label="${TOOLS[$key:label]}"
+        local source="${TOOLS[$key:source]}"
+        local target="${TOOLS[$key:global_target]}"
 
         echo ""
         echo -e "${BOLD}Removing global $label symlinks${NC}"
@@ -477,9 +465,9 @@ cmd_unlink_project() {
 
     for idx in "${chosen[@]}"; do
         local key="${TOOL_KEYS[$idx]}"
-        local label="${TOOL_LABEL[$key]}"
-        local source="${TOOL_SOURCE[$key]}"
-        local target="$abs_project/${TOOL_PROJECT_DIR[$key]}"
+        local label="${TOOLS[$key:label]}"
+        local source="${TOOLS[$key:source]}"
+        local target="$abs_project/${TOOLS[$key:project_dir]}"
 
         echo ""
         echo -e "${BOLD}Removing $label symlinks from $abs_project${NC}"
