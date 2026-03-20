@@ -47,6 +47,7 @@ OUTPUT_DIR="$SCRIPT_DIR/agent-specific"
 # ---------------------------------------------------------------------------
 
 TOOL_KEYS=( claude opencode cursor )
+SYMLINK_NAME="awesome-subagents"
 
 declare -A TOOLS=(
     [claude:label]="Claude Code"
@@ -123,9 +124,9 @@ build_tool_options() {
         if [[ "$mode" == "global" ]]; then
             local target="${TOOLS[$key:global_target]}"
             local display="${target/#$HOME/\~}"
-            _opts+=( "$label ($display/)" )
+            _opts+=( "$label ($display/$SYMLINK_NAME/)" )
         else
-            _opts+=( "$label (${TOOLS[$key:project_dir]}/)" )
+            _opts+=( "$label (${TOOLS[$key:project_dir]}/$SYMLINK_NAME/)" )
         fi
     done
 
@@ -241,93 +242,78 @@ select_tools() {
 }
 
 # ---------------------------------------------------------------------------
-# link_category_dirs <source_base> <target_base> <label>
+# link_source_dir <source> <target_base> <label>
+#
+# Creates a single symlink: <target_base>/awesome-subagents -> <source>
 # ---------------------------------------------------------------------------
 
-link_category_dirs() {
-    local source_base="$1"
+link_source_dir() {
+    local source="$1"
     local target_base="$2"
     local label="$3"
 
     mkdir -p "$target_base"
 
-    local linked=0
-    local skipped=0
+    local abs_source
+    abs_source="$(cd "$source" && pwd)"
+    local target="$target_base/$SYMLINK_NAME"
 
-    for source_dir in "$source_base"/*/; do
-        [[ -d "$source_dir" ]] || continue
-
-        local category
-        category=$(basename "$source_dir")
-        local target="$target_base/$category"
-        local abs_source
-        abs_source="$(cd "$source_dir" && pwd)"
-
-        if [[ -L "$target" ]]; then
-            local existing_dest
-            existing_dest=$(readlink "$target")
-            if [[ "$existing_dest" == "$abs_source" ]]; then
-                log_skip "$label: $category (already linked)"
-                (( ++skipped ))
-                continue
-            else
-                log_warn "$label: $category -> symlink exists pointing elsewhere, skipping"
-                log_warn "  existing: $existing_dest"
-                log_warn "  wanted:   $abs_source"
-                (( ++skipped ))
-                continue
-            fi
-        elif [[ -e "$target" ]]; then
-            log_warn "$label: $category -> path exists and is not a symlink, skipping"
-            log_warn "  path: $target"
-            (( ++skipped ))
-            continue
+    if [[ -L "$target" ]]; then
+        local existing_dest
+        existing_dest=$(readlink "$target")
+        if [[ "$existing_dest" == "$abs_source" ]]; then
+            log_skip "$label: $SYMLINK_NAME/ (already linked)"
+            echo "  $label: 0 linked, 1 skipped"
+            return
+        else
+            log_warn "$label: $SYMLINK_NAME/ -> symlink exists pointing elsewhere, skipping"
+            log_warn "  existing: $existing_dest"
+            log_warn "  wanted:   $abs_source"
+            echo "  $label: 0 linked, 1 skipped"
+            return
         fi
+    elif [[ -e "$target" ]]; then
+        log_warn "$label: $SYMLINK_NAME/ -> path exists and is not a symlink, skipping"
+        log_warn "  path: $target"
+        echo "  $label: 0 linked, 1 skipped"
+        return
+    fi
 
-        ln -s "$abs_source" "$target"
-        log_info "$label: $category -> $target"
-        (( ++linked ))
-    done
-
-    echo "  $label: $linked linked, $skipped skipped"
+    ln -s "$abs_source" "$target"
+    log_info "$label: $SYMLINK_NAME/ -> $target"
+    echo "  $label: 1 linked, 0 skipped"
 }
 
 # ---------------------------------------------------------------------------
-# unlink_category_dirs <source_base> <target_base> <label>
+# unlink_source_dir <source> <target_base> <label>
 # ---------------------------------------------------------------------------
 
-unlink_category_dirs() {
-    local source_base="$1"
+unlink_source_dir() {
+    local source="$1"
     local target_base="$2"
     local label="$3"
 
     [[ -d "$target_base" ]] || return 0
 
-    local removed=0
+    local abs_source
+    abs_source="$(cd "$source" && pwd)"
+    local target="$target_base/$SYMLINK_NAME"
 
-    for source_dir in "$source_base"/*/; do
-        [[ -d "$source_dir" ]] || continue
-
-        local category
-        category=$(basename "$source_dir")
-        local target="$target_base/$category"
-        local abs_source
-        abs_source="$(cd "$source_dir" && pwd)"
-
-        if [[ -L "$target" ]]; then
-            local existing_dest
-            existing_dest=$(readlink "$target")
-            if [[ "$existing_dest" == "$abs_source" ]]; then
-                rm "$target"
-                log_unlink "$label: $category"
-                (( ++removed ))
-            else
-                log_skip "$label: $category (symlink points elsewhere, leaving untouched)"
-            fi
+    if [[ -L "$target" ]]; then
+        local existing_dest
+        existing_dest=$(readlink "$target")
+        if [[ "$existing_dest" == "$abs_source" ]]; then
+            rm "$target"
+            log_unlink "$label: $SYMLINK_NAME/"
+            echo "  $label: 1 symlink removed"
+        else
+            log_skip "$label: $SYMLINK_NAME/ (symlink points elsewhere, leaving untouched)"
+            echo "  $label: 0 symlinks removed"
         fi
-    done
-
-    echo "  $label: $removed symlinks removed"
+    else
+        log_skip "$label: $SYMLINK_NAME/ (not found)"
+        echo "  $label: 0 symlinks removed"
+    fi
 }
 
 # ---------------------------------------------------------------------------
@@ -356,9 +342,9 @@ cmd_global() {
 
         echo ""
         echo -e "${BOLD}$label - Global${NC}"
-        echo "  Target: $target"
+        echo "  Target: $target/$SYMLINK_NAME/"
         echo ""
-        link_category_dirs "$source" "$target" "$label"
+        link_source_dir "$source" "$target" "$label"
     done
 
     echo ""
@@ -402,9 +388,9 @@ cmd_project() {
 
         echo ""
         echo -e "${BOLD}$label - Project${NC}"
-        echo "  Target: $target"
+        echo "  Target: $target/$SYMLINK_NAME/"
         echo ""
-        link_category_dirs "$source" "$target" "$label"
+        link_source_dir "$source" "$target" "$label"
     done
 
     echo ""
@@ -429,9 +415,9 @@ cmd_unlink_global() {
         local target="${TOOLS[$key:global_target]}"
 
         echo ""
-        echo -e "${BOLD}Removing global $label symlinks${NC}"
+        echo -e "${BOLD}Removing global $label symlink${NC}"
         echo ""
-        unlink_category_dirs "$source" "$target" "$label"
+        unlink_source_dir "$source" "$target" "$label"
     done
 
     echo ""
@@ -470,9 +456,9 @@ cmd_unlink_project() {
         local target="$abs_project/${TOOLS[$key:project_dir]}"
 
         echo ""
-        echo -e "${BOLD}Removing $label symlinks from $abs_project${NC}"
+        echo -e "${BOLD}Removing $label symlink from $abs_project${NC}"
         echo ""
-        unlink_category_dirs "$source" "$target" "$label"
+        unlink_source_dir "$source" "$target" "$label"
     done
 
     echo ""
@@ -512,6 +498,10 @@ Interactive selector keys:
     q or Ctrl-C             Abort
 
 Notes:
+    - Each tool gets a single symlink named awesome-subagents/ inside its agents dir
+    - Claude Code: ~/.claude/agents/awesome-subagents -> categories/
+    - OpenCode:    ~/.config/opencode/agents/awesome-subagents -> agent-specific/opencode/
+    - Cursor:      ~/.cursor/agents/awesome-subagents -> agent-specific/cursor/
     - Claude Code symlinks directly from categories/ (no generation step needed)
     - OpenCode and Cursor require agent-specific/ to exist (run ./generate.sh first)
     - If agent-specific/ is missing, the affected tool step is skipped with a warning

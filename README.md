@@ -41,11 +41,13 @@ cd awesome-subagents
 ./setup.sh project /path/to/your-project # project-level only
 ```
 
+The script creates a single symlink named `awesome-subagents/` inside each tool's agents directory, so agents appear as `awesome-subagents/01-core-development/backend-developer`, etc.
+
 **Option 2 - Copy manually:**
 
 ```bash
 git clone https://github.com/ampedweb/awesome-subagents.git
-cp -r awesome-subagents/categories/* ~/.claude/agents/
+cp -r awesome-subagents/categories ~/.claude/agents/awesome-subagents
 ```
 
 ### OpenCode
