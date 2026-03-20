@@ -272,6 +272,7 @@ Agent coordination and meta-programming.
 
 - [**agent-installer**](categories/09-meta-orchestration/agent-installer.md) - Browse and install agents from this repository via GitHub
 - [**agent-organizer**](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
+- [**agentopology**](https://github.com/agentopology/agentopology) - Declarative language and skill for designing multi-agent teams — type `/agentopology`, describe your team in plain English, and it generates the full topology (agents, flows, gates, hooks, group chats, MCP servers) with interactive graph visualization and scaffolding to 7 platforms (Claude Code, OpenClaw, Cursor, Codex, Gemini, Copilot, Kiro)
 - [**context-manager**](categories/09-meta-orchestration/context-manager.md) - Context optimization expert
 - [**error-coordinator**](categories/09-meta-orchestration/error-coordinator.md) - Error handling and recovery specialist
 - [**it-ops-orchestrator**](categories/09-meta-orchestration/it-ops-orchestrator.md) - IT operations workflow orchestration specialist
