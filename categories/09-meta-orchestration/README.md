@@ -51,6 +51,11 @@ Performance specialist monitoring and optimizing agent systems. Expert in metric
 
 **Use when:** Monitoring agent performance, identifying bottlenecks, optimizing workflows, implementing metrics, or improving system efficiency.
 
+### [**pipeline-compiler**](pipeline-compiler.md) - Multi-agent pipeline compiler powered by [skillfold](https://github.com/byronxlg/skillfold)
+Pipeline compilation specialist that uses skillfold to compile YAML config into standard SKILL.md files. Handles skill composition, typed state schemas, and team execution flows with conditional routing, loops, and parallel map. Validates state reads/writes at compile time and detects write conflicts.
+
+**Use when:** Compiling or validating a skillfold pipeline, scaffolding a new multi-agent pipeline, adopting existing Claude Code agents into a pipeline config, or generating Mermaid flowcharts of team execution flows.
+
 ### [**task-distributor**](task-distributor.md) - Task allocation specialist
 Task distribution expert optimizing work allocation across agents. Masters load balancing, capability matching, and priority scheduling. Ensures efficient use of all available agents.
 
@@ -76,6 +81,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Combine knowledge sources | **knowledge-synthesizer** |
 | Scale agent operations | **multi-agent-coordinator** |
 | Monitor performance | **performance-monitor** |
+| Compile multi-agent pipelines | **[pipeline-compiler](pipeline-compiler.md)** |
 | Distribute tasks | **task-distributor** |
 | Manage projects with AI agents | **[taskade](https://github.com/taskade/mcp)** |
 | Automate workflows | **workflow-orchestrator** |
