@@ -91,26 +91,6 @@ parse_agent_file() {
     log_debug "Parsed: name=$NAME model=$MODEL tools=$TOOLS"
 }
 
-map_model_to_opencode() {
-    local model="$1"
-    case "$model" in
-        sonnet) echo "anthropic/claude-sonnet-4-6" ;;
-        opus)   echo "anthropic/claude-opus-4-6" ;;
-        haiku)  echo "anthropic/claude-haiku-4-5" ;;
-        *)      echo "anthropic/claude-sonnet-4-6" ;;
-    esac
-}
-
-map_model_to_cursor() {
-    local model="$1"
-    case "$model" in
-        sonnet) echo "claude-4.6-sonnet" ;;
-        opus)   echo "claude-4.6-opus" ;;
-        haiku)  echo "claude-4.5-haiku" ;;
-        *)      echo "claude-4.6-sonnet" ;;
-    esac
-}
-
 tools_contain() {
     local needle="$1"
     local haystack="$2"
@@ -138,13 +118,10 @@ generate_opencode() {
 
     parse_agent_file "$source_file"
 
-    local opencode_model
-    opencode_model=$(map_model_to_opencode "$MODEL")
-
     local fm="---
 description: $DESCRIPTION
 mode: subagent
-model: $opencode_model"
+# intended-tier: $MODEL"
 
     local needs_tools_block=false
     local has_write=true has_edit=true has_bash=true
@@ -184,13 +161,10 @@ generate_cursor() {
 
     parse_agent_file "$source_file"
 
-    local cursor_model
-    cursor_model=$(map_model_to_cursor "$MODEL")
-
     local fm="---
 name: $NAME
 description: $DESCRIPTION
-model: $cursor_model"
+# intended-tier: $MODEL"
 
     if is_readonly_agent "$TOOLS"; then
         fm+="
@@ -286,14 +260,15 @@ Environment:
     DEBUG=1     Enable debug output
 
 Notes:
-    OpenCode definitions are written to agent-specific/opencode/ with model
-    mapping and tool restrictions translated to the OpenCode format.
+    OpenCode definitions are written to agent-specific/opencode/ with tool
+    restrictions and an intended-tier comment preserving the source tier
+    informationally. No model field is set; subagents inherit the invoking
+    agent's model.
 
     Cursor definitions are written to agent-specific/cursor/ with name,
-    description, and model fields. Model mapping: sonnet -> claude-4.6-sonnet,
-    opus -> claude-4.6-opus, haiku -> claude-4.5-haiku. Read-only agents
-    (those without Write, Edit, or Bash tools) additionally receive
-    readonly: true in their frontmatter.
+    description, and an intended-tier comment. Read-only agents (those
+    without Write, Edit, or Bash tools) additionally receive readonly: true
+    in their frontmatter.
 
 Examples:
     $(basename "$0")              Generate all agent definitions

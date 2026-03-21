@@ -59,7 +59,7 @@ You are a [role description]...
 
 ## Scripts
 
-- `./generate.sh` - Reads `categories/` and generates equivalent definitions in `agent-specific/opencode/` and `agent-specific/cursor/`. Cursor definitions include a `model` field mapped from the source (`sonnet` -> `claude-4.6-sonnet`, `opus` -> `claude-4.6-opus`, `haiku` -> `claude-4.5-haiku`) and `readonly: true` for agents that have no Write, Edit, or Bash tools.
+- `./generate.sh` - Reads `categories/` and generates equivalent definitions in `agent-specific/opencode/` and `agent-specific/cursor/`. Generated definitions include an `# intended-tier:` comment preserving the source tier informationally. Cursor definitions include `readonly: true` for agents that have no Write, Edit, or Bash tools.
 - `./setup.sh` - Creates a single symlink named `awesome-subagents/` inside each tool's agents directory, pointing to the relevant source directory. Uses an interactive checkbox selector so users can choose which tools (Claude Code, OpenCode, Cursor) to link. Claude Code symlinks from `categories/` directly; OpenCode and Cursor symlink from `agent-specific/`.
 
 ## Contributing a New Agent
