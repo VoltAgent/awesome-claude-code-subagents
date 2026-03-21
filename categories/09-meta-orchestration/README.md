@@ -13,6 +13,7 @@ Use these subagents when you need to:
 - **Monitor performance** of AI workflows
 - **Design complex workflows** with multiple steps
 - **Scale AI operations** across teams
+- **Compile agent pipelines** from declarative config
 
 ## Available Subagents
 
@@ -51,6 +52,11 @@ Performance specialist monitoring and optimizing agent systems. Expert in metric
 
 **Use when:** Monitoring agent performance, identifying bottlenecks, optimizing workflows, implementing metrics, or improving system efficiency.
 
+### [**skillfold**](https://github.com/byronxlg/skillfold) - YAML pipeline compiler for multi-agent teams
+Compile-time pipeline compiler that turns declarative YAML config into standard SKILL.md files. Supports skill composition, typed state schemas, team flow with conditional routing, loops, and parallel map, and orchestrator generation. No runtime, no daemon - YAML in, Markdown out.
+
+**Use when:** Defining multi-agent pipelines as version-controlled YAML, compiling skill compositions into agent profiles, validating state schemas and team flow at build time, or generating orchestrator plans from flow definitions. Install via npm: `npm install -g skillfold`
+
 ### [**task-distributor**](task-distributor.md) - Task allocation specialist
 Task distribution expert optimizing work allocation across agents. Masters load balancing, capability matching, and priority scheduling. Ensures efficient use of all available agents.
 
@@ -76,6 +82,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Combine knowledge sources | **knowledge-synthesizer** |
 | Scale agent operations | **multi-agent-coordinator** |
 | Monitor performance | **performance-monitor** |
+| Compile agent pipelines from YAML | **[skillfold](https://github.com/byronxlg/skillfold)** |
 | Distribute tasks | **task-distributor** |
 | Manage projects with AI agents | **[taskade](https://github.com/taskade/mcp)** |
 | Automate workflows | **workflow-orchestrator** |
@@ -98,6 +105,12 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 - **workflow-orchestrator** for process design
 - **task-distributor** for work distribution
 - **error-coordinator** for resilience
+- **performance-monitor** for optimization
+
+**Pipeline Compilation:**
+- **[skillfold](https://github.com/byronxlg/skillfold)** for declarative pipeline definition
+- **agent-organizer** for runtime coordination
+- **task-distributor** for work allocation
 - **performance-monitor** for optimization
 
 **Knowledge Management:**
