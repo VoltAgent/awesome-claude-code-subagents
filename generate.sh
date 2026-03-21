@@ -54,7 +54,7 @@ parse_agent_file() {
     BODY=""
 
     local content
-    content=$(cat "$file")
+    content=$(tr -d '\r' < "$file")
 
     local in_frontmatter=false
     local frontmatter=""
