@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 #
 # Agent Definition Generator
 #
