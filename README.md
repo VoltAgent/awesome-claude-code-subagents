@@ -275,6 +275,7 @@ Agent coordination and meta-programming.
 - [**context-manager**](categories/09-meta-orchestration/context-manager.md) - Context optimization expert
 - [**error-coordinator**](categories/09-meta-orchestration/error-coordinator.md) - Error handling and recovery specialist
 - [**it-ops-orchestrator**](categories/09-meta-orchestration/it-ops-orchestrator.md) - IT operations workflow orchestration specialist
+- [**kasetto**](https://github.com/pivoshenko/kasetto) - An extremely fast AI skills manager, written in Rust
 - [**knowledge-synthesizer**](categories/09-meta-orchestration/knowledge-synthesizer.md) - Knowledge aggregation expert
 - [**multi-agent-coordinator**](categories/09-meta-orchestration/multi-agent-coordinator.md) - Advanced multi-agent orchestration
 - [**performance-monitor**](categories/09-meta-orchestration/performance-monitor.md) - Agent performance optimization
