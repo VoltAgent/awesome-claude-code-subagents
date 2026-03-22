@@ -182,6 +182,8 @@ Testing, security, and code quality experts.
 - [**ad-security-reviewer**](categories/04-quality-security/ad-security-reviewer.md) - Active Directory security and GPO audit specialist
 - [**architect-reviewer**](categories/04-quality-security/architect-reviewer.md) - Architecture review specialist
 - [**chaos-engineer**](categories/04-quality-security/chaos-engineer.md) - System resilience testing expert
+- [**clawsearch**](https://github.com/clawsec/clawsearch) - AI agent skill discovery engine with Trust Score safety ratings and pre-install security checks
+- [**clawsec**](https://github.com/clawsec/clawsec) - Automated security auditor for AI agent skills — static analysis, permissions review, and trust scoring
 - [**code-reviewer**](categories/04-quality-security/code-reviewer.md) - Code quality guardian
 - [**compliance-auditor**](categories/04-quality-security/compliance-auditor.md) - Regulatory compliance expert
 - [**debugger**](categories/04-quality-security/debugger.md) - Advanced debugging specialist
