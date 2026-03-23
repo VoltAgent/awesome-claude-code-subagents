@@ -135,6 +135,7 @@ Language-specific experts with deep framework knowledge.
 - [**dotnet-core-expert**](categories/02-language-specialists/dotnet-core-expert.md) - .NET 8 cross-platform specialist
 - [**dotnet-framework-4.8-expert**](categories/02-language-specialists/dotnet-framework-4.8-expert.md) - .NET Framework legacy enterprise specialist
 - [**elixir-expert**](categories/02-language-specialists/elixir-expert.md) - Elixir and OTP fault-tolerant systems expert
+- [**fastapi-developer**](categories/02-language-specialists/fastapi-developer.md) - Modern async Python API framework expert
 - [**flutter-expert**](categories/02-language-specialists/flutter-expert.md) - Flutter 3+ cross-platform mobile expert
 - [**golang-pro**](categories/02-language-specialists/golang-pro.md) - Go concurrency specialist
 - [**java-architect**](categories/02-language-specialists/java-architect.md) - Enterprise Java expert
@@ -211,6 +212,7 @@ Data engineering, ML, and AI specialists.
 - [**nlp-engineer**](categories/05-data-ai/nlp-engineer.md) - Natural language processing expert
 - [**postgres-pro**](categories/05-data-ai/postgres-pro.md) - PostgreSQL database expert
 - [**prompt-engineer**](categories/05-data-ai/prompt-engineer.md) - Prompt optimization specialist
+- [**reinforcement-learning-engineer**](categories/05-data-ai/reinforcement-learning-engineer.md) - Reinforcement learning and agent training expert
 
 ### [06. Developer Experience](categories/06-developer-experience/)
 **Plugin:** `voltagent-dev-exp`

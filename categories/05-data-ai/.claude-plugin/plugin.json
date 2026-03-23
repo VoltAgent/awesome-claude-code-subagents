@@ -1,6 +1,6 @@
 {
   "name": "voltagent-data-ai",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Data engineering, ML, and AI specialists - data pipelines, machine learning, LLM architecture",
   "author": {
     "name": "VoltAgent Community",
@@ -20,6 +20,7 @@
     "./mlops-engineer.md",
     "./nlp-engineer.md",
     "./postgres-pro.md",
-    "./prompt-engineer.md"
+    "./prompt-engineer.md",
+    "./reinforcement-learning-engineer.md"
   ]
 }
