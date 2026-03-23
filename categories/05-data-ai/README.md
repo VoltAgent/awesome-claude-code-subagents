@@ -76,6 +76,11 @@ Prompt engineering expert crafting effective prompts for AI models. Masters prom
 
 **Use when:** Designing prompts for LLMs, optimizing AI responses, implementing prompt strategies, testing prompt effectiveness, or building prompt-based applications.
 
+### [**reinforcement-learning-engineer**](reinforcement-learning-engineer.md) - Reinforcement learning and agent training expert
+RL specialist designing environments, shaping rewards, and training agents with modern algorithms like PPO, SAC, and DQN. Masters sim-to-real transfer, multi-agent systems, and safe exploration strategies for robotics, gaming, and autonomous decision-making.
+
+**Use when:** Designing RL environments, training game AI or robotics agents, implementing policy gradient methods, optimizing reward functions, or deploying autonomous decision-making systems.
+
 ## Quick Selection Guide
 
 | If you need to... | Use this subagent |
@@ -92,6 +97,7 @@ Prompt engineering expert crafting effective prompts for AI models. Masters prom
 | Process text data | **nlp-engineer** |
 | Optimize PostgreSQL | **postgres-pro** |
 | Design AI prompts | **prompt-engineer** |
+| Train RL agents | **reinforcement-learning-engineer** |
 
 ## Common Data & AI Patterns
 
@@ -118,6 +124,12 @@ Prompt engineering expert crafting effective prompts for AI models. Masters prom
 - **mlops-engineer** for operations
 - **ai-engineer** for deployment
 - **data-engineer** for data flow
+
+**RL Systems:**
+- **reinforcement-learning-engineer** for agent training
+- **ml-engineer** for training infrastructure
+- **mlops-engineer** for model deployment
+- **ai-engineer** for system integration
 
 ## Getting Started
 

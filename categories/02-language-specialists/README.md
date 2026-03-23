@@ -54,6 +54,10 @@ Elixir language expert focusing on fault-tolerant, concurrent systems using OTP 
 Mobile development specialist building production-ready iOS and Android applications with Expo SDK 52+ and React Native. Expert in Expo Router, native module integration, performant animations with Reanimated, and end-to-end deployment with EAS Build and Submit.
 
 **Use when:** Building mobile apps with Expo and React Native, implementing push notifications, setting up EAS builds and OTA updates, optimizing React Native performance, or integrating native features via config plugins.
+### [**fastapi-developer**](fastapi-developer.md) - Modern async Python API framework expert
+FastAPI specialist building high-performance async APIs with automatic OpenAPI documentation. Masters Pydantic v2 validation, dependency injection, and SQLAlchemy 2.0 async patterns. Delivers blazing-fast, type-safe Python APIs.
+
+**Use when:** Building async Python APIs, implementing Pydantic v2 data validation, designing dependency injection patterns, deploying ASGI applications, or creating auto-documented RESTful services.
 
 ### [**flutter-expert**](flutter-expert.md) - Flutter 3+ cross-platform mobile expert
 Mobile development specialist creating beautiful, natively compiled applications from a single codebase. Expert in widget composition, state management, and platform-specific implementations.
@@ -158,6 +162,7 @@ Vue.js framework specialist mastering the Composition API, reactivity system, an
 | C++ | **cpp-pro** | Systems programming, performance-critical code |
 | C#/.NET | **csharp-developer** | Windows apps, enterprise software |
 | Django | **django-developer** | Python web apps, REST APIs |
+| FastAPI | **fastapi-developer** | Modern async Python APIs |
 | .NET Core | **dotnet-core-expert** | Cross-platform .NET, microservices |
 | .NET Framework | **dotnet-framework-4.8-expert** | Legacy enterprise apps, Windows services |
 | Elixir | **elixir-expert** | Fault-tolerant systems, Phoenix/LiveView |
@@ -197,6 +202,7 @@ Vue.js framework specialist mastering the Composition API, reactivity system, an
 - **java-architect** + **spring-boot-engineer**
 - **csharp-developer** + **dotnet-core-expert**
 - **python-pro** + **django-developer**
+- **python-pro** + **fastapi-developer**
 
 **Systems Programming:**
 - **rust-engineer** for safety-critical systems
