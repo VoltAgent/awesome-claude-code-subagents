@@ -23,7 +23,7 @@
       "description": "Language-specific expert agents with deep framework knowledge - Python, TypeScript, Go, Rust, Java, and more",
       "version": "1.0.2",
       "category": "development",
-      "keywords": ["python", "typescript", "golang", "rust", "java", "react", "vue", "angular"]
+      "keywords": ["python", "typescript", "golang", "rust", "java", "react", "vue", "angular", "expo", "react-native"]
     },
     {
       "name": "voltagent-infra",
