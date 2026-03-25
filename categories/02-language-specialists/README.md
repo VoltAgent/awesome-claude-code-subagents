@@ -144,6 +144,11 @@ Swift language expert for Apple platform development. Masters SwiftUI, UIKit, an
 
 **Use when:** Developing iOS/macOS applications, implementing SwiftUI interfaces, working with Apple frameworks, or optimizing Swift performance.
 
+### [**symfony-specialist**](symfony-specialist.md) - Symfony 6+/7+/8+ PHP framework and Doctrine ORM expert
+Symfony framework specialist focusing on component-based architecture, Doctrine ORM, and the Symfony ecosystem. Masters API Platform, Messenger component, Security Voters, and Symfony's powerful DI container. Builds robust, maintainable PHP applications at scale.
+
+**Use when:** Building Symfony applications, architecting Doctrine entities with complex relationships, implementing async processing with Messenger, designing REST APIs with API Platform, or optimizing Symfony performance.
+
 ### [**typescript-pro**](typescript-pro.md) - TypeScript specialist
 TypeScript expert ensuring type safety in JavaScript applications. Masters advanced type system features, generics, and TypeScript configuration for large-scale applications.
 
@@ -182,6 +187,7 @@ Vue.js framework specialist mastering the Composition API, reactivity system, an
 | Spring Boot | **spring-boot-engineer** | Java microservices |
 | SQL | **sql-pro** | Database queries, optimization |
 | Swift | **swift-expert** | iOS/macOS development |
+| Symfony | **symfony-specialist** | Symfony/Doctrine PHP applications |
 | TypeScript | **typescript-pro** | Type-safe JavaScript |
 | Vue | **vue-expert** | Progressive web apps |
 
