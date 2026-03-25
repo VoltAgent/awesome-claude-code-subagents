@@ -162,6 +162,7 @@ DevOps, cloud, and deployment specialists.
 - [**azure-infra-engineer**](categories/03-infrastructure/azure-infra-engineer.md) - Azure infrastructure and Az PowerShell automation expert
 - [**cloud-architect**](categories/03-infrastructure/cloud-architect.md) - AWS/GCP/Azure specialist
 - [**database-administrator**](categories/03-infrastructure/database-administrator.md) - Database management expert
+- [**den**](https://github.com/us/den) - Self-hosted sandbox runtime with secure containers for code execution and built-in MCP server
 - [**docker-expert**](categories/03-infrastructure/docker-expert.md) - Docker containerization and optimization expert
 - [**deployment-engineer**](categories/03-infrastructure/deployment-engineer.md) - Deployment automation specialist
 - [**devops-engineer**](categories/03-infrastructure/devops-engineer.md) - CI/CD and automation expert
