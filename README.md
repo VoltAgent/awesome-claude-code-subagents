@@ -152,6 +152,7 @@ Language-specific experts with deep framework knowledge.
 - [**react-specialist**](categories/02-language-specialists/react-specialist.md) - React 18+ modern patterns expert
 - [**rust-engineer**](categories/02-language-specialists/rust-engineer.md) - Systems programming expert
 - [**spring-boot-engineer**](categories/02-language-specialists/spring-boot-engineer.md) - Spring Boot 3+ microservices expert
+- [**symfony-specialist**](categories/02-language-specialists/symfony-specialist.md) - Symfony 6+/7+/8+ PHP framework and Doctrine ORM expert
 
 
 ### [03. Infrastructure](categories/03-infrastructure/)
