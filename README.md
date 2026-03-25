@@ -419,7 +419,8 @@ Claude Code skill for browsing and fetching subagents from this catalog.
 cp -r tools/subagent-catalog ~/.claude/commands/
 ```
 
-
+### [Cortex](https://github.com/SKULLFIRE07/cortex-memory)
+Persistent AI memory for coding assistants. Auto-captures decisions, patterns, and context from Claude Code, Cursor, and Cline sessions. 3-layer memory (working/episodic/semantic). VSCode extension + CLI + MCP server. Free.
 
 ## 🤝 Contributing
 
