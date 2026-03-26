@@ -269,6 +269,11 @@ Product management and business analysis.
 - [**technical-writer**](categories/08-business-product/technical-writer.md) - Technical documentation specialist
 - [**ux-researcher**](categories/08-business-product/ux-researcher.md) - User research expert
 - [**wordpress-master**](categories/08-business-product/wordpress-master.md) - WordPress development and optimization expert
+- [**pm-discovery-lead**](https://github.com/marfoerst/the-pragmatic-pm/blob/main/agents/pm-discovery-lead.md) - Orchestrates product discovery through 4 phases: define problem space, gather evidence, synthesize findings, recommend next steps
+- [**pm-data-analyst**](https://github.com/marfoerst/the-pragmatic-pm/blob/main/agents/pm-data-analyst.md) - Helps PMs think quantitatively: define metrics, analyze funnels, design experiments, build dashboards
+- [**pm-comms-writer**](https://github.com/marfoerst/the-pragmatic-pm/blob/main/agents/pm-comms-writer.md) - Writes leadership-ready PM communication using SCQA and Pyramid Principle
+- [**pm-ops-facilitator**](https://github.com/marfoerst/the-pragmatic-pm/blob/main/agents/pm-ops-facilitator.md) - Manages PM team operational rhythm: retrospectives, post-mortems, process docs, CS playbooks
+- [**pm-gtm-strategist**](https://github.com/marfoerst/the-pragmatic-pm/blob/main/agents/pm-gtm-strategist.md) - Go-to-market orchestrator: messaging frameworks, battlecards, objection playbooks, sales decks, launch plans
 
 ### [09. Meta & Orchestration](categories/09-meta-orchestration/)
 **Plugin:** `voltagent-meta`
