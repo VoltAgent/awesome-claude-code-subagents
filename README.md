@@ -235,6 +235,7 @@ Tooling and developer productivity experts.
 - [**slack-expert**](categories/06-developer-experience/slack-expert.md) - Slack platform and @slack/bolt specialist
 - [**tooling-engineer**](categories/06-developer-experience/tooling-engineer.md) - Developer tooling specialist
 
+- [**clarvia-mcp-scout**](categories/06-developer-experience/clarvia-mcp-scout.md) - Evaluates MCP servers and AI agent tools using AEO scoring. Helps discover the best tools for your stack.
 ### [07. Specialized Domains](categories/07-specialized-domains/)
 **Plugin:** `voltagent-domains`
 
