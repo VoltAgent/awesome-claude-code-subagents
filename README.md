@@ -422,6 +422,10 @@ cp -r tools/subagent-catalog ~/.claude/commands/
 
 
 
+## 📦 Related Skill Frameworks
+
+- [AuraKit](https://github.com/smorky850612/Aurakit) — All-in-one Claude Code skill: 33 modes, 6-layer security, 23 hooks, 8 languages, 75% token savings. Cross-platform (Codex, Cursor, Manus, Windsurf). Install: `npx @smorky85/aurakit`
+
 ## 🤝 Contributing
 
 We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
