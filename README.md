@@ -195,6 +195,8 @@ Testing, security, and code quality experts.
 - [**powershell-security-hardening**](categories/04-quality-security/powershell-security-hardening.md) - PowerShell security hardening and compliance specialist
 - [**qa-expert**](categories/04-quality-security/qa-expert.md) - Test automation specialist
 - [**security-auditor**](categories/04-quality-security/security-auditor.md) - Security vulnerability expert
+- [**skill-guard**](https://github.com/nardovibecoding/claude-curated) - Production-tested security scanner that detects CVEs, secrets, and dependency vulnerabilities
+- [**red-alert**](https://github.com/nardovibecoding/claude-curated) - Adversarial code reviewer that stress-tests implementations with edge cases and failure modes
 - [**test-automator**](categories/04-quality-security/test-automator.md) - Test automation framework expert
 
 ### [05. Data & AI](categories/05-data-ai/)
@@ -231,6 +233,8 @@ Tooling and developer productivity experts.
 - [**mcp-developer**](categories/06-developer-experience/mcp-developer.md) - Model Context Protocol specialist
 - [**powershell-ui-architect**](categories/06-developer-experience/powershell-ui-architect.md) - PowerShell UI/UX specialist for WinForms, WPF, Metro frameworks, and TUIs
 - [**powershell-module-architect**](categories/06-developer-experience/powershell-module-architect.md) - PowerShell module and profile architecture specialist
+- [**memory-keeper**](https://github.com/nardovibecoding/claude-curated) - Memory lifecycle manager for creation, pruning, and cross-session persistence of context files
+- [**claude-md-trim**](https://github.com/nardovibecoding/claude-curated) - CLAUDE.md optimizer that trims instruction files to stay within token budgets
 - [**refactoring-specialist**](categories/06-developer-experience/refactoring-specialist.md) - Code refactoring expert
 - [**slack-expert**](categories/06-developer-experience/slack-expert.md) - Slack platform and @slack/bolt specialist
 - [**tooling-engineer**](categories/06-developer-experience/tooling-engineer.md) - Developer tooling specialist
