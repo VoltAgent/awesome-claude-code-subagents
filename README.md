@@ -14,7 +14,7 @@
 <div align="center">
     
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) 
-![Subagent Count](https://img.shields.io/badge/subagents-127+-blue?style=flat-square)
+![Subagent Count](https://img.shields.io/badge/subagents-128+-blue?style=flat-square)
 [![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-claude-code-subagents?label=Last%20update&style=flat-square)](https://github.com/VoltAgent/awesome-claude-code-subagents)
 <a href="https://github.com/VoltAgent/voltagent">
   <img alt="VoltAgent" src="https://cdn.voltagent.dev/website/logo/logo-2-svg.svg" height="20" />
@@ -184,6 +184,7 @@ Testing, security, and code quality experts.
 
 - [**accessibility-tester**](categories/04-quality-security/accessibility-tester.md) - A11y compliance expert
 - [**ad-security-reviewer**](categories/04-quality-security/ad-security-reviewer.md) - Active Directory security and GPO audit specialist
+- [**ai-writing-auditor**](categories/04-quality-security/ai-writing-auditor.md) - AI writing pattern detector and rewriter
 - [**architect-reviewer**](categories/04-quality-security/architect-reviewer.md) - Architecture review specialist
 - [**chaos-engineer**](categories/04-quality-security/chaos-engineer.md) - System resilience testing expert
 - [**code-reviewer**](categories/04-quality-security/code-reviewer.md) - Code quality guardian
