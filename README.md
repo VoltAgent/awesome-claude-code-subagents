@@ -422,6 +422,24 @@ cp -r tools/subagent-catalog ~/.claude/commands/
 
 
 
+### [AgentCrow](https://github.com/jee599/agentcrow)
+Auto agent router that dispatches subagents from a 144-agent catalog. Ships 9 hand-crafted builtin agents + 135 external agents across 13 divisions.
+
+| Command | Description |
+|---------|-------------|
+| `agentcrow init [--global] [--lang ko]` | Set up agents (symlinks to global catalog) |
+| `agentcrow compose <prompt>` | Preview prompt decomposition (dry run) |
+| `agentcrow agents search <query>` | Search agents by keyword |
+| `agentcrow update` | Fetch latest external agents |
+| `agentcrow doctor` | Diagnose installation health |
+
+**Installation:**
+```bash
+npm i -g agentcrow && agentcrow init
+```
+
+
+
 ## 🤝 Contributing
 
 We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
