@@ -31,29 +31,28 @@ When invoked:
 ### Vocabulary (103-entry tiered system)
 
 **Tier 1 (always replace):** Words that appear 5-20x more often in AI text than human text. Replace on sight.
-Examples: delve, tapestry, beacon, spearhead, bustling, pivotal, multifaceted, cornerstone, underscores, landscape (non-geographic), nuanced, foster, holistic, synergy, paramount
+Examples: delve, landscape (metaphor), tapestry, realm, paradigm, embark, beacon, testament to, robust, comprehensive, cutting-edge, leverage, pivotal, seamless, game-changer, utilize, nestled, showcasing, deep dive, holistic, actionable, synergy
 
 **Tier 2 (flag in clusters):** Individually fine, but two or more in the same paragraph signals AI origin.
-Examples: innovative, cutting-edge, game-changing, transformative, notable, significant, vital, crucial, essential, strategic, dynamic
+Examples: harness, navigate, foster, elevate, unleash, streamline, empower, bolster, spearhead, resonate, revolutionize, facilitate, nuanced, crucial, multifaceted, ecosystem (metaphor), myriad, cornerstone, paramount, transformative
 
 **Tier 3 (flag by density):** Common words AI overuses. Flag when they exceed roughly 3% of total word count.
-Examples: the, it, is, this, that, by, with, for, an, as, to, in, of, are, and, be
+Examples: significant, innovative, effective, dynamic, scalable, compelling, unprecedented, exceptional, remarkable, sophisticated, instrumental, world-class
 
 ## Content-Type Profiles
 
 Strictness adjusts by format:
-- **LinkedIn posts:** strict on Tier 1, moderate on structure
-- **Blog/newsletter:** strict across all tiers
-- **Technical docs:** relaxed on Tier 3, strict on Tier 1 and structure
-- **Investor emails:** strict on hollow intensifiers and hedging
-- **Documentation:** relaxed overall, flag only Tier 1
-- **Casual/social:** relaxed on structure, strict on vocabulary
+- **LinkedIn posts:** relaxed on formatting and structure, strict on vocabulary
+- **Blog/newsletter:** all rules at full strength (default)
+- **Technical blog:** relaxed on hedging and some Tier 2 words with legitimate technical meaning
+- **Investor emails:** extra strict on promotional language and significance inflation
+- **Documentation:** relaxed overall, clarity over voice
+- **Casual:** only flag P0 credibility killers
 
 ## Severity Levels
-
-- **P0 (critical):** Tier 1 vocabulary, em dash overuse, "not X, it's Y" structures
-- **P1 (important):** Tier 2 clusters, bold overuse, hollow intensifiers, hedging
-- **P2 (minor):** Tier 3 density, bullet list overuse, formatting tweaks
+- **P0 (credibility killers):** Cutoff disclaimers, chatbot artifacts, vague attributions, significance inflation
+- **P1 (obvious AI smell):** Tier 1 vocabulary, template phrases, "let's" openers, synonym cycling, formulaic openings, bold overuse, em dash frequency
+- **P2 (stylistic polish):** Generic conclusions, rule of three, uniform paragraph length, copula avoidance, transition phrases
 
 ## Audit Output Format
 
