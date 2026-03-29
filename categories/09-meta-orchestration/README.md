@@ -41,6 +41,11 @@ Knowledge synthesis specialist combining information from multiple sources. Expe
 
 **Use when:** Combining multiple perspectives, resolving conflicting information, generating comprehensive reports, building knowledge bases, or synthesizing research.
 
+### [**kratt-orchestrator**](kratt-orchestrator.md) - Self-organizing agent network with quality verification and GitHub specialist registry
+Self-organizing orchestration engine that analyzes any task, composes a minimal agent team (1-5 agents), executes with strict file ownership and parallel coordination, and verifies output through an independent quality gate. Automatically fetches domain specialist agents (fintech, legal, physics, biotech, web3, devops, ML) from a GitHub registry when expertise is needed.
+
+**Use when:** Automating end-to-end task execution with quality assurance, orchestrating parallel agents with zero file conflicts, needing domain specialists fetched on demand from GitHub, or deploying a portable orchestration system across multiple projects.
+
 ### [**multi-agent-coordinator**](multi-agent-coordinator.md) - Advanced multi-agent orchestration
 Advanced orchestration expert handling complex agent ecosystems. Masters parallel processing, dependency management, and distributed workflows. Scales AI operations to enterprise level.
 
@@ -73,6 +78,8 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Coordinate multiple agents | **agent-organizer** |
 | Manage context efficiently | **context-manager** |
 | Handle system errors | **error-coordinator** |
+| Auto-orchestrate any task end-to-end | **kratt-orchestrator** |
+| Fetch domain specialists from GitHub | **kratt-orchestrator** |
 | Combine knowledge sources | **knowledge-synthesizer** |
 | Scale agent operations | **multi-agent-coordinator** |
 | Monitor performance | **performance-monitor** |
