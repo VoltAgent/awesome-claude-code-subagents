@@ -56,6 +56,21 @@ Error investigation specialist tracking down elusive bugs. Expert in log analysi
 
 **Use when:** Investigating production errors, analyzing error patterns, setting up error tracking, improving error handling, or debugging distributed systems.
 
+### [**opensource-forker**](opensource-forker.md) - Open-source fork preparation specialist
+Secret-stripping specialist that transforms private projects into clean, open-source-ready copies. Detects and extracts 30+ secret patterns (API keys, DB credentials, private keys, tokens), replaces internal references (domains, paths, IPs) with configurable placeholders, and generates `.env.example` from all extracted configuration. First stage of the open-source pipeline.
+
+**Use when:** Preparing a private project for open-source release, stripping secrets and internal references from a codebase, or starting the forker → sanitizer → packager pipeline.
+
+### [**opensource-packager**](opensource-packager.md) - Open-source documentation and packaging specialist
+Documentation generator that makes any sanitized project immediately usable by Claude Code users. Analyzes project structure and stack, then generates `CLAUDE.md`, `setup.sh`, `README.md`, `LICENSE`, `CONTRIBUTING.md`, and GitHub issue templates. Third and final stage of the open-source pipeline.
+
+**Use when:** Generating professional open-source packaging after sanitization passes, making a project Claude Code-ready with a one-command bootstrap, or producing complete release documentation.
+
+### [**opensource-sanitizer**](opensource-sanitizer.md) - Open-source release security auditor
+Independent auditor that verifies a forked project is fully sanitized before public release. Runs 30+ secret patterns across 6 scan categories (secrets, PII, internal references, dangerous files, config completeness, git history), produces a PASS/FAIL/PASS WITH WARNINGS verdict, and writes a detailed `SANITIZATION_REPORT.md`. Second stage of the open-source pipeline.
+
+**Use when:** Verifying a forked project is safe for public release, independently auditing secret removal after opensource-forker runs, or getting a PASS/FAIL verdict before publishing to GitHub.
+
 ### [**penetration-tester**](penetration-tester.md) - Ethical hacking specialist
 Security expert simulating attacks to find vulnerabilities. Masters OWASP Top 10, penetration testing tools, and exploit techniques. Thinks like an attacker to defend like a pro.
 
@@ -97,6 +112,9 @@ Automation specialist building robust test frameworks. Expert in various testing
 | Achieve compliance | **compliance-auditor** |
 | Debug complex issues | **debugger** |
 | Investigate errors | **error-detective** |
+| Strip secrets from a project | **opensource-forker** |
+| Generate open-source packaging | **opensource-packager** |
+| Audit fork before release | **opensource-sanitizer** |
 | Test security | **penetration-tester** |
 | Optimize performance | **performance-engineer** |
 | Automate testing | **qa-expert** |
@@ -104,6 +122,11 @@ Automation specialist building robust test frameworks. Expert in various testing
 | Build test frameworks | **test-automator** |
 
 ## Common Quality Patterns
+
+**Open-Source Release Pipeline:**
+- **opensource-forker** → strip secrets and replace internal references
+- **opensource-sanitizer** → independent PASS/FAIL audit (30+ patterns)
+- **opensource-packager** → generate CLAUDE.md, setup.sh, README, LICENSE
 
 **Comprehensive Testing:**
 - **qa-expert** for test strategy

@@ -190,6 +190,9 @@ Testing, security, and code quality experts.
 - [**compliance-auditor**](categories/04-quality-security/compliance-auditor.md) - Regulatory compliance expert
 - [**debugger**](categories/04-quality-security/debugger.md) - Advanced debugging specialist
 - [**error-detective**](categories/04-quality-security/error-detective.md) - Error analysis and resolution expert
+- [**opensource-forker**](categories/04-quality-security/opensource-forker.md) - Strip secrets and prepare private projects for open-source release
+- [**opensource-packager**](categories/04-quality-security/opensource-packager.md) - Generate CLAUDE.md, setup.sh, README, and LICENSE for open-source projects
+- [**opensource-sanitizer**](categories/04-quality-security/opensource-sanitizer.md) - Independent PASS/FAIL audit of forked projects before public release
 - [**penetration-tester**](categories/04-quality-security/penetration-tester.md) - Ethical hacking specialist
 - [**performance-engineer**](categories/04-quality-security/performance-engineer.md) - Performance optimization expert
 - [**powershell-security-hardening**](categories/04-quality-security/powershell-security-hardening.md) - PowerShell security hardening and compliance specialist
