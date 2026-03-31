@@ -19,11 +19,11 @@ Scan categories (a single CRITICAL finding in any category = overall FAIL):
 
 **Category 1: Secrets (CRITICAL)**
 - API keys: `[A-Za-z0-9_]*(api[_-]?key|apikey|api[_-]?secret)[A-Za-z0-9_]*\s*[=:]\s*['"]?[A-Za-z0-9+/=_-]{16,}`
-- AWS: `AKIA[0-9A-Z]{16}` and `aws_secret_access_key\s*=\s*[A-Za-z0-9+/=]{40}`
+- AWS: `AKIA[0-9A-Z]{16}` and `(?i)(aws_secret_access_key|aws_secret)\s*[=:]\s*['"]?[A-Za-z0-9+/=]{20,}`
 - Database URLs with credentials: `(postgres|mysql|mongodb|redis)://[^:]+:[^@]+@[^\s'"]+`
-- JWT tokens: `eyJ[A-Za-z0-9_-]{20,}\.eyJ[A-Za-z0-9_-]{20,}`
+- JWT tokens: `eyJ[A-Za-z0-9_-]{20,}\.eyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]+`
 - Private keys: `-----BEGIN\s+(RSA\s+|EC\s+|DSA\s+|OPENSSH\s+)?PRIVATE KEY-----`
-- GitHub tokens: `gh[ps]_[A-Za-z0-9_]{36}` and `github_pat_[A-Za-z0-9_]{22,}`
+- GitHub tokens: `gh[pousr]_[A-Za-z0-9_]{36,}` and `github_pat_[A-Za-z0-9_]{22,}`
 - Google OAuth secrets: `GOCSPX-[A-Za-z0-9_-]+`
 - Slack webhooks: `https://hooks\.slack\.com/services/T[A-Z0-9]+/B[A-Z0-9]+`
 - SendGrid keys: `SG\.[A-Za-z0-9_-]{22}\.[A-Za-z0-9_-]{43}`
@@ -34,7 +34,9 @@ Scan categories (a single CRITICAL finding in any category = overall FAIL):
 - SSH connection strings: `ssh\s+[a-z]+@[0-9.]+`
 
 **Category 3: Internal References (CRITICAL)**
-- User home directories: `/home/[a-z]+/` (anything other than `/home/user/`)
+- Linux user home directories: `/home/[a-z]+/` (anything other than `/home/user/`)
+- macOS user home directories: `/Users/[A-Za-z0-9_-]+/` (anything other than `/Users/username/`)
+- Windows user home paths: `C:\\Users\\[A-Za-z0-9_-]+\\` (anything other than a placeholder)
 - Internal secret file references: `\.secrets/` and `source\s+~/\.secrets/`
 - Hardcoded internal domains that weren't replaced
 
@@ -45,6 +47,9 @@ Check that these do NOT exist: `.env` (any variant), `*.pem`, `*.key`, `*.p12`, 
 - `.env.example` must exist
 - Every `${VAR}` or `os.environ["VAR"]` reference in code should appear in `.env.example`
 - `docker-compose.yml` should use `${VAR}` syntax, not hardcoded values
+
+**Category 5b: High Entropy Strings (WARNING — review, not automatic FAIL)**
+- Base64-like strings ≥32 chars in config files: `[A-Za-z0-9+/]{32,}={0,2}` — review for accidental secret inclusion; many are legitimate (hashes, encoded assets)
 
 **Category 6: Git History (CRITICAL if history not clean)**
 ```bash
@@ -92,12 +97,12 @@ Write `SANITIZATION_REPORT.md` with the full findings. Never display full secret
 
 Integration with pipeline:
 - Receives staging directory from **opensource-forker** output
-- Is READ-ONLY — never modifies any file
+- Never modifies source files — only generates reports
 - FAIL verdict sends work back to **opensource-forker** for remediation
 - PASS or PASS WITH WARNINGS unblocks **opensource-packager**
 
 Rules:
-- NEVER modify any files — read-only audit only
+- NEVER modify source files — only generate reports (SANITIZATION_REPORT.md is the sole output)
 - NEVER display full secret values — truncate to 4 chars + "..."
 - ALWAYS scan every text file, not just known extensions
 - ALWAYS check git history, even for fresh repos

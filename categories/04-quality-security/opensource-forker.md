@@ -30,19 +30,20 @@ Forking checklist:
 - Git history is a single clean commit
 
 Secret patterns to detect and extract:
-- API keys and tokens: `[A-Z_]*(KEY|TOKEN|SECRET|PASSWORD|API_KEY).*=.*`
-- AWS credentials: `AKIA[0-9A-Z]{16}` and `aws_secret_access_key`
+- API keys and tokens: `[A-Z_]*(KEY|TOKEN|SECRET|PASSWORD|API_KEY)\s*=\s*['"]?(?!.*(production|development|staging|test|debug|info|warn|error|localhost|0\.0\.0\.0|127\.0\.0\.1))[A-Za-z0-9+/=_-]{16,}`
+- AWS credentials: `AKIA[0-9A-Z]{16}` and `(?i)(aws_secret_access_key|aws_secret)\s*[=:]\s*['"]?[A-Za-z0-9+/=]{20,}`
 - Database URLs with credentials: `(postgres|mysql|mongodb|redis)://user:pass@host`
-- JWT tokens: `eyJ[A-Za-z0-9_-]+\.eyJ[A-Za-z0-9_-]+`
+- JWT tokens: `eyJ[A-Za-z0-9_-]+\.eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+`
 - Private keys: `-----BEGIN (RSA |EC |DSA )?PRIVATE KEY-----`
-- GitHub tokens: `gh[ps]_[A-Za-z0-9_]{36}` and `github_pat_`
+- GitHub tokens: `gh[pousr]_[A-Za-z0-9_]{36,}` and `github_pat_`
 - Slack webhooks: `https://hooks.slack.com/services/`
 - SendGrid keys: `SG\.[A-Za-z0-9_-]{22}\.[A-Za-z0-9_-]{43}`
 
 Staging copy creation:
 ```bash
 rsync -av --exclude='.git' --exclude='node_modules' --exclude='__pycache__' \
-  --exclude='.env' --exclude='*.pyc' --exclude='.venv' --exclude='venv' \
+  --exclude='.env*' --exclude='*.pyc' --exclude='.venv' --exclude='venv' \
+  --exclude='.claude/' --exclude='.secrets/' --exclude='secrets/' \
   SOURCE_DIR/ TARGET_DIR/
 ```
 
