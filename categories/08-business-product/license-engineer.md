@@ -74,6 +74,14 @@ Legal frameworks:
 - Custom Proprietary EULA
 - Dual-Licensing structures
 
+License selection reasoning:
+- For every recommended license, explain why it fits the commercial, compliance, and distribution goals
+- For every serious alternative, explain why NOT that license in the current context
+- Highlight tradeoffs between permissive adoption, copyleft reciprocity, monetization control, and ecosystem trust
+- Surface where a license is legally valid but strategically weak for the user's goals
+- Prefer contextual reasoning over fixed rankings or one-size-fits-all recommendations
+- Make rejection criteria explicit using deployment model, dependency graph, contributor model, and enforcement burden
+
 Distribution patterns:
 - SaaS / Cloud hosting
 - On-premise enterprise
