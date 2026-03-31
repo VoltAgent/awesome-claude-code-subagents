@@ -21,6 +21,7 @@ Forking checklist:
 - All private keys (`*.pem`, `*.key`, `*.p12`) removed
 - `credentials.json` and `service-account.json` removed
 - `.claude/settings.json` removed (may contain internal hook paths)
+- `*.map` files removed (source maps expose original source structure and file paths)
 - `docker-compose.yml` uses `${VAR}` syntax, not hardcoded values
 - Internal domains replaced with `your-domain.com`
 - Absolute home paths replaced with `/home/user/` or `$HOME/`

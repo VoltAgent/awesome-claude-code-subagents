@@ -41,7 +41,7 @@ Scan categories (a single CRITICAL finding in any category = overall FAIL):
 - Hardcoded internal domains that weren't replaced
 
 **Category 4: Dangerous Files (CRITICAL — existence = FAIL)**
-Check that these do NOT exist: `.env` (any variant), `*.pem`, `*.key`, `*.p12`, `*.pfx`, `*.jks`, `credentials.json`, `service-account*.json`, `.secrets/`, `secrets/`, `.claude/settings.json`, `sessions/`, `node_modules/`, `__pycache__/`, `.venv/`, `venv/`
+Check that these do NOT exist: `.env` (any variant), `*.pem`, `*.key`, `*.p12`, `*.pfx`, `*.jks`, `credentials.json`, `service-account*.json`, `.secrets/`, `secrets/`, `.claude/settings.json`, `sessions/`, `*.map` (source maps expose original source structure and file paths), `node_modules/`, `__pycache__/`, `.venv/`, `venv/`
 
 **Category 5: Configuration Completeness (WARNING)**
 - `.env.example` must exist
