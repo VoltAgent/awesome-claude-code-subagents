@@ -11,6 +11,7 @@ Use these subagents when you need to:
 - **Create content** that drives engagement
 - **Manage customer relationships** and success
 - **Ensure legal compliance** in technical decisions
+- **Design licensing strategy** for open source and commercial distribution
 - **Manage projects** effectively with Agile methods
 - **Bridge technical and business** communication
 
@@ -35,6 +36,11 @@ Customer success specialist ensuring users achieve their goals. Expert in onboar
 Legal expert navigating technology law and compliance. Masters privacy regulations, intellectual property, and contract negotiations. Protects businesses while enabling innovation.
 
 **Use when:** Reviewing terms of service, ensuring data privacy compliance, understanding licensing, managing intellectual property, or assessing legal risks.
+
+### [**license-engineer**](license-engineer.md) - Software licensing and compliance systems specialist
+Licensing systems expert designing OSS and proprietary licensing architectures for software products. Masters license selection, dependency compliance pipelines, dual-licensing strategies, and deployment risk controls. Protects commercialization options while preserving ethical open-source practices.
+
+**Use when:** Selecting open source licenses, designing dual-licensing models, auditing dependency compatibility, implementing notice and attribution workflows, or preparing software for SaaS, enterprise, app store, or embedded distribution.
 
 ### [**product-manager**](product-manager.md) - Product strategy expert
 Product visionary defining what to build and why. Expert in market analysis, user needs, and product strategy. Drives product success from conception to market leadership.
@@ -74,6 +80,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | Create content | **content-marketer** |
 | Retain customers | **customer-success-manager** |
 | Handle legal matters | **legal-advisor** |
+| Design software licensing | **license-engineer** |
 | Shape product vision | **product-manager** |
 | Manage projects | **project-manager** |
 | Support sales | **sales-engineer** |
@@ -94,6 +101,11 @@ User research specialist uncovering user needs and behaviors. Expert in research
 - **sales-engineer** for demos
 - **technical-writer** for docs
 - **customer-success-manager** for retention
+
+**Legal and Licensing:**
+- **legal-advisor** for contracts, privacy, and regulatory interpretation
+- **license-engineer** for OSS strategy, dual-licensing, and dependency compliance
+- **product-manager** for monetization and packaging decisions
 
 **Agile Teams:**
 - **scrum-master** for process
