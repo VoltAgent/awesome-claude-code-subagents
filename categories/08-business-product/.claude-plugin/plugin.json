@@ -1,7 +1,7 @@
 {
   "name": "voltagent-biz",
-  "version": "1.0.1",
-  "description": "Product management and business analysis - product strategy, project management, UX research",
+  "version": "1.0.2",
+  "description": "Product, legal, and business specialists - product strategy, licensing, project management, UX research",
   "author": {
     "name": "VoltAgent Community",
     "url": "https://github.com/VoltAgent"
@@ -13,6 +13,7 @@
     "./content-marketer.md",
     "./customer-success-manager.md",
     "./legal-advisor.md",
+    "./license-engineer.md",
     "./product-manager.md",
     "./project-manager.md",
     "./sales-engineer.md",

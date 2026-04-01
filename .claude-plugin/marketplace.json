@@ -37,7 +37,7 @@
       "name": "voltagent-qa-sec",
       "source": "./categories/04-quality-security",
       "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "category": "quality",
       "keywords": ["testing", "security", "code-review", "qa", "penetration-testing", "compliance"]
     },
@@ -68,10 +68,10 @@
     {
       "name": "voltagent-biz",
       "source": "./categories/08-business-product",
-      "description": "Product management and business analysis - product strategy, project management, UX research",
-      "version": "1.0.1",
+      "description": "Product, legal, and business specialists - product strategy, licensing, project management, UX research",
+      "version": "1.0.2",
       "category": "business",
-      "keywords": ["product-management", "business-analysis", "ux", "scrum", "project-management"]
+      "keywords": ["product-management", "business-analysis", "legal", "licensing", "ux", "scrum", "project-management"]
     },
     {
       "name": "voltagent-meta",
