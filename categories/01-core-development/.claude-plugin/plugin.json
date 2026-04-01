@@ -1,6 +1,6 @@
 {
   "name": "voltagent-core-dev",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Essential development subagents for everyday coding tasks - backend, frontend, fullstack, mobile, and API design",
   "author": {
     "name": "VoltAgent Community",
@@ -11,6 +11,7 @@
   "agents": [
     "./api-designer.md",
     "./backend-developer.md",
+    "./design-bridge.md",
     "./electron-pro.md",
     "./frontend-developer.md",
     "./fullstack-developer.md",

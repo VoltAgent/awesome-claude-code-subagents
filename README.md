@@ -14,7 +14,7 @@
 <div align="center">
     
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) 
-![Subagent Count](https://img.shields.io/badge/subagents-128+-blue?style=flat-square)
+![Subagent Count](https://img.shields.io/badge/subagents-130+-blue?style=flat-square)
 [![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-claude-code-subagents?label=Last%20update&style=flat-square)](https://github.com/VoltAgent/awesome-claude-code-subagents)
 <a href="https://github.com/VoltAgent/voltagent">
   <img alt="VoltAgent" src="https://cdn.voltagent.dev/website/logo/logo-2-svg.svg" height="20" />
@@ -111,6 +111,7 @@ Essential development subagents for everyday coding tasks.
 
 - [**api-designer**](categories/01-core-development/api-designer.md) - REST and GraphQL API architect
 - [**backend-developer**](categories/01-core-development/backend-developer.md) - Server-side expert for scalable APIs
+- [**design-bridge**](categories/01-core-development/design-bridge.md) - Design-to-agent translator
 - [**electron-pro**](categories/01-core-development/electron-pro.md) - Desktop application expert
 - [**frontend-developer**](categories/01-core-development/frontend-developer.md) - UI/UX specialist for React, Vue, and Angular
 - [**fullstack-developer**](categories/01-core-development/fullstack-developer.md) - End-to-end feature development
@@ -233,6 +234,7 @@ Tooling and developer productivity experts.
 - [**powershell-ui-architect**](categories/06-developer-experience/powershell-ui-architect.md) - PowerShell UI/UX specialist for WinForms, WPF, Metro frameworks, and TUIs
 - [**powershell-module-architect**](categories/06-developer-experience/powershell-module-architect.md) - PowerShell module and profile architecture specialist
 - [**prompt-optimizer**](categories/06-developer-experience/prompt-optimizer.md) - Elite prompt engineering specialist
+- [**readme-generator**](categories/06-developer-experience/readme-generator.md) - Repository README generation specialist
 - [**refactoring-specialist**](categories/06-developer-experience/refactoring-specialist.md) - Code refactoring expert
 - [**slack-expert**](categories/06-developer-experience/slack-expert.md) - Slack platform and @slack/bolt specialist
 - [**tooling-engineer**](categories/06-developer-experience/tooling-engineer.md) - Developer tooling specialist
@@ -302,6 +304,7 @@ Research, search, and analysis specialists.
 - [**trend-analyst**](categories/10-research-analysis/trend-analyst.md) - Emerging trends and forecasting expert
 - [**competitive-analyst**](categories/10-research-analysis/competitive-analyst.md) - Competitive intelligence specialist
 - [**market-researcher**](categories/10-research-analysis/market-researcher.md) - Market analysis and consumer insights
+- [**project-idea-validator**](categories/10-research-analysis/project-idea-validator.md) - Brutal go/no-go product idea validator
 - [**data-researcher**](categories/10-research-analysis/data-researcher.md) - Data discovery and analysis expert
 - [**scientific-literature-researcher**](categories/10-research-analysis/scientific-literature-researcher.md) - Scientific paper search and evidence synthesis via [BGPT MCP](https://github.com/connerlambden/bgpt-mcp)
 

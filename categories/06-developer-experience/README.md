@@ -56,6 +56,11 @@ MCP expert building servers and clients that connect AI systems with external to
 
 **Use when:** Building MCP servers, creating AI tool integrations, implementing Model Context Protocol clients, connecting AI systems to external APIs, or developing AI-powered applications with external data sources.
 
+### [**readme-generator**](readme-generator.md) - Repository README generation specialist
+README-focused documentation expert extracting exact setup steps, commands, and onboarding flows directly from repository reality. Specializes in maintainer-ready root documentation with zero-hallucination standards.
+
+**Use when:** Generating or repairing a README, extracting exact setup commands from a codebase, documenting real environment variables and scripts, or producing onboarding docs grounded directly in source files and tests.
+
 ### [**powershell-module-architect**](powershell-module-architect.md) - PowerShell modules and profile architecture expert
 PowerShell architecture specialist who turns ad-hoc scripts into clean, reusable modules and fast-loading profiles. Focuses on clear public/private function boundaries, robust parameter design, DRY helper libraries, and cross-version compatibility between Windows PowerShell 5.1 and PowerShell 7+.
 
@@ -99,6 +104,7 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 | Modernize legacy code | **legacy-modernizer** |
 | Build MCP integrations | **mcp-developer** |
 | Optimize AI prompts | **prompt-optimizer** |
+| Generate repository READMEs | **readme-generator** |
 | Refactor code | **refactoring-specialist** |
 | Build Slack integrations | **slack-expert** |
 | Build dev tools | **tooling-engineer** |
@@ -122,6 +128,12 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 - **tooling-engineer** for IDE integration
 - **documentation-engineer** for tool docs
 - **build-engineer** for tool packaging
+
+**Repository Documentation:**
+- **readme-generator** for maintainer-ready README creation
+- **documentation-engineer** for broader docs systems
+- **git-workflow-manager** for repo workflow notes
+- **cli-developer** for command discoverability
 
 **Code Quality:**
 - **refactoring-specialist** for code structure

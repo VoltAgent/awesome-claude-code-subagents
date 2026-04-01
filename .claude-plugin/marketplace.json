@@ -13,7 +13,7 @@
       "name": "voltagent-core-dev",
       "source": "./categories/01-core-development",
       "description": "Essential development subagents for everyday coding tasks - backend, frontend, fullstack, mobile, and API design",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "category": "development",
       "keywords": ["backend", "frontend", "fullstack", "mobile", "api", "microservices"]
     },
@@ -55,7 +55,7 @@
       "description": "Tooling and developer productivity experts - CLI tools, documentation, DX optimization",
       "version": "1.0.2",
       "category": "tooling",
-      "keywords": ["developer-experience", "cli", "documentation", "tooling", "build", "dx"]
+      "keywords": ["developer-experience", "cli", "documentation", "readme", "tooling", "build", "dx"]
     },
     {
       "name": "voltagent-domains",
@@ -84,10 +84,10 @@
     {
       "name": "voltagent-research",
       "source": "./categories/10-research-analysis",
-      "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting",
-      "version": "1.0.2",
+      "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting, and idea validation",
+      "version": "1.0.3",
       "category": "research",
-      "keywords": ["research", "analysis", "market-research", "competitive-analysis", "trends"]
+      "keywords": ["research", "analysis", "market-research", "competitive-analysis", "trends", "idea-validation", "product-strategy"]
     }
   ]
 }

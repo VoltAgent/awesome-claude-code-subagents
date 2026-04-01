@@ -1,7 +1,7 @@
 {
   "name": "voltagent-research",
-  "version": "1.0.2",
-  "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting",
+  "version": "1.0.3",
+  "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting, and idea validation",
   "author": {
     "name": "VoltAgent Community",
     "url": "https://github.com/VoltAgent"
@@ -12,6 +12,7 @@
     "./competitive-analyst.md",
     "./data-researcher.md",
     "./market-researcher.md",
+    "./project-idea-validator.md",
     "./research-analyst.md",
     "./scientific-literature-researcher.md",
     "./search-specialist.md",
