@@ -66,6 +66,11 @@ UI and UX architect for PowerShell-based tools, designing WinForms, WPF, Metro-s
 
 **Use when:** You need a graphical or terminal UI for PowerShell tooling, want to choose between WinForms/WPF/TUI/Metro approaches, or need help structuring XAML and event handlers around existing PowerShell modules and scripts.
 
+### [**prompt-optimizer**](prompt-optimizer.md) - Elite prompt engineering specialist
+Expert meta-cognitive architect that upgrades prompts using XML encapsulation, forced chain-of-thought, and filler elimination. Maximizes reasoning depth and output quality by transforming weak drafts into elite, deterministic instruction sets.
+
+**Use when:** Optimizing AI prompts, implementing XML-based structures, forcing step-by-step reasoning, or eliminating conversational ambiguity from instructions.
+
 ### [**refactoring-specialist**](refactoring-specialist.md) - Code refactoring expert
 Refactoring master improving code structure without changing behavior. Expert in design patterns, code smells, and safe refactoring techniques. Makes code cleaner and more maintainable.
 
@@ -93,6 +98,7 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 | Design Git strategies | **git-workflow-manager** |
 | Modernize legacy code | **legacy-modernizer** |
 | Build MCP integrations | **mcp-developer** |
+| Optimize AI prompts | **prompt-optimizer** |
 | Refactor code | **refactoring-specialist** |
 | Build Slack integrations | **slack-expert** |
 | Build dev tools | **tooling-engineer** |

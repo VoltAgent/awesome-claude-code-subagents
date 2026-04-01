@@ -231,6 +231,7 @@ Tooling and developer productivity experts.
 - [**mcp-developer**](categories/06-developer-experience/mcp-developer.md) - Model Context Protocol specialist
 - [**powershell-ui-architect**](categories/06-developer-experience/powershell-ui-architect.md) - PowerShell UI/UX specialist for WinForms, WPF, Metro frameworks, and TUIs
 - [**powershell-module-architect**](categories/06-developer-experience/powershell-module-architect.md) - PowerShell module and profile architecture specialist
+- [**prompt-optimizer**](categories/06-developer-experience/prompt-optimizer.md) - Elite prompt engineering specialist
 - [**refactoring-specialist**](categories/06-developer-experience/refactoring-specialist.md) - Code refactoring expert
 - [**slack-expert**](categories/06-developer-experience/slack-expert.md) - Slack platform and @slack/bolt specialist
 - [**tooling-engineer**](categories/06-developer-experience/tooling-engineer.md) - Developer tooling specialist
