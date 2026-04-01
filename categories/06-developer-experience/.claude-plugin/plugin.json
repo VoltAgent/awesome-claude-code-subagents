@@ -1,7 +1,7 @@
 {
   "name": "voltagent-dev-exp",
-  "version": "1.0.1",
-  "description": "Tooling and developer productivity experts - CLI tools, documentation, DX optimization",
+  "version": "1.0.2",
+  "description": "Tooling and developer productivity experts - CLI tools, documentation, README generation, and DX optimization",
   "author": {
     "name": "VoltAgent Community",
     "url": "https://github.com/VoltAgent"
@@ -19,6 +19,7 @@
     "./mcp-developer.md",
     "./powershell-module-architect.md",
     "./powershell-ui-architect.md",
+    "./readme-generator.md",
     "./refactoring-specialist.md",
     "./slack-expert.md",
     "./tooling-engineer.md"

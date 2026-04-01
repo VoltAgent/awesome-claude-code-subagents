@@ -6,7 +6,7 @@
   },
   "metadata": {
     "version": "1.0.1",
-    "description": "Curated collection of 129 specialized Claude Code subagents organized into 10 focused categories"
+    "description": "Curated collection of 130 specialized Claude Code subagents organized into 10 focused categories"
   },
   "plugins": [
     {
@@ -52,10 +52,10 @@
     {
       "name": "voltagent-dev-exp",
       "source": "./categories/06-developer-experience",
-      "description": "Tooling and developer productivity experts - CLI tools, documentation, DX optimization",
-      "version": "1.0.1",
+      "description": "Tooling and developer productivity experts - CLI tools, documentation, README generation, and DX optimization",
+      "version": "1.0.2",
       "category": "tooling",
-      "keywords": ["developer-experience", "cli", "documentation", "tooling", "build", "dx"]
+      "keywords": ["developer-experience", "cli", "documentation", "readme", "tooling", "build", "dx"]
     },
     {
       "name": "voltagent-domains",
