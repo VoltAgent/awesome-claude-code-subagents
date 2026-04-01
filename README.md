@@ -301,6 +301,7 @@ Research, search, and analysis specialists.
 - [**trend-analyst**](categories/10-research-analysis/trend-analyst.md) - Emerging trends and forecasting expert
 - [**competitive-analyst**](categories/10-research-analysis/competitive-analyst.md) - Competitive intelligence specialist
 - [**market-researcher**](categories/10-research-analysis/market-researcher.md) - Market analysis and consumer insights
+- [**project-idea-validator**](categories/10-research-analysis/project-idea-validator.md) - Brutal go/no-go product idea validator
 - [**data-researcher**](categories/10-research-analysis/data-researcher.md) - Data discovery and analysis expert
 - [**scientific-literature-researcher**](categories/10-research-analysis/scientific-literature-researcher.md) - Scientific paper search and evidence synthesis via [BGPT MCP](https://github.com/connerlambden/bgpt-mcp)
 
