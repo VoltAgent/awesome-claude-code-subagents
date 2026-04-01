@@ -6,7 +6,7 @@
   },
   "metadata": {
     "version": "1.0.1",
-    "description": "Curated collection of 129 specialized Claude Code subagents organized into 10 focused categories"
+    "description": "Curated collection of 130 specialized Claude Code subagents organized into 10 focused categories"
   },
   "plugins": [
     {
@@ -37,7 +37,7 @@
       "name": "voltagent-qa-sec",
       "source": "./categories/04-quality-security",
       "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "category": "quality",
       "keywords": ["testing", "security", "code-review", "qa", "penetration-testing", "compliance"]
     },
