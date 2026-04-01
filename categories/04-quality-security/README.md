@@ -26,6 +26,11 @@ Active Directory security specialist reviewing directory configuration, admin mo
 
 **Use when:** Reviewing AD security posture, assessing privileged groups and delegation, tightening GPOs and auth settings, or planning hardening work to reduce lateral movement and domain compromise risk.
 
+### [**ai-writing-auditor**](ai-writing-auditor.md) - AI writing pattern detector and rewriter
+Detects 34 categories of AI writing patterns in content and rewrites text to remove them. Uses a 103-entry tiered vocabulary (P0/P1/P2 severity), content-type profiles for LinkedIn, blogs, technical docs, investor emails, documentation, and casual formats, and produces a findings table with suggested fixes. Based on the open-source [avoid-ai-writing](https://github.com/conorbronsdon/avoid-ai-writing) skill.
+
+**Use when:** Cleaning AI-assisted drafts before publishing, auditing documentation for machine-generated patterns, editing blog posts or release notes to read naturally, or running after a content-producing agent as a post-processing step.
+
 ### [**architect-reviewer**](architect-reviewer.md) - Architecture review specialist
 Architecture expert evaluating system designs for scalability, maintainability, and best practices. Identifies architectural risks and suggests improvements. Ensures long-term system health.
 
@@ -91,6 +96,7 @@ Automation specialist building robust test frameworks. Expert in various testing
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
 | Make apps accessible | **accessibility-tester** |
+| Remove AI writing patterns | **ai-writing-auditor** |
 | Review architecture | **architect-reviewer** |
 | Test system resilience | **chaos-engineer** |
 | Review code quality | **code-reviewer** |
