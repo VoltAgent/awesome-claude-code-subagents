@@ -6,7 +6,7 @@
   },
   "metadata": {
     "version": "1.0.1",
-    "description": "Curated collection of 129 specialized Claude Code subagents organized into 10 focused categories"
+    "description": "Curated collection of 130 specialized Claude Code subagents organized into 10 focused categories"
   },
   "plugins": [
     {
@@ -84,10 +84,10 @@
     {
       "name": "voltagent-research",
       "source": "./categories/10-research-analysis",
-      "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting",
-      "version": "1.0.2",
+      "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting, and idea validation",
+      "version": "1.0.3",
       "category": "research",
-      "keywords": ["research", "analysis", "market-research", "competitive-analysis", "trends"]
+      "keywords": ["research", "analysis", "market-research", "competitive-analysis", "trends", "idea-validation", "product-strategy"]
     }
   ]
 }

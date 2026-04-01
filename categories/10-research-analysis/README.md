@@ -41,6 +41,11 @@ Market analysis specialist understanding market dynamics and consumer behavior. 
 
 **Use when:** Analyzing market opportunities, understanding consumer behavior, sizing markets, identifying segments, or evaluating market entry strategies.
 
+### [**project-idea-validator**](project-idea-validator.md) - Brutal go or no-go idea validator
+Adversarial product idea specialist pressure-testing concepts against competitors, demand signals, and adoption friction. Focuses on killing weak ideas early and sharpening strong ones into evidence-backed MVPs.
+
+**Use when:** Stress-testing a startup or product idea, checking whether differentiation is real, finding hidden competitors, deciding whether to pivot, or getting a clear go/no-go recommendation before building.
+
 ### [**data-researcher**](data-researcher.md) - Data discovery and analysis expert
 Data investigation specialist extracting insights from complex datasets. Masters data mining, statistical analysis, and pattern recognition. Transforms raw data into meaningful findings.
 
@@ -60,6 +65,7 @@ Scientific literature specialist using [BGPT MCP](https://github.com/connerlambd
 | Identify future trends | **trend-analyst** |
 | Analyze competitors | **competitive-analyst** |
 | Understand markets | **market-researcher** |
+| Pressure-test product ideas | **project-idea-validator** |
 | Analyze data patterns | **data-researcher** |
 | Search scientific papers | **scientific-literature-researcher** |
 
@@ -76,6 +82,12 @@ Scientific literature specialist using [BGPT MCP](https://github.com/connerlambd
 - **search-specialist** for information gathering
 - **trend-analyst** for future planning
 - **competitive-analyst** for positioning
+
+**Idea Validation:**
+- **project-idea-validator** for go/no-go product scrutiny
+- **competitive-analyst** for direct rival teardown
+- **market-researcher** for market context
+- **trend-analyst** for demand timing
 
 **Data-Driven Insights:**
 - **data-researcher** for data analysis
