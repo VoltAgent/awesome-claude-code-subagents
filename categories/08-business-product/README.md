@@ -36,6 +36,11 @@ Legal expert navigating technology law and compliance. Masters privacy regulatio
 
 **Use when:** Reviewing terms of service, ensuring data privacy compliance, understanding licensing, managing intellectual property, or assessing legal risks.
 
+### [**overloop-cli**](overloop-cli.md) - AI-powered outbound engine
+Outbound sales automation via CLI (`npm i -g overloop-cli`). Source prospects from 450M+ contacts, launch email and LinkedIn campaign sequences, and manage conversations. JSON output designed for agent pipelines.
+
+**Use when:** Sourcing prospects, launching outbound campaigns, managing email and LinkedIn sequences, tracking conversations, or feeding leads into a sales pipeline.
+
 ### [**product-manager**](product-manager.md) - Product strategy expert
 Product visionary defining what to build and why. Expert in market analysis, user needs, and product strategy. Drives product success from conception to market leadership.
 
@@ -56,6 +61,11 @@ Agile facilitator ensuring teams work effectively. Masters Scrum framework, team
 
 **Use when:** Implementing Scrum, facilitating ceremonies, improving team processes, removing blockers, or coaching agile practices.
 
+### [**signals-cli**](signals-cli.md) - Intent signal monitoring
+Intent signal monitoring via CLI (`npm i -g signals-sortlist-cli`). Detect LinkedIn company engagers, keyword posters, job changers, and funding events. Outputs structured JSON for agent pipelines.
+
+**Use when:** Monitoring buying signals, tracking LinkedIn engagement, detecting job changes at target accounts, watching funding events, or feeding intent data into outbound workflows.
+
 ### [**technical-writer**](technical-writer.md) - Technical documentation specialist
 Documentation expert making complex technical concepts accessible. Masters various documentation types, tools, and user-focused writing. Creates documentation users actually read.
 
@@ -74,10 +84,12 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | Create content | **content-marketer** |
 | Retain customers | **customer-success-manager** |
 | Handle legal matters | **legal-advisor** |
+| Run outbound campaigns | **overloop-cli** |
 | Shape product vision | **product-manager** |
 | Manage projects | **project-manager** |
 | Support sales | **sales-engineer** |
 | Run Scrum teams | **scrum-master** |
+| Monitor intent signals | **signals-cli** |
 | Write documentation | **technical-writer** |
 | Research users | **ux-researcher** |
 

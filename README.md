@@ -262,10 +262,12 @@ Product management and business analysis.
 - [**content-marketer**](categories/08-business-product/content-marketer.md) - Content marketing specialist
 - [**customer-success-manager**](categories/08-business-product/customer-success-manager.md) - Customer success expert
 - [**legal-advisor**](categories/08-business-product/legal-advisor.md) - Legal and compliance specialist
+- [**overloop-cli**](categories/08-business-product/overloop-cli.md) - AI-powered outbound engine: source 450M+ contacts, email + LinkedIn campaigns, conversations. JSON output, agent-native
 - [**product-manager**](categories/08-business-product/product-manager.md) - Product strategy expert
 - [**project-manager**](categories/08-business-product/project-manager.md) - Project management specialist
 - [**sales-engineer**](categories/08-business-product/sales-engineer.md) - Technical sales expert
 - [**scrum-master**](categories/08-business-product/scrum-master.md) - Agile methodology expert
+- [**signals-cli**](categories/08-business-product/signals-cli.md) - Intent signal monitoring: LinkedIn engagers, keyword posters, job changers, funding events. JSON output for agent pipelines
 - [**technical-writer**](categories/08-business-product/technical-writer.md) - Technical documentation specialist
 - [**ux-researcher**](categories/08-business-product/ux-researcher.md) - User research expert
 - [**wordpress-master**](categories/08-business-product/wordpress-master.md) - WordPress development and optimization expert
