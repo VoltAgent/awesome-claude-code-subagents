@@ -5,15 +5,15 @@
     "url": "https://github.com/VoltAgent"
   },
   "metadata": {
-    "version": "1.0.1",
-    "description": "Curated collection of 130 specialized Claude Code subagents organized into 10 focused categories"
+    "version": "1.0.2",
+    "description": "Curated collection of 129 specialized Claude Code subagents organized into 10 focused categories"
   },
   "plugins": [
     {
       "name": "voltagent-core-dev",
       "source": "./categories/01-core-development",
       "description": "Essential development subagents for everyday coding tasks - backend, frontend, fullstack, mobile, and API design",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "category": "development",
       "keywords": ["backend", "frontend", "fullstack", "mobile", "api", "microservices"]
     },

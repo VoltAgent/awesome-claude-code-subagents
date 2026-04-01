@@ -25,6 +25,11 @@ Your go-to specialist for building robust server applications, RESTful APIs, and
 
 **Use when:** Building APIs, designing databases, implementing authentication, handling business logic, or optimizing server performance.
 
+### [**design-bridge**](design-bridge.md) - Design-to-agent translator
+Bridges the gap between DESIGN.md files and AI-assisted implementation. Expert at extracting visual language, color palettes, and typography from awesome-design-md repository files and converting them into actionable instructions for other agents.
+
+**Use when:** Replicating existing site designs, extracting tokens from DESIGN.md, or ensuring visual fidelity in AI-built UIs.
+
 ### [**electron-pro**](electron-pro.md) - Desktop application expert
 Specialist in building cross-platform desktop applications using web technologies. Masters Electron framework for creating installable desktop apps with native capabilities. Handles auto-updates, system integration, and desktop-specific features.
 
@@ -79,6 +84,7 @@ Specialist in WordPress ecosystem who builds everything from simple blogs to ent
 | Develop a complete web application | **fullstack-developer** |
 | Build a mobile app | **mobile-developer** |
 | Design user interfaces | **ui-designer** |
+| Translate DESIGN.md to instructions | **design-bridge** |
 | Create a desktop application | **electron-pro** |
 | Design a new API structure | **api-designer** |
 | Implement GraphQL | **graphql-architect** |
@@ -104,7 +110,8 @@ Specialist in WordPress ecosystem who builds everything from simple blogs to ent
 - Use **frontend-developer** for interactive UI
 
 **Design-Driven Development:**
-- Begin with **ui-designer** for visual design and prototypes
+- Begin with **design-bridge** to extract design tokens
+- Use **ui-designer** for visual design and prototypes
 - Use **frontend-developer** for implementation
 - Add **accessibility-tester** for compliance validation
 
