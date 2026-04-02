@@ -43,6 +43,7 @@
 
 
 # Awesome Claude Code Subagents 
+- [skill-taxonomy](https://github.com/SeeleAI/skill-taxonomy) - Structured taxonomy for AI agent skills: discovery, classification and routing across multi-agent workflows.
 
 This repository serves as the definitive collection of Claude Code subagents, specialized AI assitants designed for specific development tasks. 
 
