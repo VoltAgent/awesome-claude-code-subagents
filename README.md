@@ -292,6 +292,7 @@ Agent coordination and meta-programming.
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**taskade**](https://github.com/taskade/mcp) - AI-powered workspace with autonomous agents, real-time collaboration, and workflow automation with MCP integration
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
+- [**harness-evolver**](https://github.com/raphaelchristi/harness-evolver) - LangSmith-native autonomous agent optimization. Spawns multi-agent proposers that evolve prompts, routing, tools, and architecture in isolated git worktrees
 
 ### [10. Research & Analysis](categories/10-research-analysis/)
 **Plugin:** `voltagent-research`
