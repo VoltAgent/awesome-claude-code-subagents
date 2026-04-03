@@ -190,6 +190,7 @@ Testing, security, and code quality experts.
 - [**chaos-engineer**](categories/04-quality-security/chaos-engineer.md) - System resilience testing expert
 - [**code-reviewer**](categories/04-quality-security/code-reviewer.md) - Code quality guardian
 - [**compliance-auditor**](categories/04-quality-security/compliance-auditor.md) - Regulatory compliance expert
+- [**compliance-governance**](categories/04-quality-security/compliance-governance.md) - AI agent governance and compliance specialist using [SidClaw](https://github.com/sidclawhq/platform)
 - [**debugger**](categories/04-quality-security/debugger.md) - Advanced debugging specialist
 - [**error-detective**](categories/04-quality-security/error-detective.md) - Error analysis and resolution expert
 - [**penetration-tester**](categories/04-quality-security/penetration-tester.md) - Ethical hacking specialist
