@@ -51,6 +51,11 @@ Compliance specialist ensuring adherence to regulations and standards. Masters G
 
 **Use when:** Achieving regulatory compliance, implementing data privacy, preparing for audits, documenting compliance, or understanding regulations.
 
+### [**compliance-governance**](compliance-governance.md) - AI agent governance and compliance specialist
+AI agent governance specialist configuring tool-call governance, approval workflows, and audit trails using [SidClaw](https://github.com/sidclawhq/platform). Designs policies for MCP server access control, maps governance requirements to EU AI Act, SOC 2, HIPAA, and FINRA frameworks, and validates hash-chain audit integrity.
+
+**Use when:** Adding governance controls to MCP server tool calls, configuring approval workflows for destructive agent operations, implementing audit trails for AI agent activity, or mapping agent behavior to regulatory compliance requirements.
+
 ### [**debugger**](debugger.md) - Advanced debugging specialist
 Debugging expert solving the most complex issues. Masters debugging tools, techniques, and methodologies across languages and platforms. Finds root causes where others give up.
 
@@ -101,6 +106,7 @@ Automation specialist building robust test frameworks. Expert in various testing
 | Test system resilience | **chaos-engineer** |
 | Review code quality | **code-reviewer** |
 | Achieve compliance | **compliance-auditor** |
+| Govern agent tool calls | **compliance-governance** |
 | Debug complex issues | **debugger** |
 | Investigate errors | **error-detective** |
 | Test security | **penetration-tester** |
