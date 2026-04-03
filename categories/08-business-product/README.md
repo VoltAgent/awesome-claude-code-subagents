@@ -62,6 +62,11 @@ Agile facilitator ensuring teams work effectively. Masters Scrum framework, team
 
 **Use when:** Implementing Scrum, facilitating ceremonies, improving team processes, removing blockers, or coaching agile practices.
 
+### [**socialclaw**](socialclaw.md) - Social publishing operations specialist
+Social publishing specialist for operating the hosted SocialClaw service across major social channels. Expert in connected accounts, media upload, schedule validation, publishing, analytics, reconciliation, and supported delete flows.
+
+**Use when:** Connecting social accounts, checking account capabilities, uploading media, validating schedules, publishing posts, inspecting delivery, refreshing analytics, or deleting supported posts through SocialClaw.
+
 ### [**technical-writer**](technical-writer.md) - Technical documentation specialist
 Documentation expert making complex technical concepts accessible. Masters various documentation types, tools, and user-focused writing. Creates documentation users actually read.
 
@@ -85,6 +90,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | Manage projects | **project-manager** |
 | Support sales | **sales-engineer** |
 | Run Scrum teams | **scrum-master** |
+| Run social publishing operations | **socialclaw** |
 | Write documentation | **technical-writer** |
 | Research users | **ux-researcher** |
 
@@ -99,6 +105,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 **Go-to-Market:**
 - **content-marketer** for content
 - **sales-engineer** for demos
+- **socialclaw** for connected account operations and channel publishing
 - **technical-writer** for docs
 - **customer-success-manager** for retention
 

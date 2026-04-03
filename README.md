@@ -270,6 +270,7 @@ Product management and business analysis.
 - [**project-manager**](categories/08-business-product/project-manager.md) - Project management specialist
 - [**sales-engineer**](categories/08-business-product/sales-engineer.md) - Technical sales expert
 - [**scrum-master**](categories/08-business-product/scrum-master.md) - Agile methodology expert
+- [**socialclaw**](categories/08-business-product/socialclaw.md) - Social publishing operations specialist
 - [**technical-writer**](categories/08-business-product/technical-writer.md) - Technical documentation specialist
 - [**ux-researcher**](categories/08-business-product/ux-researcher.md) - User research expert
 - [**wordpress-master**](categories/08-business-product/wordpress-master.md) - WordPress development and optimization expert

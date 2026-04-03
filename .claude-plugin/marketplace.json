@@ -69,7 +69,7 @@
       "name": "voltagent-biz",
       "source": "./categories/08-business-product",
       "description": "Product, legal, and business specialists - product strategy, licensing, project management, UX research",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "category": "business",
       "keywords": ["product-management", "business-analysis", "legal", "licensing", "ux", "scrum", "project-management"]
     },
