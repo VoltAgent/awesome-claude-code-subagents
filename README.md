@@ -292,6 +292,7 @@ Agent coordination and meta-programming.
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**taskade**](https://github.com/taskade/mcp) - AI-powered workspace with autonomous agents, real-time collaboration, and workflow automation with MCP integration
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
+- [**guardian-agent-prompts**](https://github.com/milkomida77/guardian-agent-prompts) - 49 production-tested AGENT.md system prompts from a 57-agent orchestration system running 24/7. Includes orchestrator, task registry, quality gates, and anti-duplication patterns. [Gumroad](https://zoukster4.gumroad.com/l/doxvgi)
 
 ### [10. Research & Analysis](categories/10-research-analysis/)
 **Plugin:** `voltagent-research`
