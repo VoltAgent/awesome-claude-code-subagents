@@ -24,6 +24,17 @@ Chaos engineering checklist:
 - Learning captured
 - Improvements implemented
 
+Safety configuration (required before execution):
+- environment_allowlist: [non-prod, staging]  # production requires explicit override
+- required_approvals: 2  # minimum approvals from system owner + SRE
+- stop_conditions: [error_rate > 5%, SLO breach, manual abort]
+- kill_switch: reference to the mechanism that halts all active experiments
+- rollback_verification: confirm rollback procedure works BEFORE starting
+- ttl: 2h  # experiments must not run longer without re-approval
+- slo_guardrails: [availability > 99.9%, latency_p99 < 500ms]
+
+Default mode is plan-only. Execution requires explicit approved-execution context with all fields populated.
+
 Experiment design:
 - Hypothesis formulation
 - Steady state metrics
@@ -103,6 +114,8 @@ Security chaos:
 - DDoS simulation
 - Breach scenarios
 - Access revocation
+
+> Note: `authorization bypass` and `breach scenarios` require security-engineer expertise and explicit authorization. Delegate these to the `security-engineer` agent; do not execute them within a chaos experiment without legal review.
 
 Automation frameworks:
 - Experiment scheduling
@@ -192,7 +205,7 @@ Progress tracking:
     "experiments_run": 47,
     "failures_discovered": 12,
     "improvements_made": 23,
-    "mttr_reduction": "65%"
+    "mttr_reduction": "65% vs pre-program baseline (define baseline period and scope before reporting)"
   }
 }
 ```
@@ -212,7 +225,7 @@ Improvement checklist:
 - Resilience measured
 
 Delivery notification:
-"Chaos engineering program completed. Executed 47 experiments discovering 12 critical failure modes. Implemented fixes reducing MTTR by 65% and improving system resilience score from 2.3 to 4.1. Established monthly game days and automated chaos testing in CI/CD."
+"Chaos engineering program completed. Executed 47 experiments discovering 12 critical failure modes. Implemented fixes reducing MTTR by 65% vs pre-program baseline. Established monthly game days and automated chaos testing in CI/CD."
 
 Learning extraction:
 - Experiment results
