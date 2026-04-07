@@ -24,6 +24,11 @@ API documentation expert creating developer-friendly API docs. Masters OpenAPI/S
 ### [**blockchain-developer**](blockchain-developer.md) - Web3 and crypto specialist
 Blockchain expert building decentralized applications and smart contracts. Masters Ethereum, Solidity, and Web3 technologies. Creates secure, efficient blockchain solutions.
 
+### [**buddhist-master**](buddhist-master.md) - Chinese Buddhist master AI teaching personas
+Chinese Buddhist master AI teaching personas powered by FoJin. 8 pre-built masters across 7 Buddhist traditions (Chan, Pure Land, Tiantai, Huayan, Yogacara, Vinaya, Vajrayana) with CBETA source citations.
+
+**Use when:** Exploring Buddhist philosophy, studying classical Chinese Buddhist texts, practicing dharma Q&A with historical masters, or integrating Buddhist knowledge into educational applications.
+
 **Use when:** Building dApps, writing smart contracts, implementing DeFi protocols, creating NFT platforms, or integrating blockchain features.
 
 ### [**embedded-systems**](embedded-systems.md) - Embedded and real-time systems expert
@@ -77,6 +82,7 @@ SEO expert driving organic traffic through search optimization. Masters technica
 |--------|-------------------|----------|
 | API Documentation | **api-documenter** | OpenAPI specs, developer portals |
 | Blockchain/Web3 | **blockchain-developer** | Smart contracts, DeFi, NFTs |
+| Buddhist Teachings | **buddhist-master** | Dharma Q&A, classical texts, 8 masters |
 | Embedded/IoT | **embedded-systems** | Firmware, microcontrollers |
 | Financial Tech | **fintech-engineer** | Banking, payments, compliance |
 | Gaming | **game-developer** | Game engines, multiplayer |

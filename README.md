@@ -245,6 +245,7 @@ Domain-specific technology experts.
 
 - [**api-documenter**](categories/07-specialized-domains/api-documenter.md) - API documentation specialist
 - [**blockchain-developer**](categories/07-specialized-domains/blockchain-developer.md) - Web3 and crypto specialist
+- [**buddhist-master**](categories/07-specialized-domains/buddhist-master.md) - Chinese Buddhist master AI teaching personas powered by FoJin. 8 pre-built masters across 7 Buddhist traditions with CBETA source citations.
 - [**embedded-systems**](categories/07-specialized-domains/embedded-systems.md) - Embedded and real-time systems expert
 - [**fintech-engineer**](categories/07-specialized-domains/fintech-engineer.md) - Financial technology specialist
 - [**game-developer**](categories/07-specialized-domains/game-developer.md) - Game development expert
