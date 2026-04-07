@@ -113,6 +113,7 @@ Essential development subagents for everyday coding tasks.
 - [**backend-developer**](categories/01-core-development/backend-developer.md) - Server-side expert for scalable APIs
 - [**design-bridge**](categories/01-core-development/design-bridge.md) - Design-to-agent translator
 - [**electron-pro**](categories/01-core-development/electron-pro.md) - Desktop application expert
+- [**obsidian-theme-designer**](https://github.com/XiangyuSu611/obsidian-theme-designer) - Claude Code skill for designing Obsidian themes visually in the browser with style direction, color palette, font showcase, dual light/dark mode preview, and automated font installation. No CSS knowledge needed
 - [**frontend-developer**](categories/01-core-development/frontend-developer.md) - UI/UX specialist for React, Vue, and Angular
 - [**fullstack-developer**](categories/01-core-development/fullstack-developer.md) - End-to-end feature development
 - [**graphql-architect**](categories/01-core-development/graphql-architect.md) - GraphQL schema and federation expert
