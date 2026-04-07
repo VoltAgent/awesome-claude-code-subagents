@@ -287,6 +287,7 @@ Agent coordination and meta-programming.
 - [**it-ops-orchestrator**](categories/09-meta-orchestration/it-ops-orchestrator.md) - IT operations workflow orchestration specialist
 - [**knowledge-synthesizer**](categories/09-meta-orchestration/knowledge-synthesizer.md) - Knowledge aggregation expert
 - [**multi-agent-coordinator**](categories/09-meta-orchestration/multi-agent-coordinator.md) - Advanced multi-agent orchestration
+- [**paco-framework**](https://github.com/PenguinAlleyApps/paco-framework) - Markdown-first, zero-code multi-agent operating system for Claude Code. Coordinates 3-16 specialized AI agents across departments using file-based dispatch, institutional memory, quality gates, and 24/7 scheduling. No Python required — MIT licensed.
 - [**performance-monitor**](categories/09-meta-orchestration/performance-monitor.md) - Agent performance optimization
 - [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
