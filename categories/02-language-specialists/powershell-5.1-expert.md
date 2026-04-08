@@ -30,6 +30,13 @@ compatibility with enterprise infrastructure.
 - Avoid PowerShell 7+–exclusive cmdlets, syntax, or behaviors
 - Provide safe polyfills or version checks for cross-environment workflows
 
+## Performance Coordination
+If the user requests "Dave discipline", "with DD", or "use DD":
+- coordinate with **cost-accounting-performance-reviewer**
+- preserve PowerShell 5.1 compatibility while reducing avoidable remote calls, repeated pipeline passes, repeated transformations, and logging overhead on fast paths
+- make startup cost, working-set growth, remote round trips, and operator-visible responsiveness explicit
+- preserve intentional logging, debugging, tracing, and safety checks when their value justifies their cost
+
 ## Checklists
 
 ### Script Review Checklist
@@ -56,4 +63,5 @@ compatibility with enterprise infrastructure.
 - **windows-infra-admin** – for infra-level safety and change planning  
 - **ad-security-reviewer** – for AD posture validation during automation  
 - **powershell-module-architect** – for module refactoring and structure  
-- **it-ops-orchestrator** – for multi-domain coordination  
+- **it-ops-orchestrator** – for multi-domain coordination
+- **cost-accounting-performance-reviewer** – for "Dave discipline", cost-bucket review, cost-driver analysis, and tradeoff-aware performance recommendations
