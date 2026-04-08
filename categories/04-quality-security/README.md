@@ -8,6 +8,7 @@ Use these subagents when you need to:
 - **Implement comprehensive testing** strategies and automation
 - **Secure applications** against vulnerabilities and threats
 - **Optimize performance** for speed and efficiency
+- **Analyze performance cost and tradeoffs** ("Dave discipline") to improve responsiveness and efficiency
 - **Ensure accessibility** for all users
 - **Review code quality** and enforce standards
 - **Debug complex issues** systematically
@@ -51,6 +52,13 @@ Compliance specialist ensuring adherence to regulations and standards. Masters G
 
 **Use when:** Achieving regulatory compliance, implementing data privacy, preparing for audits, documenting compliance, or understanding regulations.
 
+### [**cost-accounting-performance-reviewer**](cost-accounting-performance-reviewer.md) - Cost-accounting performance reviewer
+Performance reviewer focused on explicit cost accounting and tradeoff-aware optimization. Evaluates systems using cost buckets (startup, memory, CPU, I/O, network, dependency, complexity, user experience, operator cost) and identifies cost drivers (drag points), including hidden and cumulative cost.
+
+Supports "Dave discipline" ("with DD") review patterns for cost-aware, constraint-driven performance analysis.
+
+**Use when:** You need to understand where performance cost lives, identify cost drivers, evaluate tradeoffs, or apply "Dave discipline" to code or systems.
+
 ### [**debugger**](debugger.md) - Advanced debugging specialist
 Debugging expert solving the most complex issues. Masters debugging tools, techniques, and methodologies across languages and platforms. Finds root causes where others give up.
 
@@ -75,6 +83,11 @@ Performance specialist making applications blazing fast. Masters profiling, opti
 Security-focused PowerShell expert hardening Windows servers, workstations, and automation tooling. Specializes in secure remoting, constrained endpoints, credential hygiene, logging, and aligning scripts with security baselines.
 
 **Use when:** Hardening Windows hosts, securing PowerShell remoting, locking down scripts and scheduled tasks, or aligning infrastructure automation with security baselines and compliance requirements.
+
+### [**performance-roi-translator**](performance-roi-translator.md) - Performance impact and ROI translator
+Companion agent that translates technical performance findings into clear, human-readable impact and prioritization guidance. Connects cost → change → outcome → user-visible value to help engineers justify improvements and prioritize work effectively.
+
+**Use when:** You need to explain performance issues, justify recommended changes, or translate technical findings into user-visible and operational impact.
 
 ### [**qa-expert**](qa-expert.md) - Test automation specialist
 Quality assurance master designing comprehensive test strategies. Expert in test automation, frameworks, and methodologies. Ensures quality through systematic testing approaches.
@@ -101,6 +114,7 @@ Automation specialist building robust test frameworks. Expert in various testing
 | Test system resilience | **chaos-engineer** |
 | Review code quality | **code-reviewer** |
 | Achieve compliance | **compliance-auditor** |
+| Perform cost-aware performance analysis or apply "Dave discipline" | **cost-accounting-performance-reviewer** |
 | Debug complex issues | **debugger** |
 | Investigate errors | **error-detective** |
 | Test security | **penetration-tester** |
@@ -108,6 +122,7 @@ Automation specialist building robust test frameworks. Expert in various testing
 | Automate testing | **qa-expert** |
 | Audit security | **security-auditor** |
 | Build test frameworks | **test-automator** |
+| Translate performance findings into impact and prioritization | **performance-roi-translator** |
 
 ## Common Quality Patterns
 
@@ -128,6 +143,8 @@ Automation specialist building robust test frameworks. Expert in various testing
 - **debugger** for bottleneck analysis
 - **error-detective** for issue investigation
 - **chaos-engineer** for stress testing
+- **cost-accounting-performance-reviewer** for cost analysis and tradeoff evaluation ("Dave discipline")
+- **performance-roi-translator** for impact explanation and prioritization
 
 **Code Quality:**
 - **code-reviewer** for code review
