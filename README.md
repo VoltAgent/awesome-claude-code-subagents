@@ -291,6 +291,7 @@ Agent coordination and meta-programming.
 - [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**taskade**](https://github.com/taskade/mcp) - AI-powered workspace with autonomous agents, real-time collaboration, and workflow automation with MCP integration
+- [**wiggum-cli**](https://github.com/federiconeri/wiggum-cli) - AI agent CLI that scans codebases (80+ technologies), generates feature specs through AI interviews, and runs autonomous implement-test-fix loops via Claude Code or Codex. Agent mode ships GitHub issues end-to-end with priority-aware scheduling
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
 
 ### [10. Research & Analysis](categories/10-research-analysis/)
