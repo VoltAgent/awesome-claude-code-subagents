@@ -91,6 +91,11 @@ Automation specialist building robust test frameworks. Expert in various testing
 
 **Use when:** Building test frameworks, automating test cases, integrating tests with CI/CD, improving test reliability, or scaling test automation.
 
+### [**ui-ux-tester**](ui-ux-tester.md) - Exhaustive documented-flow UI tester
+Interaction-heavy testing specialist that drives web or desktop interfaces against documented user flows and records visual, logical, and usability defects. Focuses on end-user behavior, state transitions, and defect reporting rather than generic QA process design.
+
+**Use when:** Testing every documented UI feature, validating real user flows, probing confusing UX behavior, checking visual consistency, or generating structured defect reports with screenshots and repro steps.
+
 ## Quick Selection Guide
 
 | If you need to... | Use this subagent |
@@ -108,6 +113,7 @@ Automation specialist building robust test frameworks. Expert in various testing
 | Automate testing | **qa-expert** |
 | Audit security | **security-auditor** |
 | Build test frameworks | **test-automator** |
+| Exhaustively test UI flows | **ui-ux-tester** |
 
 ## Common Quality Patterns
 
@@ -116,6 +122,12 @@ Automation specialist building robust test frameworks. Expert in various testing
 - **test-automator** for automation framework
 - **performance-engineer** for load testing
 - **accessibility-tester** for a11y testing
+
+**UI Flow Validation:**
+- **ui-ux-tester** for end-to-end interaction execution
+- **accessibility-tester** for inclusive interaction checks
+- **qa-expert** for broader quality strategy
+- **debugger** for defect root-cause investigation
 
 **Security Assessment:**
 - **security-auditor** for vulnerability assessment
