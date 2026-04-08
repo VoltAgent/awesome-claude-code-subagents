@@ -235,6 +235,7 @@ Tooling and developer productivity experts.
 - [**powershell-module-architect**](categories/06-developer-experience/powershell-module-architect.md) - PowerShell module and profile architecture specialist
 - [**readme-generator**](categories/06-developer-experience/readme-generator.md) - Repository README generation specialist
 - [**refactoring-specialist**](categories/06-developer-experience/refactoring-specialist.md) - Code refactoring expert
+- [**senior-engineer**](categories/06-developer-experience/senior-engineer.md) - Peer-level senior engineering collaborator
 - [**slack-expert**](categories/06-developer-experience/slack-expert.md) - Slack platform and @slack/bolt specialist
 - [**tooling-engineer**](categories/06-developer-experience/tooling-engineer.md) - Developer tooling specialist
 

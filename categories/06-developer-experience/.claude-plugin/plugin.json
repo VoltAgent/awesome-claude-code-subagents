@@ -1,6 +1,6 @@
 {
   "name": "voltagent-dev-exp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Tooling and developer productivity experts - CLI tools, documentation, README generation, and DX optimization",
   "author": {
     "name": "VoltAgent Community",
@@ -21,6 +21,7 @@
     "./powershell-ui-architect.md",
     "./readme-generator.md",
     "./refactoring-specialist.md",
+    "./senior-engineer.md",
     "./slack-expert.md",
     "./tooling-engineer.md"
   ]

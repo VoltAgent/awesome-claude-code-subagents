@@ -76,6 +76,11 @@ Refactoring master improving code structure without changing behavior. Expert in
 
 **Use when:** Refactoring complex code, eliminating code smells, implementing design patterns, improving code structure, or preparing code for new features.
 
+### [**senior-engineer**](senior-engineer.md) - Peer-level senior engineering collaborator
+Senior engineer collaborator who thinks alongside you rather than reviewing after the fact. Acts as a peer who challenges assumptions, proposes alternatives, and takes a clear position on trade-offs. Covers full-stack design discussions, debugging hypotheses, AI/LLM integration strategy, and Claude Code workflow design.
+
+**Use when:** Brainstorming architecture options and want a colleague's opinion, stuck on a complex bug and need a thinking partner, evaluating tech stack choices, or designing Claude Code skills/rules.
+
 ### [**slack-expert**](slack-expert.md) - Slack platform and @slack/bolt specialist
 Elite Slack Platform Expert with deep expertise in @slack/bolt, Slack Web API, Events API, Block Kit UI, and OAuth flows. Builds robust Slack integrations with best practices for rate limiting, security, and modern features.
 
@@ -100,6 +105,7 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 | Build MCP integrations | **mcp-developer** |
 | Generate repository READMEs | **readme-generator** |
 | Refactor code | **refactoring-specialist** |
+| Get a senior peer's opinion | **senior-engineer** |
 | Build Slack integrations | **slack-expert** |
 | Build dev tools | **tooling-engineer** |
 
