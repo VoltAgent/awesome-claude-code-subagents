@@ -262,6 +262,7 @@ Domain-specific technology experts.
 Product management and business analysis.
 
 - [**business-analyst**](categories/08-business-product/business-analyst.md) - Requirements specialist
+- [**claude-code-marketing-skills**](https://github.com/cognyai/claude-code-marketing-skills) - AI marketing skills: SEO Audit, Landing Page Review, Competitor Analysis, Ad Copy Writer, Lead Qualification. 5 free skills + premium skills via Cogny MCP servers
 - [**content-marketer**](categories/08-business-product/content-marketer.md) - Content marketing specialist
 - [**customer-success-manager**](categories/08-business-product/customer-success-manager.md) - Customer success expert
 - [**legal-advisor**](categories/08-business-product/legal-advisor.md) - Legal and compliance specialist
