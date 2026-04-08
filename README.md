@@ -411,6 +411,7 @@ Each agent has minimal necessary permissions. You can extend agents by adding MC
 
 ## 🧰 Tools
 
+- [Gitstar](https://gitstar.ai?utm_medium=github_readme&utm_source=awesome_list&utm_campaign=VoltAgent_awesome-claude-code-subagents) - Social feed for GitHub. Follow security researchers, discover trending security tools and repos.
 ### [subagent-catalog](tools/subagent-catalog/)
 Claude Code skill for browsing and fetching subagents from this catalog.
 
