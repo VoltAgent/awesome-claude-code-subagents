@@ -282,6 +282,7 @@ Agent coordination and meta-programming.
 - [**airis-mcp-gateway**](https://github.com/agiletec-inc/airis-mcp-gateway) - Docker-based MCP multiplexer that aggregates 60+ tools behind 7 meta-tools, reducing context token usage by 97%. One command to start, auto-enables servers on demand
 - [**agent-installer**](categories/09-meta-orchestration/agent-installer.md) - Browse and install agents from this repository via GitHub
 - [**agent-organizer**](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
+- [**building-multiagent-systems**](https://github.com/2389-research/building-multiagent-systems) - Architecture patterns for multi-agent systems: orchestrator-worker, pipeline, debate, and MapReduce topologies with Claude Code subagents
 - [**context-manager**](categories/09-meta-orchestration/context-manager.md) - Context optimization expert
 - [**error-coordinator**](categories/09-meta-orchestration/error-coordinator.md) - Error handling and recovery specialist
 - [**it-ops-orchestrator**](categories/09-meta-orchestration/it-ops-orchestrator.md) - IT operations workflow orchestration specialist
@@ -289,8 +290,11 @@ Agent coordination and meta-programming.
 - [**multi-agent-coordinator**](categories/09-meta-orchestration/multi-agent-coordinator.md) - Advanced multi-agent orchestration
 - [**performance-monitor**](categories/09-meta-orchestration/performance-monitor.md) - Agent performance optimization
 - [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
+- [**review-squad**](https://github.com/2389-research/review-squad) - Multi-perspective code review via dispatched subagent panels: expert reviewers, normie users, pedantic nitpickers, and real-user task runners
+- [**simmer**](https://github.com/2389-research/simmer) - Iterative artifact refinement using judge subagents that score against user-defined criteria across multiple rounds
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**taskade**](https://github.com/taskade/mcp) - AI-powered workspace with autonomous agents, real-time collaboration, and workflow automation with MCP integration
+- [**test-kitchen**](https://github.com/2389-research/test-kitchen) - Parallel implementation exploration using competing subagents, with structured comparison and winner selection
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
 
 ### [10. Research & Analysis](categories/10-research-analysis/)
