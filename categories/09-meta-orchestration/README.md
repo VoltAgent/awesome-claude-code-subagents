@@ -51,6 +51,11 @@ Performance specialist monitoring and optimizing agent systems. Expert in metric
 
 **Use when:** Monitoring agent performance, identifying bottlenecks, optimizing workflows, implementing metrics, or improving system efficiency.
 
+### [**sdlc-wizard**](https://github.com/BaseInfinity/agentic-ai-sdlc-wizard) - SDLC enforcement for Claude Code via hooks and skills
+Process enforcement system that ensures Claude Code follows software development lifecycle best practices. Installs hooks and skills that enforce plan-first workflow, TDD gates with confidence levels, cross-model review, and conventional commits. Turns ad-hoc AI coding into structured, auditable development.
+
+**Use when:** Enforcing SDLC discipline on Claude Code sessions, requiring plan approval before code changes, gating commits behind TDD and cross-model review, or standardizing AI-assisted development workflows across teams.
+
 ### [**task-distributor**](task-distributor.md) - Task allocation specialist
 Task distribution expert optimizing work allocation across agents. Masters load balancing, capability matching, and priority scheduling. Ensures efficient use of all available agents.
 
@@ -77,6 +82,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Scale agent operations | **multi-agent-coordinator** |
 | Monitor performance | **performance-monitor** |
 | Distribute tasks | **task-distributor** |
+| Enforce SDLC process | **[sdlc-wizard](https://github.com/BaseInfinity/agentic-ai-sdlc-wizard)** |
 | Manage projects with AI agents | **[taskade](https://github.com/taskade/mcp)** |
 | Automate workflows | **workflow-orchestrator** |
 
