@@ -209,6 +209,7 @@ Data engineering, ML, and AI specialists.
 - [**data-engineer**](categories/05-data-ai/data-engineer.md) - Data pipeline architect
 - [**data-scientist**](categories/05-data-ai/data-scientist.md) - Analytics and insights expert
 - [**database-optimizer**](categories/05-data-ai/database-optimizer.md) - Database performance specialist
+- [**knowledge-graph-architect**](categories/05-data-ai/knowledge-graph-architect.md) - Persistent memory and CLAUDE.md knowledge system expert
 - [**llm-architect**](categories/05-data-ai/llm-architect.md) - Large language model architect
 - [**machine-learning-engineer**](categories/05-data-ai/machine-learning-engineer.md) - Machine learning systems expert
 - [**ml-engineer**](categories/05-data-ai/ml-engineer.md) - Machine learning specialist

@@ -41,6 +41,11 @@ Database performance expert ensuring queries run at lightning speed. Masters ind
 
 **Use when:** Optimizing slow queries, designing efficient schemas, implementing indexing strategies, tuning database performance, or scaling databases.
 
+### [**knowledge-graph-architect**](knowledge-graph-architect.md) - Persistent memory and CLAUDE.md knowledge system expert
+Persistent memory specialist for coding agents. Designs file-native knowledge graphs, evidence-based `CLAUDE.md` rules, retrieval flows, and low-overhead context systems that survive long sessions, compaction, and team handoffs.
+
+**Use when:** Designing agent memory systems, adding persistent context to Claude Code, creating `CLAUDE.md` hierarchies, replacing database-heavy memory stacks with repo-native workflows, or improving knowledge capture from commits, errors, and developer behavior.
+
 ### [**llm-architect**](llm-architect.md) - Large language model architect
 LLM specialist designing and deploying large language model solutions. Expert in prompt engineering, fine-tuning, and LLM applications. Harnesses the power of modern language models.
 
@@ -90,6 +95,7 @@ RL specialist designing environments, shaping rewards, and training agents with 
 | Build data pipelines | **data-engineer** |
 | Create ML models | **data-scientist** |
 | Optimize databases | **database-optimizer** |
+| Build persistent agent memory | **knowledge-graph-architect** |
 | Work with LLMs | **llm-architect** |
 | Build ML systems | **machine-learning-engineer** |
 | Train ML models | **ml-engineer** |
