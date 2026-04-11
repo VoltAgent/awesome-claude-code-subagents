@@ -273,6 +273,7 @@ Product management and business analysis.
 - [**technical-writer**](categories/08-business-product/technical-writer.md) - Technical documentation specialist
 - [**ux-researcher**](categories/08-business-product/ux-researcher.md) - User research expert
 - [**wordpress-master**](categories/08-business-product/wordpress-master.md) - WordPress development and optimization expert
+- [**toprank**](https://github.com/nowork-studio/toprank) - SEO and Google Ads plugin for Claude Code. 9 skills across SEO audit, keyword research, content writing, meta tag optimization, schema markup, Google Ads campaign management, and RSA copy generation
 
 ### [09. Meta & Orchestration](categories/09-meta-orchestration/)
 **Plugin:** `voltagent-meta`
