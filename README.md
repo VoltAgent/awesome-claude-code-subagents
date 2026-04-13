@@ -199,6 +199,7 @@ Testing, security, and code quality experts.
 - [**security-auditor**](categories/04-quality-security/security-auditor.md) - Security vulnerability expert
 - [**test-automator**](categories/04-quality-security/test-automator.md) - Test automation framework expert
 
+- [**qa-orchestra**](https://github.com/Anasss/qa-orchestra) - Multi-agent QA toolkit with 10 specialized agents covering the full QA lifecycle — orchestrator, environment-manager, functional-reviewer, test-scenario-designer, browser-validator, automation-writer, manual-validator, bug-reporter, release-analyzer, and smart-test-selector. Stack-agnostic with output chaining and live browser validation.
 ### [05. Data & AI](categories/05-data-ai/)
 **Plugin:** `voltagent-data-ai`
 
