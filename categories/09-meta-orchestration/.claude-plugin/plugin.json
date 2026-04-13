@@ -1,7 +1,7 @@
 {
   "name": "voltagent-meta",
-  "version": "1.0.1",
-  "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation. Works best with other voltagent plugins installed.",
+  "version": "1.0.2",
+  "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation, and safe refactor governance. Works best with other voltagent plugins installed.",
   "author": {
     "name": "VoltAgent Community",
     "url": "https://github.com/VoltAgent"
@@ -10,6 +10,7 @@
   "license": "MIT",
   "agents": [
     "./agent-organizer.md",
+    "./codebase-orchestrator.md",
     "./context-manager.md",
     "./error-coordinator.md",
     "./it-ops-orchestrator.md",
