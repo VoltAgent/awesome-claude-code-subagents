@@ -406,6 +406,7 @@ Each subagent's `tools` field specifies Claude Code built-in tools, optimized fo
 - **Research agents** (analysts, researchers): `Read, Grep, Glob, WebFetch, WebSearch` - gather information
 - **Code writers** (developers, engineers): `Read, Write, Edit, Bash, Glob, Grep` - create and execute
 - **Documentation agents** (writers, documenters): `Read, Write, Edit, Glob, Grep, WebFetch, WebSearch` - document with research
+- [CCHub](https://github.com/Moresl/cchub) - A desktop control panel for the Claude Code / Codex / Gemini CLI ecosystem. Manage MCP servers, config profiles, agent skills, CLAUDE.md, hooks, and workflow templates from a single Tauri app (Windows / macOS / Linux).
 
 Each agent has minimal necessary permissions. You can extend agents by adding MCP servers or external tools to the `tools` field.
 
