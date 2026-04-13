@@ -307,6 +307,18 @@ Research, search, and analysis specialists.
 - [**data-researcher**](categories/10-research-analysis/data-researcher.md) - Data discovery and analysis expert
 - [**scientific-literature-researcher**](categories/10-research-analysis/scientific-literature-researcher.md) - Scientific paper search and evidence synthesis via [BGPT MCP](https://github.com/connerlambden/bgpt-mcp)
 
+### Community: [Zetetic Team Subagents](https://github.com/cdeust/zetetic-team-subagents)
+
+97 genius reasoning patterns from history's greatest thinkers + 18 team specialists, distributed as a Claude Code plugin with a Cortex-style setup installer. Every agent enforces a zetetic epistemic standard — claims must cite sources, every agent says "I don't know" when it doesn't.
+
+- **97 genius agents** — Feynman (integrity), Dijkstra (correctness), Pearl (causality), Toulmin (argumentation), Fermi (estimation), Turing (computability), Hamilton (error handling), and 90 more — each activated by problem shape, not by name
+- **18 team specialists** — architect, engineer, code-reviewer, test-engineer, dba, devops, frontend, security-auditor, data-scientist, research-scientist, etc.
+- **63 skills** — deep-research, systematic-review, incident-investigation, debug, implement, refactor, etc.
+- **14 hooks** — pre-commit zetetic checks, provenance tracking, difficulty books, session context
+- **Shape-based routing** — INDEX.md maps 200+ problem shapes to the right genius agent
+- **Per-agent model overrides** — `setup.sh configure` creates `~/.claude/zetetic-agent-models.json`
+- **Pairs with [Cortex](https://github.com/cdeust/Cortex)** for persistent memory across sessions
+
 ## 🤖 Understanding Subagents
 
 Subagents are specialized AI assistants that enhance Claude Code's capabilities by providing task-specific expertise. They act as dedicated helpers that Claude Code can call upon when encountering particular types of work.
