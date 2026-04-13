@@ -6,7 +6,7 @@
   },
   "metadata": {
     "version": "1.0.2",
-    "description": "Curated collection of 129 specialized Claude Code subagents organized into 10 focused categories"
+    "description": "Curated collection of 130 specialized Claude Code subagents organized into 10 focused categories"
   },
   "plugins": [
     {
@@ -76,10 +76,10 @@
     {
       "name": "voltagent-meta",
       "source": "./categories/09-meta-orchestration",
-      "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation. Works best with other voltagent plugins installed.",
-      "version": "1.0.1",
+      "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation, and safe refactor governance. Works best with other voltagent plugins installed.",
+      "version": "1.0.2",
       "category": "orchestration",
-      "keywords": ["multi-agent", "orchestration", "workflow", "coordination", "meta"]
+      "keywords": ["multi-agent", "orchestration", "workflow", "coordination", "meta", "refactor", "codebase-governance"]
     },
     {
       "name": "voltagent-research",
