@@ -45,7 +45,7 @@
       "name": "voltagent-data-ai",
       "source": "./categories/05-data-ai",
       "description": "Data engineering, ML, and AI specialists - data pipelines, machine learning, LLM architecture",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "category": "data",
       "keywords": ["data-engineering", "machine-learning", "ai", "llm", "mlops", "nlp"]
     },

@@ -210,6 +210,7 @@ Data engineering, ML, and AI specialists.
 - [**data-scientist**](categories/05-data-ai/data-scientist.md) - Analytics and insights expert
 - [**database-optimizer**](categories/05-data-ai/database-optimizer.md) - Database performance specialist
 - [**llm-architect**](categories/05-data-ai/llm-architect.md) - Large language model architect
+- [**market-intelligence**](categories/05-data-ai/market-intelligence.md) - Real-time market data and bias-aware news analysis via Helium MCP
 - [**machine-learning-engineer**](categories/05-data-ai/machine-learning-engineer.md) - Machine learning systems expert
 - [**ml-engineer**](categories/05-data-ai/ml-engineer.md) - Machine learning specialist
 - [**mlops-engineer**](categories/05-data-ai/mlops-engineer.md) - MLOps and model deployment expert

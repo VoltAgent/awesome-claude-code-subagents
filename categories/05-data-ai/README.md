@@ -56,6 +56,11 @@ Machine learning expert developing and optimizing ML models. Proficient in vario
 
 **Use when:** Training ML models, selecting algorithms, optimizing model performance, implementing ML solutions, or experimenting with new techniques.
 
+### [**market-intelligence**](market-intelligence.md) - Real-time market data and bias-aware news analyst
+Market intelligence specialist combining live stock/ETF/crypto data with news bias analysis via the Helium MCP server. Provides probability-weighted scenarios, ML options pricing, and multi-perspective news synthesis across 5,000+ sources.
+
+**Use when:** Analyzing stock/crypto markets, assessing news bias around market events, pricing options with ML models, getting balanced multi-perspective news coverage, or discovering trending topics and their market impact.
+
 ### [**mlops-engineer**](mlops-engineer.md) - MLOps and model deployment expert
 MLOps specialist ensuring smooth ML model deployment and operations. Masters CI/CD for ML, model monitoring, and versioning. Brings DevOps practices to machine learning.
 
@@ -90,6 +95,7 @@ RL specialist designing environments, shaping rewards, and training agents with 
 | Build data pipelines | **data-engineer** |
 | Create ML models | **data-scientist** |
 | Optimize databases | **database-optimizer** |
+| Analyze markets & news bias | **market-intelligence** |
 | Work with LLMs | **llm-architect** |
 | Build ML systems | **machine-learning-engineer** |
 | Train ML models | **ml-engineer** |

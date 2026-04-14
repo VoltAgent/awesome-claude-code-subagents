@@ -1,6 +1,6 @@
 {
   "name": "voltagent-data-ai",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Data engineering, ML, and AI specialists - data pipelines, machine learning, LLM architecture",
   "author": {
     "name": "VoltAgent Community",
@@ -16,6 +16,7 @@
     "./database-optimizer.md",
     "./llm-architect.md",
     "./machine-learning-engineer.md",
+    "./market-intelligence.md",
     "./ml-engineer.md",
     "./mlops-engineer.md",
     "./nlp-engineer.md",
