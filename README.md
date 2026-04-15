@@ -47,6 +47,7 @@
 This repository serves as the definitive collection of Claude Code subagents, specialized AI assitants designed for specific development tasks. 
 
 ## Installation
+- [Asynkor](https://github.com/asynkor/asynkor) - Coordination layer for AI agent teams. File leasing, shared memory, cross-machine sync. One MCP server for Claude Code, Cursor, Windsurf.
 
 ### As Claude Code Plugin (Recommended)
 
