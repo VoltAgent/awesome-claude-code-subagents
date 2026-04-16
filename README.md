@@ -298,6 +298,8 @@ Agent coordination and meta-programming.
 
 Research, search, and analysis specialists.
 
+- [**agent-tool-discovery**](categories/10-research-analysis/agent-tool-discovery.md) - AI agent tool and MCP server discovery specialist via [Not Human Search](https://nothumansearch.ai)
+- [**job-market-researcher**](categories/10-research-analysis/job-market-researcher.md) - AI/ML job market trends and hiring intelligence via [AI Dev Jobs](https://aidevboard.com)
 - [**research-analyst**](categories/10-research-analysis/research-analyst.md) - Comprehensive research specialist
 - [**search-specialist**](categories/10-research-analysis/search-specialist.md) - Advanced information retrieval expert
 - [**trend-analyst**](categories/10-research-analysis/trend-analyst.md) - Emerging trends and forecasting expert

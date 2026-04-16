@@ -16,6 +16,16 @@ Use these subagents when you need to:
 
 ## Available Subagents
 
+### [**agent-tool-discovery**](agent-tool-discovery.md) - AI agent tool and MCP server discovery specialist
+Tool discovery specialist finding and evaluating AI agent tools, MCP servers, and agent-ready APIs. Searches [Not Human Search](https://nothumansearch.ai) index of 8,600+ sites with agentic readiness scoring. Assesses MCP compatibility, integration complexity, and recommends optimal tools for agent workflows.
+
+**Use when:** Discovering MCP servers for agent integration, finding agent-ready APIs, evaluating tool agentic readiness scores, comparing alternatives for agent workflows, or locating services with MCP endpoints.
+
+### [**job-market-researcher**](job-market-researcher.md) - AI/ML job market intelligence specialist
+AI/ML employment analyst tracking hiring trends, salary ranges, and skill demand across the AI industry. Queries [AI Dev Jobs](https://aidevboard.com) board of 5,300+ positions via API and MCP server. Delivers market reports covering role distribution, compensation data, geographic trends, and emerging skill requirements.
+
+**Use when:** Researching AI/ML hiring trends, analyzing salary ranges, tracking in-demand skills, understanding company hiring patterns, planning AI career moves, or building workforce intelligence reports.
+
 ### [**research-analyst**](research-analyst.md) - Comprehensive research specialist
 Research expert conducting thorough investigations across domains. Masters research methodologies, source validation, and insight synthesis. Delivers comprehensive research reports on any topic.
 
@@ -60,6 +70,8 @@ Scientific literature specialist using [BGPT MCP](https://github.com/connerlambd
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
+| Discover agent tools & MCP servers | **agent-tool-discovery** |
+| AI/ML job market intelligence | **job-market-researcher** |
 | Deep topic research | **research-analyst** |
 | Find specific information | **search-specialist** |
 | Identify future trends | **trend-analyst** |
