@@ -284,6 +284,7 @@ Agent coordination and meta-programming.
 - [**agent-organizer**](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
 - [**context-manager**](categories/09-meta-orchestration/context-manager.md) - Context optimization expert
 - [**error-coordinator**](categories/09-meta-orchestration/error-coordinator.md) - Error handling and recovery specialist
+- [**idea-factory**](https://github.com/gguloadoong/idea-factory) - Full virtual startup team via Claude Code subagents. Seven specialized agents (PM / Developer / Designer / Architect / Critic / Code-Reviewer / QA) run an autonomous MVP-First pipeline with a 4-reviewer isolated-worktree gate — anti-leniency pattern that eliminates same-session self-review bias.
 - [**it-ops-orchestrator**](categories/09-meta-orchestration/it-ops-orchestrator.md) - IT operations workflow orchestration specialist
 - [**knowledge-synthesizer**](categories/09-meta-orchestration/knowledge-synthesizer.md) - Knowledge aggregation expert
 - [**multi-agent-coordinator**](categories/09-meta-orchestration/multi-agent-coordinator.md) - Advanced multi-agent orchestration
