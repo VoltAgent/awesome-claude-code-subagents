@@ -280,6 +280,7 @@ Product management and business analysis.
 Agent coordination and meta-programming.
 
 - [**airis-mcp-gateway**](https://github.com/agiletec-inc/airis-mcp-gateway) - Docker-based MCP multiplexer that aggregates 60+ tools behind 7 meta-tools, reducing context token usage by 97%. One command to start, auto-enables servers on demand
+- [**great_cto**](https://github.com/avelikiy/great_cto) - Full SDLC pipeline with 7 specialized subagents (tech-lead, senior-dev, qa-engineer, security-officer, devops, l3-support, project-auditor). 12-angle code review, 10 project archetypes, 13 compliance frameworks, two-gate approval flow
 - [**agent-installer**](categories/09-meta-orchestration/agent-installer.md) - Browse and install agents from this repository via GitHub
 - [**agent-organizer**](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
 - [**context-manager**](categories/09-meta-orchestration/context-manager.md) - Context optimization expert
