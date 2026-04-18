@@ -407,6 +407,9 @@ Each agent has minimal necessary permissions. You can extend agents by adding MC
 
 ## 🧰 Tools
 
+### [claude-dash](https://github.com/krabat-l/claude-dash)
+Real-time statusline plugin for Claude Code showing context, quota, cost, cache, tools, and git status. Component-based design with zero npm dependencies.
+
 ### [subagent-catalog](tools/subagent-catalog/)
 Claude Code skill for browsing and fetching subagents from this catalog.
 
