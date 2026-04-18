@@ -287,6 +287,7 @@ Agent coordination and meta-programming.
 - [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**taskade**](https://github.com/taskade/mcp) - AI-powered workspace with autonomous agents, real-time collaboration, and workflow automation with MCP integration
+- [**agent-shadow-brain**](https://github.com/theihtisham/agent-shadow-brain) - AI coding intelligence layer with 22 neural brain modules, built-in MCP server (19 tools), LSP server, Code DNA fingerprinting, self-evolving analysis. Zero-config for Claude Code. `npm i -g @theihtisham/agent-shadow-brain`
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
 
 ### [10. Research & Analysis](categories/10-research-analysis/)
