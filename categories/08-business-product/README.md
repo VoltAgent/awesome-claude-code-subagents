@@ -12,6 +12,7 @@ Use these subagents when you need to:
 - **Manage customer relationships** and success
 - **Ensure legal compliance** in technical decisions
 - **Design licensing strategy** for open source and commercial distribution
+- **Manage ERP operations** across accounting, inventory, HR, and payroll
 - **Manage projects** effectively with Agile methods
 - **Bridge technical and business** communication
 
@@ -31,6 +32,11 @@ Content expert creating compelling technical and marketing content. Masters SEO,
 Customer success specialist ensuring users achieve their goals. Expert in onboarding, retention, and customer advocacy. Transforms users into champions through proactive support.
 
 **Use when:** Designing onboarding flows, improving user retention, gathering customer feedback, building success metrics, or creating customer programs.
+
+### [**erp-specialist**](erp-specialist.md) - ERP operations specialist
+ERP specialist for accounting, GL, AR/AP, inventory, payroll, and industry-specific workflows using erpclaw — an AI-native ERP with 48 modules and 3,148 actions. Covers order-to-cash, procure-to-pay, Stripe/Shopify integrations, and industry verticals (healthcare, education, retail, construction, and more) that auto-install from natural language commands.
+
+**Use when:** Posting journal entries, reconciling GL, managing purchase or sales orders, running payroll, syncing Stripe payments, or triggering industry-specific ERP workflows like patient billing or school enrollment.
 
 ### [**legal-advisor**](legal-advisor.md) - Legal and compliance specialist
 Legal expert navigating technology law and compliance. Masters privacy regulations, intellectual property, and contract negotiations. Protects businesses while enabling innovation.
@@ -79,6 +85,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | Define requirements | **business-analyst** |
 | Create content | **content-marketer** |
 | Retain customers | **customer-success-manager** |
+| Run ERP operations | **erp-specialist** |
 | Handle legal matters | **legal-advisor** |
 | Design software licensing | **license-engineer** |
 | Shape product vision | **product-manager** |
@@ -101,6 +108,12 @@ User research specialist uncovering user needs and behaviors. Expert in research
 - **sales-engineer** for demos
 - **technical-writer** for docs
 - **customer-success-manager** for retention
+
+**ERP & Finance:**
+- **erp-specialist** for GL, AR/AP, payroll, and inventory
+- **business-analyst** for process design and gap analysis
+- **data-analyst** for financial dashboards and KPIs
+- **technical-writer** for accounting procedure documentation
 
 **Legal and Licensing:**
 - **legal-advisor** for contracts, privacy, and regulatory interpretation
