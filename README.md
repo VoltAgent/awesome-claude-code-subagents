@@ -260,6 +260,7 @@ Product management and business analysis.
 - [**business-analyst**](categories/08-business-product/business-analyst.md) - Requirements specialist
 - [**content-marketer**](categories/08-business-product/content-marketer.md) - Content marketing specialist
 - [**customer-success-manager**](categories/08-business-product/customer-success-manager.md) - Customer success expert
+- [**erp-specialist**](categories/08-business-product/erp-specialist.md) - ERP operations specialist
 - [**legal-advisor**](categories/08-business-product/legal-advisor.md) - Legal and compliance specialist
 - [**license-engineer**](categories/08-business-product/license-engineer.md) - Software licensing and compliance systems specialist
 - [**product-manager**](categories/08-business-product/product-manager.md) - Product strategy expert
