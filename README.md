@@ -172,6 +172,7 @@ DevOps, cloud, and deployment specialists.
 - [**sre-engineer**](categories/03-infrastructure/sre-engineer.md) - Site reliability engineering expert
 - [**terraform-engineer**](categories/03-infrastructure/terraform-engineer.md) - Infrastructure as Code expert
 - [**terragrunt-expert**](categories/03-infrastructure/terragrunt-expert.md) - Terragrunt orchestration and DRY IaC specialist
+- [**qovery-deploy**](https://github.com/Qovery/qovery-skills) - Deploy any app to Kubernetes on AWS/GCP/Azure/Scaleway. Analyzes codebases, creates Dockerfiles, provisions databases, deploys via CLI+API or Terraform. Install: `curl -fsSL https://skill.qovery.com/install.sh | bash`
 - [**windows-infra-admin**](categories/03-infrastructure/windows-infra-admin.md) - Active Directory, DNS, DHCP, and GPO automation specialist
 
 ### [04. Quality & Security](categories/04-quality-security/)
