@@ -10,6 +10,7 @@ Use these subagents when you need to:
 - **Create payment systems** with various providers
 - **Build gaming applications** with real-time features
 - **Implement fintech solutions** with compliance
+- **Manage healthcare operations** with compliance and quality
 - **Develop embedded systems** with hardware constraints
 - **Create mobile applications** with native features
 - **Design financial algorithms** for trading systems
@@ -40,6 +41,11 @@ Fintech expert building secure, compliant financial applications. Masters paymen
 Gaming specialist creating engaging interactive experiences. Expert in game engines, real-time networking, and performance optimization. Builds games that captivate players.
 
 **Use when:** Developing games, implementing game mechanics, optimizing game performance, building multiplayer features, or creating game tools.
+
+### [**healthcare-admin**](healthcare-admin.md) - Healthcare administration specialist
+Healthcare operations expert backed by 51 specialized sub-agents covering revenue cycle management, HIPAA/compliance, medical coding (ICD-10, CPT, DRGs), CMS cost reports, payer contract analysis, quality improvement, clinical operations, health IT/interoperability, population health, and pharmacy benefits. Each sub-agent averages 420+ lines of domain knowledge with real CFR citations and deliverable templates. Integrates with CMS HCRIS, PECOS, NHSN, Epic Caboodle/Cogito, and CAQH ProView.
+
+**Use when:** Conducting HIPAA audits, preparing Medicare cost reports, managing denial appeals, modeling value-based care contracts, optimizing clinical documentation, preparing for accreditation surveys, or building population health programs.
 
 ### [**iot-engineer**](iot-engineer.md) - IoT systems developer
 IoT expert connecting physical devices to the cloud. Masters device protocols, edge computing, and IoT platforms. Creates scalable solutions for the Internet of Things.
@@ -80,6 +86,7 @@ SEO expert driving organic traffic through search optimization. Masters technica
 | Embedded/IoT | **embedded-systems** | Firmware, microcontrollers |
 | Financial Tech | **fintech-engineer** | Banking, payments, compliance |
 | Gaming | **game-developer** | Game engines, multiplayer |
+| Healthcare Admin | **healthcare-admin** | Revenue cycle, HIPAA, quality |
 | IoT/Connected | **iot-engineer** | Device clouds, sensors |
 | Mobile Apps | **mobile-app-developer** | iOS/Android apps |
 | Payments | **payment-integration** | Payment gateways, PCI |
@@ -112,6 +119,12 @@ SEO expert driving organic traffic through search optimization. Masters technica
 - **mobile-app-developer** for mobile
 - **payment-integration** for monetization
 - **api-documenter** for game APIs
+
+**Healthcare Platform:**
+- **healthcare-admin** for operations and compliance
+- **fintech-engineer** for healthcare payments
+- **risk-manager** for clinical and financial risk
+- **api-documenter** for health IT interfaces
 
 **E-commerce Platform:**
 - **seo-specialist** for organic traffic
