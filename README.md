@@ -143,6 +143,7 @@ Language-specific experts with deep framework knowledge.
 - [**kotlin-specialist**](categories/02-language-specialists/kotlin-specialist.md) - Modern JVM language expert
 - [**laravel-specialist**](categories/02-language-specialists/laravel-specialist.md) - Laravel 10+ PHP framework expert
 - [**nextjs-developer**](categories/02-language-specialists/nextjs-developer.md) - Next.js 14+ full-stack specialist
+- [**node-specialist**](categories/02-language-specialists/node-specialist.md) - Node.js specialist
 - [**php-pro**](categories/02-language-specialists/php-pro.md) - PHP web development expert
 - [**python-pro**](categories/02-language-specialists/python-pro.md) - Python ecosystem master
 - [**rails-expert**](categories/02-language-specialists/rails-expert.md) - Rails 8.1 rapid development expert
