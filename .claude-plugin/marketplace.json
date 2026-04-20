@@ -6,7 +6,7 @@
   },
   "metadata": {
     "version": "1.0.2",
-    "description": "Curated collection of 130 specialized Claude Code subagents organized into 10 focused categories"
+    "description": "Curated collection of 141 specialized Claude Code subagents organized into 10 focused categories"
   },
   "plugins": [
     {
@@ -21,9 +21,9 @@
       "name": "voltagent-lang",
       "source": "./categories/02-language-specialists",
       "description": "Language-specific expert agents with deep framework knowledge - Python, TypeScript, Go, Rust, Java, and more",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "category": "development",
-      "keywords": ["python", "typescript", "golang", "rust", "java", "react", "vue", "angular", "expo", "react-native"]
+      "keywords": ["python", "typescript", "golang", "rust", "java", "react", "vue", "angular", "expo", "react-native", "node"]
     },
     {
       "name": "voltagent-infra",
@@ -37,7 +37,7 @@
       "name": "voltagent-qa-sec",
       "source": "./categories/04-quality-security",
       "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
-      "version": "1.0.2",
+      "version": "1.1.0",
       "category": "quality",
       "keywords": ["testing", "security", "code-review", "qa", "penetration-testing", "compliance"]
     },
