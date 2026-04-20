@@ -195,6 +195,7 @@ Testing, security, and code quality experts.
 - [**qa-expert**](categories/04-quality-security/qa-expert.md) - Test automation specialist
 - [**security-auditor**](categories/04-quality-security/security-auditor.md) - Security vulnerability expert
 - [**test-automator**](categories/04-quality-security/test-automator.md) - Test automation framework expert
+- [**ui-ux-tester**](categories/04-quality-security/ui-ux-tester.md) - Exhaustive documented-flow UI tester
 
 ### [05. Data & AI](categories/05-data-ai/)
 **Plugin:** `voltagent-data-ai`
