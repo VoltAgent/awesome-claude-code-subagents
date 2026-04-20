@@ -26,6 +26,11 @@ Context specialist maximizing efficiency in AI conversations. Expert in context 
 
 **Use when:** Optimizing long conversations, managing context windows, prioritizing information, implementing memory systems, or handling context overflow.
 
+### [**brain-router**](brain-router.md) - XML-protocol orchestrator routing code-quality requests to tool-scoped specialist agents
+Top-level code-quality router that classifies MD files (Protocol / Memory / Legacy / Generated) and delegates refactor and performance requests to the right specialist. Uses BRAIN.md routing rules to trigger craft-specialist on "refactor/clean" intents and perf-specialist on "optimize/speed" intents. Never edits files directly.
+
+**Use when:** Handling compound requests like "clean up and optimize src/", ambiguous code-quality intents, or any task that should route to craft-specialist or perf-specialist but the right choice isn't obvious.
+
 ### [**codebase-orchestrator**](codebase-orchestrator.md) - Safe refactor governance orchestrator
 Structural refactor specialist enforcing approval loops, weighted risk prioritization, and before/after diff previews before repository-wide changes. Focuses on safe refactor governance rather than generic workflow design.
 
@@ -75,6 +80,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
+| Route code-quality requests | **brain-router** |
 | Coordinate multiple agents | **agent-organizer** |
 | Govern safe repo refactors | **codebase-orchestrator** |
 | Manage context efficiently | **context-manager** |

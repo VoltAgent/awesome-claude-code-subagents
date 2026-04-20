@@ -51,6 +51,11 @@ Compliance specialist ensuring adherence to regulations and standards. Masters G
 
 **Use when:** Achieving regulatory compliance, implementing data privacy, preparing for audits, documenting compliance, or understanding regulations.
 
+### [**craft-specialist**](craft-specialist.md) - XML-protocol structural refactor agent with 20 anti-patterns and false-positive catalog
+Behavior-preserving refactor specialist that follows CRAFT.md's 20 anti-patterns (A1–A20) and an 8-entry false-positive catalog of patterns Claude commonly mis-flags. Lacks the `Write` tool so it cannot create new files. One session = one anti-pattern, one commit. Grades every proposed edit as 🟢/🟡/🔴 before executing.
+
+**Use when:** Refactoring for readability, removing dead code, fixing anti-patterns like god files or prop drilling — especially when you want explicit confirmation before touching anything Claude might be misidentifying (profiled hot paths, generated files, framework idioms, compliance constants).
+
 ### [**debugger**](debugger.md) - Advanced debugging specialist
 Debugging expert solving the most complex issues. Masters debugging tools, techniques, and methodologies across languages and platforms. Finds root causes where others give up.
 
@@ -65,6 +70,11 @@ Error investigation specialist tracking down elusive bugs. Expert in log analysi
 Security expert simulating attacks to find vulnerabilities. Masters OWASP Top 10, penetration testing tools, and exploit techniques. Thinks like an attacker to defend like a pro.
 
 **Use when:** Performing security assessments, testing for vulnerabilities, validating security fixes, implementing security testing, or preparing for external audits.
+
+### [**perf-specialist**](perf-specialist.md) - Measurement-first performance agent; refuses to optimize without Lighthouse/Profiler baseline
+Performance optimization agent with a hard gate: no baseline measurements = no action. Follows PERF.md's 20 anti-patterns (P1–P20) and an 8-entry false-positive catalog of patterns V8 and React already handle internally. One session = one optimization; rolls back if result is < 70% of predicted improvement.
+
+**Use when:** Optimizing Web Vitals, reducing bundle size, or eliminating render bottlenecks — after you have baseline Lighthouse or React Profiler numbers.
 
 ### [**performance-engineer**](performance-engineer.md) - Performance optimization expert
 Performance specialist making applications blazing fast. Masters profiling, optimization techniques, and performance testing. Eliminates bottlenecks and optimizes resource usage.
@@ -109,6 +119,8 @@ Interaction-heavy testing specialist that drives web or desktop interfaces again
 | Debug complex issues | **debugger** |
 | Investigate errors | **error-detective** |
 | Test security | **penetration-tester** |
+| Refactor without false positives | **craft-specialist** |
+| Performance with measurement gate | **perf-specialist** |
 | Optimize performance | **performance-engineer** |
 | Automate testing | **qa-expert** |
 | Audit security | **security-auditor** |
