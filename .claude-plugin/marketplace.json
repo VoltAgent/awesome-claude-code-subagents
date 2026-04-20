@@ -37,7 +37,7 @@
       "name": "voltagent-qa-sec",
       "source": "./categories/04-quality-security",
       "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
-      "version": "1.0.2",
+      "version": "1.1.0",
       "category": "quality",
       "keywords": ["testing", "security", "code-review", "qa", "penetration-testing", "compliance"]
     },
