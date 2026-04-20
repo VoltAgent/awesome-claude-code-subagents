@@ -143,6 +143,7 @@ Language-specific experts with deep framework knowledge.
 - [**kotlin-specialist**](categories/02-language-specialists/kotlin-specialist.md) - Modern JVM language expert
 - [**laravel-specialist**](categories/02-language-specialists/laravel-specialist.md) - Laravel 10+ PHP framework expert
 - [**nextjs-developer**](categories/02-language-specialists/nextjs-developer.md) - Next.js 14+ full-stack specialist
+- [**node-specialist**](categories/02-language-specialists/node-specialist.md) - Node.js specialist
 - [**php-pro**](categories/02-language-specialists/php-pro.md) - PHP web development expert
 - [**python-pro**](categories/02-language-specialists/python-pro.md) - Python ecosystem master
 - [**rails-expert**](categories/02-language-specialists/rails-expert.md) - Rails 8.1 rapid development expert
@@ -244,6 +245,7 @@ Domain-specific technology experts.
 - [**embedded-systems**](categories/07-specialized-domains/embedded-systems.md) - Embedded and real-time systems expert
 - [**fintech-engineer**](categories/07-specialized-domains/fintech-engineer.md) - Financial technology specialist
 - [**game-developer**](categories/07-specialized-domains/game-developer.md) - Game development expert
+- [**healthcare-admin**](categories/07-specialized-domains/healthcare-admin.md) - Healthcare administration specialist with 51 sub-agents covering revenue cycle, compliance, quality, clinical ops, health IT, and payer relations
 - [**iot-engineer**](categories/07-specialized-domains/iot-engineer.md) - IoT systems developer
 - [**m365-admin**](categories/07-specialized-domains/m365-admin.md) - Microsoft 365, Exchange Online, Teams, and SharePoint administration specialist
 - [**mobile-app-developer**](categories/07-specialized-domains/mobile-app-developer.md) - Mobile application specialist

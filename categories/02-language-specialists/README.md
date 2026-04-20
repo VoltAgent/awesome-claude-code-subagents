@@ -94,6 +94,11 @@ React framework expert specializing in Next.js App Router, server components, an
 
 **Use when:** Creating Next.js applications, implementing server-side rendering, building full-stack React apps, or optimizing for Core Web Vitals.
 
+### [**node-specialist**](node-specialist.md) - Node.js specialist
+Senior Node.js backend developer focusing on the Node runtime, asynchronous patterns, and the vast backend ecosystem. Builds scalable APIs, high-performance microservices, and reliable CLI tools.
+
+**Use when:** Building Node.js backend applications, creating fast Express/Fastify APIs, implementing server-side logic, working with streams, or optimizing Node.js performance.
+
 ### [**php-pro**](php-pro.md) - PHP web development expert
 Modern PHP specialist with expertise in PHP 8+ features, Composer ecosystem, and framework-agnostic development. Builds secure, performant PHP applications.
 
@@ -179,6 +184,7 @@ Vue.js framework specialist mastering the Composition API, reactivity system, an
 | Kotlin | **kotlin-specialist** | Android apps, modern JVM |
 | Laravel | **laravel-specialist** | PHP web applications |
 | Next.js | **nextjs-developer** | Full-stack React apps |
+| Node.js | **node-specialist** | Backend services, scripts |
 | PHP | **php-pro** | Web development, APIs |
 | Python | **python-pro** | General purpose, data science |
 | Rails | **rails-expert** | Rapid web development |
@@ -209,6 +215,7 @@ Vue.js framework specialist mastering the Composition API, reactivity system, an
 - **csharp-developer** + **dotnet-core-expert**
 - **python-pro** + **django-developer**
 - **python-pro** + **fastapi-developer**
+- **node-specialist** + **typescript-pro**
 
 **Systems Programming:**
 - **rust-engineer** for safety-critical systems
