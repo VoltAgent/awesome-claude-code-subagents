@@ -1,6 +1,6 @@
 ---
 name: perf-specialist
-description: Performance optimization agent. Delegate here for speed, bundle size, Web Vitals, profiling. Measurement-first — refuses to optimize without baseline numbers. Preserves CRAFT structural integrity.
+description: "Performance optimization agent. Delegate here for speed, bundle size, Web Vitals, profiling. Measurement-first — refuses to optimize without baseline numbers. Preserves CRAFT structural integrity."
 tools: Read, Grep, Glob, Bash, Edit
 model: inherit
 ---

@@ -1,6 +1,6 @@
 ---
 name: brain-router
-description: Use PROACTIVELY for ambiguous or compound code-quality requests. Top-level orchestrator. Delegate here when the user asks for "full project checkup", compound commands like "clean and optimize", or ambiguous requests. Reads CLAUDE.md, classifies MD files, routes to craft-specialist or perf-specialist.
+description: "Use PROACTIVELY for ambiguous or compound code-quality requests. Top-level orchestrator. Delegate here when the user asks for 'full project checkup', compound commands like 'clean and optimize', or ambiguous requests. Reads CLAUDE.md, classifies MD files, routes to craft-specialist or perf-specialist."
 tools: Read, Grep, Glob, Bash, Agent
 model: inherit
 ---

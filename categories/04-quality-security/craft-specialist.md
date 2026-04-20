@@ -1,6 +1,6 @@
 ---
 name: craft-specialist
-description: Structural refactor agent. Delegate here for refactor, cleanup, anti-pattern removal, readability improvements, dead-code removal, or any structural quality work. Never adds new features. Read-only by default; edits require explicit user approval.
+description: "Structural refactor agent. Delegate here for refactor, cleanup, anti-pattern removal, readability improvements, dead-code removal, or any structural quality work. Never adds new features. Read-only by default; edits require explicit user approval."
 tools: Read, Grep, Glob, Edit, Bash
 model: inherit
 ---
