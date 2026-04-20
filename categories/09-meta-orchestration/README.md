@@ -26,6 +26,11 @@ Context specialist maximizing efficiency in AI conversations. Expert in context 
 
 **Use when:** Optimizing long conversations, managing context windows, prioritizing information, implementing memory systems, or handling context overflow.
 
+### [**codebase-orchestrator**](codebase-orchestrator.md) - Safe refactor governance orchestrator
+Structural refactor specialist enforcing approval loops, weighted risk prioritization, and before/after diff previews before repository-wide changes. Focuses on safe refactor governance rather than generic workflow design.
+
+**Use when:** Mapping repository structure before large refactors, prioritizing technical debt safely, presenting explicit diff previews for approval, handling large-codebase fallback strategies, or coordinating safe structural cleanup.
+
 ### [**error-coordinator**](error-coordinator.md) - Error handling and recovery specialist
 Error handling expert ensuring graceful failure recovery. Masters error patterns, fallback strategies, and system resilience. Keeps multi-agent systems running smoothly despite failures.
 
@@ -71,6 +76,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
 | Coordinate multiple agents | **agent-organizer** |
+| Govern safe repo refactors | **codebase-orchestrator** |
 | Manage context efficiently | **context-manager** |
 | Handle system errors | **error-coordinator** |
 | Combine knowledge sources | **knowledge-synthesizer** |
@@ -99,6 +105,12 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 - **task-distributor** for work distribution
 - **error-coordinator** for resilience
 - **performance-monitor** for optimization
+
+**Safe Refactor Governance:**
+- **codebase-orchestrator** for approval-gated repository refactors
+- **context-manager** for repository boundary control
+- **error-coordinator** for deterministic fallback handling
+- **agent-organizer** for delegated subagent sequencing
 
 **Knowledge Management:**
 - **knowledge-synthesizer** for information fusion

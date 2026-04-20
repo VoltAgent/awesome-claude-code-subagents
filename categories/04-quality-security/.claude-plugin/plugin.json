@@ -1,6 +1,6 @@
 {
   "name": "voltagent-qa-sec",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation, and UI flow validation",
   "author": {
     "name": "VoltAgent Community",
@@ -16,10 +16,12 @@
     "./chaos-engineer.md",
     "./code-reviewer.md",
     "./compliance-auditor.md",
+    "./cost-accounting-performance-reviewer.md",
     "./debugger.md",
     "./error-detective.md",
     "./penetration-tester.md",
     "./performance-engineer.md",
+    "./performance-roi-translator.md",
     "./powershell-security-hardening.md",
     "./qa-expert.md",
     "./security-auditor.md",
