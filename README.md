@@ -187,9 +187,11 @@ Testing, security, and code quality experts.
 - [**chaos-engineer**](categories/04-quality-security/chaos-engineer.md) - System resilience testing expert
 - [**code-reviewer**](categories/04-quality-security/code-reviewer.md) - Code quality guardian
 - [**compliance-auditor**](categories/04-quality-security/compliance-auditor.md) - Regulatory compliance expert
+- [**craft-specialist**](categories/04-quality-security/craft-specialist.md) - XML-protocol structural refactor agent with 20 anti-patterns and false-positive catalog
 - [**debugger**](categories/04-quality-security/debugger.md) - Advanced debugging specialist
 - [**error-detective**](categories/04-quality-security/error-detective.md) - Error analysis and resolution expert
 - [**penetration-tester**](categories/04-quality-security/penetration-tester.md) - Ethical hacking specialist
+- [**perf-specialist**](categories/04-quality-security/perf-specialist.md) - Measurement-first performance agent; refuses to optimize without Lighthouse/Profiler baseline
 - [**performance-engineer**](categories/04-quality-security/performance-engineer.md) - Performance optimization expert
 - [**powershell-security-hardening**](categories/04-quality-security/powershell-security-hardening.md) - PowerShell security hardening and compliance specialist
 - [**qa-expert**](categories/04-quality-security/qa-expert.md) - Test automation specialist
@@ -281,6 +283,7 @@ Agent coordination and meta-programming.
 - [**airis-mcp-gateway**](https://github.com/agiletec-inc/airis-mcp-gateway) - Docker-based MCP multiplexer that aggregates 60+ tools behind 7 meta-tools, reducing context token usage by 97%. One command to start, auto-enables servers on demand
 - [**agent-installer**](categories/09-meta-orchestration/agent-installer.md) - Browse and install agents from this repository via GitHub
 - [**agent-organizer**](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
+- [**brain-router**](categories/09-meta-orchestration/brain-router.md) - XML-protocol orchestrator routing code-quality requests to tool-scoped specialist agents
 - [**codebase-orchestrator**](categories/09-meta-orchestration/codebase-orchestrator.md) - Safe refactor governance orchestrator
 - [**context-manager**](categories/09-meta-orchestration/context-manager.md) - Context optimization expert
 - [**error-coordinator**](categories/09-meta-orchestration/error-coordinator.md) - Error handling and recovery specialist
