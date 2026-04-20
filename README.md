@@ -278,6 +278,7 @@ Agent coordination and meta-programming.
 - [**airis-mcp-gateway**](https://github.com/agiletec-inc/airis-mcp-gateway) - Docker-based MCP multiplexer that aggregates 60+ tools behind 7 meta-tools, reducing context token usage by 97%. One command to start, auto-enables servers on demand
 - [**agent-installer**](categories/09-meta-orchestration/agent-installer.md) - Browse and install agents from this repository via GitHub
 - [**agent-organizer**](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
+- [**agent-shadow-brain**](https://github.com/theihtisham/agent-shadow-brain) - AI-powered background code analysis agent that continuously monitors your codebase and provides intelligent suggestions for Claude Code
 - [**context-manager**](categories/09-meta-orchestration/context-manager.md) - Context optimization expert
 - [**error-coordinator**](categories/09-meta-orchestration/error-coordinator.md) - Error handling and recovery specialist
 - [**it-ops-orchestrator**](categories/09-meta-orchestration/it-ops-orchestrator.md) - IT operations workflow orchestration specialist
@@ -406,6 +407,9 @@ Each subagent's `tools` field specifies Claude Code built-in tools, optimized fo
 Each agent has minimal necessary permissions. You can extend agents by adding MCP servers or external tools to the `tools` field.
 
 ## 🧰 Tools
+
+### [omni-skills-forge](https://github.com/theihtisham/omni-skills-forge)
+Universal skill and slash-command manager for AI coding assistants. Enables easy creation, sharing, and management of reusable skills across tools.
 
 ### [subagent-catalog](tools/subagent-catalog/)
 Claude Code skill for browsing and fetching subagents from this catalog.
