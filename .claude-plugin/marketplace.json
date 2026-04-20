@@ -39,7 +39,7 @@
       "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
       "version": "1.1.0",
       "category": "quality",
-      "keywords": ["testing", "security", "code-review", "qa", "penetration-testing", "compliance"]
+      "keywords": ["testing", "security", "code-review", "qa", "penetration-testing", "compliance", "ui-testing", "ux-testing"]
     },
     {
       "name": "voltagent-data-ai",

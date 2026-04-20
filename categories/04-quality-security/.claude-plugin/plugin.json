@@ -1,7 +1,7 @@
 {
   "name": "voltagent-qa-sec",
   "version": "1.1.0",
-  "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
+  "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation, and UI flow validation",
   "author": {
     "name": "VoltAgent Community",
     "url": "https://github.com/VoltAgent"
@@ -25,6 +25,7 @@
     "./powershell-security-hardening.md",
     "./qa-expert.md",
     "./security-auditor.md",
-    "./test-automator.md"
+    "./test-automator.md",
+    "./ui-ux-tester.md"
   ]
 }
