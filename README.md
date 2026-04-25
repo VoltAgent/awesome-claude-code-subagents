@@ -188,6 +188,7 @@ Testing, security, and code quality experts.
 - [**code-reviewer**](categories/04-quality-security/code-reviewer.md) - Code quality guardian
 - [**compliance-auditor**](categories/04-quality-security/compliance-auditor.md) - Regulatory compliance expert
 - [**debugger**](categories/04-quality-security/debugger.md) - Advanced debugging specialist
+- [**enigmagent-mcp**](categories/04-quality-security/enigmagent-mcp.md) - Local MCP vault integration specialist for placeholder-based config resolution
 - [**error-detective**](categories/04-quality-security/error-detective.md) - Error analysis and resolution expert
 - [**penetration-tester**](categories/04-quality-security/penetration-tester.md) - Ethical hacking specialist
 - [**performance-engineer**](categories/04-quality-security/performance-engineer.md) - Performance optimization expert

@@ -56,6 +56,11 @@ Debugging expert solving the most complex issues. Masters debugging tools, techn
 
 **Use when:** Debugging complex issues, analyzing memory leaks, investigating race conditions, profiling applications, or solving intermittent bugs.
 
+### [**enigmagent-mcp**](enigmagent-mcp.md) - Local MCP vault integration specialist
+Integration specialist for the EnigmAgent MCP server (npm: `enigmagent-mcp`). Resolves `{{PLACEHOLDER}}` references at runtime so configuration values stay out of LLM prompts and conversation logs. Walks users through local AES-256-GCM vault setup, placeholder design, and wiring up Claude Code, Open WebUI, AnythingLLM, and LM Studio.
+
+**Use when:** Keeping API tokens and config values out of prompts, migrating `.env` files into a local encrypted vault, wiring placeholder resolution into MCP-compatible clients, or refactoring agent definitions to reference vault entries instead of literals.
+
 ### [**error-detective**](error-detective.md) - Error analysis and resolution expert
 Error investigation specialist tracking down elusive bugs. Expert in log analysis, error patterns, and systematic debugging. Turns cryptic errors into actionable solutions.
 
@@ -107,6 +112,7 @@ Interaction-heavy testing specialist that drives web or desktop interfaces again
 | Review code quality | **code-reviewer** |
 | Achieve compliance | **compliance-auditor** |
 | Debug complex issues | **debugger** |
+| Keep config values out of prompts | **enigmagent-mcp** |
 | Investigate errors | **error-detective** |
 | Test security | **penetration-tester** |
 | Optimize performance | **performance-engineer** |
