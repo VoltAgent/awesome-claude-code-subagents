@@ -167,6 +167,7 @@ DevOps, cloud, and deployment specialists.
 - [**devops-incident-responder**](categories/03-infrastructure/devops-incident-responder.md) - DevOps incident management
 - [**incident-responder**](categories/03-infrastructure/incident-responder.md) - System incident response expert
 - [**kubernetes-specialist**](categories/03-infrastructure/kubernetes-specialist.md) - Container orchestration master
+- [**kubestellar-console-ops**](categories/03-infrastructure/kubestellar-console-ops.md) - Multi-cluster Kubernetes operations via kc-agent MCP server
 - [**network-engineer**](categories/03-infrastructure/network-engineer.md) - Network infrastructure specialist
 - [**platform-engineer**](categories/03-infrastructure/platform-engineer.md) - Platform architecture expert
 - [**security-engineer**](categories/03-infrastructure/security-engineer.md) - Infrastructure security specialist
