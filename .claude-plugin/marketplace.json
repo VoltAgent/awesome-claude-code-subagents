@@ -77,9 +77,9 @@
       "name": "voltagent-meta",
       "source": "./categories/09-meta-orchestration",
       "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation, and safe refactor governance. Works best with other voltagent plugins installed.",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "category": "orchestration",
-      "keywords": ["multi-agent", "orchestration", "workflow", "coordination", "meta", "refactor", "codebase-governance"]
+      "keywords": ["multi-agent", "orchestration", "workflow", "coordination", "meta", "refactor", "codebase-governance", "swarmclaw", "mcp"]
     },
     {
       "name": "voltagent-research",

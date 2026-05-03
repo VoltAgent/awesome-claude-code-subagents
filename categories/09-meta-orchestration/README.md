@@ -56,6 +56,11 @@ Performance specialist monitoring and optimizing agent systems. Expert in metric
 
 **Use when:** Monitoring agent performance, identifying bottlenecks, optimizing workflows, implementing metrics, or improving system efficiency.
 
+### [**SwarmClaw**](https://github.com/swarmclawai/swarmclaw) - Self-hosted multi-agent runtime with MCP support
+Self-hosted runtime for coordinating autonomous agent teams with heartbeats, schedules, delegation, persistent memory, runtime skills, and MCP client/server support. Runs locally as a desktop app, CLI, or Docker service.
+
+**Use when:** Managing persistent local agent teams, exposing agents and tools through MCP, routing delegated CLI backends, scheduling recurring work, or running a self-hosted orchestration dashboard.
+
 ### [**task-distributor**](task-distributor.md) - Task allocation specialist
 Task distribution expert optimizing work allocation across agents. Masters load balancing, capability matching, and priority scheduling. Ensures efficient use of all available agents.
 
@@ -82,6 +87,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Combine knowledge sources | **knowledge-synthesizer** |
 | Scale agent operations | **multi-agent-coordinator** |
 | Monitor performance | **performance-monitor** |
+| Run a self-hosted multi-agent runtime | **[SwarmClaw](https://github.com/swarmclawai/swarmclaw)** |
 | Distribute tasks | **task-distributor** |
 | Manage projects with AI agents | **[taskade](https://github.com/taskade/mcp)** |
 | Automate workflows | **workflow-orchestrator** |
@@ -97,6 +103,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 **Large-Scale Operations:**
 - **multi-agent-coordinator** for ecosystem management
 - **performance-monitor** for optimization
+- **[SwarmClaw](https://github.com/swarmclawai/swarmclaw)** for self-hosted agent runtime and scheduling
 - **workflow-orchestrator** for process automation
 - **context-manager** for efficiency
 
