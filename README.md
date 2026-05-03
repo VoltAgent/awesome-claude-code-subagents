@@ -14,7 +14,7 @@
 <div align="center">
     
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) 
-![Subagent Count](https://img.shields.io/badge/subagents-131+-blue?style=flat-square)
+![Subagent Count](https://img.shields.io/badge/subagents-132+-blue?style=flat-square)
 [![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-claude-code-subagents?label=Last%20update&style=flat-square)](https://github.com/VoltAgent/awesome-claude-code-subagents)
 <a href="https://github.com/VoltAgent/voltagent">
   <img alt="VoltAgent" src="https://cdn.voltagent.dev/website/logo/logo-2-svg.svg" height="20" />
@@ -306,6 +306,7 @@ Research, search, and analysis specialists.
 - [**project-idea-validator**](categories/10-research-analysis/project-idea-validator.md) - Brutal go/no-go product idea validator
 - [**data-researcher**](categories/10-research-analysis/data-researcher.md) - Data discovery and analysis expert
 - [**scientific-literature-researcher**](categories/10-research-analysis/scientific-literature-researcher.md) - Scientific paper search and evidence synthesis via [BGPT MCP](https://github.com/connerlambden/bgpt-mcp)
+- [**swarmvault-researcher**](categories/10-research-analysis/swarmvault-researcher.md) - SwarmVault-backed local knowledge graph research specialist
 
 ## 🤖 Understanding Subagents
 

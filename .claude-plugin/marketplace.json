@@ -85,9 +85,9 @@
       "name": "voltagent-research",
       "source": "./categories/10-research-analysis",
       "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting, and idea validation",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "category": "research",
-      "keywords": ["research", "analysis", "market-research", "competitive-analysis", "trends", "idea-validation", "product-strategy"]
+      "keywords": ["research", "analysis", "market-research", "competitive-analysis", "trends", "idea-validation", "product-strategy", "swarmvault", "knowledge-graph"]
     }
   ]
 }

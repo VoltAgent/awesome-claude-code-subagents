@@ -56,6 +56,11 @@ Scientific literature specialist using [BGPT MCP](https://github.com/connerlambd
 
 **Use when:** Searching scientific literature, conducting systematic reviews, synthesizing experimental evidence, fact-checking claims against published data, or building evidence-grounded research reports.
 
+### [**swarmvault-researcher**](swarmvault-researcher.md) - SwarmVault-backed local knowledge graph research specialist
+Local vault research specialist using SwarmVault's schema, wiki, graph report, graph query/path/explain commands, and lint checks to produce cited answers from durable project knowledge. Preserves provenance, flags contradictions, and saves high-value answers back to the vault.
+
+**Use when:** Querying a SwarmVault vault, tracing relationships through a local knowledge graph, synthesizing cited answers from wiki pages, checking contradictions, or building durable context packs from project sources.
+
 ## Quick Selection Guide
 
 | If you need to... | Use this subagent |
@@ -68,6 +73,7 @@ Scientific literature specialist using [BGPT MCP](https://github.com/connerlambd
 | Pressure-test product ideas | **project-idea-validator** |
 | Analyze data patterns | **data-researcher** |
 | Search scientific papers | **scientific-literature-researcher** |
+| Query a local SwarmVault knowledge graph | **swarmvault-researcher** |
 
 ## Common Research Patterns
 
@@ -80,6 +86,7 @@ Scientific literature specialist using [BGPT MCP](https://github.com/connerlambd
 **Strategic Research:**
 - **research-analyst** for comprehensive analysis
 - **search-specialist** for information gathering
+- **swarmvault-researcher** for durable local vault evidence
 - **trend-analyst** for future planning
 - **competitive-analyst** for positioning
 
@@ -91,6 +98,7 @@ Scientific literature specialist using [BGPT MCP](https://github.com/connerlambd
 
 **Data-Driven Insights:**
 - **data-researcher** for data analysis
+- **swarmvault-researcher** for graph-backed local source context
 - **market-researcher** for market data
 - **trend-analyst** for pattern identification
 - **research-analyst** for synthesis
