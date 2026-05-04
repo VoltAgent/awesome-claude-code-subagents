@@ -1,6 +1,6 @@
 {
   "name": "voltagent-meta",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation, and safe refactor governance. Works best with other voltagent plugins installed.",
   "author": {
     "name": "VoltAgent Community",
@@ -17,6 +17,7 @@
     "./knowledge-synthesizer.md",
     "./multi-agent-coordinator.md",
     "./performance-monitor.md",
+    "./remote-agent-dispatcher.md",
     "./task-distributor.md",
     "./workflow-orchestrator.md"
   ]

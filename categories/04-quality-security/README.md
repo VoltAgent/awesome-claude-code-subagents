@@ -41,6 +41,11 @@ Resilience specialist using chaos engineering to uncover weaknesses. Masters fai
 
 **Use when:** Testing system resilience, implementing chaos engineering, planning failure scenarios, improving fault tolerance, or validating disaster recovery.
 
+### [**claim-auditor**](claim-auditor.md) - Adversarial quantitative claim auditor for Markdown reports
+Read-only quantitative auditor for Markdown reports containing probability/EV/MC/pass-rate claims. Catches probability stacking (`1−(1−p)^N` vs `N×p`), conditional vs marginal pass-rate confusion, percentage vs percentage-points mixups, best-of-N selection bias, bootstrap-with-replacement implications, and sample-size red flags. Returns a structured P1/P2/P3 severity table; complements rather than replaces code-focused review.
+
+**Use when:** Auditing eval reports / MC results / backtest summaries, reviewing autonomous research output before acting on it, catching math errors that human reviewers glide past on long reports, or running as a post-processing step on any agent-generated quantitative analysis.
+
 ### [**code-reviewer**](code-reviewer.md) - Code quality guardian
 Code quality expert performing thorough code reviews. Masters best practices, design patterns, and code smells. Ensures code is clean, maintainable, and follows team standards.
 
