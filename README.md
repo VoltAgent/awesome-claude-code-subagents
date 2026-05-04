@@ -159,6 +159,7 @@ Language-specific experts with deep framework knowledge.
 DevOps, cloud, and deployment specialists.
 
 - [**azure-infra-engineer**](categories/03-infrastructure/azure-infra-engineer.md) - Azure infrastructure and Az PowerShell automation expert
+- [**bot-deploy-verifier**](categories/03-infrastructure/bot-deploy-verifier.md) - Adversarial post-deploy verifier for systemd services
 - [**cloud-architect**](categories/03-infrastructure/cloud-architect.md) - AWS/GCP/Azure specialist
 - [**database-administrator**](categories/03-infrastructure/database-administrator.md) - Database management expert
 - [**docker-expert**](categories/03-infrastructure/docker-expert.md) - Docker containerization and optimization expert
@@ -185,6 +186,7 @@ Testing, security, and code quality experts.
 - [**ai-writing-auditor**](categories/04-quality-security/ai-writing-auditor.md) - AI writing pattern detector and rewriter
 - [**architect-reviewer**](categories/04-quality-security/architect-reviewer.md) - Architecture review specialist
 - [**chaos-engineer**](categories/04-quality-security/chaos-engineer.md) - System resilience testing expert
+- [**claim-auditor**](categories/04-quality-security/claim-auditor.md) - Adversarial quantitative claim auditor for Markdown reports
 - [**code-reviewer**](categories/04-quality-security/code-reviewer.md) - Code quality guardian
 - [**compliance-auditor**](categories/04-quality-security/compliance-auditor.md) - Regulatory compliance expert
 - [**debugger**](categories/04-quality-security/debugger.md) - Advanced debugging specialist
@@ -288,6 +290,7 @@ Agent coordination and meta-programming.
 - [**knowledge-synthesizer**](categories/09-meta-orchestration/knowledge-synthesizer.md) - Knowledge aggregation expert
 - [**multi-agent-coordinator**](categories/09-meta-orchestration/multi-agent-coordinator.md) - Advanced multi-agent orchestration
 - [**performance-monitor**](categories/09-meta-orchestration/performance-monitor.md) - Agent performance optimization
+- [**remote-agent-dispatcher**](categories/09-meta-orchestration/remote-agent-dispatcher.md) - Mechanical scp+spawn for autonomous Claude Code agents on remote hosts
 - [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**taskade**](https://github.com/taskade/mcp) - AI-powered workspace with autonomous agents, real-time collaboration, and workflow automation with MCP integration

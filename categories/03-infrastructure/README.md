@@ -21,6 +21,11 @@ Expert in Azure resource design, virtual networking, identity integration, and i
 
 **Use when:** Designing Azure environments, deploying resources safely, integrating with M365, or creating automation scripts for Azure services and hybrid identity.
 
+### [**bot-deploy-verifier**](bot-deploy-verifier.md) - Adversarial post-deploy verifier for systemd services
+Adversarial verifier that catches the silent-skip pattern where an agent edits a config file but never restarts the service, plus accidental cascade restarts of unrelated services. Snapshots service timestamps, validates expected config keys actually loaded in the journal (not just on disk), and confirms sibling services weren't bumped. Optionally auto-rolls back when a backup_path is provided.
+
+**Use when:** Verifying any `systemctl restart` actually landed, catching cases where an agent reported "DONE" but the service never reloaded, detecting accidental cascade restarts from `BindsTo=`/`Requires=` dependencies, or confirming a deploy before declaring success.
+
 ### [**cloud-architect**](cloud-architect.md) - AWS/GCP/Azure specialist
 Multi-cloud expert designing scalable, cost-effective cloud solutions. Masters cloud-native architectures, serverless patterns, and cloud migration strategies. Ensures optimal resource utilization across major cloud providers.
 

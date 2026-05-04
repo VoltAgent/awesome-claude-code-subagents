@@ -56,6 +56,11 @@ Performance specialist monitoring and optimizing agent systems. Expert in metric
 
 **Use when:** Monitoring agent performance, identifying bottlenecks, optimizing workflows, implementing metrics, or improving system efficiency.
 
+### [**remote-agent-dispatcher**](remote-agent-dispatcher.md) - Mechanical scp+spawn for autonomous Claude Code agents on remote hosts
+Pure launch primitive for delegating long-running work to a Claude Code agent on a remote host over SSH. Captures the actual `claude` binary PID via `pgrep` after a fixed wait (not the bash-wrapper PID via `$!` — the common trap), saves a PID file, and returns DISPATCHED or BLOCKED with structured evidence. Survives SSH disconnect via `nohup`. Does not interpret or modify the spec.
+
+**Use when:** Delegating tasks that exceed Claude Code's interactive timeout, running work on a different machine than the human, launching long-running autonomous agents on a VPS, or any time you need PID capture that survives the wrapper-shell-reaper-kid problem.
+
 ### [**task-distributor**](task-distributor.md) - Task allocation specialist
 Task distribution expert optimizing work allocation across agents. Masters load balancing, capability matching, and priority scheduling. Ensures efficient use of all available agents.
 
