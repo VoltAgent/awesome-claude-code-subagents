@@ -21,6 +21,11 @@ Orchestration expert managing complex multi-agent collaborations. Masters task d
 
 **Use when:** Coordinating multiple agents, breaking down complex tasks, managing agent dependencies, synthesizing results, or designing agent workflows.
 
+### [**claude-code-dual-build**](https://github.com/cjcsecurity/claude-code-dual-build) - Symmetric multi-agent build with bidirectional cross-review
+Cross-review orchestration skill that splits a coding task ~50/50 between Claude and Codex, runs both in parallel in isolated git worktrees, then has the opposite model review each diff before consolidation. Bundles four custom subagents — claude-builder, codex-builder, claude-reviewer, codex-reviewer — coordinated by a `/dual-build` skill. Lightweight (~700 lines of markdown, no framework, no MCP server).
+
+**Use when:** Multi-component features with clean module boundaries, batch fixes across 3+ unrelated files, refactors with parallel slices, or audit-and-fix passes where you want a different model family's eyes on each diff.
+
 ### [**context-manager**](context-manager.md) - Context optimization expert
 Context specialist maximizing efficiency in AI conversations. Expert in context windows, information prioritization, and memory management. Ensures optimal use of limited context space.
 
@@ -76,6 +81,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
 | Coordinate multiple agents | **agent-organizer** |
+| Cross-review parallel Claude+Codex builds | **[claude-code-dual-build](https://github.com/cjcsecurity/claude-code-dual-build)** |
 | Govern safe repo refactors | **codebase-orchestrator** |
 | Manage context efficiently | **context-manager** |
 | Handle system errors | **error-coordinator** |

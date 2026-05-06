@@ -281,6 +281,7 @@ Agent coordination and meta-programming.
 - [**airis-mcp-gateway**](https://github.com/agiletec-inc/airis-mcp-gateway) - Docker-based MCP multiplexer that aggregates 60+ tools behind 7 meta-tools, reducing context token usage by 97%. One command to start, auto-enables servers on demand
 - [**agent-installer**](categories/09-meta-orchestration/agent-installer.md) - Browse and install agents from this repository via GitHub
 - [**agent-organizer**](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
+- [**claude-code-dual-build**](https://github.com/cjcsecurity/claude-code-dual-build) - Symmetric multi-agent build with bidirectional cross-review for Claude Code + Codex; bundles claude-builder, codex-builder, claude-reviewer, codex-reviewer
 - [**codebase-orchestrator**](categories/09-meta-orchestration/codebase-orchestrator.md) - Safe refactor governance orchestrator
 - [**context-manager**](categories/09-meta-orchestration/context-manager.md) - Context optimization expert
 - [**error-coordinator**](categories/09-meta-orchestration/error-coordinator.md) - Error handling and recovery specialist
