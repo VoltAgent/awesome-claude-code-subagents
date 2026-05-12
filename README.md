@@ -221,6 +221,7 @@ Data engineering, ML, and AI specialists.
 
 Tooling and developer productivity experts.
 
+- [**agent-lsp**](https://github.com/blackwell-systems/agent-lsp) - LSP-powered code intelligence for 30 languages with 66 tools (go-to-definition, find-references, call-hierarchy, blast-radius analysis) and 24 multi-step workflow skills (refactor, rename, impact analysis). Enables agents to understand code structure without grep/sed.
 - [**build-engineer**](categories/06-developer-experience/build-engineer.md) - Build system specialist
 - [**cli-developer**](categories/06-developer-experience/cli-developer.md) - Command-line tool creator
 - [**dependency-manager**](categories/06-developer-experience/dependency-manager.md) - Package and dependency specialist
