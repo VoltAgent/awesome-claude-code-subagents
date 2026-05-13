@@ -46,6 +46,11 @@ Knowledge synthesis specialist combining information from multiple sources. Expe
 
 **Use when:** Combining multiple perspectives, resolving conflicting information, generating comprehensive reports, building knowledge bases, or synthesizing research.
 
+### [**magebyte-power**](magebyte-power.md) - 7-phase backend workflow with parallel subagent cross-verification
+High-stakes backend feature orchestrator dispatching 4 independent verification subagents simultaneously in Phase 4: a cold-context reviewer (code diff only, no design docs), a behavior-preservation diff agent, a cross-repo impact scanner, and a business invariant matrix checker. The cold-context subagent consistently surfaces 5–15 concurrency and idempotency bugs per cycle that context-aware reviewers miss.
+
+**Use when:** Implementing backend features touching money flows, state machines, or inventory constraints; need parallel multi-perspective verification before merge; want to catch cross-service breakage and race conditions before they reach production.
+
 ### [**multi-agent-coordinator**](multi-agent-coordinator.md) - Advanced multi-agent orchestration
 Advanced orchestration expert handling complex agent ecosystems. Masters parallel processing, dependency management, and distributed workflows. Scales AI operations to enterprise level.
 
@@ -80,6 +85,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Manage context efficiently | **context-manager** |
 | Handle system errors | **error-coordinator** |
 | Combine knowledge sources | **knowledge-synthesizer** |
+| Cross-verify high-stakes backend features | **magebyte-power** |
 | Scale agent operations | **multi-agent-coordinator** |
 | Monitor performance | **performance-monitor** |
 | Distribute tasks | **task-distributor** |
