@@ -292,6 +292,7 @@ Agent coordination and meta-programming.
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**taskade**](https://github.com/taskade/mcp) - AI-powered workspace with autonomous agents, real-time collaboration, and workflow automation with MCP integration
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
+- [**pip-intern**](categories/09-meta-orchestration/pip-intern.md) - Generalist intern who handles grunt work so specialist agents stay focused (research lookups, content cleanup, format conversion). Open-source MIT sample from the [Septim Agents Pack](https://septimlabs.com/agents).
 
 ### [10. Research & Analysis](categories/10-research-analysis/)
 **Plugin:** `voltagent-research`
