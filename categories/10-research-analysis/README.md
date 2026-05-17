@@ -16,6 +16,21 @@ Use these subagents when you need to:
 
 ## Available Subagents
 
+### [**ab-test-analysis**](ab-test-analysis.md) - A/B test analysis and ship/no-ship decision specialist
+Statistical analysis expert interpreting A/B test results, p-values, confidence intervals, and effect sizes. Makes principled ship/no-ship decisions using a structured framework and catches common analysis errors like peeking, multiple comparisons, and Simpson's Paradox.
+
+**Use when:** Analyzing A/B or experiment results, interpreting p-values, making ship or no-ship decisions, evaluating statistical vs. practical significance, or validating test integrity.
+
+### [**cohort-analysis**](cohort-analysis.md) - User cohort retention and behavioral analysis specialist
+Retention analysis expert understanding how user groups behave over time. Diagnoses retention curve shapes, identifies activation metrics (the "Aha Moment"), and tracks whether product improvements are actually moving retention numbers.
+
+**Use when:** Analyzing user retention, diagnosing where the retention curve drops, finding activation behaviors, comparing cohort performance over time, or assessing product-market fit signals.
+
+### [**first-principles-thinking**](first-principles-thinking.md) - First principles problem-solving specialist
+Strategic thinking specialist breaking complex problems down to irreducible truths and rebuilding solutions from scratch. Applies the 5-step first principles method and 5D structured problem-solving framework to cut through assumptions.
+
+**Use when:** Challenging why things are done a certain way, rethinking a product or process from scratch, solving a recurring problem that conventional approaches haven't fixed, or pressure-testing assumptions before committing to a solution.
+
 ### [**research-analyst**](research-analyst.md) - Comprehensive research specialist
 Research expert conducting thorough investigations across domains. Masters research methodologies, source validation, and insight synthesis. Delivers comprehensive research reports on any topic.
 
@@ -60,6 +75,9 @@ Scientific literature specialist using [BGPT MCP](https://github.com/connerlambd
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
+| Analyze A/B test results | **ab-test-analysis** |
+| Analyze user retention | **cohort-analysis** |
+| Challenge assumptions from scratch | **first-principles-thinking** |
 | Deep topic research | **research-analyst** |
 | Find specific information | **search-specialist** |
 | Identify future trends | **trend-analyst** |
