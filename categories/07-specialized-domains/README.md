@@ -43,9 +43,15 @@ Gaming specialist creating engaging interactive experiences. Expert in game engi
 **Use when:** Developing games, implementing game mechanics, optimizing game performance, building multiplayer features, or creating game tools.
 
 ### [**healthcare-admin**](healthcare-admin.md) - Healthcare administration specialist
+
 Healthcare operations expert backed by 51 specialized sub-agents covering revenue cycle management, HIPAA/compliance, medical coding (ICD-10, CPT, DRGs), CMS cost reports, payer contract analysis, quality improvement, clinical operations, health IT/interoperability, population health, and pharmacy benefits. Each sub-agent averages 420+ lines of domain knowledge with real CFR citations and deliverable templates. Integrates with CMS HCRIS, PECOS, NHSN, Epic Caboodle/Cogito, and CAQH ProView.
 
 **Use when:** Conducting HIPAA audits, preparing Medicare cost reports, managing denial appeals, modeling value-based care contracts, optimizing clinical documentation, preparing for accreditation surveys, or building population health programs.
+
+### [**hipaa-compliance**](hipaa-compliance.md) - HIPAA compliance specialist for healthcare SaaS
+HIPAA compliance expert for technology vendors handling Protected Health Information (PHI). Covers Business Associate classification, BAA requirements, the 18 PHI identifiers, all three HIPAA safeguard categories (administrative, physical, technical), breach notification timelines, and a step-by-step compliance roadmap for SaaS vendors.
+
+**Use when:** Determining if your product requires a BAA, implementing HIPAA safeguards, responding to a PHI breach, preparing for a HIPAA audit, or onboarding a healthcare enterprise customer.
 
 ### [**iot-engineer**](iot-engineer.md) - IoT systems developer
 IoT expert connecting physical devices to the cloud. Masters device protocols, edge computing, and IoT platforms. Creates scalable solutions for the Internet of Things.
@@ -87,6 +93,7 @@ SEO expert driving organic traffic through search optimization. Masters technica
 | Financial Tech | **fintech-engineer** | Banking, payments, compliance |
 | Gaming | **game-developer** | Game engines, multiplayer |
 | Healthcare Admin | **healthcare-admin** | Revenue cycle, HIPAA, quality |
+| HIPAA Compliance (SaaS) | **hipaa-compliance** | PHI, BAA, safeguards, breach notification |
 | IoT/Connected | **iot-engineer** | Device clouds, sensors |
 | Mobile Apps | **mobile-app-developer** | iOS/Android apps |
 | Payments | **payment-integration** | Payment gateways, PCI |

@@ -188,6 +188,7 @@ Testing, security, and code quality experts.
 - [**code-reviewer**](categories/04-quality-security/code-reviewer.md) - Code quality guardian
 - [**compliance-auditor**](categories/04-quality-security/compliance-auditor.md) - Regulatory compliance expert
 - [**debugger**](categories/04-quality-security/debugger.md) - Advanced debugging specialist
+- [**gdpr-ccpa-compliance**](categories/04-quality-security/gdpr-ccpa-compliance.md) - GDPR and CCPA privacy compliance specialist
 - [**error-detective**](categories/04-quality-security/error-detective.md) - Error analysis and resolution expert
 - [**penetration-tester**](categories/04-quality-security/penetration-tester.md) - Ethical hacking specialist
 - [**performance-engineer**](categories/04-quality-security/performance-engineer.md) - Performance optimization expert
@@ -247,6 +248,7 @@ Domain-specific technology experts.
 - [**fintech-engineer**](categories/07-specialized-domains/fintech-engineer.md) - Financial technology specialist
 - [**game-developer**](categories/07-specialized-domains/game-developer.md) - Game development expert
 - [**healthcare-admin**](categories/07-specialized-domains/healthcare-admin.md) - Healthcare administration specialist with 51 sub-agents covering revenue cycle, compliance, quality, clinical ops, health IT, and payer relations
+- [**hipaa-compliance**](categories/07-specialized-domains/hipaa-compliance.md) - HIPAA compliance specialist for healthcare SaaS vendors
 - [**iot-engineer**](categories/07-specialized-domains/iot-engineer.md) - IoT systems developer
 - [**m365-admin**](categories/07-specialized-domains/m365-admin.md) - Microsoft 365, Exchange Online, Teams, and SharePoint administration specialist
 - [**mobile-app-developer**](categories/07-specialized-domains/mobile-app-developer.md) - Mobile application specialist
@@ -260,9 +262,12 @@ Domain-specific technology experts.
 
 Product management and business analysis.
 
+- [**assumption-mapping**](categories/08-business-product/assumption-mapping.md) - Product assumption risk and validation specialist
+- [**backlog-grooming**](categories/08-business-product/backlog-grooming.md) - Agile backlog refinement specialist
 - [**business-analyst**](categories/08-business-product/business-analyst.md) - Requirements specialist
 - [**content-marketer**](categories/08-business-product/content-marketer.md) - Content marketing specialist
 - [**customer-success-manager**](categories/08-business-product/customer-success-manager.md) - Customer success expert
+- [**growth-loops**](categories/08-business-product/growth-loops.md) - Growth loop and PLG mechanics specialist
 - [**legal-advisor**](categories/08-business-product/legal-advisor.md) - Legal and compliance specialist
 - [**license-engineer**](categories/08-business-product/license-engineer.md) - Software licensing and compliance systems specialist
 - [**product-manager**](categories/08-business-product/product-manager.md) - Product strategy expert
@@ -298,6 +303,9 @@ Agent coordination and meta-programming.
 
 Research, search, and analysis specialists.
 
+- [**ab-test-analysis**](categories/10-research-analysis/ab-test-analysis.md) - A/B test analysis and ship/no-ship decision specialist
+- [**cohort-analysis**](categories/10-research-analysis/cohort-analysis.md) - User cohort retention and behavioral analysis specialist
+- [**first-principles-thinking**](categories/10-research-analysis/first-principles-thinking.md) - First principles problem-solving specialist
 - [**research-analyst**](categories/10-research-analysis/research-analyst.md) - Comprehensive research specialist
 - [**search-specialist**](categories/10-research-analysis/search-specialist.md) - Advanced information retrieval expert
 - [**trend-analyst**](categories/10-research-analysis/trend-analyst.md) - Emerging trends and forecasting expert
