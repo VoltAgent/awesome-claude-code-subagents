@@ -235,6 +235,7 @@ Tooling and developer productivity experts.
 - [**refactoring-specialist**](categories/06-developer-experience/refactoring-specialist.md) - Code refactoring expert
 - [**slack-expert**](categories/06-developer-experience/slack-expert.md) - Slack platform and @slack/bolt specialist
 - [**tooling-engineer**](categories/06-developer-experience/tooling-engineer.md) - Developer tooling specialist
+- [**video-frame-annotator**](categories/06-developer-experience/video-frame-annotator.md) - Video capture and annotation specialist
 
 ### [07. Specialized Domains](categories/07-specialized-domains/)
 **Plugin:** `voltagent-domains`

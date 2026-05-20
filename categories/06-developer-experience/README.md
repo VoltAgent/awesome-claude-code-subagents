@@ -86,6 +86,11 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 
 **Use when:** Setting up development tools, creating custom tooling, configuring IDEs, implementing code quality tools, or building developer platforms.
 
+### [**video-frame-annotator**](video-frame-annotator.md) - Video capture and annotation specialist
+Visual-context specialist that bridges screen recordings and Claude Code conversations using the [video-to-claude](https://github.com/AdityaO5/video-to-claude) MCP tool. Drop a video, scrub to the exact frame, draw annotations, and deliver annotated WebPs directly into the active AI conversation.
+
+**Use when:** Capturing UI bugs from screen recordings, providing visual context for layout issues, documenting workflows frame by frame, or delivering annotated screenshots into Claude Code conversations.
+
 ## Quick Selection Guide
 
 | If you need to... | Use this subagent |
@@ -102,6 +107,7 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 | Refactor code | **refactoring-specialist** |
 | Build Slack integrations | **slack-expert** |
 | Build dev tools | **tooling-engineer** |
+| Capture annotated video frames | **video-frame-annotator** |
 
 ## Common DX Patterns
 
