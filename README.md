@@ -217,6 +217,7 @@ Data engineering, ML, and AI specialists.
 - [**reinforcement-learning-engineer**](categories/05-data-ai/reinforcement-learning-engineer.md) - Reinforcement learning and agent training expert
 
 ### [06. Developer Experience](categories/06-developer-experience/)
+* [Ano](https://ano.chat) - A collaborative shell with built-in AI integration (Claude Code) and custom CLI/MCP automations designed for elite devs.
 **Plugin:** `voltagent-dev-exp`
 
 Tooling and developer productivity experts.
