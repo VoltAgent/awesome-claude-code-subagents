@@ -1,7 +1,7 @@
 {
   "name": "voltagent-biz",
-  "version": "1.0.2",
-  "description": "Product, legal, and business specialists - product strategy, licensing, project management, UX research",
+  "version": "1.0.3",
+  "description": "Product, legal, business, and cross-cultural deal specialists - product strategy, licensing, project management, UX research, Korean / Japanese business navigation",
   "author": {
     "name": "VoltAgent Community",
     "url": "https://github.com/VoltAgent"
@@ -12,6 +12,8 @@
     "./business-analyst.md",
     "./content-marketer.md",
     "./customer-success-manager.md",
+    "./japanese-business-navigator.md",
+    "./korean-business-navigator.md",
     "./legal-advisor.md",
     "./license-engineer.md",
     "./product-manager.md",

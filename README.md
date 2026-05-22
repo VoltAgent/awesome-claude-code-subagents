@@ -263,6 +263,8 @@ Product management and business analysis.
 - [**business-analyst**](categories/08-business-product/business-analyst.md) - Requirements specialist
 - [**content-marketer**](categories/08-business-product/content-marketer.md) - Content marketing specialist
 - [**customer-success-manager**](categories/08-business-product/customer-success-manager.md) - Customer success expert
+- [**japanese-business-navigator**](categories/08-business-product/japanese-business-navigator.md) - Japanese business culture for foreign professionals — 稟議, 根回し, 名刺, 飲み会, 報連相
+- [**korean-business-navigator**](categories/08-business-product/korean-business-navigator.md) - Korean business culture for foreign professionals — 품의, nunchi, KakaoTalk, 회식, 결재라인
 - [**legal-advisor**](categories/08-business-product/legal-advisor.md) - Legal and compliance specialist
 - [**license-engineer**](categories/08-business-product/license-engineer.md) - Software licensing and compliance systems specialist
 - [**product-manager**](categories/08-business-product/product-manager.md) - Product strategy expert

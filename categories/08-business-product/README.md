@@ -32,6 +32,16 @@ Customer success specialist ensuring users achieve their goals. Expert in onboar
 
 **Use when:** Designing onboarding flows, improving user retention, gathering customer feedback, building success metrics, or creating customer programs.
 
+### [**japanese-business-navigator**](japanese-business-navigator.md) - Japanese business culture and deal mechanics
+Japanese business culture expert for foreign professionals. Decodes 稟議 (ringi) consensus process, 根回し (nemawashi) invisible pre-alignment, 空気を読む (KY) signal reading, LINE / email keigo etiquette, 名刺交換 protocol, 飲み会 / 接待 entertainment, 報連相 framework, and 印鑑 contract execution. Translates ambiguous Japanese business phrases (検討させていただきます ≈ no; 前向きに検討 ≈ genuine interest) into actionable timing and tactics.
+
+**Use when:** Preparing for a meeting with Japanese counterparts, decoding ambiguous replies, navigating 飲み会 protocol, calibrating 稟議 follow-up cadence, planning Golden Week / Obon / お中元 / お歳暮 / 年賀状 communication, drafting first-contact keigo email, or recovering from a face-loss incident.
+
+### [**korean-business-navigator**](korean-business-navigator.md) - Korean business culture and deal mechanics
+Korean business culture expert for foreign professionals. Decodes 품의 (consensus approval) process, nunchi (눈치) reading, KakaoTalk business etiquette, Korean corporate hierarchy (회장 / 사장 / 부장 / 과장 / 대리), 회식 drinking culture, ambiguous phrases (검토해보겠습니다 ≈ no; 긍정적으로 검토 ≈ yes), Chuseok / Lunar New Year business calendar, and rate negotiation in Korean context.
+
+**Use when:** Preparing for a meeting with Korean counterparts, calibrating 품의 follow-up cadence, attending 회식, decoding ambiguous replies, structuring KakaoTalk first-contact, planning seasonal touchpoints, or executing a Korean proof-project sales motion.
+
 ### [**legal-advisor**](legal-advisor.md) - Legal and compliance specialist
 Legal expert navigating technology law and compliance. Masters privacy regulations, intellectual property, and contract negotiations. Protects businesses while enabling innovation.
 
@@ -79,6 +89,8 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | Define requirements | **business-analyst** |
 | Create content | **content-marketer** |
 | Retain customers | **customer-success-manager** |
+| Navigate Japanese business culture | **japanese-business-navigator** |
+| Navigate Korean business culture | **korean-business-navigator** |
 | Handle legal matters | **legal-advisor** |
 | Design software licensing | **license-engineer** |
 | Shape product vision | **product-manager** |
@@ -118,6 +130,12 @@ User research specialist uncovering user needs and behaviors. Expert in research
 - **customer-success-manager** for satisfaction
 - **technical-writer** for self-service
 - **sales-engineer** for adoption
+
+**Cross-Cultural Deals (East Asia):**
+- **japanese-business-navigator** for 稟議 / 根回し / 名刺 / keigo
+- **korean-business-navigator** for 품의 / nunchi / KakaoTalk / 회식
+- **sales-engineer** for the technical demo layer
+- **legal-advisor** for jurisdiction-specific contract review
 
 ## Getting Started
 
