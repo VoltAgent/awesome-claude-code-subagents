@@ -17,12 +17,23 @@ Use these subagents when you need to:
 
 ## Available Subagents
 
+### [**assumption-mapping**](assumption-mapping.md) - Product assumption risk specialist
+Product validation expert surfacing and prioritizing risky assumptions in product ideas, features, and strategies. Uses the VUBF framework (Value, Usability, Business Viability, Feasibility) to identify what to test before building.
+
+**Use when:** Starting a new product or feature, de-risking ideas before sprint commitment, identifying which assumptions to validate first, or building a lightweight experiment plan.
+
+### [**backlog-grooming**](backlog-grooming.md) - Backlog refinement specialist
+Agile backlog expert keeping product backlogs healthy — well-estimated, well-defined, prioritized, and sprint-ready. Runs grooming sessions, enforces story readiness, and eliminates zombie tickets.
+
+**Use when:** Grooming or refining a backlog, cleaning up stale stories, estimating user stories, preparing items for sprint planning, or assessing backlog health.
+
 ### [**business-analyst**](business-analyst.md) - Requirements specialist
 Business analysis expert translating business needs into technical requirements. Masters stakeholder communication, process analysis, and solution design. Ensures technology solves real business problems.
 
 **Use when:** Gathering requirements, analyzing business processes, defining specifications, creating user stories, or bridging business-technical communication.
 
 ### [**content-marketer**](content-marketer.md) - Content marketing specialist
+
 Content expert creating compelling technical and marketing content. Masters SEO, content strategy, and audience engagement. Drives growth through strategic content creation.
 
 **Use when:** Creating blog posts, developing content strategy, writing marketing copy, optimizing for SEO, or building content calendars.
@@ -31,6 +42,11 @@ Content expert creating compelling technical and marketing content. Masters SEO,
 Customer success specialist ensuring users achieve their goals. Expert in onboarding, retention, and customer advocacy. Transforms users into champions through proactive support.
 
 **Use when:** Designing onboarding flows, improving user retention, gathering customer feedback, building success metrics, or creating customer programs.
+
+### [**growth-loops**](growth-loops.md) - Growth loop and PLG mechanics specialist
+Product growth strategist designing self-reinforcing acquisition loops. Covers viral loops, content/SEO loops, network effects, paid acquisition loops, and sales-led loops. Identifies loop constraints and experiments to accelerate compounding growth.
+
+**Use when:** Designing a growth strategy, understanding PLG mechanics, building a flywheel, diagnosing why growth is linear instead of compounding, or finding the weakest link in your acquisition loop.
 
 ### [**legal-advisor**](legal-advisor.md) - Legal and compliance specialist
 Legal expert navigating technology law and compliance. Masters privacy regulations, intellectual property, and contract negotiations. Protects businesses while enabling innovation.
@@ -76,9 +92,12 @@ User research specialist uncovering user needs and behaviors. Expert in research
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
+| Map risky assumptions | **assumption-mapping** |
+| Groom / refine backlog | **backlog-grooming** |
 | Define requirements | **business-analyst** |
 | Create content | **content-marketer** |
 | Retain customers | **customer-success-manager** |
+| Design growth loops | **growth-loops** |
 | Handle legal matters | **legal-advisor** |
 | Design software licensing | **license-engineer** |
 | Shape product vision | **product-manager** |
