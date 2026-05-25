@@ -5,8 +5,8 @@
     "url": "https://github.com/VoltAgent"
   },
   "metadata": {
-    "version": "1.0.2",
-    "description": "Curated collection of 141 specialized Claude Code subagents organized into 10 focused categories"
+    "version": "1.0.3",
+    "description": "Curated collection of 154 specialized Claude Code subagents organized into 10 focused categories"
   },
   "plugins": [
     {
@@ -37,7 +37,7 @@
       "name": "voltagent-qa-sec",
       "source": "./categories/04-quality-security",
       "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "category": "quality",
       "keywords": ["testing", "security", "code-review", "qa", "penetration-testing", "compliance", "ui-testing", "ux-testing"]
     },
@@ -53,7 +53,7 @@
       "name": "voltagent-dev-exp",
       "source": "./categories/06-developer-experience",
       "description": "Tooling and developer productivity experts - CLI tools, documentation, README generation, and DX optimization",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "category": "tooling",
       "keywords": ["developer-experience", "cli", "documentation", "readme", "tooling", "build", "dx"]
     },
@@ -61,7 +61,7 @@
       "name": "voltagent-domains",
       "source": "./categories/07-specialized-domains",
       "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "category": "specialized",
       "keywords": ["blockchain", "fintech", "gaming", "iot", "payments", "embedded"]
     },
@@ -69,7 +69,7 @@
       "name": "voltagent-biz",
       "source": "./categories/08-business-product",
       "description": "Product, legal, and business specialists - product strategy, licensing, project management, UX research",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "category": "business",
       "keywords": ["product-management", "business-analysis", "legal", "licensing", "ux", "scrum", "project-management"]
     },
@@ -77,7 +77,7 @@
       "name": "voltagent-meta",
       "source": "./categories/09-meta-orchestration",
       "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation, and safe refactor governance. Works best with other voltagent plugins installed.",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "category": "orchestration",
       "keywords": ["multi-agent", "orchestration", "workflow", "coordination", "meta", "refactor", "codebase-governance"]
     },
@@ -85,7 +85,7 @@
       "name": "voltagent-research",
       "source": "./categories/10-research-analysis",
       "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting, and idea validation",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "category": "research",
       "keywords": ["research", "analysis", "market-research", "competitive-analysis", "trends", "idea-validation", "product-strategy"]
     }

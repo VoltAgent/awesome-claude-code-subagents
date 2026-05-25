@@ -1,6 +1,6 @@
 {
   "name": "voltagent-research",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting, and idea validation",
   "author": {
     "name": "VoltAgent Community",
@@ -9,8 +9,11 @@
   "repository": "https://github.com/VoltAgent/awesome-claude-code-subagents",
   "license": "MIT",
   "agents": [
+    "./ab-test-analysis.md",
+    "./cohort-analysis.md",
     "./competitive-analyst.md",
     "./data-researcher.md",
+    "./first-principles-thinking.md",
     "./market-researcher.md",
     "./project-idea-validator.md",
     "./research-analyst.md",

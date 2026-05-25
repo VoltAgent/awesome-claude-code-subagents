@@ -1,6 +1,6 @@
 {
   "name": "voltagent-meta",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation, and safe refactor governance. Works best with other voltagent plugins installed.",
   "author": {
     "name": "VoltAgent Community",
@@ -9,6 +9,7 @@
   "repository": "https://github.com/VoltAgent/awesome-claude-code-subagents",
   "license": "MIT",
   "agents": [
+    "./agent-installer.md",
     "./agent-organizer.md",
     "./codebase-orchestrator.md",
     "./context-manager.md",
