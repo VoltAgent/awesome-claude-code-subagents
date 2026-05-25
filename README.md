@@ -235,6 +235,7 @@ Tooling and developer productivity experts.
 - [**refactoring-specialist**](categories/06-developer-experience/refactoring-specialist.md) - Code refactoring expert
 - [**slack-expert**](categories/06-developer-experience/slack-expert.md) - Slack platform and @slack/bolt specialist
 - [**tooling-engineer**](categories/06-developer-experience/tooling-engineer.md) - Developer tooling specialist
+- [**visual-asset-generator**](categories/06-developer-experience/visual-asset-generator.md) - Visual asset generation specialist using prompt-to-asset MCP across 30+ image models
 
 ### [07. Specialized Domains](categories/07-specialized-domains/)
 **Plugin:** `voltagent-domains`
@@ -272,6 +273,7 @@ Product management and business analysis.
 - [**technical-writer**](categories/08-business-product/technical-writer.md) - Technical documentation specialist
 - [**ux-researcher**](categories/08-business-product/ux-researcher.md) - User research expert
 - [**wordpress-master**](categories/08-business-product/wordpress-master.md) - WordPress development and optimization expert
+- [**content-quality-editor**](categories/08-business-product/content-quality-editor.md) - AI content quality specialist using unslop to strip AI writing patterns before publishing
 
 ### [09. Meta & Orchestration](categories/09-meta-orchestration/)
 **Plugin:** `voltagent-meta`
