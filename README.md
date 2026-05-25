@@ -270,6 +270,7 @@ Product management and business analysis.
 - [**project-manager**](categories/08-business-product/project-manager.md) - Project management specialist
 - [**sales-engineer**](categories/08-business-product/sales-engineer.md) - Technical sales expert
 - [**scrum-master**](categories/08-business-product/scrum-master.md) - Agile methodology expert
+- [**social-media-publisher**](categories/08-business-product/social-media-publisher.md) - Multi-platform social media publishing via SocialClaw (X, LinkedIn, Instagram, TikTok, YouTube, Reddit, WordPress, Pinterest and more)
 - [**technical-writer**](categories/08-business-product/technical-writer.md) - Technical documentation specialist
 - [**ux-researcher**](categories/08-business-product/ux-researcher.md) - User research expert
 - [**wordpress-master**](categories/08-business-product/wordpress-master.md) - WordPress development and optimization expert
