@@ -405,6 +405,7 @@ Each agent has minimal necessary permissions. You can extend agents by adding MC
 
 ## 🧰 Tools
 
+- [HOL Guard](https://github.com/hashgraph-online/hol-guard) - Local-first runtime security for AI coding agents. Intercepts shell commands, secret reads, and MCP changes before execution with configurable protection levels.
 ### [subagent-catalog](tools/subagent-catalog/)
 Claude Code skill for browsing and fetching subagents from this catalog.
 
