@@ -235,6 +235,14 @@ Domain-specific technology experts.
 - [**hipaa-compliance**](categories/07-specialized-domains/hipaa-compliance.md) - HIPAA compliance specialist for healthcare SaaS vendors
 - [**iot-engineer**](categories/07-specialized-domains/iot-engineer.md) - IoT systems developer
 - [**m365-admin**](categories/07-specialized-domains/m365-admin.md) - Microsoft 365, Exchange Online, Teams, and SharePoint administration specialist
+- [**minecraft-paper-architect**](categories/07-specialized-domains/minecraft-paper-architect.md) - Minecraft Paper plugin project setup, build configuration, and architecture
+- [**minecraft-paper-commands**](categories/07-specialized-domains/minecraft-paper-commands.md) - Minecraft Paper command systems with cloud-command-framework and Brigadier
+- [**minecraft-paper-data**](categories/07-specialized-domains/minecraft-paper-data.md) - Minecraft Paper data storage: PDC, SQLite/HikariCP, player data lifecycle
+- [**minecraft-paper-debugger**](categories/07-specialized-domains/minecraft-paper-debugger.md) - Minecraft Paper plugin debugging and root cause analysis
+- [**minecraft-paper-events**](categories/07-specialized-domains/minecraft-paper-events.md) - Minecraft Paper event handling, custom events, and high-frequency patterns
+- [**minecraft-paper-performance**](categories/07-specialized-domains/minecraft-paper-performance.md) - Minecraft Paper TPS/MSPT profiling and lag elimination
+- [**minecraft-paper-publisher**](categories/07-specialized-domains/minecraft-paper-publisher.md) - Minecraft Paper plugin publishing to Modrinth/Hangar via GitHub Actions
+- [**minecraft-paper-reviewer**](categories/07-specialized-domains/minecraft-paper-reviewer.md) - Minecraft Paper plugin code review and best-practice enforcement
 - [**mobile-app-developer**](categories/07-specialized-domains/mobile-app-developer.md) - Mobile application specialist
 - [**payment-integration**](categories/07-specialized-domains/payment-integration.md) - Payment systems expert
 - [**quant-analyst**](categories/07-specialized-domains/quant-analyst.md) - Quantitative analysis specialist

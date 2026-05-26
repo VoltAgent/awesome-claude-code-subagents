@@ -58,6 +58,46 @@ IoT expert connecting physical devices to the cloud. Masters device protocols, e
 
 **Use when:** Building IoT applications, implementing device communication, managing IoT fleets, processing sensor data, or designing IoT architectures.
 
+### [**minecraft-paper-architect**](minecraft-paper-architect.md) - Minecraft Paper plugin architect
+Paper plugin specialist for project scaffolding and build configuration. Sets up Gradle Kotlin DSL with paperweight userdev, paper-plugin.yml, shadow JAR relocation, and plugin soft-dependency wiring. Enforces Adventure API + MiniMessage, Display entities over ArmorStands, and async-safe patterns from day one.
+
+**Use when:** Starting a new Paper plugin, configuring build.gradle.kts, wiring soft dependencies (MythicMobs, ModelEngine, LuckPerms), or planning plugin architecture.
+
+### [**minecraft-paper-commands**](minecraft-paper-commands.md) - Minecraft Paper command system specialist
+Command system expert for Minecraft Paper plugins. Masters cloud-command-framework with native Brigadier integration, per-subcommand LuckPerms permission nodes, argument parsing, tab completion, and exception handling.
+
+**Use when:** Building command trees, adding tab completion, designing permission node hierarchies, or integrating cloud-command-framework.
+
+### [**minecraft-paper-data**](minecraft-paper-data.md) - Minecraft Paper data storage specialist
+Persistence specialist for Paper plugins. Chooses between PDC, SQLite+HikariCP, or MySQL based on use case; implements async player data lifecycle (load on join, save on quit, flush on disable); handles schema migrations and config-driven YAML patterns.
+
+**Use when:** Designing data storage, implementing player data load/save, choosing PDC vs database, or handling schema migrations.
+
+### [**minecraft-paper-debugger**](minecraft-paper-debugger.md) - Minecraft Paper plugin debugger
+Debugging specialist for Paper plugins. Reads stack traces, identifies async/main-thread violations, diagnoses duplicate event firing, memory leaks from held Player references, and race conditions in async data flows.
+
+**Use when:** Diagnosing crashes, hunting null pointer exceptions, investigating async bugs, or reproducing intermittent player data corruption.
+
+### [**minecraft-paper-events**](minecraft-paper-events.md) - Minecraft Paper event system specialist
+Event architecture expert for Paper plugins. Designs listener class structure, selects correct EventPriority, writes custom cancellable events, handles high-frequency events (PlayerMoveEvent, PlayerInteractEvent), and prevents recursive event firing.
+
+**Use when:** Designing event listeners, creating custom events, handling InventoryClickEvent for custom GUIs, or optimising high-frequency event handlers.
+
+### [**minecraft-paper-performance**](minecraft-paper-performance.md) - Minecraft Paper performance engineer
+Performance engineer for Paper plugins. Identifies TPS drops, MSPT spikes, main-thread blocking I/O, entity iteration inefficiency, memory leaks, and uncancelled tasks using Spark profiler output. Provides Folia-compatible scheduling patterns.
+
+**Use when:** Diagnosing lag, profiling with Spark, fixing blocking DB calls, or making a plugin Folia-compatible.
+
+### [**minecraft-paper-publisher**](minecraft-paper-publisher.md) - Minecraft Paper plugin publisher
+Publishing specialist for Paper plugins. Configures shadow JAR with dependency relocation, sets up GitHub Actions CI for Modrinth/Hangar publishing on tag push, writes bStats integration, and adds an update checker.
+
+**Use when:** Setting up CI/CD, publishing to Modrinth or Hangar, adding bStats metrics, or preparing a release checklist.
+
+### [**minecraft-paper-reviewer**](minecraft-paper-reviewer.md) - Minecraft Paper plugin code reviewer
+Code review specialist for Paper plugins. Catches legacy ChatColor usage, ArmorStand hacks that should be Display entities, missing ignoreCancelled flags, hard-coded strings that should be in lang files, and insecure SQL string concatenation.
+
+**Use when:** Reviewing a PR, auditing existing plugin code, or enforcing project conventions before release.
+
 ### [**mobile-app-developer**](mobile-app-developer.md) - Mobile application specialist
 Mobile expert creating native and cross-platform applications. Masters iOS/Android development, mobile UI/UX, and app store deployment. Builds apps users love on their devices.
 
@@ -95,6 +135,14 @@ SEO expert driving organic traffic through search optimization. Masters technica
 | Healthcare Admin | **healthcare-admin** | Revenue cycle, HIPAA, quality |
 | HIPAA Compliance (SaaS) | **hipaa-compliance** | PHI, BAA, safeguards, breach notification |
 | IoT/Connected | **iot-engineer** | Device clouds, sensors |
+| Minecraft Plugin Arch | **minecraft-paper-architect** | Project setup, build config |
+| Minecraft Commands | **minecraft-paper-commands** | cloud-commands, Brigadier |
+| Minecraft Data | **minecraft-paper-data** | PDC, SQLite, player lifecycle |
+| Minecraft Debug | **minecraft-paper-debugger** | Crash analysis, async bugs |
+| Minecraft Events | **minecraft-paper-events** | Listeners, custom events |
+| Minecraft Performance | **minecraft-paper-performance** | TPS, MSPT, Folia compat |
+| Minecraft Publishing | **minecraft-paper-publisher** | Modrinth, Hangar, CI/CD |
+| Minecraft Review | **minecraft-paper-reviewer** | Code review, anti-patterns |
 | Mobile Apps | **mobile-app-developer** | iOS/Android apps |
 | Payments | **payment-integration** | Payment gateways, PCI |
 | Quantitative | **quant-analyst** | Trading algorithms, risk |
@@ -132,6 +180,15 @@ SEO expert driving organic traffic through search optimization. Masters technica
 - **fintech-engineer** for healthcare payments
 - **risk-manager** for clinical and financial risk
 - **api-documenter** for health IT interfaces
+
+**Minecraft Paper Plugin:**
+- **minecraft-paper-architect** for project setup and build config
+- **minecraft-paper-events** for listener design
+- **minecraft-paper-commands** for command trees
+- **minecraft-paper-data** for storage and player lifecycle
+- **minecraft-paper-performance** for lag diagnosis
+- **minecraft-paper-publisher** for CI/CD and platform submission
+- **minecraft-paper-reviewer** for pre-release code review
 
 **E-commerce Platform:**
 - **seo-specialist** for organic traffic
