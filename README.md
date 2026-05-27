@@ -78,7 +78,31 @@ curl -s https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagent
 ```
 Then in Claude Code: "Use the agent-installer to show me available categories" or "Find PHP agents and install php-pro globally".
 
+## Ecosystem Tools
 
+Tools, platforms, and services for building 
+
+ - If you're building AI agents in TypeScript, VoltAgent gives you tool use, memory, and multi-agent coordination out of the box.
+
+    <a href="https://github.com/VoltAgent/voltagent">
+    <img height="80" alt="voltagent-banner" src="https://github.com/user-attachments/assets/7196f50b-ca98-494c-8aa0-11e111c49f96" />
+    </a>
+<br/>
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="100%">
+<h4>👉 You can feature your product here and reach developers using AI coding agents like Claude Code, Codex, Gemini, and more.</h4>
+     
+<a href="https://sponsors.voltagent.dev/#awesome-claude-code-subagents"><img src="https://img.shields.io/badge/📩_Become_a_Sponsor-Contact_Us-blue?style=for-the-badge&logoColor=white" alt="Become a Sponsor" /></a>
+
+</td>
+</tr>
+</table>
+
+</div>
 
 
 ## 📚 Categories
