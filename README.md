@@ -293,6 +293,7 @@ Product management and business analysis.
 Agent coordination and meta-programming.
 
 - [**airis-mcp-gateway**](https://github.com/agiletec-inc/airis-mcp-gateway) - Docker-based MCP multiplexer that aggregates 60+ tools behind 7 meta-tools, reducing context token usage by 97%. One command to start, auto-enables servers on demand
+- [**hermes-supercode-skills**](https://github.com/mturac/hermes-supercode-skills) - 13 production-grade Claude Code skills (db-whisperer, auth-architect, obs-guardian, deploy-ninja, quantum-debugger, security-sentinel, api-sculptor, pipeline-architect, ghost-scraper, mcp-conductor, prediction-alpha, prompt-forge, infra-automation) with Recon→Plan→Execute→Verify workflow and tiered safety rails. `npx hermes-skills install`
 - [**moai-adk**](https://github.com/modu-ai/moai-adk) - SPEC-first Agentic Development Kit orchestrating 24 specialized agents with enforced Plan→Run→Sync workflow, TRUST 5 quality gates, 52 domain-specific skills, and 16-language project support
 - [**agent-installer**](categories/09-meta-orchestration/agent-installer.md) - Browse and install agents from this repository via GitHub
 - [**agent-organizer**](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
