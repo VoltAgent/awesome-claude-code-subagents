@@ -43,6 +43,11 @@ Customer success specialist ensuring users achieve their goals. Expert in onboar
 
 **Use when:** Designing onboarding flows, improving user retention, gathering customer feedback, building success metrics, or creating customer programs.
 
+### [**digital-workforce-designer**](digital-workforce-designer.md) - AI employee and digital workforce role designer
+Digital workforce architect designing AI employees that own business workflows across sales, support, operations, and CRM handoff. Turns business goals into implementation-ready role briefs with scope, data model, human escalation, evaluation, and launch guardrails.
+
+**Use when:** Designing AI employees, Funcionarios Digitais, sales qualification agents, support triage roles, operations coordinators, or any workflow where an AI system must execute tasks with clear handoff and measurable business outcomes.
+
 ### [**growth-loops**](growth-loops.md) - Growth loop and PLG mechanics specialist
 Product growth strategist designing self-reinforcing acquisition loops. Covers viral loops, content/SEO loops, network effects, paid acquisition loops, and sales-led loops. Identifies loop constraints and experiments to accelerate compounding growth.
 
@@ -97,6 +102,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | Define requirements | **business-analyst** |
 | Create content | **content-marketer** |
 | Retain customers | **customer-success-manager** |
+| Design AI employee workflows | **digital-workforce-designer** |
 | Design growth loops | **growth-loops** |
 | Handle legal matters | **legal-advisor** |
 | Design software licensing | **license-engineer** |
@@ -117,6 +123,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 
 **Go-to-Market:**
 - **content-marketer** for content
+- **digital-workforce-designer** for AI employee scope, handoff, and data model
 - **sales-engineer** for demos
 - **technical-writer** for docs
 - **customer-success-manager** for retention

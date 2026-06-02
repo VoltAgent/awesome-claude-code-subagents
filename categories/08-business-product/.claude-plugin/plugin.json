@@ -1,6 +1,6 @@
 {
   "name": "voltagent-biz",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Product, legal, and business specialists - product strategy, licensing, project management, UX research",
   "author": {
     "name": "VoltAgent Community",
@@ -15,6 +15,7 @@
     "./content-marketer.md",
     "./content-quality-editor.md",
     "./customer-success-manager.md",
+    "./digital-workforce-designer.md",
     "./growth-loops.md",
     "./legal-advisor.md",
     "./license-engineer.md",

@@ -6,7 +6,7 @@
 <br/>
 
 <div align="center">
-    <strong>The awesome collection of 154+ Claude Code subagents across 10 categories.</strong>
+    <strong>The awesome collection of 155+ Claude Code subagents across 10 categories.</strong>
     <br />
     <br />
 </div>
@@ -14,7 +14,7 @@
 <div align="center">
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-![Subagent Count](https://img.shields.io/badge/subagents-154-blue?style=classic)
+![Subagent Count](https://img.shields.io/badge/subagents-155-blue?style=classic)
 [![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-claude-code-subagents?label=Last%20update&style=classic)](https://github.com/VoltAgent/awesome-claude-code-subagents)
 [![Discord](https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://s.voltagent.dev/discord)
 
@@ -275,6 +275,7 @@ Product management and business analysis.
 - [**business-analyst**](categories/08-business-product/business-analyst.md) - Requirements specialist
 - [**content-marketer**](categories/08-business-product/content-marketer.md) - Content marketing specialist
 - [**customer-success-manager**](categories/08-business-product/customer-success-manager.md) - Customer success expert
+- [**digital-workforce-designer**](categories/08-business-product/digital-workforce-designer.md) - AI employee and digital workforce role designer
 - [**growth-loops**](categories/08-business-product/growth-loops.md) - Growth loop and PLG mechanics specialist
 - [**legal-advisor**](categories/08-business-product/legal-advisor.md) - Legal and compliance specialist
 - [**license-engineer**](categories/08-business-product/license-engineer.md) - Software licensing and compliance systems specialist
