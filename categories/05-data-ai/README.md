@@ -81,6 +81,11 @@ RL specialist designing environments, shaping rewards, and training agents with 
 
 **Use when:** Designing RL environments, training game AI or robotics agents, implementing policy gradient methods, optimizing reward functions, or deploying autonomous decision-making systems.
 
+### [**runapi-mcp-server**](https://github.com/runapi-ai/mcp) - Media generation MCP server
+MCP server that gives Claude Code access to 130+ AI models for image, video, music, audio, and LLM generation across 18 providers. Provides free catalog and pricing tools plus authenticated task creation. Install with `npx @runapi.ai/mcp`.
+
+**Use when:** Generating images, video, music, audio, or LLM completions from inside an agent, browsing available models, or wiring media generation into a multi-step workflow.
+
 ## Quick Selection Guide
 
 | If you need to... | Use this subagent |
@@ -98,6 +103,7 @@ RL specialist designing environments, shaping rewards, and training agents with 
 | Optimize PostgreSQL | **postgres-pro** |
 | Design AI prompts | **prompt-engineer** |
 | Train RL agents | **reinforcement-learning-engineer** |
+| Generate images, video, music, or audio | **runapi-mcp-server** |
 
 ## Common Data & AI Patterns
 

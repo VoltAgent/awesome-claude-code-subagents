@@ -223,6 +223,7 @@ Data engineering, ML, and AI specialists.
 - [**postgres-pro**](categories/05-data-ai/postgres-pro.md) - PostgreSQL database expert
 - [**prompt-engineer**](categories/05-data-ai/prompt-engineer.md) - Prompt optimization specialist
 - [**reinforcement-learning-engineer**](categories/05-data-ai/reinforcement-learning-engineer.md) - Reinforcement learning and agent training expert
+- [**runapi-mcp-server**](https://github.com/runapi-ai/mcp) - MCP server exposing 130+ AI models for image, video, music, audio, and LLM generation from 18 providers — works in Claude Code via `npx @runapi.ai/mcp`
 
 ### [06. Developer Experience](categories/06-developer-experience/)
 **Plugin:** `voltagent-dev-exp`
