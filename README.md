@@ -177,7 +177,7 @@ DevOps, cloud, and deployment specialists.
 - [**network-engineer**](categories/03-infrastructure/network-engineer.md) - Network infrastructure specialist
 - [**platform-engineer**](categories/03-infrastructure/platform-engineer.md) - Platform architecture expert
 - [**security-engineer**](categories/03-infrastructure/security-engineer.md) - Infrastructure security specialist
-  - [huiyu-safe-ai](https://github.com/huiyu9144/huiyu-safe-ai) - Lightweight AI security guard for install/download commands. Blocks 68+ malicious packages, verifies identity, scans code in <1s with zero overhead. Built from a real supply chain attack.
+- [**huiyu-safe-ai**](https://github.com/huiyu9144/huiyu-safe-ai) - Lightweight AI security guard for install/download commands. Blocks 68+ malicious packages, verifies identity, scans code in <1s.
 - [**sre-engineer**](categories/03-infrastructure/sre-engineer.md) - Site reliability engineering expert
 - [**terraform-engineer**](categories/03-infrastructure/terraform-engineer.md) - Infrastructure as Code expert
 - [**terragrunt-expert**](categories/03-infrastructure/terragrunt-expert.md) - Terragrunt orchestration and DRY IaC specialist
