@@ -302,6 +302,7 @@ Agent coordination and meta-programming.
 - [**it-ops-orchestrator**](categories/09-meta-orchestration/it-ops-orchestrator.md) - IT operations workflow orchestration specialist
 - [**knowledge-synthesizer**](categories/09-meta-orchestration/knowledge-synthesizer.md) - Knowledge aggregation expert
 - [**multi-agent-coordinator**](categories/09-meta-orchestration/multi-agent-coordinator.md) - Advanced multi-agent orchestration
+- [**navox-agents**](https://github.com/navox-labs/agents) - 15-agent sprint team with handoff contracts, eval-gated reliability (10/10 quality scores), 3 sprint modes (FULL/QUICK/HOTFIX), and a Python CLI for autonomous orchestration. Zero plugin dependencies
 - [**performance-monitor**](categories/09-meta-orchestration/performance-monitor.md) - Agent performance optimization
 - [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist

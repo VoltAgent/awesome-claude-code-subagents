@@ -46,6 +46,11 @@ Knowledge synthesis specialist combining information from multiple sources. Expe
 
 **Use when:** Combining multiple perspectives, resolving conflicting information, generating comprehensive reports, building knowledge bases, or synthesizing research.
 
+### [**navox-agents**](https://github.com/navox-labs/agents) - 15-agent sprint team with handoff contracts and eval-gated reliability
+Full sprint cycle orchestrator with 15 specialist agents covering Think, Plan, Build, Review, Test, Ship, and Reflect. Three sprint modes (FULL/QUICK/HOTFIX) chain agents automatically with parallel execution groups. Each agent has handoff contracts defining required inputs and outputs, self-validation checklists, and persistent memory. Built-in eval system scores every agent against a 10-point quality rubric (14/14 pass at 10/10). Available as a Claude Code plugin (zero dependencies, pure markdown) and as a Python CLI (`navox run full "your task"`) for autonomous orchestration with eval-gated retries.
+
+**Use when:** Running end-to-end development sprints with automated agent orchestration, enforcing quality gates between build and review stages, coordinating specialist agents (strategist, architect, fullstack, reviewer, QA, security, shipper) through structured handoff contracts, or running autonomous sprints via the CLI while you focus on other work. Install plugin: `claude plugin add navox-labs/agents` | Install CLI: `cd sdk && pip install -e .`
+
 ### [**multi-agent-coordinator**](multi-agent-coordinator.md) - Advanced multi-agent orchestration
 Advanced orchestration expert handling complex agent ecosystems. Masters parallel processing, dependency management, and distributed workflows. Scales AI operations to enterprise level.
 
@@ -80,6 +85,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Manage context efficiently | **context-manager** |
 | Handle system errors | **error-coordinator** |
 | Combine knowledge sources | **knowledge-synthesizer** |
+| Run full dev sprints with quality gates | **[navox-agents](https://github.com/navox-labs/agents)** |
 | Scale agent operations | **multi-agent-coordinator** |
 | Monitor performance | **performance-monitor** |
 | Distribute tasks | **task-distributor** |
