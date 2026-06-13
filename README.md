@@ -103,6 +103,7 @@ Tools, platforms, and services for building
 </table>
 
 </div>
+- [**MCP Server Toolkit**](https://github.com/naveenayalla1-CS50/mcp-server-toolkit) - Build plug-and-play MCP servers that give Claude Code, Cursor, and Windsurf direct access to codebases (semantic search), documentation (indexed), and databases.
 
 
 ## 📚 Categories
