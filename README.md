@@ -80,13 +80,12 @@ Then in Claude Code: "Use the agent-installer to show me available categories" o
 
 ## Ecosystem Tools
 
-Tools, platforms, and services for building 
+<br/>
 
- - If you're building AI agents in TypeScript, VoltAgent gives you tool use, memory, and multi-agent coordination out of the box.
+<a href="https://launchkit.getdesign.md/">
+<img src="https://cdn.voltagent.dev/awesome-repo/launchkit-banner-1.png" alt="launchkit"  /><br/>
+</a>
 
-    <a href="https://github.com/VoltAgent/voltagent">
-    <img height="80" alt="voltagent-banner" src="https://github.com/user-attachments/assets/7196f50b-ca98-494c-8aa0-11e111c49f96" />
-    </a>
 <br/>
 
 <div align="center">
