@@ -443,6 +443,12 @@ Claude Code skill for browsing and fetching subagents from this catalog.
 cp -r tools/subagent-catalog ~/.claude/commands/
 ```
 
+### Alternative Claude Code Clients
+
+Open-source agents that are compatible with or serve as alternatives to Claude Code:
+
+- [**OpenClacky**](https://openclacky.com) — Open-source AI coding agent (MIT). Achieves **93.8% Prompt Cache hit rate** and **~0.8× the API cost of Claude Code** via frozen 16-tool schema, dual cache markers, and Insert-then-Compress context management. Supports Claude, GPT-4, DeepSeek, Gemini, and OpenRouter (BYOK). [GitHub](https://github.com/clacky-ai/open-clacky)
+
 
 
 ## 🤝 Contributing
