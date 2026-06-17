@@ -298,6 +298,7 @@ Agent coordination and meta-programming.
 - [**codebase-orchestrator**](categories/09-meta-orchestration/codebase-orchestrator.md) - Safe refactor governance orchestrator
 - [**context-manager**](categories/09-meta-orchestration/context-manager.md) - Context optimization expert
 - [**error-coordinator**](categories/09-meta-orchestration/error-coordinator.md) - Error handling and recovery specialist
+- [**forgedock**](https://github.com/RapierCraftStudios/ForgeDock) - Autonomous dev pipeline that dispatches parallel agents for investigate → architect → build → review → merge workflows, using GitHub as a structured knowledge graph
 - [**it-ops-orchestrator**](categories/09-meta-orchestration/it-ops-orchestrator.md) - IT operations workflow orchestration specialist
 - [**knowledge-synthesizer**](categories/09-meta-orchestration/knowledge-synthesizer.md) - Knowledge aggregation expert
 - [**multi-agent-coordinator**](categories/09-meta-orchestration/multi-agent-coordinator.md) - Advanced multi-agent orchestration

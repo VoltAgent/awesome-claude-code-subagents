@@ -36,6 +36,11 @@ Error handling expert ensuring graceful failure recovery. Masters error patterns
 
 **Use when:** Implementing error handling, designing recovery strategies, managing cascading failures, monitoring system health, or building resilient workflows.
 
+### [**forgedock**](https://github.com/RapierCraftStudios/ForgeDock) - Autonomous dev pipeline for Claude Code
+Orchestration layer that dispatches parallel Claude Code agents through a structured investigate → architect → build → review → merge pipeline. Uses GitHub issues, labels, and PR comments as a knowledge graph — agents pass context via machine-readable FORGE: annotations, reconstruct full state from GitHub alone, and coordinate through 20+ slash-command specs. Installs via npx with zero runtime dependencies.
+
+**Use when:** Running autonomous end-to-end development workflows, orchestrating parallel agents across investigation/build/review phases, using GitHub as a structured context store for agent coordination, or managing multi-issue pipelines with full traceability.
+
 ### [**it-ops-orchestrator**](it-ops-orchestrator.md) - IT operations meta-orchestrator for PowerShell/.NET ecosystems
 Meta-orchestrator that routes ambiguous infrastructure and operations tasks to the right specialist agents, with a strong preference for PowerShell and .NET-based workflows. Understands the roles of Windows infra, Azure, M365, and PowerShell language experts, and coordinates them to deliver end-to-end solutions.
 
@@ -79,6 +84,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Govern safe repo refactors | **codebase-orchestrator** |
 | Manage context efficiently | **context-manager** |
 | Handle system errors | **error-coordinator** |
+| Run autonomous dev pipelines | **[forgedock](https://github.com/RapierCraftStudios/ForgeDock)** |
 | Combine knowledge sources | **knowledge-synthesizer** |
 | Scale agent operations | **multi-agent-coordinator** |
 | Monitor performance | **performance-monitor** |
