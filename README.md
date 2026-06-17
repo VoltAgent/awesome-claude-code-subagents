@@ -305,6 +305,11 @@ Agent coordination and meta-programming.
 - [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**taskade**](https://github.com/taskade/mcp) - AI-powered workspace with autonomous agents, real-time collaboration, and workflow automation with MCP integration
+- [**operator-kit-iris**](categories/09-meta-orchestration/operator-kit-iris.md) - Design specialist from operator-kit: visual specs, color systems, UI layouts, and image-gen prompts
+- [**operator-kit-lyra**](categories/09-meta-orchestration/operator-kit-lyra.md) - Build specialist from operator-kit: bounded code edits, schema migrations, and artifact generation
+- [**operator-kit-echo**](categories/09-meta-orchestration/operator-kit-echo.md) - Scout specialist from operator-kit: read-only recon, file traversal, and structured findings
+- [**operator-kit-newton**](categories/09-meta-orchestration/operator-kit-newton.md) - Research specialist from operator-kit: multi-source deep dives with cited briefings
+- [**operator-kit-hypatia**](categories/09-meta-orchestration/operator-kit-hypatia.md) - Critic specialist from operator-kit: adversarial review, hidden assumptions, and verdicts
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
 
 ### [10. Research & Analysis](categories/10-research-analysis/)

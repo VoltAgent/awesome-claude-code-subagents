@@ -71,6 +71,31 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 
 **Use when:** Designing complex workflows, implementing process automation, managing workflow state, handling long-running processes, or building workflow engines.
 
+### [**operator-kit-iris**](operator-kit-iris.md) - Design specialist (operator-kit)
+Visual and design specialist from the operator-kit five-agent starter kit. Produces visual specifications, design briefs, UI layouts, color systems, and prompts for image generation tools.
+
+**Use when:** You need a visual specification, UI layout, color system, design brief, or image-gen prompt -- and want a role-scoped agent rather than a general-purpose assistant.
+
+### [**operator-kit-lyra**](operator-kit-lyra.md) - Build specialist (operator-kit)
+Writer and builder specialist from the operator-kit five-agent starter kit. Receives a complete spec and returns a built artifact or diff with bounded scope.
+
+**Use when:** You have a complete spec and need code written -- schema migrations, adapter ports, dashboard patches, or any bounded code edit.
+
+### [**operator-kit-echo**](operator-kit-echo.md) - Scout specialist (operator-kit)
+Read-only reconnaissance specialist from the operator-kit five-agent starter kit. Traverses, summarizes, and returns structured findings. Never builds.
+
+**Use when:** You need a file listing, codebase survey, pattern search, or any structured read-only reconnaissance before building.
+
+### [**operator-kit-newton**](operator-kit-newton.md) - Research specialist (operator-kit)
+Research synthesist from the operator-kit five-agent starter kit. Conducts multi-source deep dives and returns structured briefings with citations.
+
+**Use when:** A task requires competitive analysis, technology assessment, prior art survey, or any question requiring wide-net research plus synthesis.
+
+### [**operator-kit-hypatia**](operator-kit-hypatia.md) - Critic specialist (operator-kit)
+Critic and devil's advocate from the operator-kit five-agent starter kit. Challenges strategy before commitment, finds the strongest counterargument, and returns structured verdicts. Read-only.
+
+**Use when:** You need adversarial review of a plan, spec, or decision before committing. Use before any significant architectural or strategic choice.
+
 ## Quick Selection Guide
 
 | If you need to... | Use this subagent |
@@ -85,6 +110,11 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Distribute tasks | **task-distributor** |
 | Manage projects with AI agents | **[taskade](https://github.com/taskade/mcp)** |
 | Automate workflows | **workflow-orchestrator** |
+| Create visual specs or design briefs | **operator-kit-iris** |
+| Execute a bounded code build | **operator-kit-lyra** |
+| Run read-only recon on a codebase | **operator-kit-echo** |
+| Research a topic with citations | **operator-kit-newton** |
+| Adversarially review a plan | **operator-kit-hypatia** |
 
 ## Common Orchestration Patterns
 
