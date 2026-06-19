@@ -58,6 +58,11 @@ Licensing systems expert designing OSS and proprietary licensing architectures f
 
 **Use when:** Selecting open source licenses, designing dual-licensing models, auditing dependency compatibility, implementing notice and attribution workflows, or preparing software for SaaS, enterprise, app store, or embedded distribution.
 
+### [**notfair**](https://github.com/nowork-studio/NotFair) - SEO, GEO, Google Ads, and Meta Ads skills
+Open-source collection of Claude Code skills for marketing and paid ads. Covers SEO site analysis, keyword research, meta tags, schema markup, and GEO optimization; Google Ads audits, wasted-spend detection, and bid management; and Meta (Facebook + Instagram) Ads ROAS, creative fatigue, and audience overlap analysis. Connects to live data via Google Ads MCP, Meta Ads MCP, Google Search Console MCP, and Google Analytics (GA4) MCP.
+
+**Use when:** Running SEO audits, optimizing paid search or social campaigns, detecting wasted ad spend, or automating marketing workflows from within Claude Code.
+
 ### [**product-manager**](product-manager.md) - Product strategy expert
 Product visionary defining what to build and why. Expert in market analysis, user needs, and product strategy. Drives product success from conception to market leadership.
 
@@ -100,6 +105,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | Design growth loops | **growth-loops** |
 | Handle legal matters | **legal-advisor** |
 | Design software licensing | **license-engineer** |
+| Run SEO / paid-ads workflows | **notfair** |
 | Shape product vision | **product-manager** |
 | Manage projects | **project-manager** |
 | Support sales | **sales-engineer** |

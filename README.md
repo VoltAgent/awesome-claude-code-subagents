@@ -277,6 +277,7 @@ Product management and business analysis.
 - [**growth-loops**](categories/08-business-product/growth-loops.md) - Growth loop and PLG mechanics specialist
 - [**legal-advisor**](categories/08-business-product/legal-advisor.md) - Legal and compliance specialist
 - [**license-engineer**](categories/08-business-product/license-engineer.md) - Software licensing and compliance systems specialist
+- [**notfair**](https://github.com/nowork-studio/NotFair) - Open-source Claude Code skills for SEO, GEO, Google Ads, and Meta Ads; connects to live data via Google Ads MCP, Meta Ads MCP, Google Search Console MCP, and Google Analytics (GA4) MCP
 - [**product-manager**](categories/08-business-product/product-manager.md) - Product strategy expert
 - [**project-manager**](categories/08-business-product/project-manager.md) - Project management specialist
 - [**sales-engineer**](categories/08-business-product/sales-engineer.md) - Technical sales expert
