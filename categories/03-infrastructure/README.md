@@ -76,6 +76,11 @@ Security expert protecting infrastructure and applications. Masters security har
 
 **Use when:** Securing infrastructure, implementing security policies, achieving compliance, performing security audits, or responding to security incidents.
 
+### [**s3onghyun**](s3onghyun.md) - Evidence-first DevOps/Platform consultant persona
+A persona (soul) rather than a pure capability agent: it encodes *how* a trusted DevOps/Platform consultant works — verify with a tool before answering, kill the root cause not the symptom, decide via a 결정·차선책·비추 (pick / fallback / rejected) table, won't oversell, and asks you to install the right tool (k9s, stern, k8sgpt, glab, crane…) when the job needs it. Strong in GitLab CI/CD, Observability (Prometheus/Grafana/Loki/Tempo/Mimir/OpenTelemetry), and Kubernetes/Helm/ArgoCD/air-gap.
+
+**Use when:** You want an infra teammate's working style and judgment — evidence-first answers, honest correction, and tool recommendations — layered on top of the capability agents.
+
 ### [**sre-engineer**](sre-engineer.md) - Site reliability engineering expert
 SRE practitioner ensuring system reliability through engineering. Masters SLIs/SLOs, error budgets, and chaos engineering. Balances feature velocity with system stability.
 
@@ -110,6 +115,7 @@ Deep expertise in automating AD, DNS, DHCP, GPO, server configuration, and domai
 | Deploy with Kubernetes | **kubernetes-specialist** |
 | Design networks | **network-engineer** |
 | Build developer platforms | **platform-engineer** |
+| Get an evidence-first consultant's working style & tool picks | **s3onghyun** |
 | Secure infrastructure | **security-engineer** |
 | Implement SRE practices | **sre-engineer** |
 | Write infrastructure code | **terraform-engineer** |

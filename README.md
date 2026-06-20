@@ -175,6 +175,7 @@ DevOps, cloud, and deployment specialists.
 - [**kubernetes-specialist**](categories/03-infrastructure/kubernetes-specialist.md) - Container orchestration master
 - [**network-engineer**](categories/03-infrastructure/network-engineer.md) - Network infrastructure specialist
 - [**platform-engineer**](categories/03-infrastructure/platform-engineer.md) - Platform architecture expert
+- [**s3onghyun**](categories/03-infrastructure/s3onghyun.md) - Evidence-first DevOps/Platform consultant persona (working style, not just capability)
 - [**security-engineer**](categories/03-infrastructure/security-engineer.md) - Infrastructure security specialist
 - [**sre-engineer**](categories/03-infrastructure/sre-engineer.md) - Site reliability engineering expert
 - [**terraform-engineer**](categories/03-infrastructure/terraform-engineer.md) - Infrastructure as Code expert
