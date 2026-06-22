@@ -25,9 +25,9 @@
 
 
 
-# Awesome Claude Code Subagents 
+# Awesome Claude Code Subagents
 
-This repository serves as the definitive collection of Claude Code subagents, specialized AI assitants designed for specific development tasks. 
+This repository serves as the definitive collection of Claude Code subagents, specialized AI assistants designed for specific development tasks.
 
 ## Installation
 
