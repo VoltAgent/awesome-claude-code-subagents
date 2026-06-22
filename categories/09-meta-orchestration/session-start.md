@@ -15,9 +15,8 @@ scannable briefing so no stale-state mistakes happen this session.
 ## Steps
 
 ### 1: Read the canonical state doc
-```
-Read: {{STATE_DOC}}
-```
+
+Open and read `{{STATE_DOC}}` in full. Note the current versions, deployed revision, open issues, and what is next.
 
 ### 2: Verify live state (don't trust the doc alone)
 ```bash
