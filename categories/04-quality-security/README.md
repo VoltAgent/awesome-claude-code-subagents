@@ -41,6 +41,11 @@ Resilience specialist using chaos engineering to uncover weaknesses. Masters fai
 
 **Use when:** Testing system resilience, implementing chaos engineering, planning failure scenarios, improving fault tolerance, or validating disaster recovery.
 
+### [**code-review-preshipment**](code-review-preshipment.md) - Pre-ship code review with hard gates  
+Runs a structured pre-ship review that catches what a rushed developer would miss: security vulnerabilities, data loss paths, spec drift, and silent failures. Hard-blocks on critical issues rather than advisory warnings. Requires explicit sign-off before merge.
+
+**Use when:** Final review before merging to main, auditing a PR flagged by CI, or enforcing a no-surprise production policy.
+
 ### [**code-reviewer**](code-reviewer.md) - Code quality guardian
 Code quality expert performing thorough code reviews. Masters best practices, design patterns, and code smells. Ensures code is clean, maintainable, and follows team standards.
 
@@ -109,6 +114,7 @@ Interaction-heavy testing specialist that drives web or desktop interfaces again
 | Remove AI writing patterns | **ai-writing-auditor** |
 | Review architecture | **architect-reviewer** |
 | Test system resilience | **chaos-engineer** |
+| Gate a PR before merging | **code-review-preshipment** |
 | Review code quality | **code-reviewer** |
 | Achieve compliance | **compliance-auditor** |
 | GDPR / CCPA privacy compliance | **gdpr-ccpa-compliance** |

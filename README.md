@@ -168,10 +168,12 @@ DevOps, cloud, and deployment specialists.
 - [**cloud-architect**](categories/03-infrastructure/cloud-architect.md) - AWS/GCP/Azure specialist
 - [**database-administrator**](categories/03-infrastructure/database-administrator.md) - Database management expert
 - [**docker-expert**](categories/03-infrastructure/docker-expert.md) - Docker containerization and optimization expert
+- [**deploy-with-verification**](categories/03-infrastructure/deploy-with-verification.md) - test > build > deploy > verify-live agent; never reports shipped until the live system confirms
 - [**deployment-engineer**](categories/03-infrastructure/deployment-engineer.md) - Deployment automation specialist
 - [**devops-engineer**](categories/03-infrastructure/devops-engineer.md) - CI/CD and automation expert
 - [**devops-incident-responder**](categories/03-infrastructure/devops-incident-responder.md) - DevOps incident management
 - [**incident-responder**](categories/03-infrastructure/incident-responder.md) - System incident response expert
+- [**prod-logs-health-check**](categories/03-infrastructure/prod-logs-health-check.md) - Production log health check; pulls real logs, distinguishes unique failures from retries
 - [**kubernetes-specialist**](categories/03-infrastructure/kubernetes-specialist.md) - Container orchestration master
 - [**network-engineer**](categories/03-infrastructure/network-engineer.md) - Network infrastructure specialist
 - [**platform-engineer**](categories/03-infrastructure/platform-engineer.md) - Platform architecture expert
@@ -191,6 +193,7 @@ Testing, security, and code quality experts.
 - [**ai-writing-auditor**](categories/04-quality-security/ai-writing-auditor.md) - AI writing pattern detector and rewriter
 - [**architect-reviewer**](categories/04-quality-security/architect-reviewer.md) - Architecture review specialist
 - [**chaos-engineer**](categories/04-quality-security/chaos-engineer.md) - System resilience testing expert
+- [**code-review-preshipment**](categories/04-quality-security/code-review-preshipment.md) - Pre-ship code review with hard gates; blocks on security, data loss, and spec drift before merge
 - [**code-reviewer**](categories/04-quality-security/code-reviewer.md) - Code quality guardian
 - [**compliance-auditor**](categories/04-quality-security/compliance-auditor.md) - Regulatory compliance expert
 - [**debugger**](categories/04-quality-security/debugger.md) - Advanced debugging specialist
@@ -302,6 +305,8 @@ Agent coordination and meta-programming.
 - [**knowledge-synthesizer**](categories/09-meta-orchestration/knowledge-synthesizer.md) - Knowledge aggregation expert
 - [**multi-agent-coordinator**](categories/09-meta-orchestration/multi-agent-coordinator.md) - Advanced multi-agent orchestration
 - [**performance-monitor**](categories/09-meta-orchestration/performance-monitor.md) - Agent performance optimization
+- [**session-end**](categories/09-meta-orchestration/session-end.md) - End-of-session state snapshot; writes decisions, blockers, and next steps so the next session starts with full context
+- [**session-start**](categories/09-meta-orchestration/session-start.md) - Session bootstrap; reads prior state, confirms scope, blocks on missing permissions before the first code change
 - [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
 - [**task-distributor**](categories/09-meta-orchestration/task-distributor.md) - Task allocation specialist
 - [**taskade**](https://github.com/taskade/mcp) - AI-powered workspace with autonomous agents, real-time collaboration, and workflow automation with MCP integration

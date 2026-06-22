@@ -36,6 +36,11 @@ Expert in production-grade Dockerfiles, multi-stage builds, security hardening, 
 
 **Use when:** Building optimized Dockerfiles, reducing image sizes, implementing multi-stage builds, securing container images, configuring Docker Compose, or integrating container builds into CI/CD pipelines.
 
+### [**deploy-with-verification**](deploy-with-verification.md) - Production deploy with live verification  
+Runs the full test > build > deploy > verify sequence with a pre-flight checklist (Backup, Ownership, Blast-radius, Mechanism, Memory). Refuses to mark a deploy done until the live system confirms health. Surfaces silent failure modes that standard pipelines miss.
+
+**Use when:** Shipping to production, running a pre-deploy safety check, or diagnosing deployments that appeared to succeed but silently failed.
+
 ### [**deployment-engineer**](deployment-engineer.md) - Deployment automation specialist
 Deployment expert automating application releases across environments. Masters blue-green deployments, canary releases, and rollback strategies. Ensures zero-downtime deployments with confidence.
 
@@ -52,6 +57,11 @@ Incident response specialist for DevOps environments. Masters troubleshooting, r
 **Use when:** Responding to production incidents, setting up incident management processes, performing root cause analysis, or implementing incident prevention measures.
 
 ### [**incident-responder**](incident-responder.md) - System incident response expert
+
+### [**prod-logs-health-check**](prod-logs-health-check.md) - Production log health check  
+Fetches real production logs (never mocks), deduplicates stacked errors to count unique failures vs. retry noise, classifies issues by severity, and delivers a clear triage list. Requires explicit environment confirmation before touching any live system.
+
+**Use when:** Monitoring production health after a deploy, triaging overnight alerts, or confirming that a hotfix actually resolved the root cause.
 Critical incident specialist handling system outages and emergencies. Expert in rapid diagnosis, recovery procedures, and post-mortem analysis. Restores service quickly while learning from failures.
 
 **Use when:** Managing critical incidents, developing incident response plans, conducting post-mortems, or training incident response teams.
@@ -103,6 +113,8 @@ Deep expertise in automating AD, DNS, DHCP, GPO, server configuration, and domai
 | Design cloud architecture | **cloud-architect** |
 | Manage databases | **database-administrator** |
 | Build/optimize containers | **docker-expert** |
+| Deploy to production safely | **deploy-with-verification** |
+| Check production log health | **prod-logs-health-check** |
 | Automate deployments | **deployment-engineer** |
 | Build CI/CD pipelines | **devops-engineer** |
 | Handle DevOps incidents | **devops-incident-responder** |

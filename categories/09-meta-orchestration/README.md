@@ -71,11 +71,23 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 
 **Use when:** Designing complex workflows, implementing process automation, managing workflow state, handling long-running processes, or building workflow engines.
 
+### [**session-start**](session-start.md) - Session bootstrap with scope confirmation  
+Reads prior session state, confirms today's scope, checks prerequisites (files exist, env vars set, permissions granted), and blocks before the first code change if anything is missing. Eliminates the "what were we doing?" problem when continuing across sessions.
+
+**Use when:** Resuming a multi-session project, onboarding a second agent into an in-progress task, or enforcing a discipline of confirming context before any writes.
+
+### [**session-end**](session-end.md) - End-of-session state snapshot  
+Writes a structured handoff note: decisions made, open questions, blockers, and exact next steps. Designed so the next session can resume without re-reading the whole conversation.
+
+**Use when:** Closing out a work session, handing off to a teammate or another agent, or maintaining a persistent project memory across days.
+
 ## Quick Selection Guide
 
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
 | Coordinate multiple agents | **agent-organizer** |
+| Bootstrap a new session | **session-start** |
+| Snapshot state before closing | **session-end** |
 | Govern safe repo refactors | **codebase-orchestrator** |
 | Manage context efficiently | **context-manager** |
 | Handle system errors | **error-coordinator** |
