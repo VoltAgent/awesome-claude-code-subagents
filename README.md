@@ -29,6 +29,8 @@
 
 This repository serves as the definitive collection of Claude Code subagents, specialized AI assistants designed for specific development tasks.
 
+> **A note on contributions:** We don't accept PRs whose primary purpose is to promote a product, company, or personal project. Subagents must be genuinely useful to Claude Code users and stay vendor-neutral in their content. If you'd like to get your project in front of this community, you can [sponsor the repo](#sponsors) instead — that's the supported way to surface your work here.
+
 ## Installation
 
 ### As Claude Code Plugin (Recommended)
@@ -78,7 +80,7 @@ curl -s https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagent
 ```
 Then in Claude Code: "Use the agent-installer to show me available categories" or "Find PHP agents and install php-pro globally".
 
-## Ecosystem Tools
+## Sponsors
 
 <br/>
 
