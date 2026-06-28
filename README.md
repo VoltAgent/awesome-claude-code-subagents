@@ -294,6 +294,7 @@ Product management and business analysis.
 Agent coordination and meta-programming.
 
 - [**airis-mcp-gateway**](https://github.com/agiletec-inc/airis-mcp-gateway) - Docker-based MCP multiplexer that aggregates 60+ tools behind 7 meta-tools, reducing context token usage by 97%. One command to start, auto-enables servers on demand
+- [**claude-code-arsenal**](https://github.com/thespamer/claude-code-arsenal) - Six opinionated Claude Code subagents (architect, security-auditor, cost-sentinel, test-fixer, dependency-detective, commit-curator) with strict scope, read-only defaults, and a working demo project that seeds one or more issues per agent
 - [**moai-adk**](https://github.com/modu-ai/moai-adk) - SPEC-first Agentic Development Kit orchestrating 24 specialized agents with enforced Plan→Run→Sync workflow, TRUST 5 quality gates, 52 domain-specific skills, and 16-language project support
 - [**agent-installer**](categories/09-meta-orchestration/agent-installer.md) - Browse and install agents from this repository via GitHub
 - [**agent-organizer**](categories/09-meta-orchestration/agent-organizer.md) - Multi-agent coordinator
