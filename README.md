@@ -455,6 +455,10 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 - Improve existing definitions
 - Report issues and bugs
 
+## 🧭 Related Resources
+
+- [Skill Hub](https://github.com/rdone4425/skill) — AI Agent Skills 导航站，4,100+ skills across 22 categories (OpenAI Codex, Claude, Hermes, OpenCode, OpenClaw) | [Live](https://skill.442595.xyz/)
+
 ## Contributor ♥️ Thanks
 ![Contributors](https://contrib.rocks/image?repo=voltagent/awesome-claude-code-subagents&max=500&columns=20&anon=1)
 
