@@ -60,10 +60,10 @@
     {
       "name": "voltagent-domains",
       "source": "./categories/07-specialized-domains",
-      "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments",
-      "version": "1.0.2",
+      "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments, X/Twitter APIs",
+      "version": "1.0.3",
       "category": "specialized",
-      "keywords": ["blockchain", "fintech", "gaming", "iot", "payments", "embedded"]
+      "keywords": ["blockchain", "fintech", "gaming", "iot", "payments", "embedded", "twitter", "x-api"]
     },
     {
       "name": "voltagent-biz",
