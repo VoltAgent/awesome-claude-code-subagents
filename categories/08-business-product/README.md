@@ -78,6 +78,11 @@ Agile facilitator ensuring teams work effectively. Masters Scrum framework, team
 
 **Use when:** Implementing Scrum, facilitating ceremonies, improving team processes, removing blockers, or coaching agile practices.
 
+### [**social-media-manager**](social-media-manager.md) - Cross-platform social media specialist
+Social media expert growing audiences across platforms. Masters platform strategy, content calendars, cross-platform scheduling, community management, and analytics. Automates multi-platform publishing (via APIs/MCP such as Publora) to keep cadence consistent and campaigns measurable.
+
+**Use when:** Planning a content calendar, scheduling and publishing across platforms, managing community engagement, running multi-platform campaigns, or analyzing social performance.
+
 ### [**technical-writer**](technical-writer.md) - Technical documentation specialist
 Documentation expert making complex technical concepts accessible. Masters various documentation types, tools, and user-focused writing. Creates documentation users actually read.
 
@@ -104,6 +109,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | Manage projects | **project-manager** |
 | Support sales | **sales-engineer** |
 | Run Scrum teams | **scrum-master** |
+| Manage social media | **social-media-manager** |
 | Write documentation | **technical-writer** |
 | Research users | **ux-researcher** |
 
@@ -117,6 +123,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 
 **Go-to-Market:**
 - **content-marketer** for content
+- **social-media-manager** for distribution and community
 - **sales-engineer** for demos
 - **technical-writer** for docs
 - **customer-success-manager** for retention
