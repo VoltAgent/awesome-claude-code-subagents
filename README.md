@@ -82,14 +82,6 @@ Then in Claude Code: "Use the agent-installer to show me available categories" o
 
 ## Sponsors
 
-<br/>
-
-<a href="https://launchkit.getdesign.md/">
-<img src="https://cdn.voltagent.dev/awesome-repo/launchkit-banner-3.png" alt="launchkit"  /><br/>
-</a>
-
-<br/>
-
 <div align="center">
 
 <table>
