@@ -231,6 +231,7 @@ Tooling and developer productivity experts.
 - [**build-engineer**](categories/06-developer-experience/build-engineer.md) - Build system specialist
 - [**cli-developer**](categories/06-developer-experience/cli-developer.md) - Command-line tool creator
 - [**dependency-manager**](categories/06-developer-experience/dependency-manager.md) - Package and dependency specialist
+- [**docs-drift-editor**](categories/06-developer-experience/docs-drift-editor.md) - Documentation-drift editor for isolated-worktree fixes
 - [**documentation-engineer**](categories/06-developer-experience/documentation-engineer.md) - Technical documentation expert
 - [**dx-optimizer**](categories/06-developer-experience/dx-optimizer.md) - Developer experience optimization specialist
 - [**git-workflow-manager**](categories/06-developer-experience/git-workflow-manager.md) - Git workflow and branching expert
