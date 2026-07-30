@@ -27,15 +27,15 @@ Blockchain expert building decentralized applications and smart contracts. Maste
 
 **Use when:** Building dApps, writing smart contracts, implementing DeFi protocols, creating NFT platforms, or integrating blockchain features.
 
-### [**embedded-systems**](embedded-systems.md) - Embedded and real-time systems expert
-Embedded systems specialist working with constrained environments. Expert in microcontrollers, RTOS, and hardware interfaces. Builds efficient software for resource-limited devices.
-
-**Use when:** Programming microcontrollers, developing firmware, implementing real-time systems, optimizing for memory/power, or interfacing with hardware.
-
 ### [**email-deliverability-engineer**](email-deliverability-engineer.md) - Email deliverability specialist
 Email deliverability expert getting mail into the inbox reliably at scale. Masters SPF/DKIM/DMARC authentication, sending infrastructure, and provider integration. Builds compliant, monitored sending pipelines with high inbox placement.
 
 **Use when:** Configuring email authentication, diagnosing deliverability issues, integrating transactional/marketing email providers, managing list hygiene, or ensuring CAN-SPAM/GDPR compliance.
+
+### [**embedded-systems**](embedded-systems.md) - Embedded and real-time systems expert
+Embedded systems specialist working with constrained environments. Expert in microcontrollers, RTOS, and hardware interfaces. Builds efficient software for resource-limited devices.
+
+**Use when:** Programming microcontrollers, developing firmware, implementing real-time systems, optimizing for memory/power, or interfacing with hardware.
 
 ### [**fintech-engineer**](fintech-engineer.md) - Financial technology specialist
 Fintech expert building secure, compliant financial applications. Masters payment processing, regulatory requirements, and financial APIs. Navigates the complex world of financial technology.
@@ -94,8 +94,8 @@ SEO expert driving organic traffic through search optimization. Masters technica
 |--------|-------------------|----------|
 | API Documentation | **api-documenter** | OpenAPI specs, developer portals |
 | Blockchain/Web3 | **blockchain-developer** | Smart contracts, DeFi, NFTs |
-| Embedded/IoT | **embedded-systems** | Firmware, microcontrollers |
 | Email Deliverability | **email-deliverability-engineer** | Authentication, inbox placement |
+| Embedded/IoT | **embedded-systems** | Firmware, microcontrollers |
 | Financial Tech | **fintech-engineer** | Banking, payments, compliance |
 | Gaming | **game-developer** | Game engines, multiplayer |
 | Healthcare Admin | **healthcare-admin** | Revenue cycle, HIPAA, quality |
