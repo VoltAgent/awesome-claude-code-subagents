@@ -48,6 +48,11 @@ Product growth strategist designing self-reinforcing acquisition loops. Covers v
 
 **Use when:** Designing a growth strategy, understanding PLG mechanics, building a flywheel, diagnosing why growth is linear instead of compounding, or finding the weakest link in your acquisition loop.
 
+### [**landing-page-copywriter**](landing-page-copywriter.md) - Conversion copywriting specialist
+Conversion copywriter crafting landing page and funnel copy. Masters headline frameworks, objection handling, and CTA patterns. Writes copy that measurably improves conversion without resorting to hype.
+
+**Use when:** Writing or optimizing landing page copy, drafting hero sections and CTAs, addressing buyer objections in funnel copy, or preparing headline/CTA variants for A/B testing.
+
 ### [**legal-advisor**](legal-advisor.md) - Legal and compliance specialist
 Legal expert navigating technology law and compliance. Masters privacy regulations, intellectual property, and contract negotiations. Protects businesses while enabling innovation.
 
@@ -98,6 +103,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | Create content | **content-marketer** |
 | Retain customers | **customer-success-manager** |
 | Design growth loops | **growth-loops** |
+| Write landing page copy | **landing-page-copywriter** |
 | Handle legal matters | **legal-advisor** |
 | Design software licensing | **license-engineer** |
 | Shape product vision | **product-manager** |
