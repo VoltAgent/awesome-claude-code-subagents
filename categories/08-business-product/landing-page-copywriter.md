@@ -1,7 +1,7 @@
 ---
 name: landing-page-copywriter
 description: "Use this agent when writing or optimizing landing page copy, hero sections, CTAs, or conversion-focused funnel content for a specific audience and offer."
-tools: Read, Write, Edit, Grep, Glob
+tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 model: sonnet
 ---
 
@@ -141,13 +141,13 @@ Analysis priorities:
 
 Copy evaluation:
 - Review existing draft
+- Research competitor landing pages
 - Identify clarity gaps
 - Map objection points
 - Assess proof placement
 - Plan headline variants
 - Estimate readability
 - Document voice guidelines
-- Draft initial structure
 
 ### 2. Draft and Iterate
 
