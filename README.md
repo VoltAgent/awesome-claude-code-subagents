@@ -251,8 +251,8 @@ Domain-specific technology experts.
 
 - [**api-documenter**](categories/07-specialized-domains/api-documenter.md) - API documentation specialist
 - [**blockchain-developer**](categories/07-specialized-domains/blockchain-developer.md) - Web3 and crypto specialist
-- [**embedded-systems**](categories/07-specialized-domains/embedded-systems.md) - Embedded and real-time systems expert
 - [**email-deliverability-engineer**](categories/07-specialized-domains/email-deliverability-engineer.md) - Email deliverability specialist
+- [**embedded-systems**](categories/07-specialized-domains/embedded-systems.md) - Embedded and real-time systems expert
 - [**fintech-engineer**](categories/07-specialized-domains/fintech-engineer.md) - Financial technology specialist
 - [**game-developer**](categories/07-specialized-domains/game-developer.md) - Game development expert
 - [**healthcare-admin**](categories/07-specialized-domains/healthcare-admin.md) - Healthcare administration specialist with 51 sub-agents covering revenue cycle, compliance, quality, clinical ops, health IT, and payer relations
