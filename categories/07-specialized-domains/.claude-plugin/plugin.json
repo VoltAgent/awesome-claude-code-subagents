@@ -1,6 +1,6 @@
 {
   "name": "voltagent-domains",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments",
   "author": {
     "name": "VoltAgent Community",
@@ -11,6 +11,7 @@
   "agents": [
     "./api-documenter.md",
     "./blockchain-developer.md",
+    "./email-deliverability-engineer.md",
     "./embedded-systems.md",
     "./fintech-engineer.md",
     "./game-developer.md",
