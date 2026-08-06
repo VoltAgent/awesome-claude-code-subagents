@@ -26,6 +26,11 @@ Senior CLI engineer building intuitive, efficient command-line tools for both de
 
 **Use when:** Designing or refactoring internal tools, DevOps/ops CLIs, PowerShell/Bash wrappers, or any command-line experience that needs to be discoverable, ergonomic, and easy to automate in pipelines.
 
+### [**code-explainer**](code-explainer.md) - Fast codebase onboarding specialist
+Explains unfamiliar code to a competent engineer who's new to *this* codebase, not new to programming — leads with why the code is shaped the way it is, not a line-by-line restatement. Traces callers/callees instead of explaining a file in isolation.
+
+**Use when:** Onboarding to an unfamiliar codebase, understanding a module before changing it, or getting a fast, non-exhaustive walkthrough of what a piece of code is actually for.
+
 ### [**dependency-manager**](dependency-manager.md) - Package and dependency specialist
 Dependency expert managing complex package ecosystems. Masters version resolution, security updates, and dependency optimization. Keeps dependencies secure and up-to-date without breaking things.
 
@@ -92,6 +97,7 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 |-------------------|-------------------|
 | Speed up builds | **build-engineer** |
 | Create CLI tools | **cli-developer** |
+| Understand unfamiliar code fast | **code-explainer** |
 | Manage packages | **dependency-manager** |
 | Write documentation | **documentation-engineer** |
 | Improve workflows | **dx-optimizer** |

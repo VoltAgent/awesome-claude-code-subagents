@@ -250,6 +250,7 @@ Tooling and developer productivity experts.
 
 - [**build-engineer**](categories/06-developer-experience/build-engineer.md) - Build system specialist
 - [**cli-developer**](categories/06-developer-experience/cli-developer.md) - Command-line tool creator
+- [**code-explainer**](categories/06-developer-experience/code-explainer.md) - Fast codebase onboarding specialist
 - [**dependency-manager**](categories/06-developer-experience/dependency-manager.md) - Package and dependency specialist
 - [**documentation-engineer**](categories/06-developer-experience/documentation-engineer.md) - Technical documentation expert
 - [**dx-optimizer**](categories/06-developer-experience/dx-optimizer.md) - Developer experience optimization specialist

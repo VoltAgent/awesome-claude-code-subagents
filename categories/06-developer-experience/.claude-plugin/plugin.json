@@ -1,6 +1,6 @@
 {
   "name": "voltagent-dev-exp",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Tooling and developer productivity experts - CLI tools, documentation, README generation, and DX optimization",
   "author": {
     "name": "VoltAgent Community",
@@ -11,6 +11,7 @@
   "agents": [
     "./build-engineer.md",
     "./cli-developer.md",
+    "./code-explainer.md",
     "./dependency-manager.md",
     "./documentation-engineer.md",
     "./dx-optimizer.md",
