@@ -445,7 +445,7 @@ cp -r tools/subagent-catalog ~/.claude/commands/
 
 ## 🔗 Ecosystem & Discovery
 
-- [BundleDex](https://bundledex.net) — Open Knowledge Format (OKF) bundle directory with 409 bundles, 3,889★ across indexed repos, and 177 OKF-conformant bundles. OKF bundles are consumed by Claude Code agents for knowledge management and agent documentation. Includes MCP tools, API, and llms.txt.
+- [BundleDex](https://bundledex.net) — Open Knowledge Format (OKF) bundle directory with 400+ bundles, 3,889★ across indexed repos, and 177 OKF-conformant bundles. OKF bundles are consumed by Claude Code agents for knowledge management and agent documentation. Includes MCP tools, API, and llms.txt.
 
 
 
