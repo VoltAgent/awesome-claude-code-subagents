@@ -1,7 +1,7 @@
 {
   "name": "voltagent-domains",
-  "version": "1.0.3",
-  "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments",
+  "version": "1.0.4",
+  "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments, X/Twitter APIs",
   "author": {
     "name": "VoltAgent Community",
     "url": "https://github.com/VoltAgent"
@@ -23,6 +23,7 @@
     "./payment-integration.md",
     "./quant-analyst.md",
     "./risk-manager.md",
-    "./seo-specialist.md"
+    "./seo-specialist.md",
+    "./x-api-integration.md"
   ]
 }
