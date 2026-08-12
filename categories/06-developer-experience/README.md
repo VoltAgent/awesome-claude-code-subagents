@@ -31,6 +31,11 @@ Dependency expert managing complex package ecosystems. Masters version resolutio
 
 **Use when:** Managing dependencies, resolving version conflicts, implementing security updates, optimizing package sizes, or setting up dependency automation.
 
+### [**docs-drift-editor**](docs-drift-editor.md) - Documentation-drift editor for isolated-worktree fixes
+Precise Markdown editor that updates pages after they've been flagged as drifted from a code diff — minimal edits only, no invented commands/URLs/versions, heading and anchor structure preserved. Built for the execution step of a drift-detection pipeline, working inside an isolated git worktree.
+
+**Use when:** A code change has left specific doc pages out of date and you need a surgical, zero-hallucination fix rather than a rewrite; typically invoked after a searcher/planner agent has already named the drifted pages and the reason.
+
 ### [**documentation-engineer**](documentation-engineer.md) - Technical documentation expert
 Documentation specialist creating clear, comprehensive technical docs. Masters API documentation, tutorials, and developer guides. Makes complex systems understandable through great documentation.
 
@@ -93,6 +98,7 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 | Speed up builds | **build-engineer** |
 | Create CLI tools | **cli-developer** |
 | Manage packages | **dependency-manager** |
+| Fix docs drifted from a code diff | **docs-drift-editor** |
 | Write documentation | **documentation-engineer** |
 | Improve workflows | **dx-optimizer** |
 | Design Git strategies | **git-workflow-manager** |
