@@ -277,6 +277,7 @@ Domain-specific technology experts.
 - [**quant-analyst**](categories/07-specialized-domains/quant-analyst.md) - Quantitative analysis specialist
 - [**risk-manager**](categories/07-specialized-domains/risk-manager.md) - Risk assessment and management expert
 - [**seo-specialist**](categories/07-specialized-domains/seo-specialist.md) - Search engine optimization expert
+- [**x-api-integration**](categories/07-specialized-domains/x-api-integration.md) - X/Twitter API integration specialist
 
 ### [08. Business & Product](categories/08-business-product/)
 **Plugin:** `voltagent-biz`
