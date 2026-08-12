@@ -6,7 +6,7 @@
   },
   "metadata": {
     "version": "1.0.4",
-    "description": "Curated collection of 156 specialized Claude Code subagents organized into 10 focused categories"
+    "description": "Curated collection of 158 specialized Claude Code subagents organized into 10 focused categories"
   },
   "plugins": [
     {
@@ -60,10 +60,10 @@
     {
       "name": "voltagent-domains",
       "source": "./categories/07-specialized-domains",
-      "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments",
-      "version": "1.0.3",
+      "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments, X/Twitter APIs",
+      "version": "1.0.4",
       "category": "specialized",
-      "keywords": ["blockchain", "fintech", "gaming", "iot", "payments", "embedded"]
+      "keywords": ["blockchain", "fintech", "gaming", "iot", "payments", "embedded", "twitter", "x-api"]
     },
     {
       "name": "voltagent-biz",

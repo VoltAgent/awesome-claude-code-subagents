@@ -6,7 +6,7 @@
 <br/>
 
 <div align="center">
-    <strong>The awesome collection of 156+ Claude Code subagents across 10 categories.</strong>
+    <strong>The awesome collection of 158+ Claude Code subagents across 10 categories.</strong>
     <br />
     <br />
 </div>
@@ -14,7 +14,7 @@
 <div align="center">
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-![Subagent Count](https://img.shields.io/badge/subagents-156-blue?style=classic)
+![Subagent Count](https://img.shields.io/badge/subagents-158-blue?style=classic)
 [![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-claude-code-subagents?label=Last%20update&style=classic)](https://github.com/VoltAgent/awesome-claude-code-subagents)
 [![Discord](https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://s.voltagent.dev/discord)
 
@@ -80,12 +80,6 @@ curl -s https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagent
 ```
 Then in Claude Code: "Use the agent-installer to show me available categories" or "Find PHP agents and install php-pro globally".
 
-## Sponsors
-
-|                                                                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                           |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <a href="https://lite.ego.app/?utm_source=awesome-claude-code-subagents&utm_medium=sponsor&utm_campaign=github-sponsor"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.voltagent.dev/awesome-repo/ego-lite/logo_wordmark_lite_white.svg"><img alt="Ego Lite" src="https://cdn.voltagent.dev/awesome-repo/ego-lite/logo_wordmark_lite_dark.svg" width="425"></picture></a> | [Ego Lite](https://lite.ego.app/?utm_source=awesome-claude-code-subagents&utm_medium=sponsor&utm_campaign=github-sponsor) is the fastest browser for your AI agents to run browser automation tasks, 3.45x faster than agent-browser (Vercel), always free, no setup, and lets your agents run 100+ browser tasks at the same time in their Spaces. |
-
 <br/>
 
 <div align="center">
@@ -122,6 +116,26 @@ Essential development subagents for everyday coding tasks.
 - [**mobile-developer**](categories/01-core-development/mobile-developer.md) - Cross-platform mobile specialist
 - [**ui-designer**](categories/01-core-development/ui-designer.md) - Visual design and interaction specialist
 - [**websocket-engineer**](categories/01-core-development/websocket-engineer.md) - Real-time communication specialist
+
+
+<br/>
+
+You ship products with AI, but every launch still dies quietly because nobody posts about it. [EveryFeed](https://everyfeed.ai/) plugs your AI assistant into a social workspace that drafts, schedules, and publishes across 35+ channels — no agency, no marketing hire.
+
+<a href="https://everyfeed.ai/">
+<img src="https://cdn.voltagent.dev/awesome-repo/everyfeed-social.png" alt="everyfeed"  /><br/>
+</a>
+
+<br/>
+<br/>
+
+Stop building from a blank page. [LaunchKit](https://launchkit.getdesign.md/) gives your AI coding assistant a complete, working product to start from — websites, startups, and web apps that are clickable on day one.
+
+<a href="https://launchkit.getdesign.md/">
+<img src="https://cdn.voltagent.dev/awesome-repo/new-launchkit.png" alt="launchkit"  /><br/>
+</a>
+
+<br/>
 
 ### [02. Language Specialists](categories/02-language-specialists/)
 **Plugin:** `voltagent-lang`
@@ -231,6 +245,7 @@ Tooling and developer productivity experts.
 - [**build-engineer**](categories/06-developer-experience/build-engineer.md) - Build system specialist
 - [**cli-developer**](categories/06-developer-experience/cli-developer.md) - Command-line tool creator
 - [**dependency-manager**](categories/06-developer-experience/dependency-manager.md) - Package and dependency specialist
+- [**docs-drift-editor**](categories/06-developer-experience/docs-drift-editor.md) - Documentation-drift editor for isolated-worktree fixes
 - [**documentation-engineer**](categories/06-developer-experience/documentation-engineer.md) - Technical documentation expert
 - [**dx-optimizer**](categories/06-developer-experience/dx-optimizer.md) - Developer experience optimization specialist
 - [**git-workflow-manager**](categories/06-developer-experience/git-workflow-manager.md) - Git workflow and branching expert
@@ -264,6 +279,7 @@ Domain-specific technology experts.
 - [**quant-analyst**](categories/07-specialized-domains/quant-analyst.md) - Quantitative analysis specialist
 - [**risk-manager**](categories/07-specialized-domains/risk-manager.md) - Risk assessment and management expert
 - [**seo-specialist**](categories/07-specialized-domains/seo-specialist.md) - Search engine optimization expert
+- [**x-api-integration**](categories/07-specialized-domains/x-api-integration.md) - X/Twitter API integration specialist
 
 ### [08. Business & Product](categories/08-business-product/)
 **Plugin:** `voltagent-biz`

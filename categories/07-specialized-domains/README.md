@@ -88,6 +88,11 @@ SEO expert driving organic traffic through search optimization. Masters technica
 
 **Use when:** Optimizing for search engines, implementing structured data, improving site speed, building content strategies, or analyzing search performance.
 
+### [**x-api-integration**](x-api-integration.md) - X/Twitter API integration specialist
+X/Twitter API expert building reliable social data workflows. Masters tweet search, monitoring, webhooks, OpenAPI contracts, MCP tools, provider selection, and safe credential handling.
+
+**Use when:** Building X/Twitter data products, integrating X API alternatives, designing tweet search workflows, documenting social data APIs, or validating social monitoring pipelines.
+
 ## Quick Selection Guide
 
 | Domain | Use this subagent | Best For |
@@ -106,6 +111,7 @@ SEO expert driving organic traffic through search optimization. Masters technica
 | Quantitative | **quant-analyst** | Trading algorithms, risk |
 | Risk Management | **risk-manager** | Risk assessment, compliance |
 | SEO/Search | **seo-specialist** | Search optimization, rankings |
+| X/Twitter APIs | **x-api-integration** | Social data workflows |
 
 ## Common Domain Patterns
 
