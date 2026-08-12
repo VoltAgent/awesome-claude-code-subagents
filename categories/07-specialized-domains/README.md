@@ -27,6 +27,11 @@ Blockchain expert building decentralized applications and smart contracts. Maste
 
 **Use when:** Building dApps, writing smart contracts, implementing DeFi protocols, creating NFT platforms, or integrating blockchain features.
 
+### [**email-deliverability-engineer**](email-deliverability-engineer.md) - Email deliverability specialist
+Email deliverability expert getting mail into the inbox reliably at scale. Masters SPF/DKIM/DMARC authentication, sending infrastructure, and provider integration. Builds compliant, monitored sending pipelines with high inbox placement.
+
+**Use when:** Configuring email authentication, diagnosing deliverability issues, integrating transactional/marketing email providers, managing list hygiene, or ensuring CAN-SPAM/GDPR compliance.
+
 ### [**embedded-systems**](embedded-systems.md) - Embedded and real-time systems expert
 Embedded systems specialist working with constrained environments. Expert in microcontrollers, RTOS, and hardware interfaces. Builds efficient software for resource-limited devices.
 
@@ -94,6 +99,7 @@ X/Twitter API expert building reliable social data workflows. Masters tweet sear
 |--------|-------------------|----------|
 | API Documentation | **api-documenter** | OpenAPI specs, developer portals |
 | Blockchain/Web3 | **blockchain-developer** | Smart contracts, DeFi, NFTs |
+| Email Deliverability | **email-deliverability-engineer** | Authentication, inbox placement |
 | Embedded/IoT | **embedded-systems** | Firmware, microcontrollers |
 | Financial Tech | **fintech-engineer** | Banking, payments, compliance |
 | Gaming | **game-developer** | Game engines, multiplayer |

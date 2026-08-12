@@ -6,7 +6,7 @@
 <br/>
 
 <div align="center">
-    <strong>The awesome collection of 154+ Claude Code subagents across 10 categories.</strong>
+    <strong>The awesome collection of 158+ Claude Code subagents across 10 categories.</strong>
     <br />
     <br />
 </div>
@@ -14,7 +14,7 @@
 <div align="center">
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-![Subagent Count](https://img.shields.io/badge/subagents-154-blue?style=classic)
+![Subagent Count](https://img.shields.io/badge/subagents-158-blue?style=classic)
 [![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-claude-code-subagents?label=Last%20update&style=classic)](https://github.com/VoltAgent/awesome-claude-code-subagents)
 [![Discord](https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://s.voltagent.dev/discord)
 
@@ -266,6 +266,7 @@ Domain-specific technology experts.
 
 - [**api-documenter**](categories/07-specialized-domains/api-documenter.md) - API documentation specialist
 - [**blockchain-developer**](categories/07-specialized-domains/blockchain-developer.md) - Web3 and crypto specialist
+- [**email-deliverability-engineer**](categories/07-specialized-domains/email-deliverability-engineer.md) - Email deliverability specialist
 - [**embedded-systems**](categories/07-specialized-domains/embedded-systems.md) - Embedded and real-time systems expert
 - [**fintech-engineer**](categories/07-specialized-domains/fintech-engineer.md) - Financial technology specialist
 - [**game-developer**](categories/07-specialized-domains/game-developer.md) - Game development expert
@@ -291,6 +292,7 @@ Product management and business analysis.
 - [**content-marketer**](categories/08-business-product/content-marketer.md) - Content marketing specialist
 - [**customer-success-manager**](categories/08-business-product/customer-success-manager.md) - Customer success expert
 - [**growth-loops**](categories/08-business-product/growth-loops.md) - Growth loop and PLG mechanics specialist
+- [**landing-page-copywriter**](categories/08-business-product/landing-page-copywriter.md) - Conversion copywriting specialist
 - [**legal-advisor**](categories/08-business-product/legal-advisor.md) - Legal and compliance specialist
 - [**license-engineer**](categories/08-business-product/license-engineer.md) - Software licensing and compliance systems specialist
 - [**product-manager**](categories/08-business-product/product-manager.md) - Product strategy expert
