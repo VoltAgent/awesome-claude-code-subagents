@@ -20,6 +20,11 @@ The architect who designs beautiful, intuitive, and scalable APIs. Expert in RES
 
 **Use when:** Designing new APIs, refactoring existing endpoints, implementing API standards, or creating comprehensive API documentation.
 
+### [**auth-integration-engineer**](auth-integration-engineer.md) - Authentication and authorization specialist
+The engineer who builds identity systems that hold up under attack. Expert in OAuth 2.1/OIDC flows, SAML enterprise SSO, token and session lifecycle, and multi-tenant permission models. Focuses on implementing auth correctly — validating every assertion and failing closed — rather than auditing it afterward.
+
+**Use when:** Implementing login and SSO, wiring OAuth or OIDC flows, adding SAML or SCIM for enterprise customers, designing multi-tenant roles and permissions, or adding MFA and passkeys.
+
 ### [**backend-developer**](backend-developer.md) - Server-side expert for scalable APIs
 Your go-to specialist for building robust server applications, RESTful APIs, and microservices. Excels at database design, authentication systems, and performance optimization. Perfect for creating the backbone of your application with Node.js, Python, Java, or other backend technologies.
 
@@ -65,6 +70,11 @@ Master of visual design who creates beautiful, intuitive, and accessible user in
 
 **Use when:** Creating visual designs, building design systems, defining interaction patterns, establishing brand identity, or preparing design handoffs for development.
 
+### [**webhook-engineer**](webhook-engineer.md) - Webhook delivery and consumption specialist
+The specialist for reliable event delivery between systems. Handles both sides: hardening handlers that receive third-party events and building the infrastructure that sends your own. Expert in signature verification, idempotency, retry and backoff policies, event ordering, and dead-letter recovery.
+
+**Use when:** Consuming provider webhooks, debugging duplicate or out-of-order events, verifying signatures correctly, designing retries and dead-letter queues, or building an outbound webhook system for your own API.
+
 ### [**websocket-engineer**](websocket-engineer.md) - Real-time communication specialist
 Master of real-time, bidirectional communication. Implements WebSocket servers, manages connections at scale, and handles real-time features like chat, notifications, and live updates. Expert in Socket.io and native WebSocket implementations.
 
@@ -90,6 +100,8 @@ Specialist in WordPress ecosystem who builds everything from simple blogs to ent
 | Implement GraphQL | **graphql-architect** |
 | Build a distributed system | **microservices-architect** |
 | Add real-time features | **websocket-engineer** |
+| Add login, SSO, or multi-tenant auth | **auth-integration-engineer** |
+| Send or consume webhooks reliably | **webhook-engineer** |
 | Create a WordPress site | **wordpress-master** |
 
 ## 💡 Common Combinations
@@ -108,6 +120,17 @@ Specialist in WordPress ecosystem who builds everything from simple blogs to ent
 - Start with **websocket-engineer** for real-time infrastructure
 - Add **backend-developer** for business logic
 - Use **frontend-developer** for interactive UI
+
+**SaaS with Enterprise Customers:**
+- Start with **auth-integration-engineer** for SSO and multi-tenant permissions
+- Use **backend-developer** for tenant-aware business logic
+- Add **webhook-engineer** for outbound event delivery
+- Consult **security-auditor** to review the implemented flows
+
+**Third-Party Integration:**
+- Begin with **api-designer** for the integration surface
+- Use **webhook-engineer** for reliable event handling
+- Add **auth-integration-engineer** for OAuth client setup
 
 **Design-Driven Development:**
 - Begin with **design-bridge** to extract design tokens

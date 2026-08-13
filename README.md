@@ -6,7 +6,7 @@
 <br/>
 
 <div align="center">
-    <strong>The awesome collection of 158+ Claude Code subagents across 10 categories.</strong>
+    <strong>The awesome collection of 160+ Claude Code subagents across 10 categories.</strong>
     <br />
     <br />
 </div>
@@ -14,7 +14,7 @@
 <div align="center">
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-![Subagent Count](https://img.shields.io/badge/subagents-158-blue?style=classic)
+![Subagent Count](https://img.shields.io/badge/subagents-160-blue?style=classic)
 [![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-claude-code-subagents?label=Last%20update&style=classic)](https://github.com/VoltAgent/awesome-claude-code-subagents)
 [![Discord](https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://s.voltagent.dev/discord)
 
@@ -106,6 +106,7 @@ Then in Claude Code: "Use the agent-installer to show me available categories" o
 Essential development subagents for everyday coding tasks.
 
 - [**api-designer**](categories/01-core-development/api-designer.md) - REST and GraphQL API architect
+- [**auth-integration-engineer**](categories/01-core-development/auth-integration-engineer.md) - Authentication and authorization specialist
 - [**backend-developer**](categories/01-core-development/backend-developer.md) - Server-side expert for scalable APIs
 - [**design-bridge**](categories/01-core-development/design-bridge.md) - Design-to-agent translator
 - [**electron-pro**](categories/01-core-development/electron-pro.md) - Desktop application expert
@@ -115,6 +116,7 @@ Essential development subagents for everyday coding tasks.
 - [**microservices-architect**](categories/01-core-development/microservices-architect.md) - Distributed systems designer
 - [**mobile-developer**](categories/01-core-development/mobile-developer.md) - Cross-platform mobile specialist
 - [**ui-designer**](categories/01-core-development/ui-designer.md) - Visual design and interaction specialist
+- [**webhook-engineer**](categories/01-core-development/webhook-engineer.md) - Webhook delivery and consumption specialist
 - [**websocket-engineer**](categories/01-core-development/websocket-engineer.md) - Real-time communication specialist
 
 

@@ -13,9 +13,9 @@
       "name": "voltagent-core-dev",
       "source": "./categories/01-core-development",
       "description": "Essential development subagents for everyday coding tasks - backend, frontend, fullstack, mobile, and API design",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "category": "development",
-      "keywords": ["backend", "frontend", "fullstack", "mobile", "api", "microservices"]
+      "keywords": ["backend", "frontend", "fullstack", "mobile", "api", "microservices", "auth", "webhooks"]
     },
     {
       "name": "voltagent-lang",

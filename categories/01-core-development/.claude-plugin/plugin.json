@@ -1,6 +1,6 @@
 {
   "name": "voltagent-core-dev",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Essential development subagents for everyday coding tasks - backend, frontend, fullstack, mobile, and API design",
   "author": {
     "name": "VoltAgent Community",
@@ -10,6 +10,7 @@
   "license": "MIT",
   "agents": [
     "./api-designer.md",
+    "./auth-integration-engineer.md",
     "./backend-developer.md",
     "./design-bridge.md",
     "./electron-pro.md",
@@ -19,6 +20,7 @@
     "./microservices-architect.md",
     "./mobile-developer.md",
     "./ui-designer.md",
+    "./webhook-engineer.md",
     "./websocket-engineer.md"
   ]
 }
