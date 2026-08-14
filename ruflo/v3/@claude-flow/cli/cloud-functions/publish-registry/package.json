@@ -1,0 +1,15 @@
+{
+  "name": "publish-registry",
+  "version": "1.0.0",
+  "description": "Secure IPFS plugin registry publisher for Claude Flow",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@google-cloud/secret-manager": "^5.6.0",
+    "@google-cloud/storage": "^7.14.0",
+    "@noble/ed25519": "^2.1.0"
+  }
+}

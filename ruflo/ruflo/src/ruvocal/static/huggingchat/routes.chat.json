@@ -1,0 +1,226 @@
+[
+	{
+		"name": "job_app_docs",
+		"description": "Create ATS‑ready resumes and cover letters aligned to a job posting.",
+		"primary_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+		"fallback_models": [
+			"deepseek-ai/DeepSeek-V3.1",
+			"moonshotai/Kimi-K2-Instruct-0905",
+			"zai-org/GLM-4.6"
+		]
+	},
+	{
+		"name": "email_writing",
+		"description": "Draft or revise emails with clear tone and a specific CTA.",
+		"primary_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+		"fallback_models": ["deepseek-ai/DeepSeek-V3.1", "google/gemma-3-27b-it"]
+	},
+	{
+		"name": "social_media_copy",
+		"description": "Write platform‑specific social captions and short posts for engagement.",
+		"primary_model": "deepseek-ai/DeepSeek-V3.1",
+		"fallback_models": ["moonshotai/Kimi-K2-Instruct-0905", "Qwen/Qwen3-235B-A22B-Instruct-2507"]
+	},
+	{
+		"name": "editing_rewrite",
+		"description": "Lightly proofread and rephrase text for tone, length, and clarity.",
+		"primary_model": "moonshotai/Kimi-K2-Instruct-0905",
+		"fallback_models": ["deepseek-ai/DeepSeek-V3.1", "google/gemma-3-27b-it", "zai-org/GLM-4.6"]
+	},
+	{
+		"name": "qa_explanations",
+		"description": "Provide concise answers and plain‑language explanations.",
+		"primary_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+		"fallback_models": ["deepseek-ai/DeepSeek-V3.1", "meta-llama/Llama-3.3-70B-Instruct"]
+	},
+	{
+		"name": "technical_explanation",
+		"description": "Explain complex technical topics step‑by‑step with worked examples.",
+		"primary_model": "deepseek-ai/DeepSeek-R1-0528",
+		"fallback_models": ["Qwen/QwQ-32B", "moonshotai/Kimi-K2-Instruct-0905"]
+	},
+	{
+		"name": "essay_writing",
+		"description": "Plan and write essays from outline to draft; citations on request.",
+		"primary_model": "Qwen/Qwen3-235B-A22B-Thinking-2507",
+		"fallback_models": ["deepseek-ai/DeepSeek-R1-0528", "deepseek-ai/DeepSeek-V3.1"]
+	},
+	{
+		"name": "summarization",
+		"description": "Condense documents into an abstract, key points, and action items.",
+		"primary_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+		"fallback_models": [
+			"deepseek-ai/DeepSeek-V3.1",
+			"meta-llama/Llama-4-Maverick-17B-128E-Instruct"
+		]
+	},
+	{
+		"name": "translation",
+		"description": "Translate between languages with register and terminology control.",
+		"primary_model": "CohereLabs/command-a-translate-08-2025",
+		"fallback_models": ["CohereLabs/aya-expanse-32b", "google/gemma-3-27b-it"]
+	},
+	{
+		"name": "language_tutoring",
+		"description": "Interactive language practice with conversation, grammar, vocab, and feedback.",
+		"primary_model": "CohereLabs/aya-expanse-32b",
+		"fallback_models": [
+			"CohereLabs/aya-expanse-8b",
+			"google/gemma-3-27b-it",
+			"meta-llama/Llama-3.3-70B-Instruct"
+		]
+	},
+	{
+		"name": "formal_proof",
+		"description": "Produce Lean 4 proofs with tactic scripts and subgoals.",
+		"primary_model": "deepseek-ai/DeepSeek-Prover-V2-671B",
+		"fallback_models": ["deepseek-ai/DeepSeek-R1-0528", "Qwen/QwQ-32B"]
+	},
+	{
+		"name": "software_architecture_design",
+		"description": "Design architectures: views, APIs, data models, and scalability trade‑offs.",
+		"primary_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+		"fallback_models": ["deepseek-ai/DeepSeek-V3.1", "meta-llama/Llama-3.1-405B-Instruct"]
+	},
+	{
+		"name": "agentic_orchestration",
+		"description": "Plan and execute tool/API calls with schemas, retries, and recovery.",
+		"primary_model": "openai/gpt-oss-120b",
+		"fallback_models": ["zai-org/GLM-4.6", "deepseek-ai/DeepSeek-V3.1"]
+	},
+	{
+		"name": "code_generation",
+		"description": "Generate new code, tests, and scaffolds from specs.",
+		"primary_model": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+		"fallback_models": ["deepseek-ai/DeepSeek-V3.1", "Qwen/Qwen3-Coder-30B-A3B-Instruct"]
+	},
+	{
+		"name": "frontend_ui",
+		"description": "Build accessible, responsive UI components and pages.",
+		"primary_model": "deepseek-ai/DeepSeek-R1-0528",
+		"fallback_models": ["Qwen/Qwen3-Coder-480B-A35B-Instruct", "zai-org/GLM-4.6"]
+	},
+	{
+		"name": "code_maintenance",
+		"description": "Fix bugs and refactor code; add tests.",
+		"primary_model": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+		"fallback_models": [
+			"deepseek-ai/DeepSeek-V3.1",
+			"meta-llama/Llama-4-Maverick-17B-128E-Instruct"
+		]
+	},
+	{
+		"name": "code_review_docs",
+		"description": "Explain code and write docs, READMEs, and examples.",
+		"primary_model": "deepseek-ai/DeepSeek-V3.1",
+		"fallback_models": ["meta-llama/Llama-3.3-70B-Instruct", "Qwen/Qwen3-235B-A22B-Instruct-2507"]
+	},
+	{
+		"name": "terminal_cli",
+		"description": "Solve Linux shell tasks with safe, idempotent commands.",
+		"primary_model": "zai-org/GLM-4.6",
+		"fallback_models": ["meta-llama/Llama-4-Maverick-17B-128E-Instruct", "Qwen/Qwen3-32B"]
+	},
+	{
+		"name": "travel_planning",
+		"description": "Research trips and craft day‑by‑day itineraries with logistics.",
+		"primary_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+		"fallback_models": [
+			"deepseek-ai/DeepSeek-V3.1",
+			"meta-llama/Llama-4-Maverick-17B-128E-Instruct"
+		]
+	},
+	{
+		"name": "shopping_recommendations",
+		"description": "Compare products and recommend ranked picks with rationale.",
+		"primary_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+		"fallback_models": ["zai-org/GLM-4.6", "deepseek-ai/DeepSeek-V3.1"]
+	},
+	{
+		"name": "meal_planning",
+		"description": "Create meal plans and recipes by diet, budget, and time.",
+		"primary_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+		"fallback_models": ["deepseek-ai/DeepSeek-V3.1", "google/gemma-3-27b-it"]
+	},
+	{
+		"name": "decision_support",
+		"description": "Score options against criteria and recommend a choice.",
+		"primary_model": "deepseek-ai/DeepSeek-R1-0528",
+		"fallback_models": ["Qwen/Qwen3-235B-A22B-Thinking-2507", "deepseek-ai/DeepSeek-V3.1"]
+	},
+	{
+		"name": "career_coaching",
+		"description": "Guide job search, skill gaps, interviews, and negotiation.",
+		"primary_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+		"fallback_models": ["meta-llama/Llama-3.3-70B-Instruct", "deepseek-ai/DeepSeek-V3.1"]
+	},
+	{
+		"name": "personal_finance",
+		"description": "Build budgets, savings plans, and simple tracking schemas.",
+		"primary_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+		"fallback_models": ["deepseek-ai/DeepSeek-V3.1", "Qwen/Qwen3-235B-A22B-Thinking-2507"]
+	},
+	{
+		"name": "health_wellness_info",
+		"description": "Provide general health, fitness, sleep, and nutrition information.",
+		"primary_model": "aaditya/Llama3-OpenBioLLM-70B",
+		"fallback_models": ["Qwen/Qwen3-235B-A22B-Instruct-2507", "google/gemma-3-27b-it"]
+	},
+	{
+		"name": "brainstorming_ideas",
+		"description": "Generate many creative ideas, then help narrow choices.",
+		"primary_model": "deepseek-ai/DeepSeek-V3.1",
+		"fallback_models": ["NousResearch/Hermes-4-70B", "Qwen/Qwen3-235B-A22B-Instruct-2507"]
+	},
+	{
+		"name": "creative_writing",
+		"description": "Write fiction, poems, jokes, or scripts with style control.",
+		"primary_model": "moonshotai/Kimi-K2-Instruct-0905",
+		"fallback_models": ["deepseek-ai/DeepSeek-V3.1", "meta-llama/Llama-3.3-70B-Instruct"]
+	},
+	{
+		"name": "interactive_roleplay",
+		"description": "Run in‑character text adventures and persistent role‑play.",
+		"primary_model": "NousResearch/Hermes-4-70B",
+		"fallback_models": ["moonshotai/Kimi-K2-Instruct-0905", "Qwen/Qwen3-235B-A22B-Instruct-2507"]
+	},
+	{
+		"name": "character_impersonation",
+		"description": "Act and imitate fictional character voices or invented personas consistently.",
+		"primary_model": "NousResearch/Hermes-4-70B",
+		"fallback_models": ["moonshotai/Kimi-K2-Instruct-0905", "Qwen/Qwen3-235B-A22B-Instruct-2507"]
+	},
+	{
+		"name": "casual_conversation",
+		"description": "Engage in friendly and open‑ended casual chat.",
+		"primary_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+		"fallback_models": ["moonshotai/Kimi-K2-Instruct-0905", "google/gemma-3-27b-it"]
+	},
+	{
+		"name": "emotional_support",
+		"description": "Provide compassionate listening and gentle guidance for emotional well-being.",
+		"primary_model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+		"fallback_models": [
+			"meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+			"deepseek-ai/DeepSeek-V3.1"
+		]
+	},
+	{
+		"name": "learning_tutor",
+		"description": "Teach concepts with step-by-step explanations, examples, and practice.",
+		"primary_model": "deepseek-ai/DeepSeek-V3.1",
+		"fallback_models": ["Qwen/Qwen3-235B-A22B-Thinking-2507", "deepseek-ai/DeepSeek-R1-0528"]
+	},
+	{
+		"name": "structured_data",
+		"description": "Extract structured JSON from text.",
+		"primary_model": "zai-org/GLM-4.6",
+		"fallback_models": ["deepseek-ai/DeepSeek-V3.1", "Qwen/Qwen3-235B-A22B-Instruct-2507"]
+	},
+	{
+		"name": "spell_checker",
+		"description": "Fix spelling, capitalization, punctuation, and obvious grammar errors.",
+		"primary_model": "CohereLabs/aya-expanse-32b",
+		"fallback_models": ["moonshotai/Kimi-K2-Instruct-0905", "google/gemma-3-27b-it"]
+	}
+]

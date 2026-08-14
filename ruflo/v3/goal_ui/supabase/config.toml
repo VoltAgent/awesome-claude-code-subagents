@@ -1,0 +1,7 @@
+project_id = "eqzmqxtngbulzhimrymr"
+
+[functions.research-step]
+verify_jwt = false
+
+[functions.research-api]
+verify_jwt = true

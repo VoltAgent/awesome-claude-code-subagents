@@ -1,0 +1,18 @@
+# gcloud builds submit upload filter.
+# Without this file, gcloud falls back to .gitignore, which has
+# `models/*` (line 16) — that excludes src/routes/api/v2/models/*
+# and src/routes/models/* from the build context, producing
+# production images missing those SvelteKit routes (root cause
+# of /api/v2/models 404 → /favicon 500 → / 500 in Cloud Run).
+
+.git/
+.gitignore
+.dockerignore
+.gcloudignore
+node_modules/
+.svelte-kit/
+build/
+.env.local
+.vscode/
+.idea/
+*.log

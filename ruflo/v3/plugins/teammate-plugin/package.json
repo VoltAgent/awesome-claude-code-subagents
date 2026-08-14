@@ -1,0 +1,101 @@
+{
+  "name": "@claude-flow/teammate-plugin",
+  "version": "1.0.0-alpha.1",
+  "description": "Native TeammateTool integration plugin for Claude Flow - bridges Claude Code v2.1.19+ multi-agent capabilities",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./bridge": {
+      "import": "./dist/teammate-bridge.js",
+      "types": "./dist/teammate-bridge.d.ts"
+    },
+    "./mcp": {
+      "import": "./dist/mcp-tools.js",
+      "types": "./dist/mcp-tools.d.ts"
+    },
+    "./topology": {
+      "import": "./dist/topology-optimizer.js",
+      "types": "./dist/topology-optimizer.d.ts"
+    },
+    "./semantic": {
+      "import": "./dist/semantic-router.js",
+      "types": "./dist/semantic-router.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src --ext .ts",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build && npm run test"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "claude-flow",
+    "teammate",
+    "multi-agent",
+    "swarm",
+    "orchestration",
+    "mcp"
+  ],
+  "author": "rUv <ruv@ruv.net>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/claude-flow.git",
+    "directory": "v3/plugins/teammate-plugin"
+  },
+  "bugs": {
+    "url": "https://github.com/ruvnet/claude-flow/issues"
+  },
+  "homepage": "https://github.com/ruvnet/claude-flow#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "peerDependencies": {
+    "@anthropic-ai/claude-code": ">=2.1.19"
+  },
+  "peerDependenciesMeta": {
+    "@anthropic-ai/claude-code": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "eventemitter3": "^5.0.1",
+    "@ruvnet/bmssp": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "eslint": "^8.55.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0"
+  },
+  "claude-code": {
+    "minimumVersion": "2.1.19",
+    "requiredFeatures": [
+      "TeammateTool",
+      "team_name",
+      "launchSwarm"
+    ],
+    "optionalFeatures": [
+      "pushToRemote",
+      "delegate_mode",
+      "teleport"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+# Shared Optimized Utilities for Gas Town WASM Modules
+#
+# Provides ultra-fast utilities:
+# - FxHash (faster than std HashMap)
+# - Arena allocator for zero-copy operations
+# - SIMD utilities for parallel processing
+# - Memory pool for allocation reuse
+# - Interned strings for zero-copy parsing
+
+[package]
+name = "gastown-shared"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Shared optimized utilities for Gas Town WASM modules"
+
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+# Fast hashing (FxHash is ~2x faster than std for small keys)
+rustc-hash.workspace = true
+
+# Arena allocator (zero-copy, batch allocation)
+bumpalo.workspace = true
+
+# Stack-allocated vectors (avoid heap for small collections)
+smallvec.workspace = true
+arrayvec.workspace = true
+
+# Portable SIMD
+wide.workspace = true
+
+# Serde for interned string support
+serde = { workspace = true, optional = true }
+
+[features]
+default = ["simd"]
+simd = []
+serde = ["dep:serde"]

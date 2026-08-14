@@ -1,0 +1,2236 @@
+{
+  "mcp": [
+    {
+      "name": "agent_execute",
+      "description": "Execute a task on a spawned agent — calls the Anthropic Messages API with the agent\\",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agent-tools.ts"
+    },
+    {
+      "name": "agent_health",
+      "description": "Check agent health",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agent-tools.ts"
+    },
+    {
+      "name": "agent_list",
+      "description": "List all agents",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agent-tools.ts"
+    },
+    {
+      "name": "agent_pool",
+      "description": "Manage agent pool",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agent-tools.ts"
+    },
+    {
+      "name": "agent_spawn",
+      "description": "Spawn a Ruflo-tracked agent with cost attribution + memory persistence + swarm coordination. Use when native Task tool is wrong because you need (a) cost tracking per agent in the cost-tracking namespace, (b) cross-session learning via the patterns namespace, or (c) coordination with other agents in a swarm topology (hierarchical / mesh / consensus). For one-shot subtasks with no learning loop, native Task is fine. Pair with hooks_route to pick the right model first.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agent-tools.ts"
+    },
+    {
+      "name": "agent_status",
+      "description": "Get agent status",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agent-tools.ts"
+    },
+    {
+      "name": "agent_terminate",
+      "description": "Terminate an agent",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agent-tools.ts"
+    },
+    {
+      "name": "agent_update",
+      "description": "Update agent status or config",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agent-tools.ts"
+    },
+    {
+      "name": "agentdb_batch",
+      "description": "Batch operations on AgentDB episodes (insert, update, delete). Note: entries are stored in the AgentDB episodes table, not the memory_search namespace. Use memory_store for entries that should be searchable via memory_search.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agentdb_causal-edge",
+      "description": "Record a causal edge between two memory entries via CausalMemoryGraph",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agentdb_consolidate",
+      "description": "Run memory consolidation to promote entries across tiers and compress old data",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agentdb_context-synthesize",
+      "description": "Synthesize context from stored memories for a given query",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agentdb_controllers",
+      "description": "List all AgentDB v3 controllers and their initialization status",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agentdb_feedback",
+      "description": "Record task feedback for learning via LearningSystem + ReasoningBank controllers",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agentdb_health",
+      "description": "Get AgentDB v3 controller health status including cache stats and attestation count",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agentdb_hierarchical-recall",
+      "description": "Recall from hierarchical memory with optional tier filter",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agentdb_hierarchical-store",
+      "description": "Store to hierarchical memory with tier (working, episodic, semantic)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agentdb_pattern-search",
+      "description": "Search patterns via ReasoningBank controller with BM25+semantic hybrid",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agentdb_pattern-store",
+      "description": "Store a pattern directly via ReasoningBank controller",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agentdb_route",
+      "description": "Route a task via AgentDB SemanticRouter or LearningSystem recommendAlgorithm",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agentdb_semantic-route",
+      "description": "Route an input via AgentDB SemanticRouter for intent classification",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agentdb_session-end",
+      "description": "End session, persist to ReflexionMemory, trigger NightlyLearner consolidation",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agentdb_session-start",
+      "description": "Start a session with ReflexionMemory episodic replay",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\agentdb-tools.ts"
+    },
+    {
+      "name": "agents",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\swarm-tools.ts"
+    },
+    {
+      "name": "aidefence_analyze",
+      "description": "Deep analysis of input for specific threat types with similar pattern search and mitigation recommendations.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\security-tools.ts"
+    },
+    {
+      "name": "aidefence_has_pii",
+      "description": "Check if input contains PII (emails, SSNs, API keys, passwords, etc.).",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\security-tools.ts"
+    },
+    {
+      "name": "aidefence_is_safe",
+      "description": "Quick boolean check if input is safe. Fastest option for simple validation.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\security-tools.ts"
+    },
+    {
+      "name": "aidefence_learn",
+      "description": "Record detection feedback for pattern learning. Improves future detection accuracy.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\security-tools.ts"
+    },
+    {
+      "name": "aidefence_scan",
+      "description": "Scan input text for AI manipulation threats (prompt injection, jailbreaks, PII). Returns threat assessment with <10ms latency.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\security-tools.ts"
+    },
+    {
+      "name": "aidefence_stats",
+      "description": "Get AIDefence detection and learning statistics.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\security-tools.ts"
+    },
+    {
+      "name": "analyze_diff",
+      "description": "Analyze git diff for change risk assessment and classification",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\analyze-tools.ts"
+    },
+    {
+      "name": "analyze_diff-classify",
+      "description": "Classify git diff change type",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\analyze-tools.ts"
+    },
+    {
+      "name": "analyze_diff-reviewers",
+      "description": "Suggest reviewers for git diff changes",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\analyze-tools.ts"
+    },
+    {
+      "name": "analyze_diff-risk",
+      "description": "Quick risk assessment for git diff",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\analyze-tools.ts"
+    },
+    {
+      "name": "analyze_diff-stats",
+      "description": "Get quick statistics for git diff",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\analyze-tools.ts"
+    },
+    {
+      "name": "analyze_file-risk",
+      "description": "Assess risk for a specific file change",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\analyze-tools.ts"
+    },
+    {
+      "name": "autopilot_config",
+      "description": "Configure autopilot limits: max iterations (1-1000), timeout in minutes (1-1440), and task sources.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\autopilot-tools.ts"
+    },
+    {
+      "name": "autopilot_disable",
+      "description": "Disable autopilot. Agents will be allowed to stop even if tasks remain.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\autopilot-tools.ts"
+    },
+    {
+      "name": "autopilot_enable",
+      "description": "Enable autopilot persistent completion. Agents will be re-engaged when tasks remain incomplete.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\autopilot-tools.ts"
+    },
+    {
+      "name": "autopilot_history",
+      "description": "Search past completion episodes by keyword. Requires AgentDB.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\autopilot-tools.ts"
+    },
+    {
+      "name": "autopilot_learn",
+      "description": "Discover success patterns from past task completions. Requires AgentDB for full functionality.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\autopilot-tools.ts"
+    },
+    {
+      "name": "autopilot_log",
+      "description": "Retrieve the autopilot event log. Shows enable/disable events, re-engagements, completions.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\autopilot-tools.ts"
+    },
+    {
+      "name": "autopilot_predict",
+      "description": "Predict the optimal next action based on current state and learned patterns.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\autopilot-tools.ts"
+    },
+    {
+      "name": "autopilot_progress",
+      "description": "Detailed task progress broken down by source (team-tasks, swarm-tasks, file-checklist).",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\autopilot-tools.ts"
+    },
+    {
+      "name": "autopilot_reset",
+      "description": "Reset autopilot iteration counter and restart the timer.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\autopilot-tools.ts"
+    },
+    {
+      "name": "autopilot_status",
+      "description": "Get autopilot state including enabled status, iteration count, task progress, and learning metrics.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\autopilot-tools.ts"
+    },
+    {
+      "name": "browser_back",
+      "description": "Navigate back in browser history",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_check",
+      "description": "Check a checkbox",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_click",
+      "description": "Click an element using ref (@e1) or CSS selector",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_close",
+      "description": "Close the browser session",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_cookie_use",
+      "description": "Fetch a vault handle for a host from the browser-cookies AgentDB namespace. Raw cookie values are NEVER returned — only the opaque handle plus expiry / AIDefence verdict.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-session-tools.ts"
+    },
+    {
+      "name": "browser_eval",
+      "description": "Execute JavaScript in page context",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_fill",
+      "description": "Clear and fill an input element",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_forward",
+      "description": "Navigate forward in browser history",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_get-text",
+      "description": "Get text content of an element",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_get-title",
+      "description": "Get the page title",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_get-url",
+      "description": "Get the current URL",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_get-value",
+      "description": "Get value of an input element",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_hover",
+      "description": "Hover over an element using ref (@e1) or CSS selector",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_open",
+      "description": "Navigate browser to a URL",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_press",
+      "description": "Press a keyboard key",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_reload",
+      "description": "Reload the current page",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_screenshot",
+      "description": "Capture screenshot of the page",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_scroll",
+      "description": "Scroll the page",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_select",
+      "description": "Select an option from a dropdown",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_session_end",
+      "description": "End a recorded browser session: trajectory-end with verdict, rvf compact, AIDefence pre-store gate (best-effort), and AgentDB index in the browser-sessions namespace.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-session-tools.ts"
+    },
+    {
+      "name": "browser_session_record",
+      "description": "Open a named, traced browser session: allocate an RVF cognitive container, begin a ruvector trajectory, then open the URL via agent-browser. Returns the session id and rvf path.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-session-tools.ts"
+    },
+    {
+      "name": "browser_session_replay",
+      "description": "Load a recorded session trajectory and return its steps so the caller can dispatch them through the 23 browser_* tools. Does NOT itself drive the browser — replay execution is caller-orchestrated to keep this tool a primitive (ADR-0001 §7).",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-session-tools.ts"
+    },
+    {
+      "name": "browser_session-list",
+      "description": "List active browser sessions",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_snapshot",
+      "description": "Get AI-optimized accessibility tree snapshot with element refs (@e1, @e2, etc.)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_template_apply",
+      "description": "Fetch a recipe from the browser-templates AgentDB namespace and return it for caller-level execution.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-session-tools.ts"
+    },
+    {
+      "name": "browser_type",
+      "description": "Type text with key events (for autocomplete, etc.)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_uncheck",
+      "description": "Uncheck a checkbox",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "browser_wait",
+      "description": "Wait for a condition",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\browser-tools.ts"
+    },
+    {
+      "name": "build-agents",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "claims_accept-handoff",
+      "description": "Accept a pending handoff",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\claims-tools.ts"
+    },
+    {
+      "name": "claims_board",
+      "description": "Get a visual board view of all claims",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\claims-tools.ts"
+    },
+    {
+      "name": "claims_claim",
+      "description": "Claim an issue for work (human or agent)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\claims-tools.ts"
+    },
+    {
+      "name": "claims_handoff",
+      "description": "Request handoff of an issue to another claimant",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\claims-tools.ts"
+    },
+    {
+      "name": "claims_list",
+      "description": "List all claims or filter by criteria",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\claims-tools.ts"
+    },
+    {
+      "name": "claims_load",
+      "description": "Get agent load information",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\claims-tools.ts"
+    },
+    {
+      "name": "claims_mark-stealable",
+      "description": "Mark an issue as stealable by other agents",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\claims-tools.ts"
+    },
+    {
+      "name": "claims_rebalance",
+      "description": "Suggest or apply load rebalancing across agents",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\claims-tools.ts"
+    },
+    {
+      "name": "claims_release",
+      "description": "Release a claim on an issue",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\claims-tools.ts"
+    },
+    {
+      "name": "claims_status",
+      "description": "Update claim status",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\claims-tools.ts"
+    },
+    {
+      "name": "claims_steal",
+      "description": "Steal a stealable issue",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\claims-tools.ts"
+    },
+    {
+      "name": "claims_stealable",
+      "description": "List all stealable issues",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\claims-tools.ts"
+    },
+    {
+      "name": "config",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "config_export",
+      "description": "Export configuration to JSON",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\config-tools.ts"
+    },
+    {
+      "name": "config_get",
+      "description": "Get configuration value",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\config-tools.ts"
+    },
+    {
+      "name": "config_import",
+      "description": "Import configuration from JSON",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\config-tools.ts"
+    },
+    {
+      "name": "config_list",
+      "description": "List configuration values",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\config-tools.ts"
+    },
+    {
+      "name": "config_reset",
+      "description": "Reset configuration to defaults",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\config-tools.ts"
+    },
+    {
+      "name": "config_set",
+      "description": "Set configuration value",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\config-tools.ts"
+    },
+    {
+      "name": "coordination_consensus",
+      "description": "Manage consensus protocol with BFT, Raft, or Quorum strategies",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\coordination-tools.ts"
+    },
+    {
+      "name": "coordination_load_balance",
+      "description": "Configure load balancing",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\coordination-tools.ts"
+    },
+    {
+      "name": "coordination_metrics",
+      "description": "Get coordination metrics",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\coordination-tools.ts"
+    },
+    {
+      "name": "coordination_node",
+      "description": "Manage coordination nodes",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\coordination-tools.ts"
+    },
+    {
+      "name": "coordination_orchestrate",
+      "description": "Orchestrate multi-agent coordination",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\coordination-tools.ts"
+    },
+    {
+      "name": "coordination_sync",
+      "description": "Synchronize state across nodes",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\coordination-tools.ts"
+    },
+    {
+      "name": "coordination_topology",
+      "description": "Configure swarm topology",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\coordination-tools.ts"
+    },
+    {
+      "name": "coordinator",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\swarm-tools.ts"
+    },
+    {
+      "name": "daa_agent_adapt",
+      "description": "Trigger agent adaptation based on feedback",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\daa-tools.ts"
+    },
+    {
+      "name": "daa_agent_create",
+      "description": "Create a decentralized autonomous agent",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\daa-tools.ts"
+    },
+    {
+      "name": "daa_cognitive_pattern",
+      "description": "Analyze or change cognitive patterns",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\daa-tools.ts"
+    },
+    {
+      "name": "daa_knowledge_share",
+      "description": "Share knowledge between agents",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\daa-tools.ts"
+    },
+    {
+      "name": "daa_learning_status",
+      "description": "Get learning status for DAA agents",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\daa-tools.ts"
+    },
+    {
+      "name": "daa_performance_metrics",
+      "description": "Get DAA performance metrics",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\daa-tools.ts"
+    },
+    {
+      "name": "daa_workflow_create",
+      "description": "Create an autonomous workflow",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\daa-tools.ts"
+    },
+    {
+      "name": "daa_workflow_execute",
+      "description": "Execute a DAA workflow",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\daa-tools.ts"
+    },
+    {
+      "name": "database",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "disk",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "embeddings_compare",
+      "description": "Compare similarity between two texts",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\embeddings-tools.ts"
+    },
+    {
+      "name": "embeddings_generate",
+      "description": "Generate embeddings for text (Euclidean or hyperbolic)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\embeddings-tools.ts"
+    },
+    {
+      "name": "embeddings_hyperbolic",
+      "description": "Hyperbolic embedding operations (Poincaré ball)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\embeddings-tools.ts"
+    },
+    {
+      "name": "embeddings_init",
+      "description": "Initialize the ONNX embedding subsystem with hyperbolic support",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\embeddings-tools.ts"
+    },
+    {
+      "name": "embeddings_neural",
+      "description": "Neural substrate operations (RuVector integration)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\embeddings-tools.ts"
+    },
+    {
+      "name": "embeddings_rabitq_build",
+      "description": "Build RaBitQ 1-bit quantized index from stored embeddings (32× compression). Pre-filters candidates via Hamming scan before exact rerank.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\embeddings-tools.ts"
+    },
+    {
+      "name": "embeddings_rabitq_search",
+      "description": "Search via RaBitQ quantized index (fast Hamming scan). Returns candidate IDs for reranking.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\embeddings-tools.ts"
+    },
+    {
+      "name": "embeddings_rabitq_status",
+      "description": "Get RaBitQ quantized index status — availability, vector count, compression ratio",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\embeddings-tools.ts"
+    },
+    {
+      "name": "embeddings_search",
+      "description": "Semantic search across stored embeddings",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\embeddings-tools.ts"
+    },
+    {
+      "name": "embeddings_status",
+      "description": "Get embeddings system status and configuration",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\embeddings-tools.ts"
+    },
+    {
+      "name": "explain",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "github_issue_track",
+      "description": "Track and manage issues",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\github-tools.ts"
+    },
+    {
+      "name": "github_metrics",
+      "description": "Get repository metrics and statistics",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\github-tools.ts"
+    },
+    {
+      "name": "github_pr_manage",
+      "description": "Manage pull requests",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\github-tools.ts"
+    },
+    {
+      "name": "github_repo_analyze",
+      "description": "Analyze a GitHub repository",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\github-tools.ts"
+    },
+    {
+      "name": "github_workflow",
+      "description": "Manage GitHub Actions workflows",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\github-tools.ts"
+    },
+    {
+      "name": "guidance_capabilities",
+      "description": "List all capability areas with their tools, commands, agents, and skills. Use this to discover what Ruflo can do.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\guidance-tools.ts"
+    },
+    {
+      "name": "guidance_discover",
+      "description": "Discover all available agents and skills from the .claude/ directory. Returns live filesystem data.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\guidance-tools.ts"
+    },
+    {
+      "name": "guidance_quickref",
+      "description": "Quick reference card for common operations. Returns the most useful commands for a given domain.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\guidance-tools.ts"
+    },
+    {
+      "name": "guidance_recommend",
+      "description": "Given a task description, recommend which capability areas, tools, agents, and workflow to use.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\guidance-tools.ts"
+    },
+    {
+      "name": "guidance_workflow",
+      "description": "Get a recommended workflow template for a task type. Includes steps, agents, and topology.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\guidance-tools.ts"
+    },
+    {
+      "name": "hive-mind_broadcast",
+      "description": "Broadcast message to all workers",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hive-mind-tools.ts"
+    },
+    {
+      "name": "hive-mind_consensus",
+      "description": "Propose or vote on consensus with BFT, Raft, or Quorum strategies",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hive-mind-tools.ts"
+    },
+    {
+      "name": "hive-mind_init",
+      "description": "Initialize the hive-mind collective",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hive-mind-tools.ts"
+    },
+    {
+      "name": "hive-mind_join",
+      "description": "Join an agent to the hive-mind",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hive-mind-tools.ts"
+    },
+    {
+      "name": "hive-mind_leave",
+      "description": "Remove an agent from the hive-mind",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hive-mind-tools.ts"
+    },
+    {
+      "name": "hive-mind_memory",
+      "description": "Access hive shared memory",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hive-mind-tools.ts"
+    },
+    {
+      "name": "hive-mind_shutdown",
+      "description": "Shutdown the hive-mind and terminate all workers",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hive-mind-tools.ts"
+    },
+    {
+      "name": "hive-mind_spawn",
+      "description": "Spawn workers and automatically join them to the hive-mind (combines agent/spawn + hive-mind/join)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hive-mind-tools.ts"
+    },
+    {
+      "name": "hive-mind_status",
+      "description": "Get hive-mind status",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hive-mind-tools.ts"
+    },
+    {
+      "name": "hooks_build-agents",
+      "description": "Generate optimized agent configurations from pretrain data",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_explain",
+      "description": "Explain routing decision with full transparency",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_init",
+      "description": "Initialize hooks in project with .claude/settings.json",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_intelligence",
+      "description": "RuVector intelligence system status (shows REAL metrics from memory store)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_intelligence_attention",
+      "description": "Compute attention-weighted similarity using MoE/Flash/Hyperbolic",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_intelligence_learn",
+      "description": "Force immediate SONA learning cycle with EWC++ consolidation",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_intelligence_pattern-search",
+      "description": "Search patterns using REAL vector search (HNSW when available, brute-force fallback)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_intelligence_pattern-store",
+      "description": "Store pattern in ReasoningBank (HNSW-indexed)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_intelligence_stats",
+      "description": "Get RuVector intelligence layer statistics",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_intelligence_trajectory-end",
+      "description": "End trajectory and trigger SONA learning with EWC++",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_intelligence_trajectory-start",
+      "description": "Begin SONA trajectory for reinforcement learning",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_intelligence_trajectory-step",
+      "description": "Record step in trajectory for reinforcement learning",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_intelligence-reset",
+      "description": "Reset intelligence learning state",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_list",
+      "description": "List all registered hooks",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_metrics",
+      "description": "View learning metrics dashboard",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_model-outcome",
+      "description": "Record model routing outcome for learning",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_model-route",
+      "description": "Route task to optimal Claude model (haiku/sonnet/opus) based on complexity",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_model-stats",
+      "description": "Get model routing statistics",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_notify",
+      "description": "Send cross-agent notification",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_post-command",
+      "description": "Record command execution outcome",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_post-edit",
+      "description": "Record editing outcome for learning",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_post-task",
+      "description": "Record task completion for learning",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_pre-command",
+      "description": "Assess risk before executing a command",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_pre-edit",
+      "description": "Get context and agent suggestions before editing a file",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_pre-task",
+      "description": "Record task start and get agent suggestions with intelligent model routing (ADR-026)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_pretrain",
+      "description": "Analyze repository to bootstrap intelligence (4-step pipeline)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_route",
+      "description": "Get a 3-tier routing recommendation for a task: Tier 1 (Agent Booster, 0ms / $0 — for var-to-const, add-types, etc.), Tier 2 (Haiku — simple), Tier 3 (Sonnet/Opus — complex). Use this BEFORE spawning an agent to avoid sending simple transforms to Sonnet. Native tools have no equivalent — Claude Code does not introspect its own model-selection cost. Returns the recommended model + a",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_session-end",
+      "description": "End current session, stop daemon, and persist state",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_session-restore",
+      "description": "Restore a previous session",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_session-start",
+      "description": "Initialize a new session and auto-start daemon",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_transfer",
+      "description": "Transfer learned patterns from another project",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_worker-cancel",
+      "description": "Cancel a running worker",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_worker-detect",
+      "description": "Detect worker triggers from user prompt (for UserPromptSubmit hook)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_worker-dispatch",
+      "description": "Dispatch a background worker for analysis/optimization tasks",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_worker-list",
+      "description": "List all 12 background workers with status and capabilities",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "hooks_worker-status",
+      "description": "Get status of a specific worker or all active workers",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "init",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "intelligence",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "intelligence_attention",
+      "description": "Record task start and get agent suggestions with intelligent model routing (ADR-026)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "intelligence_learn",
+      "description": "Record task start and get agent suggestions with intelligent model routing (ADR-026)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "intelligence_pattern-search",
+      "description": "Record task start and get agent suggestions with intelligent model routing (ADR-026)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "intelligence_pattern-store",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "intelligence_stats",
+      "description": "Record task start and get agent suggestions with intelligent model routing (ADR-026)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "intelligence_trajectory-end",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "intelligence_trajectory-start",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "intelligence_trajectory-step",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "mcp",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "mcp_status",
+      "description": "Get MCP server status, including stdio mode detection",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "memory",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "memory_bridge_status",
+      "description": "Show Claude Code memory bridge status — AgentDB vectors, SONA learning, intelligence patterns, and connection health.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\memory-tools.ts"
+    },
+    {
+      "name": "memory_delete",
+      "description": "Remove a stored memory entry by exact (namespace, key). Use when a previously stored decision is invalidated or contains stale data. No native equivalent — Write to a file does not affect the .swarm/memory.db SQLite store.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\memory-tools.ts"
+    },
+    {
+      "name": "memory_import_claude",
+      "description": "Import Claude Code auto-memory files into AgentDB with ONNX vector embeddings. Reads ~/.claude/projects/*/memory/*.md files, parses YAML frontmatter, splits into sections, and stores with 384-dim embeddings for semantic search. Use allProjects=true to import from ALL Claude projects.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\memory-tools.ts"
+    },
+    {
+      "name": "memory_list",
+      "description": "Enumerate stored memory entries (optionally filtered by namespace/tags) without semantic search. Use when native Glob is wrong because the entries are not files (they live in .swarm/memory.db). For inspection / audit /",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\memory-tools.ts"
+    },
+    {
+      "name": "memory_migrate",
+      "description": "Manually trigger migration from legacy JSON store to sql.js",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\memory-tools.ts"
+    },
+    {
+      "name": "memory_retrieve",
+      "description": "Read back a value previously stored via memory_store, by exact (namespace, key) — lossless, includes metadata. Use when native Read is wrong because the value is not a file (it lives in the .swarm/memory.db SQLite store) AND you know the exact key. For semantic lookup by meaning, use memory_search.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\memory-tools.ts"
+    },
+    {
+      "name": "memory_search",
+      "description": "Find stored memories by meaning (vector similarity), not by literal text — finds",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\memory-tools.ts"
+    },
+    {
+      "name": "memory_search_unified",
+      "description": "Search across both Claude Code memories and AgentDB entries using semantic vector similarity. Returns merged, deduplicated results from all namespaces.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\memory-tools.ts"
+    },
+    {
+      "name": "memory_stats",
+      "description": "Get memory storage statistics including HNSW index status",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\memory-tools.ts"
+    },
+    {
+      "name": "memory_store",
+      "description": "Persistent key-value store with vector embedding — survives across sessions and is searchable by meaning, not just by file path. Use when native Write is wrong because the data is not a file (e.g. a learned pattern, a decision, a budget config) AND you need to recall it later by semantic query, not by path. Defaults to namespace=",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\memory-tools.ts"
+    },
+    {
+      "name": "metrics",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "network",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "neural",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "neural_compress",
+      "description": "Compress neural model or embeddings",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\neural-tools.ts"
+    },
+    {
+      "name": "neural_optimize",
+      "description": "Optimize neural model performance",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\neural-tools.ts"
+    },
+    {
+      "name": "neural_patterns",
+      "description": "Get or manage neural patterns",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\neural-tools.ts"
+    },
+    {
+      "name": "neural_predict",
+      "description": "Make predictions using a neural model",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\neural-tools.ts"
+    },
+    {
+      "name": "neural_status",
+      "description": "Get neural system status",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\neural-tools.ts"
+    },
+    {
+      "name": "neural_train",
+      "description": "Train a neural model",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\neural-tools.ts"
+    },
+    {
+      "name": "notify",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "performance_benchmark",
+      "description": "Run performance benchmarks",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\performance-tools.ts"
+    },
+    {
+      "name": "performance_bottleneck",
+      "description": "Detect performance bottlenecks",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\performance-tools.ts"
+    },
+    {
+      "name": "performance_metrics",
+      "description": "Get detailed performance metrics",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\performance-tools.ts"
+    },
+    {
+      "name": "performance_optimize",
+      "description": "Apply performance optimizations",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\performance-tools.ts"
+    },
+    {
+      "name": "performance_profile",
+      "description": "Profile specific component or operation",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\performance-tools.ts"
+    },
+    {
+      "name": "performance_report",
+      "description": "Generate performance report",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\performance-tools.ts"
+    },
+    {
+      "name": "persistence",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\swarm-tools.ts"
+    },
+    {
+      "name": "post-command",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "post-edit",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "post-task",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "pre-command",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "pre-edit",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "pre-task",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "pretrain",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "progress_check",
+      "description": "Get current V3 implementation progress percentage and metrics",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\progress-tools.ts"
+    },
+    {
+      "name": "progress_summary",
+      "description": "Get human-readable V3 implementation progress summary",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\progress-tools.ts"
+    },
+    {
+      "name": "progress_sync",
+      "description": "Calculate and persist V3 progress metrics to file",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\progress-tools.ts"
+    },
+    {
+      "name": "progress_watch",
+      "description": "Get current watch status for progress monitoring",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\progress-tools.ts"
+    },
+    {
+      "name": "route",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "ruvllm_chat_format",
+      "description": "Format chat messages using a template (llama3, mistral, chatml, phi, gemma, or auto-detect).",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\ruvllm-tools.ts"
+    },
+    {
+      "name": "ruvllm_generate_config",
+      "description": "Create a generation config (maxTokens, temperature, topP, etc.) as JSON.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\ruvllm-tools.ts"
+    },
+    {
+      "name": "ruvllm_hnsw_add",
+      "description": "Add a pattern to an HNSW router. Embedding must match router dimensions.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\ruvllm-tools.ts"
+    },
+    {
+      "name": "ruvllm_hnsw_create",
+      "description": "Create a WASM HNSW router for semantic pattern routing. Max ~11 patterns (v2.0.1 limit).",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\ruvllm-tools.ts"
+    },
+    {
+      "name": "ruvllm_hnsw_route",
+      "description": "Route a query embedding to nearest patterns in HNSW index.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\ruvllm-tools.ts"
+    },
+    {
+      "name": "ruvllm_microlora_adapt",
+      "description": "Adapt MicroLoRA weights with quality feedback.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\ruvllm-tools.ts"
+    },
+    {
+      "name": "ruvllm_microlora_create",
+      "description": "Create a MicroLoRA adapter (ultra-lightweight LoRA, ranks 1-4).",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\ruvllm-tools.ts"
+    },
+    {
+      "name": "ruvllm_sona_adapt",
+      "description": "Run SONA instant adaptation with a quality signal.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\ruvllm-tools.ts"
+    },
+    {
+      "name": "ruvllm_sona_create",
+      "description": "Create a SONA instant adaptation loop (<1ms adaptation cycles).",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\ruvllm-tools.ts"
+    },
+    {
+      "name": "ruvllm_status",
+      "description": "Get ruvllm-wasm availability and initialization status.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\ruvllm-tools.ts"
+    },
+    {
+      "name": "session_delete",
+      "description": "Delete a saved session",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\session-tools.ts"
+    },
+    {
+      "name": "session_info",
+      "description": "Get detailed session information",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\session-tools.ts"
+    },
+    {
+      "name": "session_list",
+      "description": "List saved sessions",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\session-tools.ts"
+    },
+    {
+      "name": "session_restore",
+      "description": "Restore a saved session",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\session-tools.ts"
+    },
+    {
+      "name": "session_save",
+      "description": "Save current session state",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\session-tools.ts"
+    },
+    {
+      "name": "session-end",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "session-restore",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "session-start",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "swarm",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "swarm_exists",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\swarm-tools.ts"
+    },
+    {
+      "name": "swarm_health",
+      "description": "Check swarm health status with real state inspection",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\swarm-tools.ts"
+    },
+    {
+      "name": "swarm_init",
+      "description": "Initialize a swarm with persistent state tracking",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\swarm-tools.ts"
+    },
+    {
+      "name": "swarm_shutdown",
+      "description": "Shutdown a swarm and update persistent state",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\swarm-tools.ts"
+    },
+    {
+      "name": "swarm_status",
+      "description": "Get swarm status from persistent state",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\swarm-tools.ts"
+    },
+    {
+      "name": "system_health",
+      "description": "Perform system health check",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "system_info",
+      "description": "Get system information",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "system_metrics",
+      "description": "Get system metrics and performance data",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "system_reset",
+      "description": "Reset system state",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "system_status",
+      "description": "Get overall system status",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "task_assign",
+      "description": "Assign a task to one or more agents",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\task-tools.ts"
+    },
+    {
+      "name": "task_cancel",
+      "description": "Cancel a task",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\task-tools.ts"
+    },
+    {
+      "name": "task_complete",
+      "description": "Mark task as complete",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\task-tools.ts"
+    },
+    {
+      "name": "task_create",
+      "description": "Create a new task",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\task-tools.ts"
+    },
+    {
+      "name": "task_list",
+      "description": "List all tasks",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\task-tools.ts"
+    },
+    {
+      "name": "task_status",
+      "description": "Get task status",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\task-tools.ts"
+    },
+    {
+      "name": "task_summary",
+      "description": "Get a summary of all tasks by status",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\system-tools.ts"
+    },
+    {
+      "name": "task_update",
+      "description": "Update task status or progress",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\task-tools.ts"
+    },
+    {
+      "name": "terminal_close",
+      "description": "Close a terminal session",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\terminal-tools.ts"
+    },
+    {
+      "name": "terminal_create",
+      "description": "Create a new terminal session",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\terminal-tools.ts"
+    },
+    {
+      "name": "terminal_execute",
+      "description": "Execute a command in a terminal session",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\terminal-tools.ts"
+    },
+    {
+      "name": "terminal_history",
+      "description": "Get command history for a terminal session",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\terminal-tools.ts"
+    },
+    {
+      "name": "terminal_list",
+      "description": "List all terminal sessions",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\terminal-tools.ts"
+    },
+    {
+      "name": "topology",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\swarm-tools.ts"
+    },
+    {
+      "name": "transfer",
+      "description": "",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\hooks-tools.ts"
+    },
+    {
+      "name": "transfer_detect-pii",
+      "description": "Detect PII in content without redacting",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\transfer-tools.ts"
+    },
+    {
+      "name": "transfer_ipfs-resolve",
+      "description": "Resolve IPNS name to CID",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\transfer-tools.ts"
+    },
+    {
+      "name": "transfer_plugin-featured",
+      "description": "Get featured plugins from the store",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\transfer-tools.ts"
+    },
+    {
+      "name": "transfer_plugin-info",
+      "description": "Get detailed info about a plugin",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\transfer-tools.ts"
+    },
+    {
+      "name": "transfer_plugin-official",
+      "description": "Get official plugins from the store",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\transfer-tools.ts"
+    },
+    {
+      "name": "transfer_plugin-search",
+      "description": "Search the plugin store",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\transfer-tools.ts"
+    },
+    {
+      "name": "transfer_store-download",
+      "description": "Download a pattern from the store",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\transfer-tools.ts"
+    },
+    {
+      "name": "transfer_store-featured",
+      "description": "Get featured patterns from the store",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\transfer-tools.ts"
+    },
+    {
+      "name": "transfer_store-info",
+      "description": "Get detailed info about a pattern",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\transfer-tools.ts"
+    },
+    {
+      "name": "transfer_store-search",
+      "description": "Search the pattern store",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\transfer-tools.ts"
+    },
+    {
+      "name": "transfer_store-trending",
+      "description": "Get trending patterns from the store",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\transfer-tools.ts"
+    },
+    {
+      "name": "wasm_agent_create",
+      "description": "Create a sandboxed WASM agent with virtual filesystem (no OS access). Optionally use a gallery template.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\wasm-agent-tools.ts"
+    },
+    {
+      "name": "wasm_agent_export",
+      "description": "Export a WASM agent\\",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\wasm-agent-tools.ts"
+    },
+    {
+      "name": "wasm_agent_files",
+      "description": "Get a WASM agent\\",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\wasm-agent-tools.ts"
+    },
+    {
+      "name": "wasm_agent_list",
+      "description": "List all active WASM agents.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\wasm-agent-tools.ts"
+    },
+    {
+      "name": "wasm_agent_prompt",
+      "description": "Send a prompt to a WASM agent and get a response.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\wasm-agent-tools.ts"
+    },
+    {
+      "name": "wasm_agent_terminate",
+      "description": "Terminate a WASM agent and free resources.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\wasm-agent-tools.ts"
+    },
+    {
+      "name": "wasm_agent_tool",
+      "description": "Execute a tool on a WASM agent sandbox. Tools: read_file, write_file, edit_file, write_todos, list_files. Use flat format: {tool, path, content, ...}.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\wasm-agent-tools.ts"
+    },
+    {
+      "name": "wasm_gallery_create",
+      "description": "Create a WASM agent from a gallery template.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\wasm-agent-tools.ts"
+    },
+    {
+      "name": "wasm_gallery_list",
+      "description": "List all available WASM agent gallery templates (Coder, Researcher, Tester, Reviewer, Security, Swarm).",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\wasm-agent-tools.ts"
+    },
+    {
+      "name": "wasm_gallery_search",
+      "description": "Search WASM agent gallery templates by query.",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\wasm-agent-tools.ts"
+    },
+    {
+      "name": "workflow_cancel",
+      "description": "Cancel a workflow",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\workflow-tools.ts"
+    },
+    {
+      "name": "workflow_create",
+      "description": "Create a new workflow",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\workflow-tools.ts"
+    },
+    {
+      "name": "workflow_delete",
+      "description": "Delete a workflow",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\workflow-tools.ts"
+    },
+    {
+      "name": "workflow_execute",
+      "description": "Execute a workflow",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\workflow-tools.ts"
+    },
+    {
+      "name": "workflow_list",
+      "description": "List all workflows",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\workflow-tools.ts"
+    },
+    {
+      "name": "workflow_pause",
+      "description": "Pause a running workflow",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\workflow-tools.ts"
+    },
+    {
+      "name": "workflow_resume",
+      "description": "Resume a paused workflow",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\workflow-tools.ts"
+    },
+    {
+      "name": "workflow_run",
+      "description": "Run a workflow from a template or file",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\workflow-tools.ts"
+    },
+    {
+      "name": "workflow_status",
+      "description": "Get workflow status",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\workflow-tools.ts"
+    },
+    {
+      "name": "workflow_template",
+      "description": "Save workflow as template or create from template",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\mcp-tools\\workflow-tools.ts"
+    }
+  ],
+  "cli": [
+    {
+      "name": "agent",
+      "description": "Agent management commands",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\agent.ts"
+    },
+    {
+      "name": "analyze",
+      "description": "Code analysis, diff classification, graph boundaries, and change risk assessment",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\analyze.ts"
+    },
+    {
+      "name": "appliance",
+      "description": "Self-contained RVFA appliance management (build, inspect, verify, extract, run)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\appliance.ts"
+    },
+    {
+      "name": "autopilot",
+      "description": "Persistent swarm completion — keeps agents working until ALL tasks are done",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\autopilot.ts"
+    },
+    {
+      "name": "benchmark",
+      "description": "Performance benchmarking for self-learning and neural systems",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\benchmark.ts"
+    },
+    {
+      "name": "claims",
+      "description": "Claims-based authorization, permissions, and access control",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\claims.ts"
+    },
+    {
+      "name": "cleanup",
+      "description": "Remove project artifacts created by claude-flow/ruflo",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\cleanup.ts"
+    },
+    {
+      "name": "completions",
+      "description": "Generate shell completion scripts",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\completions.ts"
+    },
+    {
+      "name": "config",
+      "description": "Configuration management",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\config.ts"
+    },
+    {
+      "name": "daemon",
+      "description": "Manage background worker daemon (Node.js-based, auto-runs like shell helpers)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\daemon.ts"
+    },
+    {
+      "name": "deployment",
+      "description": "Deployment management, environments, rollbacks",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\deployment.ts"
+    },
+    {
+      "name": "doctor",
+      "description": "System diagnostics and health checks",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\doctor.ts"
+    },
+    {
+      "name": "download",
+      "description": "Download a pattern from the registry",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\transfer-store.ts"
+    },
+    {
+      "name": "embeddings",
+      "description": "Vector embeddings, semantic search, similarity operations",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\embeddings.ts"
+    },
+    {
+      "name": "guidance",
+      "description": "Guidance Control Plane - compile, retrieve, enforce, and optimize guidance rules",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\guidance.ts"
+    },
+    {
+      "name": "hive-mind",
+      "description": "Queen-led consensus-based multi-agent coordination",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\hive-mind.ts"
+    },
+    {
+      "name": "hooks",
+      "description": "Self-learning hooks system for intelligent workflow automation",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\hooks.ts"
+    },
+    {
+      "name": "info",
+      "description": "Show detailed information about a pattern",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\transfer-store.ts"
+    },
+    {
+      "name": "init",
+      "description": "Initialize RuFlo in the current directory",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\init.ts"
+    },
+    {
+      "name": "issues",
+      "description": "Collaborative issue claims for human-agent workflows (ADR-016)",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\issues.ts"
+    },
+    {
+      "name": "list",
+      "description": "List patterns from decentralized registry",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\transfer-store.ts"
+    },
+    {
+      "name": "mcp",
+      "description": "MCP server management",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\mcp.ts"
+    },
+    {
+      "name": "memory",
+      "description": "Memory management commands",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\memory.ts"
+    },
+    {
+      "name": "migrate",
+      "description": "V2 to V3 migration tools",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\migrate.ts"
+    },
+    {
+      "name": "neural",
+      "description": "Neural pattern training, MoE, Flash Attention, pattern learning",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\neural.ts"
+    },
+    {
+      "name": "performance",
+      "description": "Performance profiling, benchmarking, optimization, metrics",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\performance.ts"
+    },
+    {
+      "name": "plugins",
+      "description": "Plugin management with IPFS-based decentralized registry",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\plugins.ts"
+    },
+    {
+      "name": "process",
+      "description": "Background process management, daemon, and monitoring",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\process.ts"
+    },
+    {
+      "name": "progress",
+      "description": "Check V3 implementation progress",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\progress.ts"
+    },
+    {
+      "name": "providers",
+      "description": "Manage AI providers, models, and configurations",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\providers.ts"
+    },
+    {
+      "name": "publish",
+      "description": "Publish an RVFA appliance to IPFS via Pinata",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\appliance-advanced.ts"
+    },
+    {
+      "name": "publish",
+      "description": "Publish a pattern to the decentralized registry",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\transfer-store.ts"
+    },
+    {
+      "name": "route",
+      "description": "Intelligent task-to-agent routing using Q-Learning",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\route.ts"
+    },
+    {
+      "name": "search",
+      "description": "Search patterns in the decentralized registry",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\transfer-store.ts"
+    },
+    {
+      "name": "security",
+      "description": "Security scanning, CVE detection, threat modeling, AI defense",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\security.ts"
+    },
+    {
+      "name": "session",
+      "description": "Session management commands",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\session.ts"
+    },
+    {
+      "name": "sign",
+      "description": "Sign an RVFA appliance with Ed25519 for tamper detection",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\appliance-advanced.ts"
+    },
+    {
+      "name": "start",
+      "description": "Start the RuFlo orchestration system",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\start.ts"
+    },
+    {
+      "name": "status",
+      "description": "Show system status",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\status.ts"
+    },
+    {
+      "name": "store",
+      "description": "Pattern marketplace - list, search, download, publish",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\transfer-store.ts"
+    },
+    {
+      "name": "swarm",
+      "description": "Swarm coordination commands",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\swarm.ts"
+    },
+    {
+      "name": "task",
+      "description": "Task management commands",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\task.ts"
+    },
+    {
+      "name": "update",
+      "description": "Hot-patch a section in an RVFA appliance",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\appliance-advanced.ts"
+    },
+    {
+      "name": "verify",
+      "description": "Verify installed artifact against the signed witness manifest",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\verify.ts"
+    },
+    {
+      "name": "wasm-create",
+      "description": "Create a WASM-sandboxed agent",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\agent-wasm.ts"
+    },
+    {
+      "name": "wasm-gallery",
+      "description": "List available WASM agent gallery templates",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\agent-wasm.ts"
+    },
+    {
+      "name": "wasm-prompt",
+      "description": "Send a prompt to a WASM agent",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\agent-wasm.ts"
+    },
+    {
+      "name": "wasm-status",
+      "description": "Check rvagent-wasm availability, version, and capabilities",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\agent-wasm.ts"
+    },
+    {
+      "name": "workflow",
+      "description": "Workflow execution and management",
+      "sourceFile": "v3\\@claude-flow\\cli\\src\\commands\\workflow.ts"
+    }
+  ],
+  "plugins": [
+    {
+      "name": "ruflo-adr",
+      "version": "0.3.0",
+      "description": "ADR lifecycle management — create, index, supersede, check compliance, and link Architecture Decision Records to code via AgentDB hierarchical store + causal edges (supersedes/amends/depends-on/related)",
+      "sourceFile": "plugins\\ruflo-adr\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-agentdb",
+      "version": "0.3.0",
+      "description": "Substrate plugin for Ruflo memory: AgentDB controller bridge (15 agentdb_* MCP tools), RuVector ONNX embeddings (10 embeddings_* tools incl. RaBitQ 32x quantization), and WASM HNSW pattern router (3 ruvllm_hnsw_* tools)",
+      "sourceFile": "plugins\\ruflo-agentdb\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-aidefence",
+      "version": "0.2.0",
+      "description": "AI safety scanning, PII detection, prompt injection defense, and adaptive threat learning",
+      "sourceFile": "plugins\\ruflo-aidefence\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-autopilot",
+      "version": "0.2.0",
+      "description": "Autonomous /loop-driven task completion with learning, prediction, and progress tracking — wraps 10 autopilot_* MCP tools (status/enable/disable/config/reset/log/progress/learn/history/predict)",
+      "sourceFile": "plugins\\ruflo-autopilot\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-browser",
+      "version": "0.2.0",
+      "description": "Session-as-skill browser automation: Playwright + RVF cognitive containers + ruvector trajectories + AgentDB selector memory + AIDefence PII/injection gates",
+      "sourceFile": "plugins\\ruflo-browser\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-core",
+      "version": "0.2.0",
+      "description": "Foundation plugin — registers the ruflo MCP server (300+ tools across memory/agentdb/embeddings/hooks/aidefence/neural/autopilot/browser/agent/swarm), provides 3 generalist agents (coder/researcher/reviewer), 3 first-run skills, and a curated plugin-discovery catalog",
+      "sourceFile": "plugins\\ruflo-core\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-cost-tracker",
+      "version": "0.16.1",
+      "description": "Token usage tracking, model cost attribution per agent, budget alerts, and optimization recommendations — uses memory_* (namespace-routed) for cost-tracking and cost-patterns; pairs with federation budget circuit breaker (ADR-097)",
+      "sourceFile": "plugins\\ruflo-cost-tracker\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-daa",
+      "version": "0.2.0",
+      "description": "Dynamic Agentic Architecture — 8 daa_* MCP tools for adaptive agents (create/adapt), cognitive patterns, workflows (create/execute), knowledge sharing, and learning/performance metrics. Feeds the JUDGE phase of the 4-step intelligence pipeline.",
+      "sourceFile": "plugins\\ruflo-daa\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-ddd",
+      "version": "0.2.0",
+      "description": "Domain-Driven Design scaffolding — bounded contexts, aggregate roots, domain events, value objects, repositories, and anti-corruption layers; navigable domain graph stored in AgentDB",
+      "sourceFile": "plugins\\ruflo-ddd\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-docs",
+      "version": "0.2.0",
+      "description": "Documentation generation, API docs (JSDoc/TSDoc/OpenAPI), and drift detection — drives the `document` background worker via hooks_worker-dispatch; uses Haiku model for cost-efficient docs work",
+      "sourceFile": "plugins\\ruflo-docs\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-federation",
+      "version": "0.2.0",
+      "description": "Cross-installation agent federation with zero-trust security, peer discovery, consensus-based task routing, and per-call budget circuit breaker (ADR-097)",
+      "sourceFile": "plugins\\ruflo-federation\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-goals",
+      "version": "0.2.0",
+      "description": "Long-horizon goal planning, deep research orchestration, and adaptive replanning using GOAP algorithms",
+      "sourceFile": "plugins\\ruflo-goals\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-intelligence",
+      "version": "0.3.0",
+      "description": "User-facing surface for Ruflo's self-learning system: 6 neural_* + 10 hooks_intelligence_* + 9 routing/meta hooks + 4 SONA/MicroLoRA tools (29 total). Implements the 4-step pipeline (RETRIEVE → JUDGE → DISTILL → CONSOLIDATE) and IPFS-based cross-project pattern transfer.",
+      "sourceFile": "plugins\\ruflo-intelligence\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-iot-cognitum",
+      "version": "0.2.0",
+      "description": "IoT device lifecycle, telemetry anomaly detection, fleet management, and witness chain verification for Cognitum Seed hardware",
+      "sourceFile": "plugins\\ruflo-iot-cognitum\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-jujutsu",
+      "version": "0.2.0",
+      "description": "Advanced git workflows with diff analysis, risk scoring, change classification (feature/bugfix/refactor/...), and reviewer recommendations — wraps 6 analyze_* MCP tools (diff, diff-risk, diff-classify, diff-reviewers, file-risk, diff-stats)",
+      "sourceFile": "plugins\\ruflo-jujutsu\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-knowledge-graph",
+      "version": "0.2.0",
+      "description": "Knowledge graph construction — entity extraction, relation mapping, and pathfinder graph traversal",
+      "sourceFile": "plugins\\ruflo-knowledge-graph\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-loop-workers",
+      "version": "0.2.0",
+      "description": "Cache-aware /loop workers and CronCreate background automation — wraps 5 hooks_worker-* MCP tools (list/dispatch/status/detect/cancel) and exposes 12 background worker triggers (ultralearn, optimize, consolidate, predict, audit, map, preload, deepdive, document, refactor, benchmark, testgaps)",
+      "sourceFile": "plugins\\ruflo-loop-workers\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-market-data",
+      "version": "0.2.0",
+      "description": "Market data ingestion — feed normalization, OHLCV vectorization, and HNSW-indexed pattern matching",
+      "sourceFile": "plugins\\ruflo-market-data\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-migrations",
+      "version": "0.2.0",
+      "description": "Schema migration management — generate, validate, dry-run, and rollback database migrations",
+      "sourceFile": "plugins\\ruflo-migrations\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-neural-trader",
+      "version": "0.2.0",
+      "description": "Neural trading via npx neural-trader — self-learning strategies, Rust/NAPI backtesting, 112+ MCP tools, swarm coordination, and portfolio optimization",
+      "sourceFile": "plugins\\ruflo-neural-trader\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-observability",
+      "version": "0.2.0",
+      "description": "Structured logging, distributed tracing, and metrics — correlate agent swarm activity with application telemetry",
+      "sourceFile": "plugins\\ruflo-observability\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-plugin-creator",
+      "version": "0.2.0",
+      "description": "Scaffold, validate, and publish new Claude Code plugins with the canonical plugin contract — ADR + smoke + Compatibility + namespace coordination + MCP-tool drift warnings",
+      "sourceFile": "plugins\\ruflo-plugin-creator\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-rag-memory",
+      "version": "0.2.0",
+      "description": "RuVector memory with HNSW search, AgentDB, and semantic retrieval",
+      "sourceFile": "plugins\\ruflo-rag-memory\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-ruvector",
+      "version": "0.2.1",
+      "description": "Self-learning vector database via npx ruvector@0.2.25 — HNSW, adaptive LoRA embeddings, code-graph clustering, hooks routing, brain/SONA, 103 MCP tools",
+      "sourceFile": "plugins\\ruflo-ruvector\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-ruvllm",
+      "version": "0.2.0",
+      "description": "RuVLLM local inference with chat formatting (Claude/GPT/Gemini/Ollama/Cohere), model configuration, MicroLoRA fine-tuning, and SONA real-time adaptation",
+      "sourceFile": "plugins\\ruflo-ruvllm\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-rvf",
+      "version": "0.2.0",
+      "description": "RVF format for portable agent memory, session persistence, and cross-platform transfer",
+      "sourceFile": "plugins\\ruflo-rvf\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-security-audit",
+      "version": "0.2.0",
+      "description": "Security review, dependency scanning, policy gates, and CVE monitoring",
+      "sourceFile": "plugins\\ruflo-security-audit\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-sparc",
+      "version": "0.2.0",
+      "description": "SPARC methodology — Specification, Pseudocode, Architecture, Refinement, Completion phases with gate checks",
+      "sourceFile": "plugins\\ruflo-sparc\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-swarm",
+      "version": "0.2.0",
+      "description": "Agent teams, swarm coordination, Monitor streams, and worktree isolation — wraps 4 swarm_* + 8 agent_* MCP tools (12 total) plus 6 topologies (hierarchical / mesh / hierarchical-mesh / ring / star / adaptive)",
+      "sourceFile": "plugins\\ruflo-swarm\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-testgen",
+      "version": "0.2.0",
+      "description": "Test gap detection, coverage analysis, and automated test generation — drives the testgaps background worker via hooks_worker-dispatch; SPARC Refinement-phase canonical owner",
+      "sourceFile": "plugins\\ruflo-testgen\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-agent",
+      "version": "0.2.0",
+      "description": "Sandboxed WASM agent creation, execution, and gallery sharing — wraps 10 wasm_* MCP tools (agent_create/prompt/tool/list/terminate/files/export + gallery_list/search/create); built on @ruvector/rvagent-wasm + @ruvector/ruvllm-wasm per ADR-070 (Implemented)",
+      "sourceFile": "plugins\\ruflo-agent\\.claude-plugin\\plugin.json"
+    },
+    {
+      "name": "ruflo-workflows",
+      "version": "0.2.0",
+      "description": "Workflow automation with templates, orchestration, and lifecycle management — wraps 10 workflow_* MCP tools (create/run/execute/status/list/pause/resume/cancel/delete/template) with full state-machine lifecycle (created → running ↔ paused → completed/cancelled)",
+      "sourceFile": "plugins\\ruflo-workflows\\.claude-plugin\\plugin.json"
+    }
+  ],
+  "agents": [
+    {
+      "name": "adr-architect",
+      "description": "ADR lifecycle manager -- create, index, supersede, and link Architecture Decision Records to code",
+      "plugin": "ruflo-adr",
+      "sourceFile": "plugins\\ruflo-adr\\agents\\adr-architect.md"
+    },
+    {
+      "name": "agentdb-specialist",
+      "description": "AgentDB and RuVector specialist for memory operations, HNSW indexing, RaBitQ quantization, and semantic search across the controller bridge",
+      "plugin": "ruflo-agentdb",
+      "sourceFile": "plugins\\ruflo-agentdb\\agents\\agentdb-specialist.md"
+    },
+    {
+      "name": "architect",
+      "description": "System architect for designing implementation approaches, API contracts, and module boundaries",
+      "plugin": "ruflo-swarm",
+      "sourceFile": "plugins\\ruflo-swarm\\agents\\architect.md"
+    },
+    {
+      "name": "autopilot-coordinator",
+      "description": "Autonomous task completion coordinator using /loop and autopilot MCP tools",
+      "plugin": "ruflo-autopilot",
+      "sourceFile": "plugins\\ruflo-autopilot\\agents\\autopilot-coordinator.md"
+    },
+    {
+      "name": "backtest-engineer",
+      "description": "Backtesting specialist using npx neural-trader Rust/NAPI engine — walk-forward validation, Monte Carlo simulation, parameter optimization",
+      "plugin": "ruflo-neural-trader",
+      "sourceFile": "plugins\\ruflo-neural-trader\\agents\\backtest-engineer.md"
+    },
+    {
+      "name": "browser-agent",
+      "description": "Browser automation agent — drives Playwright via 23 MCP tools, captures every session as an RVF container with a ruvector trajectory, and gates content through AIDefence",
+      "plugin": "ruflo-browser",
+      "sourceFile": "plugins\\ruflo-browser\\agents\\browser-agent.md"
+    },
+    {
+      "name": "coder",
+      "description": "Implementation specialist for writing clean, efficient code following project patterns",
+      "plugin": "ruflo-core",
+      "sourceFile": "plugins\\ruflo-core\\agents\\coder.md"
+    },
+    {
+      "name": "coordinator",
+      "description": "Swarm coordinator that manages agent lifecycle, task assignment, and anti-drift enforcement",
+      "plugin": "ruflo-swarm",
+      "sourceFile": "plugins\\ruflo-swarm\\agents\\coordinator.md"
+    },
+    {
+      "name": "cost-analyst",
+      "description": "Tracks token usage per agent and model, computes cost attribution in USD, monitors budgets, and recommends optimizations",
+      "plugin": "ruflo-cost-tracker",
+      "sourceFile": "plugins\\ruflo-cost-tracker\\agents\\cost-analyst.md"
+    },
+    {
+      "name": "daa-specialist",
+      "description": "Dynamic Agentic Architecture specialist for adaptive agents, cognitive patterns, and knowledge sharing",
+      "plugin": "ruflo-daa",
+      "sourceFile": "plugins\\ruflo-daa\\agents\\daa-specialist.md"
+    },
+    {
+      "name": "data-engineer",
+      "description": "Ingests market data feeds, normalizes OHLCV vectors, and performs HNSW-indexed candlestick pattern matching",
+      "plugin": "ruflo-market-data",
+      "sourceFile": "plugins\\ruflo-market-data\\agents\\data-engineer.md"
+    },
+    {
+      "name": "deep-researcher",
+      "description": "Multi-source research specialist that gathers, cross-references, and synthesizes information with evidence grading and contradiction resolution",
+      "plugin": "ruflo-goals",
+      "sourceFile": "plugins\\ruflo-goals\\agents\\deep-researcher.md"
+    },
+    {
+      "name": "device-coordinator",
+      "description": "Manages Cognitum Seed device fleet as Ruflo agent swarm members with 5-tier trust scoring",
+      "plugin": "ruflo-iot-cognitum",
+      "sourceFile": "plugins\\ruflo-iot-cognitum\\agents\\device-coordinator.md"
+    },
+    {
+      "name": "docs-writer",
+      "description": "Documentation specialist -- generates and maintains project documentation",
+      "plugin": "ruflo-docs",
+      "sourceFile": "plugins\\ruflo-docs\\agents\\docs-writer.md"
+    },
+    {
+      "name": "domain-modeler",
+      "description": "Domain-Driven Design specialist -- maps domains to bounded contexts, designs aggregate roots, defines domain events, and generates anti-corruption layers",
+      "plugin": "ruflo-ddd",
+      "sourceFile": "plugins\\ruflo-ddd\\agents\\domain-modeler.md"
+    },
+    {
+      "name": "dossier-investigator",
+      "description": "Recursive parallel multi-source investigator that fans out across web, memory, knowledge-graph, codebase, and ADR index to build a graph-structured dossier on a seed entity, with budget caps, de-duplication, and provenance per claim",
+      "plugin": "ruflo-goals",
+      "sourceFile": "plugins\\ruflo-goals\\agents\\dossier-investigator.md"
+    },
+    {
+      "name": "federation-coordinator",
+      "description": "Orchestrates cross-installation agent federation with zero-trust security",
+      "plugin": "ruflo-federation",
+      "sourceFile": "plugins\\ruflo-federation\\agents\\federation-coordinator.md"
+    },
+    {
+      "name": "fleet-manager",
+      "description": "Manages device fleets, firmware rollouts, and fleet-wide policies",
+      "plugin": "ruflo-iot-cognitum",
+      "sourceFile": "plugins\\ruflo-iot-cognitum\\agents\\fleet-manager.md"
+    },
+    {
+      "name": "git-specialist",
+      "description": "Git workflow specialist for diff analysis, risk assessment, and PR management",
+      "plugin": "ruflo-jujutsu",
+      "sourceFile": "plugins\\ruflo-jujutsu\\agents\\git-specialist.md"
+    },
+    {
+      "name": "goal-planner",
+      "description": "GOAP specialist that creates optimal action plans using A* search through state spaces, with adaptive replanning, trajectory learning, and multi-mode execution",
+      "plugin": "ruflo-goals",
+      "sourceFile": "plugins\\ruflo-goals\\agents\\goal-planner.md"
+    },
+    {
+      "name": "graph-navigator",
+      "description": "Extracts entities and relations from code and docs, builds knowledge graphs, and traverses them with pathfinder scoring",
+      "plugin": "ruflo-knowledge-graph",
+      "sourceFile": "plugins\\ruflo-knowledge-graph\\agents\\graph-navigator.md"
+    },
+    {
+      "name": "horizon-tracker",
+      "description": "Long-horizon objective tracker that persists progress across sessions with milestone checkpoints, drift detection, and adaptive timeline management",
+      "plugin": "ruflo-goals",
+      "sourceFile": "plugins\\ruflo-goals\\agents\\horizon-tracker.md"
+    },
+    {
+      "name": "intelligence-specialist",
+      "description": "Self-learning intelligence specialist — drives the 4-step pipeline (RETRIEVE → JUDGE → DISTILL → CONSOLIDATE) across 29 MCP tools, coordinates with ruflo-agentdb namespaces, and ships patterns cross-project via IPFS",
+      "plugin": "ruflo-intelligence",
+      "sourceFile": "plugins\\ruflo-intelligence\\agents\\intelligence-specialist.md"
+    },
+    {
+      "name": "llm-specialist",
+      "description": "RuVLLM specialist for local inference configuration, MicroLoRA fine-tuning, and multi-provider routing",
+      "plugin": "ruflo-ruvllm",
+      "sourceFile": "plugins\\ruflo-ruvllm\\agents\\llm-specialist.md"
+    },
+    {
+      "name": "loop-worker-coordinator",
+      "description": "Coordinates background worker scheduling, health monitoring, and dispatch across loop and cron execution modes",
+      "plugin": "ruflo-loop-workers",
+      "sourceFile": "plugins\\ruflo-loop-workers\\agents\\loop-worker-coordinator.md"
+    },
+    {
+      "name": "market-analyst",
+      "description": "Market regime detection and technical analysis using npx neural-trader — RSI, MACD, Bollinger Bands, volume profile, regime classification",
+      "plugin": "ruflo-neural-trader",
+      "sourceFile": "plugins\\ruflo-neural-trader\\agents\\market-analyst.md"
+    },
+    {
+      "name": "memory-specialist",
+      "description": "SOTA RAG memory specialist — hybrid search (sparse+dense), Graph RAG multi-hop retrieval, MMR diversity reranking, smart consolidation, ruvector integration",
+      "plugin": "ruflo-rag-memory",
+      "sourceFile": "plugins\\ruflo-rag-memory\\agents\\memory-specialist.md"
+    },
+    {
+      "name": "migration-engineer",
+      "description": "Generates sequential database migrations with up/down pairs, dry-run validation, and rollback safety checks",
+      "plugin": "ruflo-migrations",
+      "sourceFile": "plugins\\ruflo-migrations\\agents\\migration-engineer.md"
+    },
+    {
+      "name": "observability-engineer",
+      "description": "Implements structured logging, distributed tracing, and metrics collection to correlate agent swarm activity with application telemetry",
+      "plugin": "ruflo-observability",
+      "sourceFile": "plugins\\ruflo-observability\\agents\\observability-engineer.md"
+    },
+    {
+      "name": "plugin-developer",
+      "description": "Plugin development specialist for scaffolding, validating, and publishing Claude Code plugins",
+      "plugin": "ruflo-plugin-creator",
+      "sourceFile": "plugins\\ruflo-plugin-creator\\agents\\plugin-developer.md"
+    },
+    {
+      "name": "researcher",
+      "description": "Pathfinder research specialist — traverses RuVector memory graphs and codebase to surface patterns, dependencies, and prior art",
+      "plugin": "ruflo-core",
+      "sourceFile": "plugins\\ruflo-core\\agents\\researcher.md"
+    },
+    {
+      "name": "reviewer",
+      "description": "Code review specialist for quality, security, and best-practice enforcement",
+      "plugin": "ruflo-core",
+      "sourceFile": "plugins\\ruflo-core\\agents\\reviewer.md"
+    },
+    {
+      "name": "risk-analyst",
+      "description": "Portfolio risk assessment and position sizing using npx neural-trader — VaR/CVaR, Kelly criterion, circuit breakers, correlation monitoring",
+      "plugin": "ruflo-neural-trader",
+      "sourceFile": "plugins\\ruflo-neural-trader\\agents\\risk-analyst.md"
+    },
+    {
+      "name": "safety-specialist",
+      "description": "AI safety specialist for threat detection, PII scanning, and adaptive defense training",
+      "plugin": "ruflo-aidefence",
+      "sourceFile": "plugins\\ruflo-aidefence\\agents\\safety-specialist.md"
+    },
+    {
+      "name": "security-auditor",
+      "description": "Specialized agent for security auditing and vulnerability remediation",
+      "plugin": "ruflo-security-audit",
+      "sourceFile": "plugins\\ruflo-security-audit\\agents\\security-auditor.md"
+    },
+    {
+      "name": "session-specialist",
+      "description": "Session persistence specialist for state management, memory transfer, and cross-conversation continuity",
+      "plugin": "ruflo-rvf",
+      "sourceFile": "plugins\\ruflo-rvf\\agents\\session-specialist.md"
+    },
+    {
+      "name": "sparc-orchestrator",
+      "description": "Orchestrates the 5-phase SPARC methodology (Specification, Pseudocode, Architecture, Refinement, Completion) with quality gates between each phase, spawning specialized agents per phase",
+      "plugin": "ruflo-sparc",
+      "sourceFile": "plugins\\ruflo-sparc\\agents\\sparc-orchestrator.md"
+    },
+    {
+      "name": "telemetry-analyzer",
+      "description": "Analyzes Cognitum Seed device telemetry for anomalies using Z-score detection",
+      "plugin": "ruflo-iot-cognitum",
+      "sourceFile": "plugins\\ruflo-iot-cognitum\\agents\\telemetry-analyzer.md"
+    },
+    {
+      "name": "tester",
+      "description": "Specialized testing agent -- writes comprehensive tests using TDD London School",
+      "plugin": "ruflo-testgen",
+      "sourceFile": "plugins\\ruflo-testgen\\agents\\tester.md"
+    },
+    {
+      "name": "trading-strategist",
+      "description": "Designs and optimizes neural trading strategies using npx neural-trader — LSTM/Transformer models, Rust/NAPI backtesting, Z-score anomaly detection",
+      "plugin": "ruflo-neural-trader",
+      "sourceFile": "plugins\\ruflo-neural-trader\\agents\\trading-strategist.md"
+    },
+    {
+      "name": "vector-engineer",
+      "description": "Vector operations specialist using npx ruvector@0.2.25 — HNSW indexing, adaptive LoRA embeddings, code-graph clustering, hooks routing, brain/SONA, 103 MCP tools",
+      "plugin": "ruflo-ruvector",
+      "sourceFile": "plugins\\ruflo-ruvector\\agents\\vector-engineer.md"
+    },
+    {
+      "name": "wasm-specialist",
+      "description": "WASM sandbox specialist for creating, managing, and sharing isolated agent environments",
+      "plugin": "ruflo-agent",
+      "sourceFile": "plugins\\ruflo-agent\\agents\\wasm-specialist.md"
+    },
+    {
+      "name": "witness-auditor",
+      "description": "Verifies Ed25519 witness chain integrity and detects provenance gaps",
+      "plugin": "ruflo-iot-cognitum",
+      "sourceFile": "plugins\\ruflo-iot-cognitum\\agents\\witness-auditor.md"
+    },
+    {
+      "name": "workflow-specialist",
+      "description": "Workflow automation specialist for creating, executing, and managing multi-step processes",
+      "plugin": "ruflo-workflows",
+      "sourceFile": "plugins\\ruflo-workflows\\agents\\workflow-specialist.md"
+    }
+  ]
+}

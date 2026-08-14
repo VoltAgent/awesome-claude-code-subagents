@@ -1,0 +1,6 @@
+{
+  "_comment": "Monotone-decreasing baseline of CLI subcommands that callMCPTool() a tool not registered in src/mcp-tools/*.ts (would fail with `MCP tool not found`). Fix one → re-run with --update-baseline to lock the new floor. NEVER increase.",
+  "danglingCount": 0,
+  "knownDangling": [],
+  "updatedAt": "2026-05-12T04:11:15.449Z"
+}

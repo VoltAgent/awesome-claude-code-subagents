@@ -1,0 +1,253 @@
+{
+  "rvf_version": "2.0",
+  "format": "rvf-package",
+  "name": "chat-ui-mcp",
+  "version": "2.0.0",
+  "description": "White-label AI Chat UI with MCP tool groups — per-group toggleable MCP servers, multi-provider AI proxy, deployable to Google Cloud Run or Docker Compose",
+  "license": "MIT",
+  "segments": {
+    "MANIFEST": {
+      "type": "root",
+      "uuid": "${RVF_UUID}",
+      "created": "${RVF_TIMESTAMP}",
+      "parent": null
+    },
+    "PROFILE": {
+      "type": "domain-config",
+      "description": "Deployment configuration — all secrets via environment variables",
+      "config_schema": "config/config.example.json",
+      "env_schema": ".env.example"
+    },
+    "WASM": {
+      "type": "runtime",
+      "description": "MCP Bridge v2.0 — per-group MCP endpoints, multi-provider AI proxy, error normalization",
+      "entrypoint": "mcp-bridge/index.js",
+      "runtime": "node:20",
+      "port": 3001
+    },
+    "META_IDX": {
+      "type": "metadata",
+      "components": [
+        {
+          "name": "mcp-bridge",
+          "type": "service",
+          "description": "Per-group MCP JSON-RPC server + OpenAI-compatible chat proxy with upstream error normalization",
+          "dockerfile": "mcp-bridge/Dockerfile",
+          "port": 3001,
+          "env_vars": [
+            "OPENAI_API_KEY",
+            "GOOGLE_API_KEY",
+            "OPENROUTER_API_KEY",
+            "ANTHROPIC_API_KEY",
+            "SEARCH_API_URL",
+            "RESEARCH_API_URL",
+            "MCP_GROUP_INTELLIGENCE",
+            "MCP_GROUP_AGENTS",
+            "MCP_GROUP_MEMORY",
+            "MCP_GROUP_DEVTOOLS",
+            "MCP_GROUP_SECURITY",
+            "MCP_GROUP_BROWSER",
+            "MCP_GROUP_NEURAL",
+            "MCP_GROUP_AGENTIC_FLOW",
+            "MCP_GROUP_CLAUDE_CODE",
+            "MCP_GROUP_GEMINI",
+            "MCP_GROUP_CODEX"
+          ]
+        },
+        {
+          "name": "chat-ui",
+          "type": "service",
+          "description": "HuggingFace Chat UI with branded assets, OIDC auth, and per-group MCP server toggles",
+          "dockerfile": "chat-ui/Dockerfile",
+          "base_image": "ghcr.io/huggingface/chat-ui-db:latest",
+          "port": 3000,
+          "env_vars": [
+            "MONGODB_URL",
+            "PUBLIC_APP_NAME",
+            "PUBLIC_ORIGIN",
+            "OPENID_PROVIDER_URL",
+            "OPENID_CLIENT_ID",
+            "OPENID_CLIENT_SECRET",
+            "MCP_SERVERS"
+          ]
+        },
+        {
+          "name": "mongodb",
+          "type": "datastore",
+          "description": "MongoDB for conversation persistence",
+          "image": "mongo:7",
+          "port": 27017
+        }
+      ]
+    },
+    "TOOL_GROUPS": {
+      "type": "mcp-groups",
+      "description": "Each group exposes a separate MCP endpoint at /mcp/{group} — toggleable in Chat UI",
+      "groups": {
+        "core": {
+          "enabled_by_default": true,
+          "display_name": "Core Tools",
+          "endpoint": "/mcp/core",
+          "description": "Built-in guidance, help, and utility tools",
+          "source": "builtin"
+        },
+        "intelligence": {
+          "enabled_by_default": true,
+          "display_name": "Intelligence & Learning",
+          "endpoint": "/mcp/intelligence",
+          "description": "Hooks, learning, trajectory, neural pattern tools",
+          "source": "ruvector",
+          "prefixes": ["hooks_"]
+        },
+        "agents": {
+          "enabled_by_default": true,
+          "display_name": "Agents & Orchestration",
+          "endpoint": "/mcp/agents",
+          "description": "Agent spawn, swarm, hive-mind, task orchestration",
+          "source": "ruflo",
+          "prefixes": ["agent_", "swarm_", "hive_", "task_"]
+        },
+        "memory": {
+          "enabled_by_default": true,
+          "display_name": "Memory & Knowledge",
+          "endpoint": "/mcp/memory",
+          "description": "Memory store/search/retrieve, embeddings, session",
+          "source": "ruflo",
+          "prefixes": ["memory_", "embedding_", "session_"]
+        },
+        "devtools": {
+          "enabled_by_default": true,
+          "display_name": "Dev Tools & Analysis",
+          "endpoint": "/mcp/devtools",
+          "description": "Performance, security, deployment, config, doctor tools",
+          "source": "ruflo",
+          "prefixes": ["perf_", "security_", "deploy_", "config_", "doctor_", "plugin_", "workflow_", "provider_"]
+        },
+        "security": {
+          "enabled_by_default": false,
+          "display_name": "Security & Safety",
+          "endpoint": "/mcp/security",
+          "description": "Security scanning, CVE detection, threat analysis",
+          "source": "ruflo",
+          "prefixes": ["security_"]
+        },
+        "browser": {
+          "enabled_by_default": false,
+          "display_name": "Browser Automation",
+          "endpoint": "/mcp/browser",
+          "description": "Headless browser — navigate, click, fill, screenshot",
+          "source": "ruflo",
+          "prefixes": ["browser_"]
+        },
+        "neural": {
+          "enabled_by_default": false,
+          "display_name": "Neural & DAA",
+          "endpoint": "/mcp/neural",
+          "description": "Neural training, DAA autonomous agents",
+          "source": "ruflo",
+          "prefixes": ["neural_", "daa_"]
+        },
+        "agentic-flow": {
+          "enabled_by_default": false,
+          "display_name": "Agentic Flow",
+          "endpoint": "/mcp/agentic-flow",
+          "description": "agentic-flow alpha integration",
+          "source": "agentic-flow"
+        },
+        "claude-code": {
+          "enabled_by_default": false,
+          "display_name": "Claude Code",
+          "endpoint": "/mcp/claude-code",
+          "description": "Claude Code CLI tools",
+          "source": "claude-code"
+        },
+        "gemini": {
+          "enabled_by_default": false,
+          "display_name": "Gemini",
+          "endpoint": "/mcp/gemini",
+          "description": "Google Gemini native tools",
+          "source": "gemini"
+        },
+        "codex": {
+          "enabled_by_default": false,
+          "display_name": "Codex",
+          "endpoint": "/mcp/codex",
+          "description": "OpenAI Codex tools",
+          "source": "codex"
+        }
+      }
+    },
+    "OVERLAY": {
+      "type": "customization",
+      "description": "Brand-specific overlays",
+      "assets": [
+        "chat-ui/static/chatui/omni-welcome.gif",
+        "chat-ui/static/chatui/icon-144x144.png"
+      ],
+      "generators": [
+        {
+          "name": "welcome-gif",
+          "script": "scripts/generate-welcome.js",
+          "config_key": "brand.welcomeColors",
+          "output": "chat-ui/static/chatui/omni-welcome.gif"
+        }
+      ]
+    },
+    "CRYPTO": {
+      "type": "security",
+      "description": "Security configuration with private network MCP tunnel",
+      "secrets_management": "gcp-secret-manager",
+      "auth_protocol": "openid-connect",
+      "no_embedded_secrets": true,
+      "private_tunnel": {
+        "protocol": "http",
+        "scope": "docker-network-only",
+        "patch": "chat-ui/patch-mcp-url-safety.sh",
+        "adr": "docs/adr/ADR-032-RVF-PRIVATE-MCP-TUNNEL.md"
+      },
+      "env_only_keys": [
+        "OPENAI_API_KEY",
+        "GOOGLE_API_KEY",
+        "OPENROUTER_API_KEY",
+        "ANTHROPIC_API_KEY",
+        "OPENID_CLIENT_SECRET"
+      ]
+    }
+  },
+  "deployment": {
+    "platforms": ["google-cloud-run", "docker-compose", "kubernetes"],
+    "infrastructure": {
+      "mcp_bridge": {
+        "memory": "512Mi",
+        "cpu": 1,
+        "min_instances": 0,
+        "max_instances": 5,
+        "timeout": 300
+      },
+      "chat_ui": {
+        "memory": "2Gi",
+        "cpu": 2,
+        "min_instances": 1,
+        "max_instances": 10,
+        "timeout": 300
+      }
+    }
+  },
+  "capabilities": {
+    "mcp_protocol": "2024-11-05",
+    "mcp_tool_groups": true,
+    "per_group_mcp_endpoints": true,
+    "chat_completions_proxy": true,
+    "upstream_error_normalization": true,
+    "goap_search_pipeline": true,
+    "multi_provider_routing": ["openai", "gemini", "openrouter"],
+    "oidc_auth": true,
+    "branded_assets": true,
+    "tool_extensibility": true,
+    "ruvector_integration": true,
+    "ruflo_integration": true,
+    "agentic_flow_integration": true,
+    "external_mcp_backends": ["ruvector", "ruflo", "agentic-flow", "claude-code", "gemini", "codex"],
+    "test_harness": true
+  }
+}

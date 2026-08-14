@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		/>
+		<meta name="theme-color" content="rgb(249, 250, 251)" />
+		<script>
+			(function () {
+				try {
+					var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+					var stored = localStorage.getItem("theme");
+					var followSystem = stored === null || stored === "system";
+					var isDark = stored === "dark" || (followSystem && prefersDark);
+					if (isDark) {
+						document.documentElement.classList.add("dark");
+						document.querySelector('meta[name="theme-color"]').setAttribute("content", "#07090d");
+					}
+				} catch (e) {}
+			})();
+
+			// For some reason, Sveltekit doesn't let us load env variables from .env here, so we load it from hooks.server.ts
+			window.gaId = "%gaId%";
+		</script>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover" class="h-dvh dark:bg-gray-900">
+		<div id="app" class="contents h-full">%sveltekit.body%</div>
+
+		<!-- Google Tag Manager -->
+		<script>
+			if (window.gaId) {
+				const script = document.createElement("script");
+				script.src = "https://www.googletagmanager.com/gtag/js?id=" + window.gaId;
+				script.async = true;
+				document.head.appendChild(script);
+
+				window.dataLayer = window.dataLayer || [];
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+				gtag("js", new Date());
+				/// ^ See https://developers.google.com/tag-platform/gtagjs/install
+				gtag("config", window.gaId);
+				gtag("consent", "default", { ad_storage: "denied", analytics_storage: "denied" });
+				/// ^ See https://developers.google.com/tag-platform/gtagjs/reference#consent
+				/// TODO: ask the user for their consent and update this with gtag('consent', 'update')
+			}
+		</script>
+	</body>
+</html>

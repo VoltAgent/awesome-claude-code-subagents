@@ -1,0 +1,273 @@
+image:
+  repository: huggingface
+  name: chat-ui
+
+nodeSelector:
+  role-huggingchat: "true"
+
+tolerations:
+  - key: "huggingface.co/huggingchat"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule"
+
+serviceAccount:
+  enabled: true
+  create: true
+  name: huggingchat-prod
+
+ingress:
+  path: "/chat"
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: "/chat/healthcheck"
+    alb.ingress.kubernetes.io/listen-ports: "[{\"HTTP\": 80}, {\"HTTPS\": 443}]"
+    alb.ingress.kubernetes.io/load-balancer-name: "hub-utils-prod-cloudfront"
+    alb.ingress.kubernetes.io/group.name: "hub-utils-prod-cloudfront"
+    alb.ingress.kubernetes.io/scheme: "internal"
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+    alb.ingress.kubernetes.io/tags: "Env=prod,Project=hub,Terraform=true"
+    alb.ingress.kubernetes.io/target-group-attributes: deregistration_delay.timeout_seconds=30
+    alb.ingress.kubernetes.io/target-type: "ip"
+    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-east-1:707930574880:certificate/5b25b145-75db-4837-b9f3-7f238ba8a9c7,arn:aws:acm:us-east-1:707930574880:certificate/bfdf509c-f44b-400f-b9e1-6f7a861abe91"
+    kubernetes.io/ingress.class: "alb"
+
+ingressInternal:
+  enabled: true
+  path: "/chat"
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: "/chat/healthcheck"
+    alb.ingress.kubernetes.io/listen-ports: "[{\"HTTP\": 80}, {\"HTTPS\": 443}]"
+    alb.ingress.kubernetes.io/group.name: "hub-prod-internal-public"
+    alb.ingress.kubernetes.io/load-balancer-name: "hub-prod-internal-public"
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+    alb.ingress.kubernetes.io/tags: "Env=prod,Project=hub,Terraform=true"
+    alb.ingress.kubernetes.io/target-group-attributes: deregistration_delay.timeout_seconds=30
+    alb.ingress.kubernetes.io/target-type: "ip"
+    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-east-1:707930574880:certificate/5b25b145-75db-4837-b9f3-7f238ba8a9c7,arn:aws:acm:us-east-1:707930574880:certificate/bfdf509c-f44b-400f-b9e1-6f7a861abe91"
+    kubernetes.io/ingress.class: "alb"
+
+envVars:
+  COUPLE_SESSION_WITH_COOKIE_NAME: "token"
+  OPENID_SCOPES: "openid profile inference-api read-mcp read-billing"
+  USE_USER_TOKEN: "true"
+  MCP_FORWARD_HF_USER_TOKEN: "true"
+  AUTOMATIC_LOGIN: "false"
+
+  ADDRESS_HEADER: "X-Forwarded-For"
+  APP_BASE: "/chat"
+  ALLOW_IFRAME: "false"
+  COOKIE_SAMESITE: "lax"
+  COOKIE_SECURE: "true"
+  EXPOSE_API: "true"
+  METRICS_ENABLED: "true"
+  LOG_LEVEL: "debug"
+  NODE_LOG_STRUCTURED_DATA: "true"
+
+  OPENAI_BASE_URL: "https://router.huggingface.co/v1"
+  PUBLIC_APP_ASSETS: "huggingchat"
+  PUBLIC_APP_NAME: "HuggingChat"
+  PUBLIC_APP_DESCRIPTION: "Making the community's best AI chat models available to everyone"
+  PUBLIC_ORIGIN: "https://huggingface.co"
+  PUBLIC_PLAUSIBLE_SCRIPT_URL: "https://plausible.io/js/pa-Io_oigECawqdlgpf5qvHb.js"
+
+  TASK_MODEL: "Qwen/Qwen3-4B-Instruct-2507"
+  LLM_ROUTER_ARCH_BASE_URL: "https://router.huggingface.co/v1"
+  LLM_ROUTER_ROUTES_PATH: "build/client/chat/huggingchat/routes.chat.json"
+  LLM_ROUTER_ARCH_MODEL: "katanemo/Arch-Router-1.5B"
+  LLM_ROUTER_OTHER_ROUTE: "casual_conversation"
+  LLM_ROUTER_ARCH_TIMEOUT_MS: "10000"
+  LLM_ROUTER_ENABLE_MULTIMODAL: "true"
+  LLM_ROUTER_MULTIMODAL_MODEL: "Qwen/Qwen3.5-397B-A17B"
+  LLM_ROUTER_ENABLE_TOOLS: "true"
+  LLM_ROUTER_TOOLS_MODEL: "moonshotai/Kimi-K2-Instruct-0905"
+  TRANSCRIPTION_MODEL: "openai/whisper-large-v3-turbo"
+  MCP_SERVERS: >
+    [{"name": "Web Search (Exa)", "url": "https://mcp.exa.ai/mcp?tools=web_search_exa,get_code_context_exa,crawling_exa"}, {"name": "Hugging Face", "url": "https://hf.co/mcp?login"}]
+  MCP_TOOL_TIMEOUT_MS: "120000"
+  PUBLIC_LLM_ROUTER_DISPLAY_NAME: "Omni"
+  PUBLIC_LLM_ROUTER_LOGO_URL: "https://cdn-uploads.huggingface.co/production/uploads/5f17f0a0925b9863e28ad517/C5V0v1xZXv6M7FXsdJH9b.png"
+  PUBLIC_LLM_ROUTER_ALIAS_ID: "omni"
+  MODELS: >
+    [
+      { "id": "Qwen/Qwen3.5-122B-A10B", "description": "Multimodal MoE excelling at agentic tool use with 1M context and 201 languages." },
+      { "id": "Qwen/Qwen3.5-35B-A3B", "description": "Compact multimodal MoE with hybrid DeltaNet, 1M context, and 201 languages." },
+      { "id": "Qwen/Qwen3.5-27B", "description": "Dense multimodal hybrid with top-tier reasoning density and 1M context." },
+      { "id": "Qwen/Qwen3.5-397B-A17B", "description": "Native multimodal MoE with hybrid attention, 1M context, and 201 languages.", "parameters": { "max_tokens": 32768 } },
+      { "id": "allenai/Olmo-3.1-32B-Think", "description": "Updated Olmo Think with extended RL for stronger math, code, and instruction following." },
+      { "id": "MiniMaxAI/MiniMax-M2.5", "description": "Frontier 230B MoE agent for top-tier coding, tool calling, and fast inference." },
+      { "id": "zai-org/GLM-5", "description": "Flagship 745B MoE for agentic reasoning, coding, and creative writing." },
+      { "id": "Qwen/Qwen3-VL-235B-A22B-Instruct", "description": "Flagship Qwen3 vision-language MoE for visual agents, documents, and GUI automation." },
+      { "id": "google/gemma-3n-E4B-it", "description": "Mobile-first multimodal Gemma handling text, images, video, and audio on-device." },
+      { "id": "nvidia/NVIDIA-Nemotron-Nano-9B-v2", "description": "Hybrid Mamba-Transformer with 128K context and controllable reasoning budget." },
+      { "id": "mistralai/Mistral-7B-Instruct-v0.2", "description": "Efficient 7B instruction model with 32K context for dialogue and coding." },
+      { "id": "Qwen/Qwen3-Coder-Next-FP8", "description": "FP8 Qwen3-Coder-Next for efficient inference with repository-scale coding agents." },
+      { "id": "arcee-ai/Trinity-Mini", "description": "Compact US-built MoE for multi-turn agents, tool use, and structured outputs." },
+      { "id": "Qwen/Qwen3-Coder-Next", "description": "Ultra-sparse coding MoE for repository-scale agents with 256K context." },
+      { "id": "moonshotai/Kimi-K2.5", "description": "Native multimodal agent with agent swarms for parallel tool orchestration." },
+      { "id": "allenai/Molmo2-8B", "description": "Open vision-language model excelling at video understanding, pointing, and object tracking." },
+      { "id": "zai-org/GLM-4.7-Flash", "description": "Fast GLM-4.7 variant optimized for lower latency coding and agents." },
+      { "id": "zai-org/GLM-4.7", "description": "Flagship GLM MoE for coding, reasoning, and agentic tool use." },
+      { "id": "zai-org/GLM-4.7-FP8", "description": "FP8 GLM-4.7 for efficient inference with strong coding." },
+      { "id": "MiniMaxAI/MiniMax-M2.1", "description": "MoE agent model with multilingual coding and fast outputs." },
+      { "id": "XiaomiMiMo/MiMo-V2-Flash", "description": "Fast MoE reasoning model with speculative decoding for agents." },
+      { "id": "Qwen/Qwen3-VL-32B-Instruct", "description": "Vision-language Qwen for documents, GUI agents, and visual reasoning." },
+      { "id": "allenai/Olmo-3.1-32B-Instruct", "description": "Fully open chat model strong at tool use and dialogue." },
+      { "id": "zai-org/AutoGLM-Phone-9B-Multilingual", "description": "Mobile agent for multilingual Android device automation." },
+      { "id": "utter-project/EuroLLM-22B-Instruct-2512", "description": "European multilingual model for all EU languages and translation." },
+      { "id": "dicta-il/DictaLM-3.0-24B-Thinking", "description": "Hebrew-English reasoning model with explicit thinking traces for bilingual QA and logic." },
+      { "id": "EssentialAI/rnj-1-instruct", "description": "8B code and STEM model rivaling larger models on agentic coding, math, and tool use." },
+      { "id": "MiniMaxAI/MiniMax-M2", "description": "Compact MoE model tuned for fast coding, agentic workflows, and long-context chat." },
+      { "id": "PrimeIntellect/INTELLECT-3-FP8", "description": "FP8 INTELLECT-3 variant for cheaper frontier-level math, code, and general reasoning." },
+      { "id": "Qwen/Qwen3-VL-30B-A3B-Instruct", "description": "Flagship Qwen3 vision-language model for high-accuracy image, text, and video reasoning." },
+      { "id": "Qwen/Qwen3-VL-30B-A3B-Thinking", "description": "Thinking-mode Qwen3-VL that emits detailed multimodal reasoning traces for difficult problems." },
+      { "id": "Qwen/Qwen3-VL-8B-Instruct", "description": "Smaller Qwen3 vision-language assistant for everyday multimodal chat, captioning, and analysis." },
+      { "id": "aisingapore/Qwen-SEA-LION-v4-32B-IT", "description": "SEA-LION v4 Qwen optimized for Southeast Asian languages and regional enterprise workloads." },
+      { "id": "allenai/Olmo-3-32B-Think", "description": "Fully open 32B thinking model excelling at stepwise math, coding, and research reasoning." },
+      { "id": "allenai/Olmo-3-7B-Instruct", "description": "Lightweight Olmo assistant for instruction following, Q&A, and everyday open-source workflows." },
+      { "id": "allenai/Olmo-3-7B-Think", "description": "7B Olmo reasoning model delivering transparent multi-step thinking on modest hardware." },
+      { "id": "deepcogito/cogito-671b-v2.1", "description": "Frontier-scale 671B MoE focused on deep reasoning, math proofs, and complex coding." },
+      { "id": "deepcogito/cogito-671b-v2.1-FP8", "description": "FP8 Cogito v2.1 making 671B-scale reasoning more affordable to serve and experiment with." },
+      { "id": "deepseek-ai/DeepSeek-V3.2", "description": "Latest DeepSeek agent model combining strong reasoning, tool-use, and efficient long-context inference." },
+      { "id": "moonshotai/Kimi-K2-Thinking", "description": "Reasoning-focused Kimi K2 variant for deep chain-of-thought and large agentic tool flows." },
+      { "id": "nvidia/NVIDIA-Nemotron-Nano-12B-v2", "description": "NVIDIA Nano 12B general assistant for coding, chat, and agents with efficient deployment." },
+      { "id": "ServiceNow-AI/Apriel-1.6-15b-Thinker", "description": "15B multimodal reasoning model with efficient thinking for enterprise and coding tasks." },
+      { "id": "openai/gpt-oss-safeguard-20b", "description": "Safety-focused gpt-oss variant for content classification, policy enforcement, and LLM output filtering." },
+      { "id": "zai-org/GLM-4.5", "description": "Flagship GLM agent model unifying advanced reasoning, coding, and tool-using capabilities." },
+      { "id": "zai-org/GLM-4.5V-FP8", "description": "FP8 vision-language GLM-4.5V for efficient multilingual visual QA, understanding, and hybrid reasoning." },    
+      { "id": "deepseek-ai/DeepSeek-V3.2-Exp", "description": "Experimental V3.2 release focused on faster, lower-cost inference with strong general reasoning and tool use." },
+      { "id": "zai-org/GLM-4.6", "description": "Next-gen GLM with very long context and solid multilingual reasoning; good for agents and tools." },
+      { "id": "Kwaipilot/KAT-Dev", "description": "Developer-oriented assistant tuned for coding, debugging, and lightweight agent workflows." },
+      { "id": "Qwen/Qwen2.5-VL-72B-Instruct", "description": "Flagship multimodal Qwen (text+image) instruction model for high-accuracy visual reasoning and detailed explanations." },
+      { "id": "deepseek-ai/DeepSeek-V3.1-Terminus", "description": "Refined V3.1 variant optimized for reliability on long contexts, structured outputs, and tool use." },
+      { "id": "Qwen/Qwen3-VL-235B-A22B-Thinking", "description": "Deliberative multimodal Qwen that can produce step-wise visual+text reasoning traces for complex tasks." },
+      { "id": "zai-org/GLM-4.6-FP8", "description": "FP8-optimized GLM-4.6 for faster/cheaper deployment with near-parity quality on most tasks." },
+      { "id": "zai-org/GLM-4.6V", "description": "106B vision-language model with 128K context and native tool calling for multimodal agents.", "parameters": { "max_tokens": 8192 } },
+      { "id": "zai-org/GLM-4.6V-Flash", "description": "9B lightweight vision model for fast local inference with tool calling and UI understanding." },
+      { "id": "zai-org/GLM-4.6V-FP8", "description": "FP8-quantized GLM-4.6V for efficient multimodal deployment with native tool use." },
+      { "id": "Qwen/Qwen3-235B-A22B-Thinking-2507", "description": "Deliberative text-only 235B Qwen variant for transparent, step-by-step reasoning on hard problems." },
+      { "id": "Qwen/Qwen3-Next-80B-A3B-Instruct", "description": "Instruction tuned Qwen for multilingual reasoning, coding, long contexts." },
+      { "id": "Qwen/Qwen3-Next-80B-A3B-Thinking", "description": "Thinking mode Qwen that outputs explicit step by step reasoning." },
+      { "id": "moonshotai/Kimi-K2-Instruct-0905", "description": "Instruction MoE strong coding and multi step reasoning, long context." },
+      { "id": "openai/gpt-oss-20b", "description": "Efficient open model for reasoning and tool use, runs locally." },
+      { "id": "swiss-ai/Apertus-8B-Instruct-2509", "description": "Open, multilingual, trained on compliant data transparent global assistant." },
+      { "id": "openai/gpt-oss-120b", "description": "High performing open model suitable for large scale applications." },
+      { "id": "Qwen/Qwen3-Coder-30B-A3B-Instruct", "description": "Code specialized Qwen long context strong generation and function calling." },
+      { "id": "meta-llama/Llama-3.1-8B-Instruct", "description": "Instruction tuned Llama efficient conversational assistant with improved alignment." },
+      { "id": "Qwen/Qwen2.5-VL-7B-Instruct", "description": "Vision language Qwen handles images and text for basic multimodal tasks." },
+      { "id": "Qwen/Qwen3-30B-A3B-Instruct-2507", "description": "Instruction tuned Qwen reliable general tasks with long context support." },
+      { "id": "baidu/ERNIE-4.5-VL-28B-A3B-PT", "description": "Baidu multimodal MoE strong at complex vision language reasoning." },
+      { "id": "baidu/ERNIE-4.5-0.3B-PT", "description": "Tiny efficient Baidu model surprisingly long context for lightweight chat." },
+      { "id": "deepseek-ai/DeepSeek-R1", "description": "MoE reasoning model excels at math, logic, coding with steps." },
+      { "id": "baidu/ERNIE-4.5-21B-A3B-PT", "description": "Efficient Baidu MoE competitive generation with fewer active parameters." },
+      { "id": "swiss-ai/Apertus-70B-Instruct-2509", "description": "Open multilingual model trained on open data transparent and capable." },
+      { "id": "Qwen/Qwen3-4B-Instruct-2507", "description": "Compact instruction Qwen great for lightweight assistants and apps." },
+      { "id": "meta-llama/Llama-3.2-3B-Instruct", "description": "Small efficient Llama for basic conversations and instructions." },
+      { "id": "Qwen/Qwen3-Coder-480B-A35B-Instruct", "description": "Huge Qwen coder repository scale understanding and advanced generation." },
+      { "id": "meta-llama/Meta-Llama-3-8B-Instruct", "description": "Aligned, efficient Llama dependable open source assistant tasks." },
+      { "id": "Qwen/Qwen3-4B-Thinking-2507", "description": "Small Qwen that emits transparent step by step reasoning." },
+      { "id": "moonshotai/Kimi-K2-Instruct", "description": "MoE assistant strong coding, reasoning, agentic tasks, long context." },
+      { "id": "zai-org/GLM-4.5V", "description": "Vision language MoE state of the art multimodal reasoning." },
+      { "id": "zai-org/GLM-4.6", "description": "Hybrid reasoning model top choice for intelligent agent applications." },
+      { "id": "deepseek-ai/DeepSeek-V3.1", "description": "Supports direct and thinking style reasoning within one model." },
+      { "id": "Qwen/Qwen3-8B", "description": "Efficient Qwen assistant strong multilingual skills and formatting." },
+      { "id": "Qwen/Qwen3-30B-A3B-Thinking-2507", "description": "Thinking mode Qwen explicit reasoning for complex interpretable tasks." },
+      { "id": "google/gemma-3-27b-it", "description": "Multimodal Gemma long context strong text and image understanding." },
+      { "id": "zai-org/GLM-4.5-Air", "description": "Efficient GLM strong reasoning and tool use at lower cost." },
+      { "id": "HuggingFaceTB/SmolLM3-3B", "description": "Small multilingual long context model surprisingly strong reasoning." },
+      { "id": "Qwen/Qwen3-30B-A3B", "description": "Qwen base model for general use or further fine tuning." },
+      { "id": "Qwen/Qwen2.5-7B-Instruct", "description": "Compact instruction model solid for basic conversation and tasks." },
+      { "id": "Qwen/Qwen3-32B", "description": "General purpose Qwen strong for complex queries and dialogues." },
+      { "id": "Qwen/QwQ-32B", "description": "Preview Qwen showcasing next generation features and alignment." },
+      { "id": "Qwen/Qwen3-235B-A22B-Instruct-2507", "description": "Flagship instruction Qwen near state of the art across domains." },
+      { "id": "meta-llama/Llama-3.3-70B-Instruct", "description": "Improved Llama alignment and structure powerful complex conversations." },
+      { "id": "Qwen/Qwen2.5-VL-32B-Instruct", "description": "Multimodal Qwen advanced visual reasoning for complex image plus text." },
+      { "id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B", "description": "Tiny distilled Qwen stepwise math and logic reasoning." },
+      { "id": "Qwen/Qwen3-235B-A22B", "description": "Qwen base at flagship scale ideal for custom fine tuning." },
+      { "id": "meta-llama/Llama-4-Scout-17B-16E-Instruct", "description": "Processes text and images excels at summarization and cross modal reasoning." },
+      { "id": "NousResearch/Hermes-4-70B", "description": "Steerable assistant strong reasoning and creativity highly helpful." },
+      { "id": "Qwen/Qwen2.5-Coder-32B-Instruct", "description": "Code model strong generation and tool use bridges sizes." },
+      { "id": "katanemo/Arch-Router-1.5B", "description": "Lightweight router model directs queries to specialized backends." },
+      { "id": "meta-llama/Llama-3.2-1B-Instruct", "description": "Ultra small Llama handles basic Q and A and instructions." },
+      { "id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B", "description": "Distilled Qwen excels at stepwise logic in compact footprint." },
+      { "id": "deepseek-ai/DeepSeek-V3", "description": "General language model direct answers strong creative and knowledge tasks." },
+      { "id": "deepseek-ai/DeepSeek-V3-0324", "description": "Updated V3 better reasoning and coding strong tool use." },
+      { "id": "CohereLabs/command-a-translate-08-2025", "description": "Translation focused Command model high quality multilingual translation." },
+      { "id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B", "description": "Distilled from R1 strong reasoning standout dense model." },
+      { "id": "baidu/ERNIE-4.5-VL-424B-A47B-Base-PT", "description": "Multimodal base text image pretraining for cross modal understanding." },
+      { "id": "meta-llama/Llama-4-Maverick-17B-128E-Instruct", "description": "MoE multimodal Llama rivals top vision language models." },
+      { "id": "Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8", "description": "Quantized giant coder faster lighter retains advanced code generation." },
+      { "id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B", "description": "Qwen3 variant with R1 reasoning improvements compact and capable." },
+      { "id": "deepseek-ai/DeepSeek-R1-0528", "description": "R1 update improved reasoning, fewer hallucinations, adds function calling.", "parameters": { "max_tokens": 32000 } },
+      { "id": "Qwen/Qwen3-14B", "description": "Balanced Qwen good performance and efficiency for assistants." },
+      { "id": "MiniMaxAI/MiniMax-M1-80k", "description": "Long context MoE very fast excels at long range reasoning and code." },
+      { "id": "Qwen/Qwen2.5-Coder-7B-Instruct", "description": "Efficient coding assistant for lightweight programming tasks." },
+      { "id": "aisingapore/Gemma-SEA-LION-v4-27B-IT", "description": "Gemma SEA LION optimized for Southeast Asian languages or enterprise." },
+      { "id": "CohereLabs/aya-expanse-8b", "description": "Small Aya Expanse broad knowledge and efficient general reasoning." },
+      { "id": "baichuan-inc/Baichuan-M2-32B", "description": "Medical reasoning specialist fine tuned for clinical QA bilingual." },
+      { "id": "Qwen/Qwen2.5-VL-72B-Instruct", "description": "Vision language Qwen detailed image interpretation and instructions." },
+      { "id": "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", "description": "FP8 Maverick efficient deployment retains top multimodal capability." },
+      { "id": "zai-org/GLM-4.1V-9B-Thinking", "description": "Vision language with explicit reasoning strong for its size." },
+      { "id": "zai-org/GLM-4.5-Air-FP8", "description": "FP8 efficient GLM Air hybrid reasoning with minimal compute." },
+      { "id": "google/gemma-2-2b-it", "description": "Small Gemma instruction tuned safe responsible outputs easy deployment." },
+      { "id": "arcee-ai/AFM-4.5B", "description": "Enterprise focused model strong CPU performance compliant and practical." },
+      { "id": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B", "description": "Llama distilled from R1 strong reasoning and structured outputs." },
+      { "id": "CohereLabs/aya-vision-8b", "description": "Vision capable Aya handles images and text for basic multimodal." },
+      { "id": "NousResearch/Hermes-3-Llama-3.1-405B", "description": "Highly aligned assistant excels at math, code, QA." },
+      { "id": "Qwen/Qwen2.5-72B-Instruct", "description": "Accurate detailed instruction model supports tools and long contexts." },
+      { "id": "meta-llama/Llama-Guard-4-12B", "description": "Safety guardrail model filters and enforces content policies." },
+      { "id": "CohereLabs/command-a-vision-07-2025", "description": "Command model with image input captioning and visual QA." },
+      { "id": "nvidia/Llama-3_1-Nemotron-Ultra-253B-v1", "description": "NVIDIA tuned Llama optimized throughput for research and production." },
+      { "id": "meta-llama/Meta-Llama-3-70B-Instruct", "description": "Instruction tuned Llama improved reasoning and reliability over predecessors." },
+      { "id": "NousResearch/Hermes-4-405B", "description": "Frontier Hermes hybrid reasoning excels at math, code, creativity." },
+      { "id": "NousResearch/Hermes-2-Pro-Llama-3-8B", "description": "Small Hermes highly steerable maximized helpfulness for basics." },
+      { "id": "google/gemma-2-9b-it", "description": "Gemma with improved accuracy and context safe, easy to deploy." },
+      { "id": "Sao10K/L3-8B-Stheno-v3.2", "description": "Community Llama variant themed tuning and unique conversational style." },
+      { "id": "deepcogito/cogito-v2-preview-llama-109B-MoE", "description": "MoE preview advanced reasoning tests DeepCogito v2 fine tuning." },
+      { "id": "CohereLabs/c4ai-command-r-08-2024", "description": "Cohere Command variant instruction following with specialized tuning." },
+      { "id": "baidu/ERNIE-4.5-300B-A47B-Base-PT", "description": "Large base model foundation for specialized language systems." },
+      { "id": "CohereLabs/aya-expanse-32b", "description": "Aya Expanse large comprehensive knowledge and reasoning capabilities." },
+      { "id": "CohereLabs/c4ai-command-a-03-2025", "description": "Updated Command assistant improved accuracy and general usefulness." },
+      { "id": "CohereLabs/command-a-reasoning-08-2025", "description": "Command variant optimized for complex multi step logical reasoning." },
+      { "id": "alpindale/WizardLM-2-8x22B", "description": "Multi expert WizardLM MoE approach for efficient high quality generation." },
+      { "id": "tokyotech-llm/Llama-3.3-Swallow-70B-Instruct-v0.4", "description": "Academic fine tune potential multilingual and domain improvements." },
+      { "id": "deepseek-ai/DeepSeek-R1-Distill-Llama-70B", "description": "Llama distilled from R1 improved reasoning enterprise friendly." },
+      { "id": "CohereLabs/c4ai-command-r7b-12-2024", "description": "Small Command variant research or regional adaptation focus." },
+      { "id": "Sao10K/L3-70B-Euryale-v2.1", "description": "Creative community instruct model with distinctive persona." },
+      { "id": "CohereLabs/aya-vision-32b", "description": "Larger Aya Vision advanced vision language with detailed reasoning." },
+      { "id": "meta-llama/Llama-3.1-405B-Instruct", "description": "Massive instruction model very long context excels at complex tasks." },
+      { "id": "CohereLabs/c4ai-command-r7b-arabic-02-2025", "description": "Command tuned for Arabic fluent and culturally appropriate outputs." },
+      { "id": "Sao10K/L3-8B-Lunaris-v1", "description": "Community Llama creative role play oriented themed persona." },
+      { "id": "Qwen/Qwen2.5-Coder-7B", "description": "Small Qwen coder basic programming assistance for low resource environments." },
+      { "id": "Qwen/QwQ-32B-Preview", "description": "Preview Qwen experimental features and architecture refinements." },
+      { "id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B", "description": "Distilled Qwen mid size strong reasoning and clear steps." },
+      { "id": "meta-llama/Llama-3.1-70B-Instruct", "description": "Instruction tuned Llama improved reasoning and factual reliability." },
+      { "id": "Qwen/Qwen3-235B-A22B-FP8", "description": "FP8 quantized Qwen flagship efficient access to ultra large capabilities." },
+      { "id": "zai-org/GLM-4-32B-0414", "description": "Open licensed GLM matches larger proprietary models on benchmarks." },
+      { "id": "SentientAGI/Dobby-Unhinged-Llama-3.3-70B", "description": "Unfiltered candid creative outputs intentionally less restricted behavior." },
+      { "id": "marin-community/marin-8b-instruct", "description": "Community tuned assistant helpful conversational everyday tasks." },
+      { "id": "deepseek-ai/DeepSeek-Prover-V2-671B", "description": "Specialist for mathematical proofs and formal reasoning workflows." },
+      { "id": "NousResearch/Hermes-3-Llama-3.1-70B", "description": "Highly aligned assistant strong complex instruction following." },
+      { "id": "Qwen/Qwen2.5-Coder-3B-Instruct", "description": "Tiny coding assistant basic code completions and explanations." },
+      { "id": "deepcogito/cogito-v2-preview-llama-70B", "description": "Preview fine tune enhanced reasoning and tool use indications." },
+      { "id": "deepcogito/cogito-v2-preview-llama-405B", "description": "Preview at frontier scale tests advanced fine tuning methods." },
+      { "id": "deepcogito/cogito-v2-preview-deepseek-671B-MoE", "description": "Experimental blend of DeepCogito and DeepSeek approaches for reasoning." }
+    ]
+
+infisical:
+  enabled: true
+  env: "prod-us-east-1"
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 30
+  targetMemoryUtilizationPercentage: "50"
+  targetCPUUtilizationPercentage: "50"
+
+resources:
+  requests:
+    cpu: 2
+    memory: 4Gi
+  limits:
+    cpu: 4
+    memory: 8Gi

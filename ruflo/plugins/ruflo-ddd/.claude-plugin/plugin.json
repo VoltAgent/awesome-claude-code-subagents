@@ -1,0 +1,23 @@
+{
+  "name": "ruflo-ddd",
+  "description": "Domain-Driven Design scaffolding — bounded contexts, aggregate roots, domain events, value objects, repositories, and anti-corruption layers; navigable domain graph stored in AgentDB",
+  "version": "0.2.1",
+  "author": {
+    "name": "ruvnet",
+    "url": "https://github.com/ruvnet"
+  },
+  "homepage": "https://github.com/ruvnet/ruflo",
+  "license": "MIT",
+  "keywords": [
+    "ruflo",
+    "ddd",
+    "domain-driven-design",
+    "bounded-context",
+    "aggregate",
+    "events",
+    "acl",
+    "value-objects",
+    "repositories",
+    "mcp"
+  ]
+}

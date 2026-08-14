@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ include "name" . }}"
+  annotations: {{ toYaml .Values.service.annotations | nindent 4 }}
+  namespace: {{ .Release.Namespace }}
+  labels: {{ include "labels.standard" . | nindent 4 }}
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: http
+  {{- if eq "true" $.Values.envVars.METRICS_ENABLED }}
+  - name: metrics
+    port: {{ $.Values.envVars.METRICS_PORT | default 5565 | int }}
+    protocol: TCP
+    targetPort: metrics
+  {{- end }}
+  selector: {{ include "labels.standard" . | nindent 4 }}
+  type: {{.Values.service.type}}

@@ -1,0 +1,3 @@
+{"v":1,"commit":"5372f83553a239a7efa7ed95b2e0c898b76bd142","issuedAt":"2026-05-09T15:13:09.431Z","os":"macos","capability":"install_pack","durationMs":373}
+{"v":1,"commit":"5372f83553a239a7efa7ed95b2e0c898b76bd142","issuedAt":"2026-05-09T15:13:09.431Z","os":"macos","capability":"memory_load","durationMs":18}
+{"v":1,"commit":"5372f83553a239a7efa7ed95b2e0c898b76bd142","issuedAt":"2026-05-09T15:13:09.431Z","os":"macos","capability":"witness_verify","durationMs":53}

@@ -1,0 +1,57 @@
+name: Validate Marketplace
+on:
+  push:
+    paths:
+      - '.claude-plugin/**'
+      - 'plugins/**'
+  pull_request:
+    paths:
+      - '.claude-plugin/**'
+      - 'plugins/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate marketplace.json
+        run: |
+          node -e "
+            const fs = require('fs');
+            const catalog = JSON.parse(fs.readFileSync('.claude-plugin/marketplace.json'));
+            console.log('Marketplace:', catalog.name);
+            console.log('Plugins:', catalog.plugins.length);
+            for (const p of catalog.plugins) {
+              const dir = p.source;
+              if (!fs.existsSync(dir)) throw new Error('Missing plugin dir: ' + dir);
+              const manifest = dir + '/.claude-plugin/plugin.json';
+              if (!fs.existsSync(manifest)) throw new Error('Missing manifest: ' + manifest);
+              const m = JSON.parse(fs.readFileSync(manifest));
+              if (!m.name || !m.description || !m.version) throw new Error('Manifest missing required fields: ' + manifest);
+              if (!m.author || !m.author.name) throw new Error('Manifest missing author: ' + manifest);
+              console.log('  OK', m.name, m.version);
+            }
+            console.log('All plugins validated.');
+          "
+      - name: Validate plugin structure
+        run: |
+          for dir in plugins/*/; do
+            manifest="$dir/.claude-plugin/plugin.json"
+            if [ ! -f "$manifest" ]; then echo "FAIL: Missing $manifest"; exit 1; fi
+            node -e "JSON.parse(require('fs').readFileSync('${manifest}'))" || exit 1
+
+            # Check skills use directory/SKILL.md format
+            if [ -d "${dir}skills" ]; then
+              for skill_dir in "${dir}skills"/*/; do
+                [ -d "$skill_dir" ] || continue
+                if [ ! -f "${skill_dir}SKILL.md" ]; then
+                  echo "FAIL: Missing SKILL.md in $skill_dir"
+                  exit 1
+                fi
+              done
+            fi
+            echo "OK: $dir"
+          done

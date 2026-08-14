@@ -1,0 +1,73 @@
+image:
+  repository: ghcr.io/huggingface
+  name: chat-ui
+  tag: 0.0.0-latest
+  pullPolicy: IfNotPresent
+
+replicas: 3
+
+domain: huggingface.co
+
+networkPolicy:
+  enabled: false
+  allowedBlocks: []
+
+service:
+  type: NodePort
+  annotations: { }
+
+serviceAccount:
+  enabled: false
+  create: false
+  name: ""
+  automountServiceAccountToken: true
+  annotations: { }
+
+ingress:
+  enabled: true
+  path: "/"
+  annotations: { }
+  # className: "nginx"
+  tls: { }
+    # secretName: XXX
+
+ingressInternal:
+  enabled: false
+  path: "/"
+  annotations: { }
+  # className: "nginx"
+  tls: { }
+
+resources:
+  requests:
+    cpu: 2
+    memory: 4Gi
+  limits:
+    cpu: 2
+    memory: 4Gi
+nodeSelector: {}
+tolerations: []
+
+envVars: { }
+
+infisical:
+  enabled: false
+  env: ""
+  project: "huggingchat-v2-a1"
+  url: ""
+  resyncInterval: 60
+  operatorSecretName: "huggingchat-operator-secrets"
+  operatorSecretNamespace: "hub-utils"
+
+# Allow to environment injections on top or instead of infisical
+extraEnvFrom: []
+extraEnv: []
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  targetMemoryUtilizationPercentage: ""
+  targetCPUUtilizationPercentage: ""
+
+## Metrics removed; monitoring configuration no longer used

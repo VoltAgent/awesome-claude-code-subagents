@@ -1,0 +1,24 @@
+{{- if .Values.infisical.enabled }}
+apiVersion: secrets.infisical.com/v1alpha1
+kind: InfisicalSecret
+metadata:
+  name: {{ include "name" $ }}-infisical-secret
+  namespace: {{ $.Release.Namespace }}
+spec:
+  authentication:
+    universalAuth:
+      credentialsRef:
+        secretName: {{ .Values.infisical.operatorSecretName | quote }}
+        secretNamespace: {{ .Values.infisical.operatorSecretNamespace | quote }}
+      secretsScope:
+        envSlug: {{ .Values.infisical.env | quote }}
+        projectSlug: {{ .Values.infisical.project | quote }}
+        secretsPath: /
+  hostAPI: {{ .Values.infisical.url | quote }}
+  managedSecretReference:
+    creationPolicy: Owner
+    secretName: {{ include "name" $ }}-secs
+    secretNamespace: {{ .Release.Namespace | quote }}
+    secretType: Opaque
+  resyncInterval: {{ .Values.infisical.resyncInterval }}
+{{- end }}

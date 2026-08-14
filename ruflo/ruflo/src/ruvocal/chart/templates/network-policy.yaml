@@ -1,0 +1,36 @@
+{{- if $.Values.networkPolicy.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "name" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  egress:
+    - ports:
+        - port: 53
+          protocol: UDP
+      to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+    - to:
+        {{- range $ip := .Values.networkPolicy.allowedBlocks }}
+        - ipBlock:
+            cidr: {{ $ip | quote }}
+        {{- end }}
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+            except:
+              - 10.0.0.0/8
+              - 172.16.0.0/12
+              - 192.168.0.0/16
+              - 169.254.169.254/32
+  podSelector:
+    matchLabels: {{ include "labels.standard" . | nindent 6 }}
+  policyTypes:
+    - Egress
+{{- end }}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RuFlo Research Widget Embed Example</title>
+  <meta name="description" content="Example of embedding RuFlo Research Widget on third-party sites">
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: 2rem;
+    }
+    p {
+      color: #a3a3a3;
+      margin: 0 0 0.5rem;
+    }
+    .instructions {
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      padding: 1rem;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+    }
+    .instructions h2 {
+      margin: 0 0 1rem;
+      font-size: 1.25rem;
+    }
+    .instructions code {
+      background: #262626;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    .instructions pre {
+      background: #262626;
+      padding: 1rem;
+      border-radius: 4px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+    }
+    #ruflo-research-widget-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: 400px;
+    }
+    .alert {
+      padding: 1rem;
+      margin: 1rem auto;
+      max-width: 800px;
+      background: #1a3a1a;
+      border: 1px solid #22c55e;
+      border-radius: 8px;
+      color: #22c55e;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🎯 RuFlo Research Widget</h1>
+    <p>Goal-Oriented Action Planning for AI Research</p>
+    <p style="font-size: 0.9rem;">Embedded Widget Example</p>
+  </div>
+
+  <div class="instructions">
+    <h2>📦 How to Embed This Widget</h2>
+    <p>Copy and paste this code into your website:</p>
+    <pre><code>&lt;!-- RuFlo Research Widget Container --&gt;
+&lt;div id="ruflo-research-widget-container"&gt;&lt;/div&gt;
+
+&lt;!-- Optional: Configuration --&gt;
+&lt;script&gt;
+  window.RufloResearchWidgetConfig = {
+    primaryColor: "#8b5cf6",
+    accentColor: "#22c55e",
+    backgroundColor: "#1a1a1a",
+    defaultGoal: "Your default research goal"
+  };
+&lt;/script&gt;
+
+&lt;!-- Load Widget (replace YOUR-DOMAIN with your actual domain) --&gt;
+&lt;link rel="stylesheet" href="https://YOUR-DOMAIN/widget.css"&gt;
+&lt;script src="https://YOUR-DOMAIN/widget.js"&gt;&lt;/script&gt;</code></pre>
+  </div>
+
+  <div class="alert">
+    ✨ Widget is loading below. If you don't see it, check the browser console for errors.
+  </div>
+
+  <!-- Widget Container -->
+  <div id="ruflo-research-widget-container"></div>
+
+  <!-- Widget Configuration (Optional) -->
+  <script>
+    // Configuration for the RuFlo Research Widget
+    // All properties are optional - widget will use defaults if not specified
+    window.RufloResearchWidgetConfig = {
+      primaryColor: "#8b5cf6",        // Purple - main brand color
+      accentColor: "#22c55e",         // Green - success/accent color
+      backgroundColor: "#1a1a1a",     // Dark background
+      cardBackgroundColor: "#262626", // Card backgrounds
+      textColor: "#ffffff",           // Primary text color
+      fontFamily: "system-ui",        // Font family
+      defaultGoal: "Research the latest advancements in quantum computing"
+    };
+
+    // Log when widget is ready
+    window.addEventListener('load', function() {
+      if (window.RufloResearchWidget) {
+        console.log('✅ RuFlo Research Widget loaded successfully!');
+        console.log('Widget version:', window.RufloResearchWidget.version);
+      } else {
+        console.error('❌ RuFlo Research Widget failed to load');
+      }
+    });
+
+    // Error handling for widget script loading
+    window.addEventListener('error', function(e) {
+      if (e.filename && e.filename.includes('widget.js')) {
+        console.error('Failed to load widget.js:', e.message);
+        document.getElementById('ruflo-research-widget-container').innerHTML =
+          '<div style="padding: 2rem; text-align: center; color: #ef4444;">' +
+          '⚠️ Failed to load RuFlo Research Widget. Please check console for details.' +
+          '</div>';
+      }
+    }, true);
+  </script>
+
+  <!-- Load Widget CSS -->
+  <link rel="stylesheet" href="/widget.css" onerror="console.error('Failed to load widget.css')">
+
+  <!-- Load Widget Script -->
+  <script src="/widget.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+{
+  "name": "ruflo",
+  "description": "RuFlo Marketplace: Claude Code native agents, swarms, workers, and MCP tools for continuous software engineering",
+  "owner": {
+    "name": "ruvnet",
+    "url": "https://github.com/ruvnet"
+  },
+  "plugins": [
+    {
+      "name": "ruflo-core",
+      "source": "./plugins/ruflo-core",
+      "description": "Core Ruflo MCP tools, commands, and Claude Code orchestration patterns"
+    },
+    {
+      "name": "ruflo-swarm",
+      "source": "./plugins/ruflo-swarm",
+      "description": "Agent teams, swarm coordination, Monitor streams, and worktree isolation"
+    },
+    {
+      "name": "ruflo-loop-workers",
+      "source": "./plugins/ruflo-loop-workers",
+      "description": "Cache-aware /loop workers and CronCreate background automation"
+    },
+    {
+      "name": "ruflo-security-audit",
+      "source": "./plugins/ruflo-security-audit",
+      "description": "Security review, dependency scanning, policy gates, and CVE monitoring"
+    },
+    {
+      "name": "ruflo-rag-memory",
+      "source": "./plugins/ruflo-rag-memory",
+      "description": "RuVector memory with HNSW search, AgentDB, and semantic retrieval"
+    },
+    {
+      "name": "ruflo-testgen",
+      "source": "./plugins/ruflo-testgen",
+      "description": "Test gap detection, coverage analysis, and automated test generation"
+    },
+    {
+      "name": "ruflo-docs",
+      "source": "./plugins/ruflo-docs",
+      "description": "Documentation generation, drift detection, and API docs automation"
+    },
+    {
+      "name": "ruflo-autopilot",
+      "source": "./plugins/ruflo-autopilot",
+      "description": "Autonomous /loop-driven task completion with learning, prediction, and progress tracking"
+    },
+    {
+      "name": "ruflo-intelligence",
+      "source": "./plugins/ruflo-intelligence",
+      "description": "Self-learning neural intelligence with SONA patterns, trajectory learning, and model routing"
+    },
+    {
+      "name": "ruflo-agentdb",
+      "source": "./plugins/ruflo-agentdb",
+      "description": "AgentDB memory controllers with HNSW vector search, RuVector embeddings, and causal graphs"
+    },
+    {
+      "name": "ruflo-aidefence",
+      "source": "./plugins/ruflo-aidefence",
+      "description": "AI safety scanning, PII detection, prompt injection defense, and adaptive threat learning"
+    },
+    {
+      "name": "ruflo-browser",
+      "source": "./plugins/ruflo-browser",
+      "description": "Agentic browser automation with Playwright for testing, scraping, and UI interaction"
+    },
+    {
+      "name": "ruflo-jujutsu",
+      "source": "./plugins/ruflo-jujutsu",
+      "description": "Advanced git workflows with diff analysis, risk scoring, and reviewer recommendations"
+    },
+    {
+      "name": "ruflo-agent",
+      "source": "./plugins/ruflo-agent",
+      "description": "Agent runtimes — local WASM-sandboxed agents (rvagent) + Anthropic Claude Managed Agents (cloud); one interface, local-vs-cloud backends"
+    },
+    {
+      "name": "ruflo-workflows",
+      "source": "./plugins/ruflo-workflows",
+      "description": "Visual workflow automation with templates, orchestration, and lifecycle management"
+    },
+    {
+      "name": "ruflo-daa",
+      "source": "./plugins/ruflo-daa",
+      "description": "Dynamic Agentic Architecture with cognitive patterns, knowledge sharing, and adaptive agents"
+    },
+    {
+      "name": "ruflo-ruvllm",
+      "source": "./plugins/ruflo-ruvllm",
+      "description": "RuVLLM local inference with chat formatting, MicroLoRA fine-tuning, and SONA adaptation"
+    },
+    {
+      "name": "ruflo-rvf",
+      "source": "./plugins/ruflo-rvf",
+      "description": "RVF format for portable agent memory, session persistence, and cross-platform transfer"
+    },
+    {
+      "name": "ruflo-plugin-creator",
+      "source": "./plugins/ruflo-plugin-creator",
+      "description": "Scaffold, validate, and publish new Claude Code plugins with proper structure"
+    },
+    {
+      "name": "ruflo-goals",
+      "source": "./plugins/ruflo-goals",
+      "description": "Long-horizon goal planning, deep research orchestration, and adaptive replanning using GOAP"
+    },
+    {
+      "name": "ruflo-adr",
+      "source": "./plugins/ruflo-adr",
+      "description": "ADR lifecycle management — create, index, supersede, and link Architecture Decision Records to code"
+    },
+    {
+      "name": "ruflo-cost-tracker",
+      "source": "./plugins/ruflo-cost-tracker",
+      "description": "Token usage tracking, model cost attribution per agent, budget alerts, and optimization recommendations"
+    },
+    {
+      "name": "ruflo-ddd",
+      "source": "./plugins/ruflo-ddd",
+      "description": "Domain-Driven Design scaffolding — bounded contexts, aggregate roots, domain events, and anti-corruption layers"
+    },
+    {
+      "name": "ruflo-federation",
+      "source": "./plugins/ruflo-federation",
+      "description": "Cross-installation agent federation with zero-trust security, PII-gated data flow, and compliance-grade audit trails"
+    },
+    {
+      "name": "ruflo-graph-intelligence",
+      "source": "./plugins/ruflo-graph-intelligence",
+      "description": "Real-time graph intelligence — personalized PageRank, streaming delta updates, witness-signed reasoning, and federation-distributable vectors"
+    },
+    {
+      "name": "ruflo-iot-cognitum",
+      "source": "./plugins/ruflo-iot-cognitum",
+      "description": "IoT device lifecycle, telemetry anomaly detection, fleet management, and witness chain verification for Cognitum Seed hardware"
+    },
+    {
+      "name": "ruflo-knowledge-graph",
+      "source": "./plugins/ruflo-knowledge-graph",
+      "description": "Knowledge graph construction — entity extraction, relation mapping, and pathfinder graph traversal"
+    },
+    {
+      "name": "ruflo-market-data",
+      "source": "./plugins/ruflo-market-data",
+      "description": "Market data ingestion — feed normalization, OHLCV vectorization, and HNSW-indexed pattern matching"
+    },
+    {
+      "name": "ruflo-migrations",
+      "source": "./plugins/ruflo-migrations",
+      "description": "Schema migration management — generate, validate, dry-run, and rollback database migrations"
+    },
+    {
+      "name": "ruflo-neural-trader",
+      "source": "./plugins/ruflo-neural-trader",
+      "description": "Neural trading strategies — self-learning LSTM/Transformer/N-BEATS models with Rust/NAPI backtesting"
+    },
+    {
+      "name": "ruflo-observability",
+      "source": "./plugins/ruflo-observability",
+      "description": "Structured logging, distributed tracing, and metrics — correlate agent swarm activity with application telemetry"
+    },
+    {
+      "name": "ruflo-ruvector",
+      "source": "./plugins/ruflo-ruvector",
+      "description": "Self-learning vector database — HNSW, FlashAttention-3, Graph RAG, hybrid search, DiskANN, and Brain AGI"
+    },
+    {
+      "name": "ruflo-sparc",
+      "source": "./plugins/ruflo-sparc",
+      "description": "SPARC methodology — Specification, Pseudocode, Architecture, Refinement, Completion phases with quality gates"
+    },
+    {
+      "name": "ruflo-metaharness",
+      "source": "./plugins/ruflo-metaharness",
+      "description": "MetaHarness integration — surfaces score/genome/mint/mcp-scan/threat-model via skills; pairs with @metaharness/router (ADR-148/149) for cost-optimal model routing; honors ADR-150 optional-augmentation constraint"
+    },
+    {
+      "name": "ruflo-arena",
+      "source": "./plugins/ruflo-arena",
+      "description": "Competitive ruliology for ruflo swarms — arenas, tournaments, and adaptive co-evolution of program strategies (ADR-147/148); strategies-as-programs compete under payoff games"
+    },
+    {
+      "name": "ruflo-agntcy",
+      "source": "./plugins/ruflo-agntcy",
+      "description": "AGNTCY/Outshift Internet-of-Cognition runtime integration — SLIM secure transport, CASA intent-scoped tool authorization, and AGNTCY identity/observability spans (ADR-380); optional, removable augmentation per ADR-150"
+    },
+    {
+      "name": "ruflo-bbs-federation",
+      "source": "./plugins/ruflo-bbs-federation",
+      "description": "AgentBBS federated business-domain BBS room integration (ADR-164 Phase 1) — register/publish/watch/human-join MCP tools wrapping the agentbbs Rust workspace as a federation peer; degrades gracefully when agentbbs is absent"
+    },
+    {
+      "name": "ruflo-business-pods",
+      "source": "./plugins/ruflo-business-pods",
+      "description": "Business-domain pod templates for the federated business autopilot (ADR-164 Phase 2) — pod templates plus a dry-run-by-default single-tick runner that validates, reserves budget, and resolves agent roles before posting to the BBS room"
+    }
+  ]
+}

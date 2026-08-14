@@ -1,0 +1,22 @@
+{
+  "name": "ruflo-jujutsu",
+  "description": "Advanced git workflows with diff analysis, risk scoring, change classification (feature/bugfix/refactor/...), and reviewer recommendations — wraps 6 analyze_* MCP tools (diff, diff-risk, diff-classify, diff-reviewers, file-risk, diff-stats)",
+  "version": "0.2.1",
+  "author": {
+    "name": "ruvnet",
+    "url": "https://github.com/ruvnet"
+  },
+  "homepage": "https://github.com/ruvnet/ruflo",
+  "license": "MIT",
+  "keywords": [
+    "ruflo",
+    "jujutsu",
+    "git",
+    "diff",
+    "review",
+    "risk-analysis",
+    "mcp",
+    "change-classification",
+    "reviewer-recommendation"
+  ]
+}

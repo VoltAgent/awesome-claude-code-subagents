@@ -1,0 +1,22 @@
+{
+  "name": "ruflo-ruvllm",
+  "description": "RuVLLM local inference with chat formatting (Claude/GPT/Gemini/Ollama/Cohere), model configuration, MicroLoRA fine-tuning, and SONA real-time adaptation",
+  "version": "0.2.1",
+  "author": {
+    "name": "ruvnet",
+    "url": "https://github.com/ruvnet"
+  },
+  "homepage": "https://github.com/ruvnet/ruflo",
+  "license": "MIT",
+  "keywords": [
+    "ruflo",
+    "ruvllm",
+    "llm",
+    "inference",
+    "microlora",
+    "fine-tuning",
+    "mcp",
+    "local-inference",
+    "chat-templates"
+  ]
+}

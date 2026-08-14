@@ -1,0 +1,106 @@
+{
+  "name": "@claude-flow/plugin-gastown-bridge",
+  "version": "0.1.4",
+  "description": "Gas Town orchestrator integration for Claude Flow V3 with WASM-accelerated formula parsing and graph analysis",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./bridges": {
+      "types": "./dist/bridges.d.ts",
+      "import": "./dist/bridges.js",
+      "require": "./dist/bridges.cjs"
+    },
+    "./formula": {
+      "types": "./dist/formula.d.ts",
+      "import": "./dist/formula.js",
+      "require": "./dist/formula.cjs"
+    },
+    "./convoy": {
+      "types": "./dist/convoy.d.ts",
+      "import": "./dist/convoy.js",
+      "require": "./dist/convoy.cjs"
+    },
+    "./wasm": {
+      "import": "./dist/wasm-loader.js"
+    }
+  },
+  "files": [
+    "dist",
+    "wasm/*/pkg/*.wasm",
+    "wasm/*/pkg/*.wasm.gz",
+    "plugin.yaml",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "build:wasm": "./scripts/build-wasm.sh --release --opt-level 3",
+    "build:all": "npm run build:wasm && npm run build",
+    "build:analyze": "tsup --metafile && npx esbuild-visualizer --metadata ./dist/metafile-*.json --filename bundle-analysis.html",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:wasm": "vitest --config vitest.wasm.config.ts",
+    "benchmark": "tsx scripts/benchmark.ts",
+    "size": "size-limit",
+    "size:why": "size-limit --why",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "claude-flow",
+    "plugin",
+    "gastown",
+    "beads",
+    "orchestration",
+    "workflows",
+    "formulas",
+    "wasm",
+    "multi-agent"
+  ],
+  "author": "rUv",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/claude-flow.git",
+    "directory": "v3/plugins/gastown-bridge"
+  },
+  "bugs": {
+    "url": "https://github.com/ruvnet/claude-flow/issues"
+  },
+  "homepage": "https://github.com/ruvnet/claude-flow/tree/main/v3/plugins/gastown-bridge#readme",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "peerDependencies": {
+    "@claude-flow/memory": ">=3.0.0-alpha.1"
+  },
+  "peerDependenciesMeta": {
+    "@claude-flow/memory": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@iarna/toml": "^2.2.5",
+    "uuid": "^9.0.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^11.0.0",
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.0",
+    "esbuild": "^0.20.0",
+    "size-limit": "^11.0.0",
+    "tsup": "^8.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.0.0"
+  },
+  "optionalDependencies": {}
+}

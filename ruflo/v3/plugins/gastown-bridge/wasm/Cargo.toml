@@ -1,0 +1,72 @@
+# WASM Workspace for Gas Town Bridge
+#
+# Ultra-optimized WASM modules for:
+# - Formula parsing (target: <0.1ms)
+# - Topological sorting (target: <0.3ms)
+# - Graph operations (target: 500x improvement)
+
+[workspace]
+resolver = "2"
+members = [
+    "gastown-formula-wasm",
+    "ruvector-gnn-wasm",
+    "shared",
+]
+
+[workspace.package]
+version = "3.0.0-alpha.1"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/ruvnet/claude-flow"
+
+[workspace.dependencies]
+# WASM Core
+wasm-bindgen = "0.2"
+js-sys = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde-wasm-bindgen = "0.6"
+
+# TOML parsing
+toml = "0.8"
+
+# Graph algorithms
+petgraph = "0.6"
+
+# Performance utilities (shared)
+rustc-hash = "2.0"           # FxHash - faster than std HashMap
+bumpalo = "3.14"             # Arena allocator
+smallvec = "1.13"            # Stack-allocated small vectors
+arrayvec = "0.7"             # Fixed-capacity vectors (no heap)
+
+# SIMD (when available)
+wide = "0.7"                 # Portable SIMD
+
+[profile.release]
+# Maximum optimization
+opt-level = 3
+
+# Link-Time Optimization - "fat" for maximum optimization
+lto = "fat"
+
+# Single codegen unit for better optimization
+codegen-units = 1
+
+# Abort on panic (smaller binary, no unwinding)
+panic = "abort"
+
+# Strip symbols (smaller binary)
+strip = true
+
+# Optimize for size where it doesn't hurt speed
+# overflow-checks = false  # Disable for production
+
+[profile.release.package."*"]
+# Same settings for all dependencies
+opt-level = 3
+codegen-units = 1
+
+[profile.bench]
+opt-level = 3
+lto = "thin"
+codegen-units = 1

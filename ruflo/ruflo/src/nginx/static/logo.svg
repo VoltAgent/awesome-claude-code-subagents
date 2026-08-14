@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <!-- Hexagon icon -->
+  <path d="M20 4L36 13v18L20 40 4 31V13z" stroke="#00d4ff" stroke-width="2" fill="none"/>
+  <circle cx="20" cy="22" r="4" fill="#7c3aed"/>
+  <!-- "Ru" in cyan -->
+  <text x="48" y="34" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="28" fill="#00d4ff">Ru</text>
+  <!-- "Flo" in violet -->
+  <text x="88" y="34" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="28" fill="#7c3aed">Flo</text>
+</svg>

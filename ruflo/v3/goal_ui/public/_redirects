@@ -1,0 +1,8 @@
+# Widget files should be served directly (not redirected to SPA)
+/widget.js /widget.js 200
+/widget.css /widget.css 200
+/widget-embed.html /widget-embed.html 200
+/_headers /_headers 200
+
+# SPA fallback - all other routes go to index.html for client-side routing
+/* /index.html 200

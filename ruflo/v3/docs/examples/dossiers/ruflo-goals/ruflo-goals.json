@@ -1,0 +1,48 @@
+{
+  "seed": "ruflo-goals",
+  "seedType": "concept",
+  "resolvedPath": "plugins/ruflo-goals",
+  "depth": 2,
+  "truncated": false,
+  "generatedAt": "2026-05-03T00:00:00Z",
+  "nodes": [
+    { "id": "ruflo-goals", "type": "plugin", "attrs": { "version": "0.2.0", "license": "MIT", "totalLines": 654 }, "sources": ["Read:plugin.json"] },
+    { "id": "goal-planner", "type": "agent", "attrs": { "model": "sonnet", "lines": 82, "pattern": "GOAP+A*" }, "sources": ["Read:agents/goal-planner.md"] },
+    { "id": "deep-researcher", "type": "agent", "attrs": { "model": "sonnet", "lines": 61, "pattern": "linear-evidence-graded" }, "sources": ["Read:agents/deep-researcher.md"] },
+    { "id": "horizon-tracker", "type": "agent", "attrs": { "model": "sonnet", "lines": 67, "pattern": "session-spanning-with-drift" }, "sources": ["Read:agents/horizon-tracker.md"] },
+    { "id": "dossier-investigator", "type": "agent", "attrs": { "model": "sonnet", "lines": 68, "pattern": "recursive-parallel", "new": true }, "sources": ["Read:agents/dossier-investigator.md"] },
+    { "id": "goal-plan", "type": "skill", "attrs": { "lines": 59 }, "sources": ["Read:skills/goal-plan/SKILL.md"] },
+    { "id": "deep-research", "type": "skill", "attrs": { "lines": 43 }, "sources": ["Read:skills/deep-research/SKILL.md"] },
+    { "id": "horizon-track", "type": "skill", "attrs": { "lines": 61 }, "sources": ["Read:skills/horizon-track/SKILL.md"] },
+    { "id": "research-synthesize", "type": "skill", "attrs": { "lines": 62 }, "sources": ["Read:skills/research-synthesize/SKILL.md"] },
+    { "id": "dossier-collect", "type": "skill", "attrs": { "lines": 70, "new": true }, "sources": ["Read:skills/dossier-collect/SKILL.md"] },
+    { "id": "/goals", "type": "command", "attrs": { "lines": 12 }, "sources": ["Read:commands/goals.md"] },
+    { "id": "ADR-099", "type": "adr", "attrs": { "title": "Dossier-Investigator", "status": "Proposed" }, "sources": ["Read:v3/docs/adr/ADR-099*"] },
+    { "id": "goap-plans", "type": "memory-namespace", "sources": ["Read:goal-plan"] },
+    { "id": "research", "type": "memory-namespace", "sources": ["Read:deep-research"] },
+    { "id": "horizons", "type": "memory-namespace", "sources": ["Read:horizon-track"] },
+    { "id": "dossier", "type": "memory-namespace", "attrs": { "new": true }, "sources": ["Read:dossier-collect"] }
+  ],
+  "edges": [
+    { "from": "ruflo-goals", "to": "goal-planner", "kind": "ships-agent", "source": "Read:plugin-tree", "confidence": "high" },
+    { "from": "ruflo-goals", "to": "deep-researcher", "kind": "ships-agent", "source": "Read:plugin-tree", "confidence": "high" },
+    { "from": "ruflo-goals", "to": "horizon-tracker", "kind": "ships-agent", "source": "Read:plugin-tree", "confidence": "high" },
+    { "from": "ruflo-goals", "to": "dossier-investigator", "kind": "ships-agent", "source": "Read:plugin-tree", "confidence": "high" },
+    { "from": "ruflo-goals", "to": "goal-plan", "kind": "ships-skill", "source": "Read:plugin-tree", "confidence": "high" },
+    { "from": "ruflo-goals", "to": "dossier-collect", "kind": "ships-skill", "source": "Read:plugin-tree", "confidence": "high" },
+    { "from": "goal-planner", "to": "goal-plan", "kind": "drives", "source": "naming-convention", "confidence": "high" },
+    { "from": "deep-researcher", "to": "deep-research", "kind": "drives", "source": "naming-convention", "confidence": "high" },
+    { "from": "horizon-tracker", "to": "horizon-track", "kind": "drives", "source": "naming-convention", "confidence": "high" },
+    { "from": "dossier-investigator", "to": "dossier-collect", "kind": "drives", "source": "naming-convention", "confidence": "high" },
+    { "from": "goal-plan", "to": "goap-plans", "kind": "persists-to", "source": "Read:skill", "confidence": "high" },
+    { "from": "dossier-collect", "to": "dossier", "kind": "persists-to", "source": "Read:skill", "confidence": "high" },
+    { "from": "ADR-099", "to": "dossier-investigator", "kind": "introduces", "source": "Read:adr-099", "confidence": "high" },
+    { "from": "ADR-099", "to": "dossier-collect", "kind": "introduces", "source": "Read:adr-099", "confidence": "high" }
+  ],
+  "stats": {
+    "nodesByType": { "plugin": 1, "agent": 4, "skill": 5, "command": 1, "adr": 1, "memory-namespace": 4 },
+    "edgesByKind": { "ships-agent": 4, "ships-skill": 2, "drives": 4, "persists-to": 2, "introduces": 2 },
+    "sourcesUsed": ["Read", "Glob"],
+    "tokensSpent": 2400
+  }
+}

@@ -1,0 +1,84 @@
+name: Lint and test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: |
+          npm install ci
+      - name: "Checking lint/format errors"
+        run: |
+          npm run lint
+      - name: "Checking type errors"
+        run: |
+          npm run check
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: |
+          npm ci
+          npx playwright install
+      - name: "Tests"
+        run: |
+          npm run test
+
+  build-check:
+    runs-on:
+      group: aws-general-8-plus
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker image
+        run: |
+          docker build \
+            --build-arg INCLUDE_DB=true \
+            -t chat-ui-test:latest .
+
+      - name: Run Docker container
+        run: |
+          export DOTENV_LOCAL=$(<.env.ci)
+          docker run -d --rm --network=host \
+            --name chat-ui-test \
+            -e DOTENV_LOCAL="$DOTENV_LOCAL" \
+            chat-ui-test:latest
+
+      - name: Wait for server to start
+        run: |
+          for i in {1..10}; do
+            if curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/ | grep -q "200"; then
+              echo "Server is up"
+              exit 0
+            fi
+            echo "Waiting for server..."
+            sleep 2
+          done
+          echo "Server did not start in time"
+          docker logs chat-ui-test
+          exit 1
+
+      - name: Stop Docker container
+        if: always()
+        run: |
+          docker stop chat-ui-test || true

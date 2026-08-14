@@ -1,0 +1,144 @@
+@import "./highlight-js.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+	overscroll-behavior: none;
+	touch-action: pan-x pan-y;
+}
+
+@layer components {
+	.btn {
+		@apply inline-flex flex-shrink-0 cursor-pointer select-none items-center justify-center whitespace-nowrap outline-none transition-all focus:ring disabled:cursor-default;
+	}
+
+	.active-model {
+		/* Ensure active border wins over defaults/utilities in both themes */
+		@apply !border-black dark:!border-white/60;
+	}
+
+	.file-hoverable {
+		@apply hover:bg-gray-500/10;
+	}
+
+	.base-tool {
+		@apply flex h-[1.6rem] items-center gap-[.2rem] whitespace-nowrap border border-transparent text-xs outline-none transition-all focus:outline-none active:outline-none dark:hover:text-gray-300 sm:hover:text-purple-600;
+	}
+
+	.active-tool {
+		@apply rounded-full !border-purple-200 bg-purple-100 pl-1 pr-2 text-purple-600 hover:text-purple-600 dark:!border-purple-700 dark:bg-purple-600/40 dark:text-purple-200;
+	}
+}
+
+@layer utilities {
+	/* your existing utilities */
+	.scrollbar-custom {
+		@apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-black/10 scrollbar-thumb-rounded-full scrollbar-w-1 hover:scrollbar-thumb-black/20 dark:scrollbar-thumb-white/10 dark:hover:scrollbar-thumb-white/20;
+	}
+
+	.scrollbar-custom::-webkit-scrollbar {
+		background-color: transparent;
+		width: 8px;
+		height: 8px;
+	}
+
+	.scrollbar-custom::-webkit-scrollbar-thumb {
+		background-color: rgba(0, 0, 0, 0.1);
+		border-radius: 9999px;
+	}
+
+	.dark .scrollbar-custom::-webkit-scrollbar {
+		background-color: rgba(17, 17, 17, 0.85);
+	}
+
+	.dark .scrollbar-custom::-webkit-scrollbar-thumb {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+
+	/* Rounded top/bottom caps for vertical scrollbars (Chrome/Edge/Safari) */
+	.scrollbar-custom::-webkit-scrollbar-track {
+		@apply rounded-full bg-clip-padding; /* clip bg to padding so caps look round */
+		/* space for the end caps — tweak with Tailwind spacing */
+		border-top: theme("spacing.2") solid transparent; /* 0.5rem */
+		border-bottom: theme("spacing.2") solid transparent; /* 0.5rem */
+	}
+
+	/* Rounded left/right caps for horizontal scrollbars */
+	.scrollbar-custom::-webkit-scrollbar-track:horizontal {
+		@apply rounded-full bg-clip-padding;
+		border-left: theme("spacing.2") solid transparent;
+		border-right: theme("spacing.2") solid transparent;
+		border-top-width: 0;
+		border-bottom-width: 0;
+	}
+
+	.no-scrollbar {
+		@apply [-ms-overflow-style:none] [scrollbar-width:none] [&::-ms-scrollbar]:hidden [&::-webkit-scrollbar]:hidden;
+	}
+
+	.prose table {
+		@apply block max-w-full overflow-x-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-black/10 scrollbar-thumb-rounded-full scrollbar-w-1 hover:scrollbar-thumb-black/20 dark:scrollbar-thumb-white/10 dark:hover:scrollbar-thumb-white/20;
+	}
+
+	/* .scrollbar-custom {
+		@apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-black/10 scrollbar-thumb-rounded-full scrollbar-w-1 hover:scrollbar-thumb-black/20 dark:scrollbar-thumb-white/10 dark:hover:scrollbar-thumb-white/20;
+	} */
+	.prose hr {
+		@apply my-4;
+	}
+
+	.prose strong {
+		@apply font-medium;
+	}
+
+	.prose pre {
+		@apply border-[0.5px] bg-white text-gray-600 dark:border-gray-700 dark:!bg-gray-900 dark:bg-inherit dark:text-inherit;
+	}
+
+	.prose code:not(pre code) {
+		@apply rounded-md bg-gray-200/60 px-[0.4em] py-[0.2em] text-[85%] dark:bg-gray-700;
+	}
+
+	.prose code:not(pre code)::before,
+	.prose code:not(pre code)::after {
+		content: none;
+	}
+
+	/* Override prose-sm title sizes - 75% of original */
+	.prose-sm :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+		font-size: 1.6em; /* 75% */
+		@apply font-semibold;
+	}
+
+	.prose-sm :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+		font-size: 1.07em; /* 75% */
+		@apply font-semibold;
+	}
+
+	.prose-sm :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+		font-size: 0.96em; /* 75% */
+		@apply font-semibold;
+	}
+
+	.prose-sm :where(h4):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+		font-size: 0.8em; /* 75% */
+		@apply font-semibold;
+	}
+
+	.prose-sm :where(h5):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+		font-size: 0.75em; /* 75% */
+		@apply font-semibold;
+	}
+
+	.prose-sm :where(h6):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+		font-size: 0.7em; /* 75% */
+		@apply font-semibold;
+	}
+}
+
+.katex-display {
+	overflow: auto hidden;
+}

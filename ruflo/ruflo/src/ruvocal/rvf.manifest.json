@@ -1,0 +1,204 @@
+{
+  "rvf_version": "2.0",
+  "format": "rvf-package",
+  "name": "ruvocal",
+  "version": "1.0.0",
+  "description": "RuVocal — Conversational AI UI powered by RuVector-Postgres. Fork of HuggingFace Chat UI with MongoDB replaced by PostgreSQL + pgvector for unified vector search across conversations, agents, and knowledge.",
+  "license": "Apache-2.0",
+  "upstream": {
+    "repo": "https://github.com/huggingface/chat-ui",
+    "license": "Apache-2.0",
+    "fork_date": "2026-03-05"
+  },
+  "segments": {
+    "MANIFEST": {
+      "type": "root",
+      "uuid": "${RVF_UUID}",
+      "created": "${RVF_TIMESTAMP}",
+      "parent": null
+    },
+    "PROFILE": {
+      "type": "domain-config",
+      "description": "Deployment configuration — PostgreSQL connection, AI providers, auth",
+      "config_schema": "config/config.example.json",
+      "env_schema": ".env.example"
+    },
+    "WASM": {
+      "type": "runtime",
+      "description": "SvelteKit app with PostgreSQL adapter + MCP Bridge v2.0",
+      "entrypoint": "src/hooks.server.ts",
+      "runtime": "node:20",
+      "port": 3000,
+      "database": {
+        "type": "postgresql",
+        "extensions": ["pgvector"],
+        "adapter": "src/lib/server/database.ts"
+      }
+    },
+    "META_IDX": {
+      "type": "metadata",
+      "components": [
+        {
+          "name": "ruvocal-ui",
+          "type": "service",
+          "description": "SvelteKit Chat UI with PostgreSQL backend, OIDC auth, autopilot mode, and vector search",
+          "dockerfile": "Dockerfile",
+          "port": 3000,
+          "env_vars": [
+            "DATABASE_URL",
+            "PUBLIC_APP_NAME",
+            "PUBLIC_ORIGIN",
+            "OPENID_PROVIDER_URL",
+            "OPENID_CLIENT_ID",
+            "OPENID_CLIENT_SECRET",
+            "OPENAI_BASE_URL",
+            "OPENAI_API_KEY",
+            "MCP_SERVERS",
+            "EMBEDDING_MODEL",
+            "EMBEDDING_DIMENSIONS"
+          ]
+        },
+        {
+          "name": "mcp-bridge",
+          "type": "service",
+          "description": "Per-group MCP JSON-RPC server + OpenAI-compatible chat proxy with autopilot mode",
+          "dockerfile": "mcp-bridge/Dockerfile",
+          "port": 3001,
+          "env_vars": [
+            "OPENAI_API_KEY",
+            "GOOGLE_API_KEY",
+            "OPENROUTER_API_KEY",
+            "ANTHROPIC_API_KEY",
+            "MCP_GROUP_INTELLIGENCE",
+            "MCP_GROUP_AGENTS",
+            "MCP_GROUP_MEMORY",
+            "MCP_GROUP_DEVTOOLS"
+          ]
+        },
+        {
+          "name": "ruvector-postgres",
+          "type": "datastore",
+          "description": "PostgreSQL 17 + pgvector 2.0.1 — unified storage for conversations, users, embeddings, and knowledge",
+          "image": "pgvector/pgvector:pg17",
+          "port": 5432
+        }
+      ]
+    },
+    "DATABASE": {
+      "type": "schema",
+      "description": "PostgreSQL schema replacing MongoDB collections",
+      "migration": "db/migrations/001_init.sql",
+      "tables": {
+        "conversations": "Chat sessions with vector embedding for semantic search",
+        "messages": "Normalized messages (extracted from MongoDB's nested array)",
+        "users": "User accounts (OIDC-backed)",
+        "sessions": "Auth sessions with TTL",
+        "settings": "User preferences and tool config",
+        "assistants": "Custom AI assistants/personas",
+        "assistant_stats": "Usage statistics for assistants",
+        "conversation_stats": "Aggregated conversation analytics",
+        "shared_conversations": "Public share links",
+        "aborted_generations": "TTL-based abort tracking",
+        "reports": "Abuse reports",
+        "message_events": "User feedback (votes, copies, shares)",
+        "semaphores": "Rate limiting with TTL",
+        "token_caches": "Short-lived token validation cache",
+        "config": "Runtime configuration key-value store",
+        "migration_results": "Schema migration tracking"
+      },
+      "extensions": ["pgvector", "uuid-ossp"],
+      "indexes": {
+        "hnsw": ["conversations.embedding", "messages.embedding"],
+        "btree": ["conversations.user_id", "messages.conversation_id", "sessions.session_id"]
+      }
+    },
+    "TOOL_GROUPS": {
+      "type": "mcp-groups",
+      "description": "Inherited from chat-ui-mcp — per-group MCP endpoints",
+      "groups": {
+        "core": { "enabled_by_default": true, "endpoint": "/mcp/core" },
+        "intelligence": { "enabled_by_default": true, "endpoint": "/mcp/intelligence" },
+        "agents": { "enabled_by_default": true, "endpoint": "/mcp/agents" },
+        "memory": { "enabled_by_default": true, "endpoint": "/mcp/memory" },
+        "devtools": { "enabled_by_default": true, "endpoint": "/mcp/devtools" }
+      }
+    },
+    "AUTOPILOT": {
+      "type": "feature",
+      "description": "ADR-037 autopilot mode — server-side auto-continue with parallel task UI",
+      "adr": "docs/adr/ADR-037-AUTOPILOT-CHAT-MODE.md",
+      "components": {
+        "backend": "mcp-bridge/index.js (handleAutopilot)",
+        "frontend": "src/lib/components/autopilot/",
+        "worker": "src/lib/workers/autopilot.worker.ts"
+      },
+      "header": "x-autopilot: true",
+      "detail_endpoint": "/autopilot/detail/:token"
+    },
+    "OVERLAY": {
+      "type": "customization",
+      "description": "Brand-specific overlays",
+      "assets": [
+        "static/chatui/omni-welcome.gif",
+        "static/chatui/icon-144x144.png"
+      ]
+    },
+    "CRYPTO": {
+      "type": "security",
+      "description": "Security configuration",
+      "auth_protocol": "openid-connect",
+      "no_embedded_secrets": true,
+      "env_only_keys": [
+        "OPENAI_API_KEY",
+        "GOOGLE_API_KEY",
+        "OPENROUTER_API_KEY",
+        "ANTHROPIC_API_KEY",
+        "OPENID_CLIENT_SECRET",
+        "DATABASE_URL"
+      ]
+    }
+  },
+  "deployment": {
+    "platforms": ["google-cloud-run", "docker-compose", "kubernetes"],
+    "infrastructure": {
+      "ruvocal_ui": {
+        "memory": "2Gi",
+        "cpu": 2,
+        "min_instances": 1,
+        "max_instances": 10,
+        "timeout": 300
+      },
+      "mcp_bridge": {
+        "memory": "512Mi",
+        "cpu": 1,
+        "min_instances": 0,
+        "max_instances": 5,
+        "timeout": 300
+      },
+      "ruvector_postgres": {
+        "memory": "4Gi",
+        "cpu": 2,
+        "storage": "50Gi"
+      }
+    }
+  },
+  "capabilities": {
+    "mcp_protocol": "2024-11-05",
+    "mcp_tool_groups": true,
+    "per_group_mcp_endpoints": true,
+    "chat_completions_proxy": true,
+    "autopilot_mode": true,
+    "vector_search_conversations": true,
+    "postgresql_backend": true,
+    "no_mongodb_dependency": true,
+    "upstream_error_normalization": true,
+    "goap_search_pipeline": true,
+    "multi_provider_routing": ["openai", "gemini", "openrouter"],
+    "oidc_auth": true,
+    "svelte5_source": true,
+    "ruvector_integration": true,
+    "ruflo_integration": true,
+    "embedding_model": "all-MiniLM-L6-v2",
+    "embedding_dimensions": 384
+  }
+}

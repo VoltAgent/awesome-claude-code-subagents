@@ -1,0 +1,182 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_FLOW_V3_ENABLED": "true",
+    "CLAUDE_FLOW_HOOKS_ENABLED": "true"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node "$CLAUDE_PROJECT_DIR/.claude/helpers/hook-handler.cjs" pre-bash",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node "$CLAUDE_PROJECT_DIR/.claude/helpers/hook-handler.cjs" post-edit",
+            "timeout": 10000
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node "$CLAUDE_PROJECT_DIR/.claude/helpers/hook-handler.cjs" route",
+            "timeout": 10000
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node "$CLAUDE_PROJECT_DIR/.claude/helpers/hook-handler.cjs" session-restore",
+            "timeout": 15000,
+            "continueOnError": true
+          },
+          {
+            "type": "command",
+            "command": "node "$CLAUDE_PROJECT_DIR/.claude/helpers/auto-memory-hook.mjs" import",
+            "timeout": 8000,
+            "continueOnError": true
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node "$CLAUDE_PROJECT_DIR/.claude/helpers/hook-handler.cjs" session-end",
+            "timeout": 10000,
+            "continueOnError": true
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node "$CLAUDE_PROJECT_DIR/.claude/helpers/hook-handler.cjs" status",
+            "timeout": 3000,
+            "continueOnError": true
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node "$CLAUDE_PROJECT_DIR/.claude/helpers/auto-memory-hook.mjs" sync",
+            "timeout": 10000,
+            "continueOnError": true
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node "$CLAUDE_PROJECT_DIR/.claude/helpers/statusline.cjs"",
+    "refreshMs": 5000,
+    "enabled": true
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npx @claude-flow*)",
+      "Bash(npx @claude-flow/cli@latest*)",
+      "Bash(node .claude/*)",
+      "mcp__claude-flow__:*"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ]
+  },
+  "attribution": {
+    "commit": "Co-Authored-By: ruflo-bot <ruflo-bot@users.noreply.github.com>",
+    "pr": "Generated with [claude-flow](https://github.com/ruvnet/claude-flow)"
+  },
+  "claudeFlow": {
+    "version": "3.1.0",
+    "enabled": true,
+    "modelPreferences": {
+      "default": "claude-opus-4-6",
+      "routing": "claude-haiku-4-5-20251001"
+    },
+    "agentTeams": {
+      "enabled": true,
+      "teammateMode": "auto",
+      "taskListEnabled": true,
+      "mailboxEnabled": true,
+      "coordination": {
+        "autoAssignOnIdle": true,
+        "trainPatternsOnComplete": true,
+        "notifyLeadOnComplete": true,
+        "sharedMemoryNamespace": "agent-teams"
+      }
+    },
+    "swarm": {
+      "topology": "hierarchical-mesh",
+      "maxAgents": 15
+    },
+    "memory": {
+      "backend": "hybrid",
+      "enableHNSW": true,
+      "learningBridge": {
+        "enabled": true,
+        "sonaMode": "balanced",
+        "confidenceDecayRate": 0.005,
+        "accessBoostAmount": 0.03,
+        "consolidationThreshold": 10
+      },
+      "memoryGraph": {
+        "enabled": true,
+        "pageRankDamping": 0.85,
+        "communityAlgorithm": "label-propagation"
+      },
+      "agentScopes": {
+        "enabled": true,
+        "scopes": ["project", "local", "user"]
+      }
+    },
+    "neural": {
+      "enabled": true
+    },
+    "security": {
+      "autoScan": true,
+      "scanOnEdit": true,
+      "cveCheck": true
+    },
+    "daemon": {
+      "autoStart": true,
+      "workers": ["map", "audit", "optimize", "consolidate", "testgaps", "ultralearn"]
+    },
+    "learning": {
+      "enabled": true,
+      "autoTrain": true,
+      "patterns": ["coordination", "optimization", "prediction"]
+    }
+  }
+}

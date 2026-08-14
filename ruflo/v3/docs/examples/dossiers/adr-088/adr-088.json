@@ -1,0 +1,45 @@
+{
+  "seed": "ADR-088",
+  "seedType": "adr",
+  "depth": 2,
+  "truncated": false,
+  "generatedAt": "2026-05-03T00:00:00Z",
+  "nodes": [
+    { "id": "ADR-088", "type": "adr", "attrs": { "title": "LongMemEval Benchmark for AgentDB Memory System", "status": "Accepted", "date": "2026-04-08" }, "sources": ["Read"] },
+    { "id": "LongMemEval", "type": "benchmark", "attrs": { "venue": "ICLR 2025", "questions": 500, "questionTypes": 6 }, "sources": ["Read:adr-088"] },
+    { "id": "MemPalace", "type": "external-system", "attrs": { "rawScore": 0.966, "hybridScore": 1.0 }, "sources": ["Read:adr-088"] },
+    { "id": "AgentDB", "type": "system", "attrs": { "role": "ruflo-memory-backend" }, "sources": ["Read:adr-088", "Glob:codebase"] },
+    { "id": "harness.ts", "type": "file", "attrs": { "path": "v3/@claude-flow/memory/benchmarks/longmemeval/harness.ts" }, "sources": ["Glob"] },
+    { "id": "agentdb-adapter.ts", "type": "file", "attrs": { "path": "v3/@claude-flow/memory/benchmarks/longmemeval/adapters/agentdb-adapter.ts" }, "sources": ["Glob"] },
+    { "id": "BM25+RRF", "type": "technique", "attrs": { "currentScore": "C@1=0.268, MRR=0.3269" }, "sources": ["git-log:b6ca2dd5d"] },
+    { "id": "MiniLM", "type": "model", "attrs": { "role": "dense-embeddings" }, "sources": ["git-log:afc75cc71"] },
+    { "id": "ADR-076", "type": "adr", "attrs": { "title": "Memory Bridge" }, "sources": ["Read:adr-088:relates-to"] },
+    { "id": "ADR-077", "type": "adr", "attrs": { "title": "DiskANN" }, "sources": ["Read:adr-088:relates-to"] },
+    { "id": "ADR-075", "type": "adr", "attrs": { "title": "Learning Pipeline" }, "sources": ["Read:adr-088:relates-to"] },
+    { "id": "ADR-089", "type": "adr", "attrs": { "title": "Retrieval Improvements" }, "sources": ["git-log:7331fdd5a"] },
+    { "id": "OMEGA", "type": "external-system", "attrs": { "score": 0.954 }, "sources": ["Read:adr-088"] },
+    { "id": "Supermemory", "type": "external-system", "attrs": { "score": 0.93, "model": "gpt-4o" }, "sources": ["Read:adr-088"] }
+  ],
+  "edges": [
+    { "from": "ADR-088", "to": "LongMemEval", "kind": "benchmarks", "source": "Read:adr-088", "confidence": "high" },
+    { "from": "ADR-088", "to": "AgentDB", "kind": "targets", "source": "Read:adr-088", "confidence": "high" },
+    { "from": "ADR-088", "to": "MemPalace", "kind": "prompted-by", "source": "Read:adr-088", "confidence": "high" },
+    { "from": "ADR-088", "to": "ADR-076", "kind": "relates-to", "source": "Read:adr-088", "confidence": "high" },
+    { "from": "ADR-088", "to": "ADR-077", "kind": "relates-to", "source": "Read:adr-088", "confidence": "high" },
+    { "from": "ADR-088", "to": "ADR-075", "kind": "relates-to", "source": "Read:adr-088", "confidence": "high" },
+    { "from": "ADR-088", "to": "ADR-089", "kind": "followed-by", "source": "git-log:7331fdd5a", "confidence": "medium" },
+    { "from": "AgentDB", "to": "harness.ts", "kind": "implemented-in", "source": "Glob", "confidence": "high" },
+    { "from": "harness.ts", "to": "agentdb-adapter.ts", "kind": "delegates-to", "source": "Glob", "confidence": "medium" },
+    { "from": "ADR-088", "to": "BM25+RRF", "kind": "adopts", "source": "git-log:6bbbdbe2a", "confidence": "high" },
+    { "from": "ADR-088", "to": "MiniLM", "kind": "uses", "source": "git-log:afc75cc71", "confidence": "high" },
+    { "from": "LongMemEval", "to": "OMEGA", "kind": "compared-against", "source": "Read:adr-088", "confidence": "high" },
+    { "from": "LongMemEval", "to": "Supermemory", "kind": "compared-against", "source": "Read:adr-088", "confidence": "high" },
+    { "from": "LongMemEval", "to": "MemPalace", "kind": "compared-against", "source": "Read:adr-088", "confidence": "high" }
+  ],
+  "stats": {
+    "nodesByType": { "adr": 5, "benchmark": 1, "system": 1, "external-system": 3, "file": 2, "technique": 1, "model": 1 },
+    "edgesByKind": { "benchmarks": 1, "targets": 1, "prompted-by": 1, "relates-to": 3, "followed-by": 1, "implemented-in": 1, "delegates-to": 1, "adopts": 1, "uses": 1, "compared-against": 3 },
+    "sourcesUsed": ["Read", "Glob", "Grep", "git-log"],
+    "tokensSpent": 1100
+  }
+}

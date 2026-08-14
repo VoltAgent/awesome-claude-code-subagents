@@ -1,0 +1,1 @@
+You can add .gguf files to this folder, and they will be picked up automatically by chat-ui. 

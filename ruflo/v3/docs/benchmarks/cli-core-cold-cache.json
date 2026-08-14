@@ -1,0 +1,37 @@
+{
+  "benchmark": "cli-core-vs-cli-cold-cache",
+  "issue": "#1748 #3 (30s MCP-startup timeout race)",
+  "adr": "ADR-100",
+  "runAt": "2026-05-05T13:00:00Z",
+  "host": "darwin / macOS / npm 10+",
+  "method": "rm -rf ~/.npm/_npx; time npx -y <pkg>@alpha --version  (4 runs total — cold + warm for each package)",
+  "results": {
+    "@claude-flow/cli-core@3.7.0-alpha.0": {
+      "packed_size_bytes": 22300,
+      "unpacked_size_bytes": 89900,
+      "files": 22,
+      "cold_cache_ms": 671,
+      "warm_cache_ms": 361,
+      "cold_warm_ratio": 1.86
+    },
+    "@claude-flow/cli@3.6.30": {
+      "packed_size_bytes": 1800000,
+      "unpacked_size_bytes": 9600000,
+      "files": 999,
+      "cold_cache_ms": 25496,
+      "warm_cache_ms": 623,
+      "cold_warm_ratio": 40.9
+    }
+  },
+  "improvement": {
+    "cold_cache_speedup": "38× (25.5s → 0.67s)",
+    "fits_under_30s_mcp_startup_timeout": "yes — 38× headroom vs cli's 25.5s which races the timeout",
+    "size_reduction_packed": "80× (1.8 MB → 22.3 KB)",
+    "size_reduction_files": "45× (999 → 22 files)"
+  },
+  "caveats": [
+    "cli-core@alpha.0 is foundation-only (types, output, MCP-tool types, validate-input). Does not yet expose memory/hooks command surface.",
+    "ADR-100 §Discovery documents that memory/hooks tools have deep ML deps requiring backend abstraction (alpha.1) and tool-definition/handler split (alpha.2) before parity is reached.",
+    "@claude-flow/cli's 25.5s cold-cache is under the 30s timeout on this connection but barely — slow networks would race and silently fail (the original #1748 #3 symptom)."
+  ]
+}

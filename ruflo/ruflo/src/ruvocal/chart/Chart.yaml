@@ -1,0 +1,5 @@
+apiVersion: v2
+name: chat-ui
+version: 0.0.1-latest
+type: application
+icon: https://huggingface.co/front/assets/huggingface_logo-noborder.svg

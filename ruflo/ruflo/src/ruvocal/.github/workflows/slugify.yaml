@@ -1,0 +1,72 @@
+name: Generate Branch Slug
+
+on:
+  workflow_call:
+    inputs:
+      value:
+        description: "Value to slugify"
+        required: true
+        type: string
+    outputs:
+      slug:
+        description: "Slugified value"
+        value: ${{ jobs.generate-slug.outputs.slug }}
+
+jobs:
+  generate-slug:
+    runs-on: ubuntu-latest
+    outputs:
+      slug: ${{ steps.slugify.outputs.slug }}
+
+    steps:
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.21"
+
+      - name: Generate slug
+        id: slugify
+        run: |
+          # Create working directory
+          mkdir -p $HOME/slugify
+          cd $HOME/slugify
+
+          # Create Go script
+          cat > main.go << 'EOF'
+          package main
+
+          import (
+              "fmt"
+              "os"
+              "github.com/gosimple/slug"
+          )
+
+          func main() {
+              if len(os.Args) < 2 {
+                  fmt.Println("Usage: slugify <text>")
+                  os.Exit(1)
+              }
+
+              text := os.Args[1]
+              slugged := slug.Make(text)
+              fmt.Println(slugged)
+          }
+          EOF
+
+          # Initialize module and install dependency
+          go mod init slugify
+          go mod tidy
+          go get github.com/gosimple/slug
+
+          # Build
+          go build -o slugify main.go
+
+          # Generate slug
+          VALUE="${{ inputs.value }}"
+          echo "Input value: $VALUE"
+
+          SLUG=$(./slugify "$VALUE")
+          echo "Generated slug: $SLUG"
+
+          # Export
+          echo "slug=$SLUG" >> $GITHUB_OUTPUT

@@ -1,0 +1,15 @@
+# Secrets — never commit
+.env
+config/config.json
+
+# Generated files
+chat-ui/dotenv-local.txt
+chat-ui/cloudbuild.yaml
+mcp-bridge/cloudbuild.yaml
+node_modules/
+mcp-bridge/node_modules/
+mcp-bridge/package-lock.json
+
+# Build artifacts
+*.rvf
+dist/

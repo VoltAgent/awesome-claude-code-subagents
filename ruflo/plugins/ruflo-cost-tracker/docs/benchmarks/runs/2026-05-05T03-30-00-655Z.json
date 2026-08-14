@@ -1,0 +1,781 @@
+{
+  "summary": {
+    "runAt": "2026-05-05T03:30:00.655Z",
+    "corpusVersion": 2,
+    "corpusSize": 16,
+    "tier1Cases": 12,
+    "adversarialCases": 4,
+    "winRate": 1,
+    "winRatePct": "100.0%",
+    "overallCorrect": 0.75,
+    "escalationRate": 1,
+    "escalationRatePct": "100.0%",
+    "successCount": 12,
+    "avgLatencyMs": 0.5,
+    "p50LatencyMs": 0,
+    "p99LatencyMs": 5,
+    "maxLatencyMs": 5,
+    "avgWallMs": 0.5625,
+    "avgConfidence": 0.5469051748514175,
+    "minConfidence": 0,
+    "confidenceThreshold": 0.5,
+    "aboveThresholdCount": 12,
+    "structuralCostUsd": 0,
+    "llmBaseline": {
+      "model": "models/gemini-2.0-flash",
+      "baseUrl": "https://generativelanguage.googleapis.com/v1beta/openai/",
+      "total": 16,
+      "passed": 15,
+      "winRate": 0.9375,
+      "avgLatencyMs": 762.125,
+      "totalTokensIn": 1972,
+      "totalTokensOut": 603,
+      "avgTokensIn": 123.25,
+      "avgTokensOut": 37.6875,
+      "totalCostUsd": 0.00043840000000000003,
+      "avgCostUsdPerEdit": 0.000027400000000000002,
+      "pricing": {
+        "input_per_1M": 0.1,
+        "output_per_1M": 0.4
+      }
+    },
+    "speedupVsLlm": 1524.25,
+    "costDeltaUsdPerEdit": 0.000027400000000000002,
+    "anthropic": {
+      "claude-sonnet-4-6": {
+        "model": "claude-sonnet-4-6",
+        "total": 16,
+        "passed": 15,
+        "winRate": 0.9375,
+        "avgLatencyMs": 1158.0625,
+        "totalTokensIn": 1986,
+        "totalTokensOut": 650,
+        "avgTokensIn": 124.125,
+        "avgTokensOut": 40.625,
+        "totalCostUsd": 0.015708000000000003,
+        "avgCostUsdPerEdit": 0.0009817500000000002,
+        "pricing": {
+          "input": 3,
+          "output": 15
+        },
+        "speedupVsBooster": 2316.125,
+        "costSavedPerEditUsd": 0.0009817500000000002
+      },
+      "claude-opus-4-7": {
+        "model": "claude-opus-4-7",
+        "total": 16,
+        "passed": 15,
+        "winRate": 0.9375,
+        "avgLatencyMs": 1517.9375,
+        "totalTokensIn": 2757,
+        "totalTokensOut": 739,
+        "avgTokensIn": 172.3125,
+        "avgTokensOut": 46.1875,
+        "totalCostUsd": 0.09678,
+        "avgCostUsdPerEdit": 0.00604875,
+        "pricing": {
+          "input": 15,
+          "output": 75
+        },
+        "speedupVsBooster": 3035.875,
+        "costSavedPerEditUsd": 0.00604875
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "var-to-const-1",
+      "intent": "var-to-const",
+      "expectedTier1": true,
+      "success": true,
+      "correct": true,
+      "escalatedCorrectly": false,
+      "lowConfidence": false,
+      "latencyMs": 5,
+      "wallMs": 6,
+      "confidence": 0.6465277671813965,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 6,
+      "tokensOut": 7
+    },
+    {
+      "id": "var-to-const-2",
+      "intent": "var-to-const",
+      "expectedTier1": true,
+      "success": true,
+      "correct": true,
+      "escalatedCorrectly": false,
+      "lowConfidence": false,
+      "latencyMs": 1,
+      "wallMs": 1,
+      "confidence": 0.8513461351394653,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 13,
+      "tokensOut": 13
+    },
+    {
+      "id": "add-types-1",
+      "intent": "add-types",
+      "expectedTier1": true,
+      "success": true,
+      "correct": true,
+      "escalatedCorrectly": false,
+      "lowConfidence": false,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.6412500143051147,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 9,
+      "tokensOut": 15
+    },
+    {
+      "id": "add-types-2",
+      "intent": "add-types",
+      "expectedTier1": true,
+      "success": true,
+      "correct": true,
+      "escalatedCorrectly": false,
+      "lowConfidence": false,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.6055588126182556,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 13,
+      "tokensOut": 23
+    },
+    {
+      "id": "remove-console-1",
+      "intent": "remove-console",
+      "expectedTier1": true,
+      "success": true,
+      "correct": true,
+      "escalatedCorrectly": false,
+      "lowConfidence": false,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.6954487562179565,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 12,
+      "tokensOut": 7
+    },
+    {
+      "id": "remove-console-2",
+      "intent": "remove-console",
+      "expectedTier1": true,
+      "success": true,
+      "correct": true,
+      "escalatedCorrectly": false,
+      "lowConfidence": false,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.5508301258087158,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 17,
+      "tokensOut": 7
+    },
+    {
+      "id": "add-error-handling-1",
+      "intent": "add-error-handling",
+      "expectedTier1": true,
+      "success": true,
+      "correct": true,
+      "escalatedCorrectly": false,
+      "lowConfidence": false,
+      "latencyMs": 1,
+      "wallMs": 1,
+      "confidence": 0.8500000238418579,
+      "strategy": "exact_replace",
+      "tokensIn": 10,
+      "tokensOut": 19
+    },
+    {
+      "id": "add-error-handling-2",
+      "intent": "add-error-handling",
+      "expectedTier1": true,
+      "success": true,
+      "correct": true,
+      "escalatedCorrectly": false,
+      "lowConfidence": false,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.8500000238418579,
+      "strategy": "exact_replace",
+      "tokensIn": 11,
+      "tokensOut": 20
+    },
+    {
+      "id": "async-await-1",
+      "intent": "async-await",
+      "expectedTier1": true,
+      "success": true,
+      "correct": true,
+      "escalatedCorrectly": false,
+      "lowConfidence": false,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.8500000238418579,
+      "strategy": "exact_replace",
+      "tokensIn": 14,
+      "tokensOut": 17
+    },
+    {
+      "id": "async-await-2",
+      "intent": "async-await",
+      "expectedTier1": true,
+      "success": true,
+      "correct": true,
+      "escalatedCorrectly": false,
+      "lowConfidence": false,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.8500000238418579,
+      "strategy": "exact_replace",
+      "tokensIn": 12,
+      "tokensOut": 17
+    },
+    {
+      "id": "add-logging-1",
+      "intent": "add-logging",
+      "expectedTier1": true,
+      "success": true,
+      "correct": true,
+      "escalatedCorrectly": false,
+      "lowConfidence": false,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.7152736783027649,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 8,
+      "tokensOut": 13
+    },
+    {
+      "id": "add-logging-2",
+      "intent": "add-logging",
+      "expectedTier1": true,
+      "success": true,
+      "correct": true,
+      "escalatedCorrectly": false,
+      "lowConfidence": false,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.6442474126815796,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 8,
+      "tokensOut": 14
+    },
+    {
+      "id": "adversarial-extract-function",
+      "intent": "extract-function",
+      "expectedTier1": false,
+      "success": false,
+      "correct": false,
+      "escalatedCorrectly": true,
+      "lowConfidence": true,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0,
+      "strategy": "failed",
+      "tokensIn": 0,
+      "tokensOut": 0,
+      "actualPrefix": "function process(items) { let total = 0; for (const i of items) { if (i.active) { total += i.value; } } if (total > 100)",
+      "expectedPrefix": "function sum_active(items) { let total = 0; for (const i of items) { if (i.active) { total += i.value; } } return total;"
+    },
+    {
+      "id": "adversarial-type-narrowing",
+      "intent": "type-narrowing",
+      "expectedTier1": false,
+      "success": false,
+      "correct": false,
+      "escalatedCorrectly": true,
+      "lowConfidence": true,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0,
+      "strategy": "failed",
+      "tokensIn": 0,
+      "tokensOut": 0,
+      "actualPrefix": "type Result = { kind: 'ok'; value: number } | { kind: 'err'; message: string }; function describe(r: Result) { return r.",
+      "expectedPrefix": "type Result = { kind: 'ok'; value: number } | { kind: 'err'; message: string }; function describe(r: Result) { if (r.kin"
+    },
+    {
+      "id": "adversarial-cross-method-rename",
+      "intent": "rename-symbol",
+      "expectedTier1": false,
+      "success": false,
+      "correct": false,
+      "escalatedCorrectly": true,
+      "lowConfidence": true,
+      "latencyMs": 1,
+      "wallMs": 1,
+      "confidence": 0,
+      "strategy": "failed",
+      "tokensIn": 0,
+      "tokensOut": 0,
+      "actualPrefix": "class Cache { get(k: string) { return this.store[k]; } set(k: string, v: any) { this.store[k] = v; } private store: Reco",
+      "expectedPrefix": "class Cache { lookup(k: string) { return this.store[k]; } set(k: string, v: any) { this.store[k] = v; } private store: R"
+    },
+    {
+      "id": "adversarial-recursive-rewrite",
+      "intent": "recursive-to-iterative",
+      "expectedTier1": false,
+      "success": false,
+      "correct": false,
+      "escalatedCorrectly": true,
+      "lowConfidence": true,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0,
+      "strategy": "failed",
+      "tokensIn": 0,
+      "tokensOut": 0,
+      "actualPrefix": "function factorial(n) { return n <= 1 ? 1 : n * factorial(n - 1); }",
+      "expectedPrefix": "function factorial(n) { let result = 1; for (let i = 2; i <= n; i++) { result *= i; } return result; }"
+    }
+  ],
+  "llmResults": [
+    {
+      "id": "var-to-const-1",
+      "intent": "var-to-const",
+      "correct": true,
+      "wallMs": 661,
+      "tokensIn": 105,
+      "tokensOut": 17,
+      "costUsd": 0.0000173
+    },
+    {
+      "id": "var-to-const-2",
+      "intent": "var-to-const",
+      "correct": true,
+      "wallMs": 479,
+      "tokensIn": 113,
+      "tokensOut": 21,
+      "costUsd": 0.000019699999999999998
+    },
+    {
+      "id": "add-types-1",
+      "intent": "add-types",
+      "correct": true,
+      "wallMs": 660,
+      "tokensIn": 114,
+      "tokensOut": 24,
+      "costUsd": 0.000021000000000000002
+    },
+    {
+      "id": "add-types-2",
+      "intent": "add-types",
+      "correct": true,
+      "wallMs": 571,
+      "tokensIn": 130,
+      "tokensOut": 35,
+      "costUsd": 0.000027
+    },
+    {
+      "id": "remove-console-1",
+      "intent": "remove-console",
+      "correct": true,
+      "wallMs": 464,
+      "tokensIn": 103,
+      "tokensOut": 13,
+      "costUsd": 0.0000155
+    },
+    {
+      "id": "remove-console-2",
+      "intent": "remove-console",
+      "correct": true,
+      "wallMs": 525,
+      "tokensIn": 107,
+      "tokensOut": 12,
+      "costUsd": 0.0000155
+    },
+    {
+      "id": "add-error-handling-1",
+      "intent": "add-error-handling",
+      "correct": true,
+      "wallMs": 604,
+      "tokensIn": 113,
+      "tokensOut": 27,
+      "costUsd": 0.000022100000000000002
+    },
+    {
+      "id": "add-error-handling-2",
+      "intent": "add-error-handling",
+      "correct": true,
+      "wallMs": 1551,
+      "tokensIn": 121,
+      "tokensOut": 31,
+      "costUsd": 0.000024500000000000003
+    },
+    {
+      "id": "async-await-1",
+      "intent": "async-await",
+      "correct": true,
+      "wallMs": 592,
+      "tokensIn": 118,
+      "tokensOut": 24,
+      "costUsd": 0.000021400000000000002
+    },
+    {
+      "id": "async-await-2",
+      "intent": "async-await",
+      "correct": true,
+      "wallMs": 738,
+      "tokensIn": 110,
+      "tokensOut": 22,
+      "costUsd": 0.0000198
+    },
+    {
+      "id": "add-logging-1",
+      "intent": "add-logging",
+      "correct": true,
+      "wallMs": 577,
+      "tokensIn": 103,
+      "tokensOut": 19,
+      "costUsd": 0.0000179
+    },
+    {
+      "id": "add-logging-2",
+      "intent": "add-logging",
+      "correct": true,
+      "wallMs": 768,
+      "tokensIn": 115,
+      "tokensOut": 26,
+      "costUsd": 0.000021900000000000004
+    },
+    {
+      "id": "adversarial-extract-function",
+      "intent": "extract-function",
+      "correct": false,
+      "wallMs": 1125,
+      "tokensIn": 184,
+      "tokensOut": 141,
+      "costUsd": 0.0000748,
+      "actualPrefix": "function sum_active(items) { let total = 0; for (const i of items) { if (i.active) { total += i.value; } } return total;",
+      "expectedPrefix": "function sum_active(items) { let total = 0; for (const i of items) { if (i.active) { total += i.value; } } return total;"
+    },
+    {
+      "id": "adversarial-type-narrowing",
+      "intent": "type-narrowing",
+      "correct": true,
+      "wallMs": 1306,
+      "tokensIn": 150,
+      "tokensOut": 58,
+      "costUsd": 0.0000382
+    },
+    {
+      "id": "adversarial-cross-method-rename",
+      "intent": "rename-symbol",
+      "correct": true,
+      "wallMs": 836,
+      "tokensIn": 171,
+      "tokensOut": 81,
+      "costUsd": 0.000049500000000000004
+    },
+    {
+      "id": "adversarial-recursive-rewrite",
+      "intent": "recursive-to-iterative",
+      "correct": true,
+      "wallMs": 737,
+      "tokensIn": 115,
+      "tokensOut": 52,
+      "costUsd": 0.0000323
+    }
+  ],
+  "anthropicResults": {
+    "claude-sonnet-4-6": [
+      {
+        "id": "var-to-const-1",
+        "intent": "var-to-const",
+        "correct": true,
+        "wallMs": 949,
+        "tokensIn": 105,
+        "tokensOut": 20,
+        "costUsd": 0.0006150000000000001
+      },
+      {
+        "id": "var-to-const-2",
+        "intent": "var-to-const",
+        "correct": true,
+        "wallMs": 795,
+        "tokensIn": 113,
+        "tokensOut": 24,
+        "costUsd": 0.000699
+      },
+      {
+        "id": "add-types-1",
+        "intent": "add-types",
+        "correct": true,
+        "wallMs": 800,
+        "tokensIn": 114,
+        "tokensOut": 27,
+        "costUsd": 0.000747
+      },
+      {
+        "id": "add-types-2",
+        "intent": "add-types",
+        "correct": true,
+        "wallMs": 1745,
+        "tokensIn": 130,
+        "tokensOut": 38,
+        "costUsd": 0.0009599999999999999
+      },
+      {
+        "id": "remove-console-1",
+        "intent": "remove-console",
+        "correct": true,
+        "wallMs": 1164,
+        "tokensIn": 103,
+        "tokensOut": 16,
+        "costUsd": 0.000549
+      },
+      {
+        "id": "remove-console-2",
+        "intent": "remove-console",
+        "correct": true,
+        "wallMs": 1042,
+        "tokensIn": 107,
+        "tokensOut": 15,
+        "costUsd": 0.000546
+      },
+      {
+        "id": "add-error-handling-1",
+        "intent": "add-error-handling",
+        "correct": true,
+        "wallMs": 845,
+        "tokensIn": 113,
+        "tokensOut": 30,
+        "costUsd": 0.000789
+      },
+      {
+        "id": "add-error-handling-2",
+        "intent": "add-error-handling",
+        "correct": true,
+        "wallMs": 1072,
+        "tokensIn": 121,
+        "tokensOut": 34,
+        "costUsd": 0.0008730000000000001
+      },
+      {
+        "id": "async-await-1",
+        "intent": "async-await",
+        "correct": true,
+        "wallMs": 949,
+        "tokensIn": 118,
+        "tokensOut": 27,
+        "costUsd": 0.0007589999999999999
+      },
+      {
+        "id": "async-await-2",
+        "intent": "async-await",
+        "correct": true,
+        "wallMs": 1329,
+        "tokensIn": 110,
+        "tokensOut": 25,
+        "costUsd": 0.000705
+      },
+      {
+        "id": "add-logging-1",
+        "intent": "add-logging",
+        "correct": true,
+        "wallMs": 887,
+        "tokensIn": 103,
+        "tokensOut": 22,
+        "costUsd": 0.000639
+      },
+      {
+        "id": "add-logging-2",
+        "intent": "add-logging",
+        "correct": true,
+        "wallMs": 952,
+        "tokensIn": 115,
+        "tokensOut": 29,
+        "costUsd": 0.0007800000000000001
+      },
+      {
+        "id": "adversarial-extract-function",
+        "intent": "extract-function",
+        "correct": true,
+        "wallMs": 1978,
+        "tokensIn": 184,
+        "tokensOut": 142,
+        "costUsd": 0.002682
+      },
+      {
+        "id": "adversarial-type-narrowing",
+        "intent": "type-narrowing",
+        "correct": false,
+        "wallMs": 1379,
+        "tokensIn": 156,
+        "tokensOut": 61,
+        "costUsd": 0.0013830000000000001,
+        "actualPrefix": "type Result = { kind: 'ok'; value: number } | { kind: 'err'; message: string }; function describe(r: Result) { return r.",
+        "expectedPrefix": "type Result = { kind: 'ok'; value: number } | { kind: 'err'; message: string }; function describe(r: Result) { if (r.kin"
+      },
+      {
+        "id": "adversarial-cross-method-rename",
+        "intent": "rename-symbol",
+        "correct": true,
+        "wallMs": 1425,
+        "tokensIn": 173,
+        "tokensOut": 85,
+        "costUsd": 0.001794
+      },
+      {
+        "id": "adversarial-recursive-rewrite",
+        "intent": "recursive-to-iterative",
+        "correct": true,
+        "wallMs": 1218,
+        "tokensIn": 121,
+        "tokensOut": 55,
+        "costUsd": 0.001188
+      }
+    ],
+    "claude-opus-4-7": [
+      {
+        "id": "var-to-const-1",
+        "intent": "var-to-const",
+        "correct": true,
+        "wallMs": 1265,
+        "tokensIn": 147,
+        "tokensOut": 24,
+        "costUsd": 0.004005
+      },
+      {
+        "id": "var-to-const-2",
+        "intent": "var-to-const",
+        "correct": true,
+        "wallMs": 1064,
+        "tokensIn": 159,
+        "tokensOut": 30,
+        "costUsd": 0.004635
+      },
+      {
+        "id": "add-types-1",
+        "intent": "add-types",
+        "correct": true,
+        "wallMs": 1655,
+        "tokensIn": 156,
+        "tokensOut": 31,
+        "costUsd": 0.004665000000000001
+      },
+      {
+        "id": "add-types-2",
+        "intent": "add-types",
+        "correct": true,
+        "wallMs": 2102,
+        "tokensIn": 176,
+        "tokensOut": 44,
+        "costUsd": 0.00594
+      },
+      {
+        "id": "remove-console-1",
+        "intent": "remove-console",
+        "correct": true,
+        "wallMs": 1418,
+        "tokensIn": 150,
+        "tokensOut": 22,
+        "costUsd": 0.0039
+      },
+      {
+        "id": "remove-console-2",
+        "intent": "remove-console",
+        "correct": true,
+        "wallMs": 1236,
+        "tokensIn": 153,
+        "tokensOut": 20,
+        "costUsd": 0.003795
+      },
+      {
+        "id": "add-error-handling-1",
+        "intent": "add-error-handling",
+        "correct": true,
+        "wallMs": 1215,
+        "tokensIn": 162,
+        "tokensOut": 38,
+        "costUsd": 0.00528
+      },
+      {
+        "id": "add-error-handling-2",
+        "intent": "add-error-handling",
+        "correct": true,
+        "wallMs": 1266,
+        "tokensIn": 168,
+        "tokensOut": 41,
+        "costUsd": 0.005594999999999999
+      },
+      {
+        "id": "async-await-1",
+        "intent": "async-await",
+        "correct": true,
+        "wallMs": 1354,
+        "tokensIn": 165,
+        "tokensOut": 34,
+        "costUsd": 0.005025
+      },
+      {
+        "id": "async-await-2",
+        "intent": "async-await",
+        "correct": true,
+        "wallMs": 1066,
+        "tokensIn": 155,
+        "tokensOut": 31,
+        "costUsd": 0.00465
+      },
+      {
+        "id": "add-logging-1",
+        "intent": "add-logging",
+        "correct": true,
+        "wallMs": 1358,
+        "tokensIn": 148,
+        "tokensOut": 28,
+        "costUsd": 0.004319999999999999
+      },
+      {
+        "id": "add-logging-2",
+        "intent": "add-logging",
+        "correct": true,
+        "wallMs": 1483,
+        "tokensIn": 157,
+        "tokensOut": 33,
+        "costUsd": 0.00483
+      },
+      {
+        "id": "adversarial-extract-function",
+        "intent": "extract-function",
+        "correct": true,
+        "wallMs": 2575,
+        "tokensIn": 239,
+        "tokensOut": 121,
+        "costUsd": 0.01266
+      },
+      {
+        "id": "adversarial-type-narrowing",
+        "intent": "type-narrowing",
+        "correct": false,
+        "wallMs": 1844,
+        "tokensIn": 216,
+        "tokensOut": 76,
+        "costUsd": 0.00894,
+        "actualPrefix": "type Result = { kind: 'ok'; value: number } | { kind: 'err'; message: string }; function describe(r: Result) { return r.",
+        "expectedPrefix": "type Result = { kind: 'ok'; value: number } | { kind: 'err'; message: string }; function describe(r: Result) { if (r.kin"
+      },
+      {
+        "id": "adversarial-cross-method-rename",
+        "intent": "rename-symbol",
+        "correct": true,
+        "wallMs": 1997,
+        "tokensIn": 232,
+        "tokensOut": 102,
+        "costUsd": 0.01113
+      },
+      {
+        "id": "adversarial-recursive-rewrite",
+        "intent": "recursive-to-iterative",
+        "correct": true,
+        "wallMs": 1389,
+        "tokensIn": 174,
+        "tokensOut": 64,
+        "costUsd": 0.00741
+      }
+    ]
+  }
+}

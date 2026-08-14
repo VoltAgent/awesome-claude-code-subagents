@@ -1,0 +1,229 @@
+{
+  "$schema": "https://code.claude.com/schemas/hooks.json",
+  "description": "Claude Flow hooks configuration — uses stdin-jq-xargs pattern to prevent shell-injection when tool inputs contain quotes / redirects / special chars (#1747). Hook subcommands run via scripts/ruflo-hook.sh (#1921).",
+  "_security_note": "All commands read the hook payload from stdin (Claude Code passes a JSON object), extract fields with jq, and pass them to the CLI as a single argv element via xargs -0. This bypasses shell re-parsing entirely. DO NOT inline $TOOL_INPUT_* / $PROMPT / $TOOL_NAME directly in a quoted command string — interpolation is not shell-safe (creates empty files at CWD when input contains '>' redirects).",
+  "_resilience_note": "#1921 — hook subcommands invoke scripts/ruflo-hook.sh (resilient shim): prefers a locally-installed `ruflo`/`claude-flow` binary, falls back to `npx --prefer-offline`, always exits 0. The trailing `|| true` on each pipeline guards the case where $CLAUDE_PLUGIN_ROOT is unset. DO NOT revert to a bare `npx <pkg>@alpha hooks …` per fire.",
+  "_platform": "posix",
+  "_platform_note": "#2132 — This hooks.json uses /bin/bash, POSIX pipelines (jq, xargs, tr), and .sh scripts. It is intentionally POSIX-only (Mac/Linux) today and known-broken on native Windows (#2721 shape). The previous claim here that `ruflo init` overrides these entries with node-based equivalents on Windows was never actually implemented and is incorrect — Claude Code merges plugin-declared hooks additively with any init-generated settings.json, it does not replace them. This package (separate from plugins/ruflo-core, which got the #2721 fix) still needs its own Windows-compatible rewrite; see _legacy_unaudited_shim below.",
+  "_legacy_unaudited_shim": true,
+  "_legacy_unaudited_shim_note": "#2721 fixed plugins/ruflo-core and plugins/ruflo-cost-tracker (marketplace-listed in .claude-plugin/marketplace.json) by rewiring hooks.json to a `node -e` bootstrap around scripts/ruflo-hook.cjs. This older, separately-published \"claude-flow\" plugin package (not in the ruflo marketplace list) has its own, larger jq/xargs-based hook set and its own scripts/ruflo-hook.cjs that hooks.json never references — same underlying bug shape, NOT fixed as part of #2721. Needs its own audited pass before this flag can be removed.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^(Write|Edit|MultiEdit)$",
+        "description": "Pre-edit hook for file modifications",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r '.tool_input.file_path // .tool_input.path // empty' | tr '\\n' '\\0' | xargs -0 -I {} \"${CLAUDE_PLUGIN_ROOT}/scripts/ruflo-hook.sh\" pre-edit --file '{}' || true",
+            "timeout": 5000,
+            "continueOnError": true
+          }
+        ]
+      },
+      {
+        "matcher": "^Bash$",
+        "description": "Pre-command hook for bash execution",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r '.tool_input.command // empty' | tr '\\n' '\\0' | xargs -0 -I {} \"${CLAUDE_PLUGIN_ROOT}/scripts/ruflo-hook.sh\" pre-command --command '{}' || true",
+            "timeout": 3000,
+            "continueOnError": true
+          }
+        ]
+      },
+      {
+        "matcher": "^Task$",
+        "description": "Pre-task hook for agent spawning",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r '.tool_input.description // empty | .[:200]' | tr '\\n' '\\0' | xargs -0 -I {} \"${CLAUDE_PLUGIN_ROOT}/scripts/ruflo-hook.sh\" pre-task --description '{}' || true",
+            "timeout": 5000,
+            "continueOnError": true
+          }
+        ]
+      },
+      {
+        "matcher": "^(Grep|Glob|Read)$",
+        "description": "Pre-search hook for caching",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r '.tool_input.pattern // .tool_input.query // empty' | tr '\\n' '\\0' | xargs -0 -I {} \"${CLAUDE_PLUGIN_ROOT}/scripts/ruflo-hook.sh\" pre-search --query '{}' || true",
+            "timeout": 2000,
+            "continueOnError": true
+          }
+        ]
+      },
+      {
+        "matcher": "^mcp__claude-flow__.*$",
+        "description": "Pre-MCP hook for swarm coordination",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r '.tool_name // empty' | tr '\\n' '\\0' | xargs -0 -I {} \"${CLAUDE_PLUGIN_ROOT}/scripts/ruflo-hook.sh\" mcp-pre --tool '{}' || true",
+            "timeout": 3000,
+            "continueOnError": true
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "^(Write|Edit|MultiEdit)$",
+        "description": "Post-edit hook for formatting and learning",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r '.tool_input.file_path // .tool_input.path // empty' | tr '\\n' '\\0' | xargs -0 -I {} \"${CLAUDE_PLUGIN_ROOT}/scripts/ruflo-hook.sh\" post-edit --file '{}' --train-patterns || true",
+            "timeout": 5000,
+            "continueOnError": true
+          }
+        ]
+      },
+      {
+        "matcher": "^Bash$",
+        "description": "Post-command hook for metrics",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r '.tool_input.command // empty' | tr '\\n' '\\0' | xargs -0 -I {} \"${CLAUDE_PLUGIN_ROOT}/scripts/ruflo-hook.sh\" post-command --command '{}' --track-metrics true --store-results true || true",
+            "timeout": 3000,
+            "continueOnError": true
+          }
+        ]
+      },
+      {
+        "matcher": "^Task$",
+        "description": "Post-task hook for performance analysis",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r '.tool_response.agent_id // .tool_response.task_id // empty' | tr '\\n' '\\0' | xargs -0 -I {} \"${CLAUDE_PLUGIN_ROOT}/scripts/ruflo-hook.sh\" post-task --task-id '{}' --analyze-performance || true",
+            "timeout": 5000,
+            "continueOnError": true
+          }
+        ]
+      },
+      {
+        "matcher": "^(Grep|Glob|Read)$",
+        "description": "Post-search hook for caching results",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r '.tool_input.pattern // .tool_input.query // empty' | tr '\\n' '\\0' | xargs -0 -I {} \"${CLAUDE_PLUGIN_ROOT}/scripts/ruflo-hook.sh\" post-search --query '{}' --cache-results || true",
+            "timeout": 2000,
+            "continueOnError": true
+          }
+        ]
+      },
+      {
+        "matcher": "^mcp__claude-flow__.*$",
+        "description": "Post-MCP hook for coordination state",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r '.tool_name // empty' | tr '\\n' '\\0' | xargs -0 -I {} \"${CLAUDE_PLUGIN_ROOT}/scripts/ruflo-hook.sh\" mcp-post --tool '{}' || true",
+            "timeout": 3000,
+            "continueOnError": true
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "description": "Route tasks to optimal agents",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r '.prompt // empty' | tr '\\n' '\\0' | xargs -0 -I {} \"${CLAUDE_PLUGIN_ROOT}/scripts/ruflo-hook.sh\" route --task '{}' --include-explanation || true",
+            "timeout": 5000,
+            "continueOnError": true
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "description": "Initialize session and restore context",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r '.session_id // empty' | tr '\\n' '\\0' | xargs -0 -I {} \"${CLAUDE_PLUGIN_ROOT}/scripts/ruflo-hook.sh\" session-start --session-id '{}' --load-context || true",
+            "timeout": 10000,
+            "continueOnError": true
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "description": "Evaluate if task is complete",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Evaluate if the current task has been completed successfully. Consider: 1) Were all requested changes made? 2) Did tests pass? 3) Is there follow-up work needed? Respond with {\"decision\": \"stop\"} if complete, or {\"decision\": \"continue\", \"reason\": \"...\"} if more work is needed."
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "description": "Evaluate if subagent task is complete",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Evaluate if the subagent has completed its assigned task. Check if the work output meets the requirements. Respond with {\"decision\": \"stop\"} if complete, or {\"decision\": \"continue\", \"reason\": \"...\"} if more work is needed."
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "description": "Handle notifications with swarm status",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r '.message // empty' | tr '\\n' '\\0' | xargs -0 -I {} \"${CLAUDE_PLUGIN_ROOT}/scripts/ruflo-hook.sh\" notify --message '{}' --swarm-status || true",
+            "timeout": 3000,
+            "continueOnError": true
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "^mcp__claude-flow__.*$",
+        "description": "Auto-allow claude-flow MCP tools",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"decision\": \"allow\", \"reason\": \"claude-flow MCP tool auto-approved\"}'",
+            "timeout": 1000
+          }
+        ]
+      }
+    ]
+  },
+  "v3HookMapping": {
+    "_comment": "Maps V3 internal hook events to official Claude Code hooks",
+    "PreToolUse": "PreToolUse",
+    "PostToolUse": "PostToolUse",
+    "PreEdit": "PreToolUse (matcher: Edit|Write)",
+    "PostEdit": "PostToolUse (matcher: Edit|Write)",
+    "PreCommand": "PreToolUse (matcher: Bash)",
+    "PostCommand": "PostToolUse (matcher: Bash)",
+    "PreTask": "UserPromptSubmit",
+    "PostTask": "PostToolUse (matcher: Task)",
+    "SessionStart": "SessionStart",
+    "SessionEnd": "Stop",
+    "AgentSpawn": "PostToolUse (matcher: Task)",
+    "AgentTerminate": "SubagentStop",
+    "PreRoute": "UserPromptSubmit",
+    "PostRoute": "PostToolUse",
+    "PatternLearned": "PostToolUse (internal)",
+    "PatternConsolidated": "Stop (internal)"
+  }
+}

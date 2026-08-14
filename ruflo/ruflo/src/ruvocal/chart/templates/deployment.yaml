@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels: {{ include "labels.standard" . | nindent 4 }}
+  name: {{ include "name" . }}
+  namespace: {{ .Release.Namespace }}
+  {{- if .Values.infisical.enabled }}
+  annotations:
+    secrets.infisical.com/auto-reload: "true"
+  {{- end }}
+spec:
+  progressDeadlineSeconds: 600
+  {{- if not $.Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicas }}
+  {{- end }}
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels: {{ include "labels.standard" . | nindent 6 }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels: {{ include "labels.standard" . | nindent 8 }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
+        {{- if $.Values.envVars.NODE_LOG_STRUCTURED_DATA }}
+        co.elastic.logs/json.expand_keys: "true"
+        {{- end }}
+    spec:
+      {{- if .Values.serviceAccount.enabled }}
+      serviceAccountName: "{{ .Values.serviceAccount.name | default (include "name" .) }}"
+      {{- end }}
+      containers:
+        - name: chat-ui
+          image: "{{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          readinessProbe:
+            failureThreshold: 30
+            periodSeconds: 10
+            httpGet:
+              path: {{ $.Values.envVars.APP_BASE | default "" }}/healthcheck
+              port: {{ $.Values.envVars.APP_PORT | default 3000 | int }}
+          livenessProbe:
+            failureThreshold: 30
+            periodSeconds: 10
+            httpGet:
+              path: {{ $.Values.envVars.APP_BASE | default "" }}/healthcheck
+              port: {{ $.Values.envVars.APP_PORT | default 3000 | int }}
+          ports:
+            - containerPort: {{ $.Values.envVars.APP_PORT | default 3000 | int }}
+              name: http
+              protocol: TCP
+            {{- if eq "true" $.Values.envVars.METRICS_ENABLED }}
+            - containerPort: {{ $.Values.envVars.METRICS_PORT | default 5565 | int }}
+              name: metrics
+              protocol: TCP
+            {{- end }}
+          resources: {{ toYaml .Values.resources | nindent 12 }}
+          {{- with $.Values.extraEnv }}
+          env:
+            {{- toYaml . | nindent 14 }}
+          {{- end }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "name" . }}
+          {{- if $.Values.infisical.enabled }}
+            - secretRef:
+                name: {{ include "name" $ }}-secs
+          {{- end }}
+          {{- with $.Values.extraEnvFrom }}
+            {{- toYaml . | nindent 14 }}
+          {{- end }}
+      nodeSelector: {{ toYaml .Values.nodeSelector | nindent 8 }}
+      tolerations: {{ toYaml .Values.tolerations | nindent 8 }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "name" . }}

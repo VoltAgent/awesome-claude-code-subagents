@@ -1,0 +1,77 @@
+{
+  "name": "@claude-flow/plugin-code-intelligence",
+  "version": "3.0.0-alpha.3",
+  "description": "Advanced code intelligence plugin for Claude Flow V3 - semantic search, architecture analysis, refactoring impact, module splitting, and pattern learning",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./tools": {
+      "import": "./dist/mcp-tools.js",
+      "types": "./dist/mcp-tools.d.ts"
+    },
+    "./types": {
+      "import": "./dist/types.js",
+      "types": "./dist/types.d.ts"
+    },
+    "./bridges": {
+      "import": "./dist/bridges/index.js",
+      "types": "./dist/bridges/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "plugin.yaml"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run clean && npm run build && npm run typecheck"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "v3alpha"
+  },
+  "keywords": [
+    "claude-flow",
+    "plugin",
+    "code-intelligence",
+    "semantic-search",
+    "architecture",
+    "refactoring",
+    "code-analysis",
+    "mcp"
+  ],
+  "author": "Claude Flow Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/claude-flow.git",
+    "directory": "v3/plugins/code-intelligence"
+  },
+  "dependencies": {
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "peerDependencies": {
+    "@claude-flow/plugins": "^3.0.0-alpha.1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

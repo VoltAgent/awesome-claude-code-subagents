@@ -1,0 +1,30 @@
+- local: index
+  title: Chat UI
+- title: Installation
+  sections:
+    - local: installation/local
+      title: Local
+    - local: installation/docker
+      title: Docker
+    - local: installation/helm
+      title: Helm
+- title: Configuration
+  sections:
+    - local: configuration/overview
+      title: Overview
+    - local: configuration/theming
+      title: Theming
+    - local: configuration/open-id
+      title: OpenID
+    - local: configuration/mcp-tools
+      title: MCP Tools
+    - local: configuration/llm-router
+      title: LLM Router
+    - local: configuration/metrics
+      title: Metrics
+    - local: configuration/common-issues
+      title: Common Issues
+- title: Developing
+  sections:
+    - local: developing/architecture
+      title: Architecture

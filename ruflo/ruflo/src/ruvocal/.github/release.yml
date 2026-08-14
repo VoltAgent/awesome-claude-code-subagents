@@ -1,0 +1,16 @@
+changelog:
+  exclude:
+    labels:
+      - huggingchat
+      - CI/CD
+      - documentation
+  categories:
+    - title: Features
+      labels:
+        - enhancement
+    - title: Bugfixes
+      labels:
+        - bug
+    - title: Other changes
+      labels:
+        - "*"

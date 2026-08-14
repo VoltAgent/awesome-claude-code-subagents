@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels: {{ include "labels.standard" . | nindent 4 }}
+  name: {{ include "name" . }}
+  namespace: {{ .Release.Namespace }}
+data:
+  {{- range $key, $value := $.Values.envVars }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}

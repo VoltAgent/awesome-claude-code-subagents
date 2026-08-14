@@ -1,0 +1,17 @@
+{{- if eq "true" $.Values.envVars.METRICS_ENABLED }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels: {{ include "labels.standard" . | nindent 4 }}
+  name: {{ include "name" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels: {{ include "labels.standard" . | nindent 6 }}
+  endpoints:
+    - port: metrics
+      path: /metrics
+      interval: 10s
+      scheme: http	
+      scrapeTimeout: 10s
+{{- end }}

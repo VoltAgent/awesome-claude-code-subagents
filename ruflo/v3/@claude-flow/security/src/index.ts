@@ -1,0 +1,381 @@
+/**
+ * V3 Security Module
+ *
+ * Comprehensive security module addressing all identified vulnerabilities:
+ * - CVE-2: Weak Password Hashing (password-hasher.ts)
+ * - CVE-3: Hardcoded Default Credentials (credential-generator.ts)
+ * - HIGH-1: Command Injection (safe-executor.ts)
+ * - HIGH-2: Path Traversal (path-validator.ts)
+ *
+ * Also provides:
+ * - Input validation with Zod schemas
+ * - Secure token generation
+ *
+ * @module v3/security
+ */
+
+// Password Hashing (CVE-2 Fix)
+export {
+  PasswordHasher,
+  PasswordHashError,
+  createPasswordHasher,
+  type PasswordHasherConfig,
+  type PasswordValidationResult,
+} from './password-hasher.js';
+
+// Credential Generation (CVE-3 Fix)
+export {
+  CredentialGenerator,
+  CredentialGeneratorError,
+  createCredentialGenerator,
+  generateCredentials,
+  type CredentialConfig,
+  type GeneratedCredentials,
+  type ApiKeyCredential,
+} from './credential-generator.js';
+
+// Safe Command Execution (HIGH-1 Fix)
+export {
+  SafeExecutor,
+  SafeExecutorError,
+  createDevelopmentExecutor,
+  createReadOnlyExecutor,
+  type ExecutorConfig,
+  type ExecutionResult,
+  type StreamingExecutor,
+} from './safe-executor.js';
+
+// Path Validation (HIGH-2 Fix)
+export {
+  PathValidator,
+  PathValidatorError,
+  createProjectPathValidator,
+  createFullProjectPathValidator,
+  type PathValidatorConfig,
+  type PathValidationResult,
+} from './path-validator.js';
+
+// Input Validation
+export {
+  InputValidator,
+  sanitizeString,
+  sanitizeHtml,
+  sanitizePath,
+  // Base schemas
+  SafeStringSchema,
+  IdentifierSchema,
+  FilenameSchema,
+  EmailSchema,
+  PasswordSchema,
+  UUIDSchema,
+  HttpsUrlSchema,
+  UrlSchema,
+  SemverSchema,
+  PortSchema,
+  IPv4Schema,
+  IPSchema,
+  // Auth schemas
+  UserRoleSchema,
+  PermissionSchema,
+  LoginRequestSchema,
+  CreateUserSchema,
+  CreateApiKeySchema,
+  // Agent & Task schemas
+  AgentTypeSchema,
+  SpawnAgentSchema,
+  TaskInputSchema,
+  // Command & Path schemas
+  CommandArgumentSchema,
+  PathSchema,
+  // Config schemas
+  SecurityConfigSchema,
+  ExecutorConfigSchema,
+  // Utilities
+  PATTERNS,
+  LIMITS,
+  z,
+} from './input-validator.js';
+
+// Token Generation
+export {
+  TokenGenerator,
+  TokenGeneratorError,
+  createTokenGenerator,
+  getDefaultGenerator,
+  quickGenerate,
+  type TokenConfig,
+  type Token,
+  type SignedToken,
+  type VerificationCode,
+} from './token-generator.js';
+
+// Tool-Output Guardrail (ADR-131 — closes OWASP ASI01 gap; ruvnet/ruflo#2149)
+export {
+  ToolOutputGuardrail,
+  createToolOutputGuardrail,
+  isToolOutputSafe,
+  type GuardrailConfig,
+  type GuardrailResult,
+  type GuardrailAction,
+  type InjectionFinding,
+  type InjectionSeverity,
+  type InjectionCategory,
+} from './tool-output-guardrail.js';
+
+// Agent Authorization Propagation (ADR-144 P1 — ruvnet/ruflo#2248)
+// Action-layer: SendMessage envelope + per-action scope check + MCP server
+// identity probe. Wraps the comms layer in P2; wraps the dispatcher in P3.
+export {
+  AgentAuthorizationPropagator,
+  AuthorizationPropagationError,
+  makeLegacyPermissiveScope,
+  type AuthScope,
+  type SendMessageEnvelope,
+  type ToolCallDecision,
+} from './authorization/propagator.js';
+
+// MCP Caller-Identity Binding (ADR-377 Phase 3 — ruvnet/ruflo#2516, #2873)
+// Per-invocation Ed25519-signed capability tokens. Off by default
+// (CLAUDE_FLOW_MCP_CALLER_AUTH) pending a follow-on ADR for key
+// distribution; see mcp-caller-identity.ts's file header for scope notes.
+export {
+  generateCallerIdentityKey,
+  loadCallerIdentityKey,
+  issueInvocationToken,
+  verifyInvocationToken,
+  isMcpCallerAuthEnabled,
+  type CallerIdentityKey,
+  type InvocationToken,
+  type TokenVerificationResult,
+} from './mcp-caller-identity.js';
+
+// Agentic Policy Engine (ADR-324)
+// Deterministic policy evaluation, monotonic capability envelopes, approvals,
+// budgets, and tamper-evident decision receipts. Legacy mode preserves the
+// behavior of pre-ADR-324 installations until enforcement is explicitly enabled.
+export * from './policy/index.js';
+
+// OAuth 2.0 + PKCE + OS Keychain (ADR-306)
+// A TypeScript port of meta-proxy's proven oauth/{client,pkce,browser,
+// callback_server}.rs — see src/oauth/client.ts for why this targets the
+// live auth.cognitum.one surface rather than ADR-308's unconfirmed spec.
+export {
+  CLIENT_ID as OAUTH_CLIENT_ID,
+  SCOPE as OAUTH_SCOPE,
+  OOB_REDIRECT_URI,
+  OAuthError,
+  authorizeUrl,
+  exchangeCode,
+  refreshToken,
+  exchangeManualCode,
+  type TokenResponse as OAuthTokenResponse,
+} from './oauth/client.js';
+export { generate as generatePkce, challengeFromVerifier, type PkceRequest } from './oauth/pkce.js';
+export { CallbackServer, CallbackTimeoutError, type CallbackResult } from './oauth/callback-server.js';
+export { openBrowser } from './oauth/browser.js';
+
+// OS Keychain Adapter (ADR-306)
+export {
+  createKeychainAdapter,
+  SessionOnlyKeychainAdapter,
+  type KeychainAdapter,
+} from './keychain-adapter.js';
+
+// Plugin Integrity Verifier (ADR-145 P1 — ruvnet/ruflo#2254)
+// Install-layer: Ed25519 signature verification + trust-anchor allowlist.
+// Stage-2 semantic-intent scan (SCH defence) lands in P2.
+export {
+  PluginIntegrityVerifier,
+  canonicalize,
+  hashManifest,
+  fingerprint,
+  findAnchor,
+  type PluginManifest,
+  type SignedPluginManifest,
+  type TrustAnchor,
+  type TrustAnchors,
+  type VerificationStatus,
+  type VerificationResult,
+  type VerifierConfig,
+} from './plugins/integrity-verifier.js';
+
+// MCP Tool Composition Inspector (ADR-320 — ruvnet/ruflo dream-cycle,
+// arXiv:2606.27027 "ShareLock"). SimHash-based cross-tool instruction
+// fragment detector — the v2 successor to the CLI-only v1 in
+// @claude-flow/cli/src/security/mcp-composition-inspector.ts (#2783),
+// whose own header deferred exactly this ("Future v2: SimHash + LSH").
+export {
+  inspectToolComposition,
+  evaluateToolComposition,
+  isCompositionBlockEnabled,
+  fnv1a64,
+  simhash64,
+  hammingDistance64,
+  type McpToolDescriptor,
+  type CompositionInspectorOptions,
+  type CompositionFinding,
+  type CompositionInspectionStats,
+  type CompositionInspectionResult,
+  type CompositionGuardResult,
+} from './mcp-composition-inspector.js';
+
+// ============================================================================
+// Convenience Factory Functions
+// ============================================================================
+
+import { PasswordHasher } from './password-hasher.js';
+import { CredentialGenerator } from './credential-generator.js';
+import { SafeExecutor } from './safe-executor.js';
+import { PathValidator } from './path-validator.js';
+import { TokenGenerator } from './token-generator.js';
+
+/**
+ * Security module configuration
+ */
+export interface SecurityModuleConfig {
+  /**
+   * Project root directory for path validation
+   */
+  projectRoot: string;
+
+  /**
+   * HMAC secret for token signing
+   */
+  hmacSecret: string;
+
+  /**
+   * Bcrypt rounds for password hashing
+   * Default: 12
+   */
+  bcryptRounds?: number;
+
+  /**
+   * Allowed commands for safe executor
+   * Default: ['git', 'npm', 'node']
+   */
+  allowedCommands?: string[];
+}
+
+/**
+ * Complete security module instance
+ */
+export interface SecurityModule {
+  passwordHasher: PasswordHasher;
+  credentialGenerator: CredentialGenerator;
+  safeExecutor: SafeExecutor;
+  pathValidator: PathValidator;
+  tokenGenerator: TokenGenerator;
+}
+
+/**
+ * Creates a complete security module with all components configured.
+ *
+ * @param config - Module configuration
+ * @returns Complete security module
+ *
+ * @example
+ * ```typescript
+ * const security = createSecurityModule({
+ *   projectRoot: '/workspaces/project',
+ *   hmacSecret: process.env.HMAC_SECRET!,
+ * });
+ *
+ * // Hash password
+ * const hash = await security.passwordHasher.hash('password');
+ *
+ * // Validate path
+ * const result = await security.pathValidator.validate('/workspaces/project/src/file.ts');
+ *
+ * // Execute command safely
+ * const output = await security.safeExecutor.execute('git', ['status']);
+ * ```
+ */
+export function createSecurityModule(config: SecurityModuleConfig): SecurityModule {
+  return {
+    passwordHasher: new PasswordHasher({
+      rounds: config.bcryptRounds ?? 12,
+    }),
+    credentialGenerator: new CredentialGenerator(),
+    safeExecutor: new SafeExecutor({
+      allowedCommands: config.allowedCommands ?? ['git', 'npm', 'node'],
+    }),
+    pathValidator: new PathValidator({
+      allowedPrefixes: [config.projectRoot],
+      allowHidden: true,
+    }),
+    tokenGenerator: new TokenGenerator({
+      hmacSecret: config.hmacSecret,
+    }),
+  };
+}
+
+// ============================================================================
+// Security Constants
+// ============================================================================
+
+/**
+ * Minimum recommended bcrypt rounds for production
+ */
+export const MIN_BCRYPT_ROUNDS = 12;
+
+/**
+ * Maximum recommended bcrypt rounds (performance consideration)
+ */
+export const MAX_BCRYPT_ROUNDS = 14;
+
+/**
+ * Minimum password length
+ */
+export const MIN_PASSWORD_LENGTH = 8;
+
+/**
+ * Maximum password length (bcrypt limitation)
+ */
+export const MAX_PASSWORD_LENGTH = 72;
+
+/**
+ * Default token expiration in seconds (1 hour)
+ */
+export const DEFAULT_TOKEN_EXPIRATION = 3600;
+
+/**
+ * Default session expiration in seconds (24 hours)
+ */
+export const DEFAULT_SESSION_EXPIRATION = 86400;
+
+// ============================================================================
+// Security Audit Helper
+// ============================================================================
+
+/**
+ * Checks security configuration for common issues.
+ *
+ * @param config - Configuration to audit
+ * @returns Array of security warnings
+ */
+export function auditSecurityConfig(config: Partial<SecurityModuleConfig>): string[] {
+  const warnings: string[] = [];
+
+  if (config.bcryptRounds && config.bcryptRounds < MIN_BCRYPT_ROUNDS) {
+    warnings.push(`bcryptRounds (${config.bcryptRounds}) below recommended minimum (${MIN_BCRYPT_ROUNDS})`);
+  }
+
+  if (config.hmacSecret && config.hmacSecret.length < 32) {
+    warnings.push('hmacSecret should be at least 32 characters');
+  }
+
+  if (!config.projectRoot) {
+    warnings.push('projectRoot not configured - path validation may be disabled');
+  }
+
+  if (config.allowedCommands && config.allowedCommands.length === 0) {
+    warnings.push('No commands allowed - executor will reject all commands');
+  }
+
+  return warnings;
+}
+
+/**
+ * Security module version
+ */
+export const SECURITY_MODULE_VERSION = '3.0.0-alpha.1';

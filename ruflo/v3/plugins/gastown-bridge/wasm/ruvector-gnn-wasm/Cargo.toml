@@ -1,0 +1,65 @@
+# RuVector GNN WASM Module
+#
+# Ultra-optimized WASM-accelerated graph operations:
+# - DAG construction and traversal (target: <0.1ms)
+# - Topological sorting (target: <0.3ms for 1000 nodes, 500x faster)
+# - Cycle detection (target: <0.1ms)
+# - Critical path analysis (target: <0.2ms)
+#
+# Optimizations:
+# - Bit-packed adjacency matrices for cache efficiency
+# - SIMD-friendly parallel edge processing
+# - Cache-optimized node ordering (Morton/Z-order)
+# - Arena allocation for zero-copy operations
+#
+# Build with: wasm-pack build --target web --release
+
+[package]
+name = "ruvector-gnn-wasm"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Ultra-optimized WASM graph operations for dependency resolution"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+serde-wasm-bindgen.workspace = true
+js-sys.workspace = true
+petgraph.workspace = true
+
+# Shared optimized utilities
+gastown-shared = { path = "../shared" }
+
+# Performance dependencies
+rustc-hash.workspace = true
+smallvec.workspace = true
+arrayvec.workspace = true
+bumpalo.workspace = true
+
+# Bit manipulation for packed adjacency
+bitvec = "1.0"
+
+[dependencies.web-sys]
+version = "0.3"
+features = ["console", "Performance"]
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3"
+
+[features]
+default = ["simd", "bit-packed"]
+console_error_panic_hook = ["dep:console_error_panic_hook"]
+simd = []           # Enable SIMD optimizations
+bit-packed = []     # Enable bit-packed adjacency matrices
+
+[dependencies.console_error_panic_hook]
+version = "0.1"
+optional = true
+
+# Note: Profile settings inherited from workspace

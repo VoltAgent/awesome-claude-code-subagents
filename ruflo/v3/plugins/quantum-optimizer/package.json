@@ -1,0 +1,92 @@
+{
+  "name": "@claude-flow/plugin-quantum-optimizer",
+  "version": "3.0.0-alpha.1",
+  "description": "Quantum-inspired optimization plugin providing simulated annealing, QAOA, Grover search, dependency resolution, and schedule optimization for combinatorial problems.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./tools": {
+      "import": "./dist/mcp-tools.js",
+      "types": "./dist/mcp-tools.d.ts"
+    },
+    "./bridges/exotic": {
+      "import": "./dist/bridges/exotic-bridge.js",
+      "types": "./dist/bridges/exotic-bridge.d.ts"
+    },
+    "./bridges/dag": {
+      "import": "./dist/bridges/dag-bridge.js",
+      "types": "./dist/bridges/dag-bridge.d.ts"
+    },
+    "./bridges": {
+      "import": "./dist/bridges/index.js",
+      "types": "./dist/bridges/index.d.ts"
+    },
+    "./types": {
+      "import": "./dist/types.js",
+      "types": "./dist/types.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "plugin.yaml",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src --ext .ts",
+    "prepublishOnly": "npm run clean && npm run build && npm run typecheck"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "v3alpha"
+  },
+  "keywords": [
+    "claude-flow",
+    "plugin",
+    "quantum",
+    "optimization",
+    "qaoa",
+    "grover",
+    "annealing",
+    "dependency-resolution",
+    "scheduling",
+    "mcp"
+  ],
+  "author": "rUv",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/claude-flow.git",
+    "directory": "v3/plugins/quantum-optimizer"
+  },
+  "bugs": {
+    "url": "https://github.com/ruvnet/claude-flow/issues"
+  },
+  "homepage": "https://github.com/ruvnet/claude-flow/tree/main/v3/plugins/quantum-optimizer#readme",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.0.0"
+  },
+  "optionalDependencies": {
+    "@ruvector/exotic-wasm": "^0.1.0",
+    "@ruvector/dag-wasm": "^0.1.0",
+    "@ruvector/sparse-inference-wasm": "^0.1.0"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "rules": {
+    "no-restricted-imports": ["error", {
+      "paths": [
+        {
+          "name": "child_process",
+          "message": "Use SafeExecutor from @claude-flow/security or execFileSync (no shell) instead. See ADR-078."
+        }
+      ]
+    }],
+    "no-restricted-modules": ["error", {
+      "paths": [
+        {
+          "name": "child_process",
+          "message": "Use SafeExecutor from @claude-flow/security or execFileSync (no shell) instead. See ADR-078."
+        }
+      ]
+    }]
+  },
+  "overrides": [
+    {
+      "files": [
+        "v3/@claude-flow/security/src/safe-executor.ts",
+        "src/commands/daemon.ts",
+        "src/mcp-server.ts"
+      ],
+      "rules": {
+        "no-restricted-imports": "off",
+        "no-restricted-modules": "off"
+      }
+    }
+  ]
+}

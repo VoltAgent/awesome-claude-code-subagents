@@ -1,0 +1,148 @@
+# ============================================================
+# Ruflo RVFA Appliance Builder
+# ADR-058: Self-Contained Ruflo RVF Appliance
+#
+# Builds the rootfs layers for an RVFA appliance.
+# Usage:
+#   docker build -f Dockerfile.appliance -t ruflo-appliance:build .
+#   docker run --rm ruflo-appliance:build ruflo --version
+#   docker run --rm ruflo-appliance:build ruflo doctor
+#   docker run --rm -i ruflo-appliance:build ruflo mcp start
+# ============================================================
+
+# ------------------------------------------------------------------
+# Stage 1: Build — install Ruflo with dependencies
+# ------------------------------------------------------------------
+FROM node:22-alpine AS build
+
+# Install dumb-init for proper PID 1 signal handling
+# and git for any npm packages that need it during install
+RUN apk add --no-cache dumb-init git
+
+WORKDIR /build
+
+# Install Ruflo globally.
+# --omit=optional: skip heavy native deps (onnxruntime, better-sqlite3, etc.)
+# --ignore-scripts: skip postinstall scripts that may compile native addons
+# These keep the image under the 100MB target.
+RUN npm install -g ruflo@latest \
+      --omit=optional \
+      --ignore-scripts \
+      --no-audit \
+      --no-fund \
+    && npm cache clean --force
+
+# Strip files that are never needed at runtime.
+# This typically saves 5-15MB depending on dependency tree.
+RUN GLOBAL_NM="$(npm config get prefix)/lib/node_modules" \
+    && find "$GLOBAL_NM" -type f \( \
+         -name "*.md" -o \
+         -name "*.map" -o \
+         -name "*.d.ts" -o \
+         -name "*.ts" ! -name "*.d.ts" -o \
+         -name "CHANGELOG*" -o \
+         -name "LICENSE*" -o \
+         -name ".npmignore" -o \
+         -name ".eslintrc*" -o \
+         -name ".prettierrc*" -o \
+         -name "tsconfig.json" -o \
+         -name "jest.config*" -o \
+         -name "vitest.config*" \
+       \) -delete 2>/dev/null || true \
+    && find "$GLOBAL_NM" -type d \( \
+         -name ".github" -o \
+         -name "test" -o \
+         -name "tests" -o \
+         -name "__tests__" -o \
+         -name "docs" -o \
+         -name "examples" -o \
+         -name "benchmark" \
+       \) -exec rm -rf {} + 2>/dev/null || true
+
+# Prune known-heavy optional transitive dependencies.
+# The CLI has graceful fallbacks for all of these.
+RUN GLOBAL_NM="$(npm config get prefix)/lib/node_modules" \
+    && rm -rf \
+       "$GLOBAL_NM/ruflo/node_modules/agentic-flow" \
+       "$GLOBAL_NM/ruflo/node_modules/@opentelemetry" \
+       "$GLOBAL_NM/ruflo/node_modules/onnxruntime-node" \
+       "$GLOBAL_NM/ruflo/node_modules/onnxruntime-web" \
+       "$GLOBAL_NM/ruflo/node_modules/onnx-proto" \
+       "$GLOBAL_NM/ruflo/node_modules/@anthropic-ai" \
+       "$GLOBAL_NM/ruflo/node_modules/@xenova" \
+       "$GLOBAL_NM/ruflo/node_modules/agentdb" \
+       "$GLOBAL_NM/ruflo/node_modules/@ruvector" \
+       "$GLOBAL_NM/ruflo/node_modules/ruvector" \
+       "$GLOBAL_NM/ruflo/node_modules/tiktoken" \
+       "$GLOBAL_NM/ruflo/node_modules/@img" \
+       "$GLOBAL_NM/ruflo/node_modules/better-sqlite3" \
+       "$GLOBAL_NM/ruflo/node_modules/sharp" \
+       "$GLOBAL_NM/ruflo/node_modules/@google" \
+       "$GLOBAL_NM/ruflo/node_modules/@claude-flow/embeddings" \
+       "$GLOBAL_NM/ruflo/node_modules/@claude-flow/codex" \
+       "$GLOBAL_NM/ruflo/node_modules/@claude-flow/guidance" \
+       "$GLOBAL_NM/ruflo/node_modules/@claude-flow/neural" \
+       "$GLOBAL_NM/ruflo/node_modules/@grpc" \
+       "$GLOBAL_NM/ruflo/node_modules/gun" \
+    2>/dev/null || true
+
+# Stage the pruned install into /staged for a clean COPY
+RUN GLOBAL_PREFIX="$(npm config get prefix)" \
+    && mkdir -p /staged/lib /staged/bin \
+    && cp -a "$GLOBAL_PREFIX/lib/node_modules" /staged/lib/ \
+    && cp -a "$GLOBAL_PREFIX/bin/ruflo" /staged/bin/ 2>/dev/null || true \
+    && cp -a "$GLOBAL_PREFIX/bin/claude-flow" /staged/bin/ 2>/dev/null || true
+
+# ------------------------------------------------------------------
+# Stage 2: Production — minimal Alpine runtime
+# ------------------------------------------------------------------
+FROM node:22-alpine AS production
+
+# Runtime dependencies only:
+#   dumb-init  — proper signal forwarding for PID 1
+#   ca-certs   — TLS for cloud API calls
+#   bash       — shell scripts in hooks
+RUN apk add --no-cache \
+      dumb-init \
+      ca-certificates \
+      bash
+
+# Create non-root user for the appliance
+RUN addgroup -g 1001 -S ruflo \
+    && adduser -S -D -H -u 1001 -h /home/ruflo -s /bin/bash -G ruflo ruflo \
+    && mkdir -p /home/ruflo/.ruflo /home/ruflo/data \
+    && chown -R ruflo:ruflo /home/ruflo
+
+# Copy only the global node_modules and bin links from the build stage
+COPY --from=build /staged/lib/node_modules /usr/local/lib/node_modules
+COPY --from=build /staged/bin/ /usr/local/bin/
+COPY --from=build /usr/bin/dumb-init /usr/bin/dumb-init
+
+# Ensure bin symlinks resolve correctly
+RUN ln -sf /usr/local/lib/node_modules/ruflo/bin/ruflo.js /usr/local/bin/ruflo 2>/dev/null || true \
+    && chmod +x /usr/local/bin/ruflo 2>/dev/null || true
+
+# Production environment
+ENV NODE_ENV=production \
+    RUFLO_HOME=/home/ruflo/.ruflo \
+    CLAUDE_FLOW_MEMORY_PATH=/home/ruflo/data/memory \
+    CLAUDE_FLOW_LOG_LEVEL=info
+
+# Switch to non-root user
+USER ruflo
+WORKDIR /home/ruflo
+
+# Volumes for persistent data across container restarts
+VOLUME ["/home/ruflo/data"]
+
+# Health check via the doctor command
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
+    CMD ruflo doctor -c version || exit 1
+
+# Use dumb-init as PID 1 for proper signal handling
+ENTRYPOINT ["dumb-init", "--"]
+
+# Default: print help. Override with:
+#   docker run --rm ruflo-appliance:build ruflo mcp start
+#   docker run --rm ruflo-appliance:build ruflo doctor
+CMD ["ruflo", "--help"]

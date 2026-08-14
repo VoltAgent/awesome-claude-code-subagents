@@ -1,0 +1,24 @@
+{
+  "name": "ruflo-browser",
+  "description": "Session-as-skill browser automation: Playwright + RVF cognitive containers + ruvector trajectories + AgentDB selector memory + AIDefence PII/injection gates",
+  "version": "0.2.1",
+  "author": {
+    "name": "ruvnet",
+    "url": "https://github.com/ruvnet"
+  },
+  "homepage": "https://github.com/ruvnet/ruflo",
+  "license": "MIT",
+  "keywords": [
+    "ruflo",
+    "browser",
+    "playwright",
+    "testing",
+    "automation",
+    "scraping",
+    "rvf",
+    "replay",
+    "trajectory",
+    "agentdb",
+    "aidefence"
+  ]
+}

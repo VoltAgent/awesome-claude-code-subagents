@@ -1,0 +1,60 @@
+# Gas Town Bridge Plugin - Rust Workspace for WASM Modules
+#
+# This workspace contains WASM modules for accelerated computation:
+# - gastown-formula-wasm: TOML parsing, variable cooking, molecule generation (352x faster)
+# - ruvector-gnn-wasm: DAG operations, topological sort, cycle detection (150x faster)
+#
+# Build with: wasm-pack build --target web
+
+[workspace]
+members = [
+    "wasm/gastown-formula-wasm",
+    "wasm/ruvector-gnn-wasm"
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/ruvnet/claude-flow"
+
+[workspace.dependencies]
+wasm-bindgen = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde-wasm-bindgen = "0.6"
+toml = "0.8"
+js-sys = "0.3"
+petgraph = "0.6"
+
+[profile.release]
+# Ultra-optimization for smallest bundle size (<50KB per module)
+opt-level = "z"           # Optimize for size (smallest)
+lto = "fat"               # Full LTO for cross-crate optimization
+codegen-units = 1         # Single codegen unit for better optimization
+panic = "abort"           # No panic unwinding (smaller code)
+strip = "symbols"         # Strip all symbols
+debug = false             # No debug info
+incremental = false       # Disable incremental (better optimization)
+overflow-checks = false   # Disable overflow checks in release
+
+[profile.release.package."*"]
+opt-level = "z"
+strip = "symbols"
+
+# Special WASM profile with maximum size reduction
+[profile.release-wasm]
+inherits = "release"
+opt-level = "z"
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+strip = "symbols"
+
+# Dev profile - faster builds for development
+[profile.dev]
+opt-level = 0
+debug = true
+lto = false
+incremental = true

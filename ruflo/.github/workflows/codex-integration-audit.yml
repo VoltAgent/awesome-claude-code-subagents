@@ -1,0 +1,41 @@
+name: codex-integration-audit
+
+# Guards the Codex ↔ Ruflo integration invariants (issue #1909):
+# - the `codex` MCP backend uses the real `mcp-server` subcommand
+# - @claude-flow/codex VERSION const tracks its package.json
+# - the dual-mode orchestrator / agent defs drive real `codex exec`
+# - CLI refs are standardized to `ruflo`, `dual run` exposes `--worker`,
+#   generated SKILL.md frontmatter is complete, config.toml emits a
+#   working `ruflo` MCP server.
+# Pure-Node static checks — no install needed. Build + unit tests are
+# covered by the main CI workflow.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'v3/@claude-flow/codex/**'
+      - 'ruflo/src/mcp-bridge/**'
+      - 'ruflo/src/ruvocal/mcp-bridge/**'
+      - '.claude/agents/dual-mode/**'
+      - 'scripts/audit-codex-integration.mjs'
+      - '.github/workflows/codex-integration-audit.yml'
+  pull_request:
+    paths:
+      - 'v3/@claude-flow/codex/**'
+      - 'ruflo/src/mcp-bridge/**'
+      - 'ruflo/src/ruvocal/mcp-bridge/**'
+      - '.claude/agents/dual-mode/**'
+      - 'scripts/audit-codex-integration.mjs'
+      - '.github/workflows/codex-integration-audit.yml'
+
+jobs:
+  audit:
+    name: Codex integration audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/audit-codex-integration.mjs

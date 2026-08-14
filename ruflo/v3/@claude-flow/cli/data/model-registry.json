@@ -1,0 +1,470 @@
+{
+  "version": "1.0.0",
+  "name": "claude-flow-model-registry",
+  "description": "Pre-trained learning patterns for common development tasks",
+  "updatedAt": "2026-01-24T16:00:00.000Z",
+  "models": [
+    {
+      "id": "security-review-patterns",
+      "name": "Security Review Patterns",
+      "description": "Pre-trained patterns for security code review and vulnerability detection",
+      "version": "1.0.0",
+      "type": "learning-pattern",
+      "category": "security",
+      "cid": null,
+      "patterns": [
+        {
+          "id": "sec-001",
+          "trigger": "sql-query",
+          "action": "check-parameterized-queries",
+          "confidence": 0.95,
+          "usageCount": 2500,
+          "description": "Detect SQL injection vulnerabilities"
+        },
+        {
+          "id": "sec-002",
+          "trigger": "user-input",
+          "action": "validate-sanitize-input",
+          "confidence": 0.94,
+          "usageCount": 3200,
+          "description": "Input validation and sanitization"
+        },
+        {
+          "id": "sec-003",
+          "trigger": "file-path",
+          "action": "check-path-traversal",
+          "confidence": 0.96,
+          "usageCount": 1800,
+          "description": "Path traversal prevention"
+        },
+        {
+          "id": "sec-004",
+          "trigger": "authentication",
+          "action": "verify-secure-auth",
+          "confidence": 0.93,
+          "usageCount": 2100,
+          "description": "Authentication security patterns"
+        },
+        {
+          "id": "sec-005",
+          "trigger": "html-output",
+          "action": "check-xss-prevention",
+          "confidence": 0.94,
+          "usageCount": 2800,
+          "description": "XSS prevention patterns"
+        }
+      ],
+      "metadata": {
+        "trainedOn": "2026-01-15T00:00:00.000Z",
+        "accuracy": 0.94,
+        "totalUsage": 12400,
+        "sourceAgent": "security-architect"
+      }
+    },
+    {
+      "id": "code-review-patterns",
+      "name": "Code Review Patterns",
+      "description": "Pre-trained patterns for comprehensive code quality review",
+      "version": "1.0.0",
+      "type": "learning-pattern",
+      "category": "quality",
+      "cid": null,
+      "patterns": [
+        {
+          "id": "cr-001",
+          "trigger": "function-definition",
+          "action": "check-single-responsibility",
+          "confidence": 0.89,
+          "usageCount": 4500,
+          "description": "Single responsibility principle"
+        },
+        {
+          "id": "cr-002",
+          "trigger": "error-handling",
+          "action": "verify-error-propagation",
+          "confidence": 0.91,
+          "usageCount": 3800,
+          "description": "Error handling completeness"
+        },
+        {
+          "id": "cr-003",
+          "trigger": "async-code",
+          "action": "check-await-handling",
+          "confidence": 0.92,
+          "usageCount": 2900,
+          "description": "Async/await best practices"
+        },
+        {
+          "id": "cr-004",
+          "trigger": "type-definition",
+          "action": "verify-type-safety",
+          "confidence": 0.93,
+          "usageCount": 3100,
+          "description": "TypeScript type safety"
+        },
+        {
+          "id": "cr-005",
+          "trigger": "code-duplication",
+          "action": "suggest-abstraction",
+          "confidence": 0.87,
+          "usageCount": 2200,
+          "description": "DRY principle violations"
+        }
+      ],
+      "metadata": {
+        "trainedOn": "2026-01-18T00:00:00.000Z",
+        "accuracy": 0.90,
+        "totalUsage": 16500,
+        "sourceAgent": "reviewer"
+      }
+    },
+    {
+      "id": "performance-optimization-patterns",
+      "name": "Performance Optimization Patterns",
+      "description": "Pre-trained patterns for identifying and fixing performance issues",
+      "version": "1.0.0",
+      "type": "learning-pattern",
+      "category": "performance",
+      "cid": null,
+      "patterns": [
+        {
+          "id": "perf-001",
+          "trigger": "loop-operation",
+          "action": "analyze-complexity",
+          "confidence": 0.91,
+          "usageCount": 3200,
+          "description": "O(n²) loop detection"
+        },
+        {
+          "id": "perf-002",
+          "trigger": "database-query",
+          "action": "check-n-plus-one",
+          "confidence": 0.94,
+          "usageCount": 2800,
+          "description": "N+1 query problem detection"
+        },
+        {
+          "id": "perf-003",
+          "trigger": "memory-allocation",
+          "action": "detect-memory-leaks",
+          "confidence": 0.88,
+          "usageCount": 1900,
+          "description": "Memory leak patterns"
+        },
+        {
+          "id": "perf-004",
+          "trigger": "caching-opportunity",
+          "action": "suggest-memoization",
+          "confidence": 0.86,
+          "usageCount": 2100,
+          "description": "Caching and memoization"
+        },
+        {
+          "id": "perf-005",
+          "trigger": "bundle-size",
+          "action": "analyze-tree-shaking",
+          "confidence": 0.89,
+          "usageCount": 1500,
+          "description": "Bundle optimization"
+        }
+      ],
+      "metadata": {
+        "trainedOn": "2026-01-20T00:00:00.000Z",
+        "accuracy": 0.89,
+        "totalUsage": 11500,
+        "sourceAgent": "performance-engineer"
+      }
+    },
+    {
+      "id": "testing-patterns",
+      "name": "Testing Patterns",
+      "description": "Pre-trained patterns for comprehensive test coverage",
+      "version": "1.0.0",
+      "type": "learning-pattern",
+      "category": "testing",
+      "cid": null,
+      "patterns": [
+        {
+          "id": "test-001",
+          "trigger": "function-boundary",
+          "action": "test-edge-cases",
+          "confidence": 0.92,
+          "usageCount": 4100,
+          "description": "Edge case identification"
+        },
+        {
+          "id": "test-002",
+          "trigger": "async-operation",
+          "action": "test-error-scenarios",
+          "confidence": 0.90,
+          "usageCount": 3500,
+          "description": "Async error testing"
+        },
+        {
+          "id": "test-003",
+          "trigger": "external-dependency",
+          "action": "mock-appropriately",
+          "confidence": 0.93,
+          "usageCount": 2900,
+          "description": "Mock strategy patterns"
+        },
+        {
+          "id": "test-004",
+          "trigger": "integration-point",
+          "action": "verify-contracts",
+          "confidence": 0.91,
+          "usageCount": 2200,
+          "description": "Contract testing"
+        },
+        {
+          "id": "test-005",
+          "trigger": "coverage-gap",
+          "action": "prioritize-critical-paths",
+          "confidence": 0.88,
+          "usageCount": 1800,
+          "description": "Coverage prioritization"
+        }
+      ],
+      "metadata": {
+        "trainedOn": "2026-01-19T00:00:00.000Z",
+        "accuracy": 0.91,
+        "totalUsage": 14500,
+        "sourceAgent": "tester"
+      }
+    },
+    {
+      "id": "api-development-patterns",
+      "name": "API Development Patterns",
+      "description": "Pre-trained patterns for REST/GraphQL API design and implementation",
+      "version": "1.0.0",
+      "type": "learning-pattern",
+      "category": "api",
+      "cid": null,
+      "patterns": [
+        {
+          "id": "api-001",
+          "trigger": "endpoint-design",
+          "action": "apply-restful-conventions",
+          "confidence": 0.94,
+          "usageCount": 3800,
+          "description": "RESTful design patterns"
+        },
+        {
+          "id": "api-002",
+          "trigger": "request-validation",
+          "action": "validate-with-schema",
+          "confidence": 0.95,
+          "usageCount": 4200,
+          "description": "Schema validation (Zod/Joi)"
+        },
+        {
+          "id": "api-003",
+          "trigger": "error-response",
+          "action": "standardize-error-format",
+          "confidence": 0.92,
+          "usageCount": 3100,
+          "description": "Error response standards"
+        },
+        {
+          "id": "api-004",
+          "trigger": "pagination",
+          "action": "implement-cursor-pagination",
+          "confidence": 0.89,
+          "usageCount": 2400,
+          "description": "Pagination strategies"
+        },
+        {
+          "id": "api-005",
+          "trigger": "rate-limiting",
+          "action": "implement-rate-limits",
+          "confidence": 0.91,
+          "usageCount": 1900,
+          "description": "Rate limiting patterns"
+        }
+      ],
+      "metadata": {
+        "trainedOn": "2026-01-21T00:00:00.000Z",
+        "accuracy": 0.92,
+        "totalUsage": 15400,
+        "sourceAgent": "backend-dev"
+      }
+    },
+    {
+      "id": "bug-fixing-patterns",
+      "name": "Bug Fixing Patterns",
+      "description": "Pre-trained patterns for efficient debugging and bug resolution",
+      "version": "1.0.0",
+      "type": "learning-pattern",
+      "category": "debugging",
+      "cid": null,
+      "patterns": [
+        {
+          "id": "bug-001",
+          "trigger": "null-error",
+          "action": "trace-null-source",
+          "confidence": 0.93,
+          "usageCount": 5200,
+          "description": "Null/undefined tracing"
+        },
+        {
+          "id": "bug-002",
+          "trigger": "race-condition",
+          "action": "analyze-timing",
+          "confidence": 0.87,
+          "usageCount": 1800,
+          "description": "Race condition detection"
+        },
+        {
+          "id": "bug-003",
+          "trigger": "state-inconsistency",
+          "action": "trace-state-mutations",
+          "confidence": 0.89,
+          "usageCount": 2900,
+          "description": "State management bugs"
+        },
+        {
+          "id": "bug-004",
+          "trigger": "type-error",
+          "action": "verify-type-flow",
+          "confidence": 0.91,
+          "usageCount": 3400,
+          "description": "Type mismatch resolution"
+        },
+        {
+          "id": "bug-005",
+          "trigger": "regression",
+          "action": "bisect-commits",
+          "confidence": 0.88,
+          "usageCount": 2100,
+          "description": "Regression identification"
+        }
+      ],
+      "metadata": {
+        "trainedOn": "2026-01-22T00:00:00.000Z",
+        "accuracy": 0.89,
+        "totalUsage": 15400,
+        "sourceAgent": "coder"
+      }
+    },
+    {
+      "id": "refactoring-patterns",
+      "name": "Refactoring Patterns",
+      "description": "Pre-trained patterns for safe and effective code refactoring",
+      "version": "1.0.0",
+      "type": "learning-pattern",
+      "category": "refactoring",
+      "cid": null,
+      "patterns": [
+        {
+          "id": "ref-001",
+          "trigger": "large-function",
+          "action": "extract-methods",
+          "confidence": 0.92,
+          "usageCount": 3100,
+          "description": "Method extraction"
+        },
+        {
+          "id": "ref-002",
+          "trigger": "god-class",
+          "action": "split-responsibilities",
+          "confidence": 0.88,
+          "usageCount": 2200,
+          "description": "Class decomposition"
+        },
+        {
+          "id": "ref-003",
+          "trigger": "primitive-obsession",
+          "action": "introduce-value-objects",
+          "confidence": 0.86,
+          "usageCount": 1800,
+          "description": "Value object patterns"
+        },
+        {
+          "id": "ref-004",
+          "trigger": "feature-envy",
+          "action": "move-behavior",
+          "confidence": 0.87,
+          "usageCount": 1600,
+          "description": "Behavior relocation"
+        },
+        {
+          "id": "ref-005",
+          "trigger": "magic-numbers",
+          "action": "extract-constants",
+          "confidence": 0.94,
+          "usageCount": 2800,
+          "description": "Constant extraction"
+        }
+      ],
+      "metadata": {
+        "trainedOn": "2026-01-23T00:00:00.000Z",
+        "accuracy": 0.89,
+        "totalUsage": 11500,
+        "sourceAgent": "system-architect"
+      }
+    },
+    {
+      "id": "documentation-patterns",
+      "name": "Documentation Patterns",
+      "description": "Pre-trained patterns for generating comprehensive documentation",
+      "version": "1.0.0",
+      "type": "learning-pattern",
+      "category": "documentation",
+      "cid": null,
+      "patterns": [
+        {
+          "id": "doc-001",
+          "trigger": "public-api",
+          "action": "generate-jsdoc",
+          "confidence": 0.93,
+          "usageCount": 4200,
+          "description": "JSDoc generation"
+        },
+        {
+          "id": "doc-002",
+          "trigger": "complex-logic",
+          "action": "add-inline-comments",
+          "confidence": 0.88,
+          "usageCount": 3100,
+          "description": "Inline documentation"
+        },
+        {
+          "id": "doc-003",
+          "trigger": "api-endpoint",
+          "action": "generate-openapi",
+          "confidence": 0.91,
+          "usageCount": 2600,
+          "description": "OpenAPI spec generation"
+        },
+        {
+          "id": "doc-004",
+          "trigger": "architecture-change",
+          "action": "update-adr",
+          "confidence": 0.89,
+          "usageCount": 1800,
+          "description": "ADR updates"
+        },
+        {
+          "id": "doc-005",
+          "trigger": "new-feature",
+          "action": "write-usage-examples",
+          "confidence": 0.90,
+          "usageCount": 2200,
+          "description": "Example generation"
+        }
+      ],
+      "metadata": {
+        "trainedOn": "2026-01-24T00:00:00.000Z",
+        "accuracy": 0.90,
+        "totalUsage": 13900,
+        "sourceAgent": "api-docs"
+      }
+    }
+  ],
+  "metadata": {
+    "totalModels": 8,
+    "totalPatterns": 40,
+    "totalUsage": 110600,
+    "averageAccuracy": 0.905
+  }
+}

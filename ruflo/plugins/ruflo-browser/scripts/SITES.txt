@@ -1,0 +1,18 @@
+# Replay-spike candidate sites for ADR-0001 Verification §4.
+# 10 sites of varying drift profiles: static, SPA-heavy, frequent-deploy,
+# auth-walled, anti-bot-protected. Lines starting with # are ignored.
+#
+# Edit freely — the spike harness reads this file at run time. Add or
+# replace URLs to match your audit scope. The ADR threshold (≥80% pass)
+# applies to whatever non-comment lines are present.
+
+https://example.com/
+https://www.iana.org/domains/reserved
+https://en.wikipedia.org/wiki/Special:Random
+https://news.ycombinator.com/
+https://github.com/ruvnet/ruflo
+https://docs.python.org/3/
+https://playwright.dev/
+https://developer.mozilla.org/en-US/docs/Web/HTML
+https://www.w3.org/standards/
+https://duckduckgo.com/

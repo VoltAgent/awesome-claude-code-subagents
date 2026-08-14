@@ -1,0 +1,26 @@
+# CORS headers for widget files to allow embedding in third-party sites
+/widget.js
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, OPTIONS
+  Access-Control-Allow-Headers: Content-Type
+  Cache-Control: public, max-age=31536000
+  Content-Type: application/javascript
+
+/widget.css
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, OPTIONS
+  Access-Control-Allow-Headers: Content-Type
+  Cache-Control: public, max-age=31536000
+  Content-Type: text/css
+
+# Allow widget-embed.html to be iframed
+/widget-embed.html
+  Access-Control-Allow-Origin: *
+  X-Frame-Options: ALLOWALL
+  Content-Security-Policy: frame-ancestors *
+
+# API endpoints - if using Supabase functions
+/api/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Authorization

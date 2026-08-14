@@ -1,0 +1,58 @@
+{
+  "name": "@claude-flow/cli-core",
+  "version": "3.7.0-alpha.5",
+  "description": "Lightweight core CLI surface for Claude Flow — memory + hooks commands only. Designed to load fast on cold npx cache (<5s) so plugin skills don't race the 30s MCP-startup timeout. The full @claude-flow/cli metapackage lazy-loads everything else on top of this core.",
+  "type": "module",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "bin": {
+    "claude-flow-core": "dist/src/index.js"
+  },
+  "exports": {
+    ".": "./dist/src/index.js",
+    "./output": "./dist/src/output.js",
+    "./types": "./dist/src/types.js",
+    "./memory": "./dist/src/memory/backend.js",
+    "./memory/json-backend": "./dist/src/memory/json-backend.js",
+    "./commands/memory": "./dist/src/commands/memory.js",
+    "./mcp-tools": "./dist/src/mcp-tools/index.js",
+    "./mcp-tools/types": "./dist/src/mcp-tools/types.js",
+    "./mcp-tools/validate-input": "./dist/src/mcp-tools/validate-input.js",
+    "./mcp-tools/memory-defs": "./dist/src/mcp-tools/memory-defs.js",
+    "./mcp-tools/hooks-defs": "./dist/src/mcp-tools/hooks-defs.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "claude-flow",
+    "cli",
+    "core",
+    "lite",
+    "lazy-load",
+    "mcp",
+    "memory",
+    "hooks"
+  ],
+  "author": {
+    "name": "ruvnet",
+    "url": "https://github.com/ruvnet"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/ruvnet/ruflo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/ruflo.git",
+    "directory": "v3/@claude-flow/cli-core"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "alpha"
+  }
+}

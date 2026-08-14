@@ -1,0 +1,296 @@
+{
+  "summary": {
+    "runAt": "2026-05-05T03:17:40.935Z",
+    "corpusVersion": 1,
+    "corpusSize": 12,
+    "winRate": 1,
+    "winRatePct": "100.0%",
+    "successCount": 12,
+    "avgLatencyMs": 0.6666666666666666,
+    "p50LatencyMs": 0,
+    "p99LatencyMs": 6,
+    "maxLatencyMs": 6,
+    "avgWallMs": 0.6666666666666666,
+    "avgConfidence": 0.72920689980189,
+    "minConfidence": 0.5508301258087158,
+    "confidenceThreshold": 0.5,
+    "aboveThresholdCount": 12,
+    "structuralCostUsd": 0,
+    "llmBaseline": {
+      "model": "models/gemini-2.0-flash",
+      "baseUrl": "https://generativelanguage.googleapis.com/v1beta/openai/",
+      "total": 12,
+      "passed": 12,
+      "winRate": 1,
+      "avgLatencyMs": 684.5,
+      "totalTokensIn": 1352,
+      "totalTokensOut": 271,
+      "avgTokensIn": 112.66666666666667,
+      "avgTokensOut": 22.583333333333332,
+      "totalCostUsd": 0.0002436,
+      "avgCostUsdPerEdit": 0.000020300000000000002,
+      "pricing": {
+        "input_per_1M": 0.1,
+        "output_per_1M": 0.4
+      }
+    },
+    "speedupVsLlm": 1026.75,
+    "costDeltaUsdPerEdit": 0.000020300000000000002
+  },
+  "results": [
+    {
+      "id": "var-to-const-1",
+      "intent": "var-to-const",
+      "success": true,
+      "correct": true,
+      "latencyMs": 6,
+      "wallMs": 6,
+      "confidence": 0.6465277671813965,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 6,
+      "tokensOut": 7
+    },
+    {
+      "id": "var-to-const-2",
+      "intent": "var-to-const",
+      "success": true,
+      "correct": true,
+      "latencyMs": 1,
+      "wallMs": 1,
+      "confidence": 0.8513461351394653,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 13,
+      "tokensOut": 13
+    },
+    {
+      "id": "add-types-1",
+      "intent": "add-types",
+      "success": true,
+      "correct": true,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.6412500143051147,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 9,
+      "tokensOut": 15
+    },
+    {
+      "id": "add-types-2",
+      "intent": "add-types",
+      "success": true,
+      "correct": true,
+      "latencyMs": 1,
+      "wallMs": 1,
+      "confidence": 0.6055588126182556,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 13,
+      "tokensOut": 23
+    },
+    {
+      "id": "remove-console-1",
+      "intent": "remove-console",
+      "success": true,
+      "correct": true,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.6954487562179565,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 12,
+      "tokensOut": 7
+    },
+    {
+      "id": "remove-console-2",
+      "intent": "remove-console",
+      "success": true,
+      "correct": true,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.5508301258087158,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 17,
+      "tokensOut": 7
+    },
+    {
+      "id": "add-error-handling-1",
+      "intent": "add-error-handling",
+      "success": true,
+      "correct": true,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.8500000238418579,
+      "strategy": "exact_replace",
+      "tokensIn": 10,
+      "tokensOut": 19
+    },
+    {
+      "id": "add-error-handling-2",
+      "intent": "add-error-handling",
+      "success": true,
+      "correct": true,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.8500000238418579,
+      "strategy": "exact_replace",
+      "tokensIn": 11,
+      "tokensOut": 20
+    },
+    {
+      "id": "async-await-1",
+      "intent": "async-await",
+      "success": true,
+      "correct": true,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.8500000238418579,
+      "strategy": "exact_replace",
+      "tokensIn": 14,
+      "tokensOut": 17
+    },
+    {
+      "id": "async-await-2",
+      "intent": "async-await",
+      "success": true,
+      "correct": true,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.8500000238418579,
+      "strategy": "exact_replace",
+      "tokensIn": 12,
+      "tokensOut": 17
+    },
+    {
+      "id": "add-logging-1",
+      "intent": "add-logging",
+      "success": true,
+      "correct": true,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.7152736783027649,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 8,
+      "tokensOut": 13
+    },
+    {
+      "id": "add-logging-2",
+      "intent": "add-logging",
+      "success": true,
+      "correct": true,
+      "latencyMs": 0,
+      "wallMs": 0,
+      "confidence": 0.6442474126815796,
+      "strategy": "fuzzy_replace",
+      "tokensIn": 8,
+      "tokensOut": 14
+    }
+  ],
+  "llmResults": [
+    {
+      "id": "var-to-const-1",
+      "intent": "var-to-const",
+      "correct": true,
+      "wallMs": 1687,
+      "tokensIn": 105,
+      "tokensOut": 17,
+      "costUsd": 0.0000173
+    },
+    {
+      "id": "var-to-const-2",
+      "intent": "var-to-const",
+      "correct": true,
+      "wallMs": 536,
+      "tokensIn": 113,
+      "tokensOut": 21,
+      "costUsd": 0.000019699999999999998
+    },
+    {
+      "id": "add-types-1",
+      "intent": "add-types",
+      "correct": true,
+      "wallMs": 751,
+      "tokensIn": 114,
+      "tokensOut": 24,
+      "costUsd": 0.000021000000000000002
+    },
+    {
+      "id": "add-types-2",
+      "intent": "add-types",
+      "correct": true,
+      "wallMs": 642,
+      "tokensIn": 130,
+      "tokensOut": 35,
+      "costUsd": 0.000027
+    },
+    {
+      "id": "remove-console-1",
+      "intent": "remove-console",
+      "correct": true,
+      "wallMs": 562,
+      "tokensIn": 103,
+      "tokensOut": 13,
+      "costUsd": 0.0000155
+    },
+    {
+      "id": "remove-console-2",
+      "intent": "remove-console",
+      "correct": true,
+      "wallMs": 520,
+      "tokensIn": 107,
+      "tokensOut": 12,
+      "costUsd": 0.0000155
+    },
+    {
+      "id": "add-error-handling-1",
+      "intent": "add-error-handling",
+      "correct": true,
+      "wallMs": 528,
+      "tokensIn": 113,
+      "tokensOut": 27,
+      "costUsd": 0.000022100000000000002
+    },
+    {
+      "id": "add-error-handling-2",
+      "intent": "add-error-handling",
+      "correct": true,
+      "wallMs": 572,
+      "tokensIn": 121,
+      "tokensOut": 31,
+      "costUsd": 0.000024500000000000003
+    },
+    {
+      "id": "async-await-1",
+      "intent": "async-await",
+      "correct": true,
+      "wallMs": 658,
+      "tokensIn": 118,
+      "tokensOut": 24,
+      "costUsd": 0.000021400000000000002
+    },
+    {
+      "id": "async-await-2",
+      "intent": "async-await",
+      "correct": true,
+      "wallMs": 533,
+      "tokensIn": 110,
+      "tokensOut": 22,
+      "costUsd": 0.0000198
+    },
+    {
+      "id": "add-logging-1",
+      "intent": "add-logging",
+      "correct": true,
+      "wallMs": 677,
+      "tokensIn": 103,
+      "tokensOut": 19,
+      "costUsd": 0.0000179
+    },
+    {
+      "id": "add-logging-2",
+      "intent": "add-logging",
+      "correct": true,
+      "wallMs": 548,
+      "tokensIn": 115,
+      "tokensOut": 26,
+      "costUsd": 0.000021900000000000004
+    }
+  ]
+}

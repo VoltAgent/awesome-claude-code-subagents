@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /r/
+Disallow: /conversation/
+Disallow: /api/
+Disallow: /login
+Disallow: /logout
+
+# Sitemap
+# Sitemap: https://huggingface.co/chat/sitemap.xml

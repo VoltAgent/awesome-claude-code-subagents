@@ -1,0 +1,8 @@
+{
+  "withoutGuidance": 0,
+  "tooShort": 0,
+  "duplicateDescriptions": 0,
+  "totalTools": 285,
+  "updatedAt": "2026-05-11T03:39:26.304Z",
+  "note": "ADR-112 baseline — monotone decreasing for all three counts"
+}

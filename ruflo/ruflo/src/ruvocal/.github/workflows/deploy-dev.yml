@@ -1,0 +1,63 @@
+name: Deploy to ephemeral
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, labeled, unlabeled]
+
+jobs:
+  branch-slug:
+    uses: ./.github/workflows/slugify.yaml
+    with:
+      value: ${{ github.head_ref }}
+
+  deploy-dev:
+    if: contains(github.event.pull_request.labels.*.name, 'preview')
+    runs-on: ubuntu-latest
+    needs: branch-slug
+    environment:
+      name: dev
+      url: https://${{ needs.branch-slug.outputs.slug }}.chat-dev.huggingface.tech/chat/
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to Registry
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v4.5.0
+
+      - name: Set GITHUB_SHA_SHORT from PR
+        if: env.GITHUB_EVENT_PULL_REQUEST_HEAD_SHA_SHORT != null
+        run: echo "GITHUB_SHA_SHORT=${{ env.GITHUB_EVENT_PULL_REQUEST_HEAD_SHA_SHORT }}" >> $GITHUB_ENV
+
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            huggingface/chat-ui
+          tags: |
+            type=raw,value=dev-${{ env.GITHUB_SHA_SHORT }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and Publish HuggingChat image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          platforms: linux/amd64
+          cache-to: type=gha,mode=max,scope=amd64
+          cache-from: type=gha,scope=amd64
+          provenance: false
+          build-args: |
+            INCLUDE_DB=false
+            APP_BASE=/chat
+            PUBLIC_COMMIT_SHA=${{ env.GITHUB_SHA_SHORT }}

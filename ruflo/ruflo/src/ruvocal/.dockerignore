@@ -1,0 +1,17 @@
+Dockerfile
+.vscode/
+.idea
+.gitignore
+LICENSE
+README.md
+node_modules/
+.svelte-kit/
+.env*
+!.env
+.env.local
+db
+# NOTE: previously had `models/**` here to ignore a top-level placeholder
+# directory. Even when anchored (`/models/**`), Docker's pattern matcher
+# was eliding nested src/routes/api/v2/models/ and src/routes/models/
+# from the build context, producing prod images missing those routes.
+# The placeholder dir is small (single .txt) — letting it through is fine.

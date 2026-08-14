@@ -1,0 +1,68 @@
+steps:
+  # Build the WASM-integrated ruvocal image with embedded MongoDB.
+  # INCLUDE_DB=true triggers the multi-stage Dockerfile path that copies
+  # mongod from mongo:7 and sets MONGODB_URL=mongodb://localhost:27017.
+  #
+  # The Dockerfile uses BuildKit syntax (COPY --link, --mount=type=cache),
+  # so DOCKER_BUILDKIT=1 must be set in the env. Without it, the parser
+  # rejects --link with "Unknown flag" before any build steps run.
+  - name: 'gcr.io/cloud-builders/docker'
+    env:
+      - 'DOCKER_BUILDKIT=1'
+    args: [
+      'build',
+      '--build-arg', 'INCLUDE_DB=true',
+      '-t', 'gcr.io/${PROJECT_ID}/ruvocal:${_VERSION}',
+      '-f', 'Dockerfile',
+      '.'
+    ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/${PROJECT_ID}/ruvocal:${_VERSION}']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'tag',
+      'gcr.io/${PROJECT_ID}/ruvocal:${_VERSION}',
+      'gcr.io/${PROJECT_ID}/ruvocal:latest'
+    ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/${PROJECT_ID}/ruvocal:latest']
+
+  # Deploy to Cloud Run with embedded MongoDB.
+  #
+  # NOTE: MongoDB data is ephemeral — Cloud Run's container filesystem is
+  # discarded on each cold start. This is acceptable for validation but
+  # NOT for production. For persistence, follow up with either Atlas or
+  # a Cloud Run multi-container revision (see ADR-033).
+  #
+  # Provider keys come from existing ruv-dev Secret Manager secrets per
+  # ADR-029. Only one CPU is allocated; mongo is lightweight when used
+  # only for chat session storage.
+  # Deploy with image only — preserves manually configured env vars
+  # (DOTENV_LOCAL with PUBLIC_ORIGIN/OPENAI_BASE_URL/MODELS, OPENAI_API_KEY
+  # secret mapping, etc.). Initial env config must be set out-of-band via
+  # `gcloud run services update` (see ADR-033 deployment notes).
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: [
+      'run', 'deploy', 'ruvocal',
+      '--image', 'gcr.io/${PROJECT_ID}/ruvocal:${_VERSION}',
+      '--platform', 'managed',
+      '--region', 'us-central1',
+      '--port', '3000',
+      '--memory', '2Gi',
+      '--cpu', '2',
+      '--min-instances', '0',
+      '--max-instances', '3',
+      '--timeout', '300',
+      '--allow-unauthenticated'
+    ]
+
+substitutions:
+  _VERSION: 'v1'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: 'E2_HIGHCPU_8'
+timeout: 1800s
