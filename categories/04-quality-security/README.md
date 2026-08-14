@@ -86,6 +86,11 @@ Quality assurance master designing comprehensive test strategies. Expert in test
 
 **Use when:** Setting up test automation, designing test strategies, implementing CI/CD testing, improving test coverage, or establishing QA processes.
 
+### [**safety-check**](safety-check.md) - Mandatory 5-gate preflight subagent
+Mandatory preflight subagent that runs five safety gates (resource budget, command risk scan, loop and spend limits, secret and PII scan, scope confirmation) and refuses to proceed if any gate fails. Defends the host machine, hardware, budget, and data. Operates at the reasoning layer and pairs with a capability-layer sandbox for defense in depth.
+
+**Use when:** Before any non-trivial coding task, subagent dispatch, autonomous run, batch operation, long-running command, commit, or whenever destructive or irreversible operations are possible. Invoke first; treat a halt as a hard stop.
+
 ### [**security-auditor**](security-auditor.md) - Security vulnerability expert
 Security specialist conducting thorough security audits. Masters vulnerability assessment, security best practices, and remediation strategies. Protects applications from evolving threats.
 
@@ -117,6 +122,7 @@ Interaction-heavy testing specialist that drives web or desktop interfaces again
 | Test security | **penetration-tester** |
 | Optimize performance | **performance-engineer** |
 | Automate testing | **qa-expert** |
+| Run a preflight safety check before any non-trivial work | **safety-check** |
 | Audit security | **security-auditor** |
 | Build test frameworks | **test-automator** |
 | Exhaustively test UI flows | **ui-ux-tester** |
@@ -136,6 +142,7 @@ Interaction-heavy testing specialist that drives web or desktop interfaces again
 - **debugger** for defect root-cause investigation
 
 **Security Assessment:**
+- **safety-check** for runtime preflight before any non-trivial work (the first gate; runs before the others)
 - **security-auditor** for vulnerability assessment
 - **penetration-tester** for penetration testing
 - **compliance-auditor** for compliance check
