@@ -318,6 +318,7 @@ Agent coordination and meta-programming.
 - [**error-coordinator**](categories/09-meta-orchestration/error-coordinator.md) - Error handling and recovery specialist
 - [**it-ops-orchestrator**](categories/09-meta-orchestration/it-ops-orchestrator.md) - IT operations workflow orchestration specialist
 - [**knowledge-synthesizer**](categories/09-meta-orchestration/knowledge-synthesizer.md) - Knowledge aggregation expert
+- [**memory-curator**](categories/09-meta-orchestration/memory-curator.md) - Long-term memory discipline across sessions
 - [**multi-agent-coordinator**](categories/09-meta-orchestration/multi-agent-coordinator.md) - Advanced multi-agent orchestration
 - [**performance-monitor**](categories/09-meta-orchestration/performance-monitor.md) - Agent performance optimization
 - [**pied-piper**](https://github.com/sathish316/pied-piper/) - Orchestrate Team of AI Subagents for repetitive SDLC workflows
