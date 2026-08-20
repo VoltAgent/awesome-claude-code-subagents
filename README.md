@@ -463,6 +463,10 @@ cp -r tools/subagent-catalog ~/.claude/commands/
 
 
 
+## 🔗 Related
+
+- [**awesome-claude-code-hooks**](https://github.com/loqimean/awesome-claude-code-hooks) - A curated list of Claude Code hook implementations and guides.
+
 ## 🤝 Contributing
 
 We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
