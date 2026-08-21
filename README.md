@@ -214,6 +214,7 @@ Testing, security, and code quality experts.
 - [**performance-engineer**](categories/04-quality-security/performance-engineer.md) - Performance optimization expert
 - [**powershell-security-hardening**](categories/04-quality-security/powershell-security-hardening.md) - PowerShell security hardening and compliance specialist
 - [**qa-expert**](categories/04-quality-security/qa-expert.md) - Test automation specialist
+- [**repo-publication-auditor**](categories/04-quality-security/repo-publication-auditor.md) - Pre-publication exposure auditor
 - [**security-auditor**](categories/04-quality-security/security-auditor.md) - Security vulnerability expert
 - [**test-automator**](categories/04-quality-security/test-automator.md) - Test automation framework expert
 - [**ui-ux-tester**](categories/04-quality-security/ui-ux-tester.md) - Exhaustive documented-flow UI tester
