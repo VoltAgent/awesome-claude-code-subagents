@@ -138,3 +138,5 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 - **Measure impact:** Quantify orchestration benefits
 
 Choose your meta & orchestration specialist and conduct your AI symphony!
+
+| [kilo-c4-gate-orchestrator](./kilo-c4-gate-orchestrator.md) | Enforces strict C4 workflow gating, cognitive red-teaming, and verification before code modification. |
