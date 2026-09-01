@@ -31,6 +31,16 @@ This repository serves as the definitive collection of Claude Code subagents, sp
 
 > **A note on contributions:** We don't accept PRs whose primary purpose is to promote a product, company, or personal project. Subagents must be genuinely useful to Claude Code users and stay vendor-neutral in their content. If you'd like to get your project in front of this community, you can [sponsor the repo](#sponsors) instead — that's the supported way to surface your work here.
 
+## Sponsors
+
+|  |  |
+| :-: | :-- |
+| <a href="https://s.getdesign.md/crawl-gs"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.voltagent.dev/awesome-repo/crawlbase/crawlbase-logo-dark-mode.svg"><img alt="Crawlbase" src="https://cdn.voltagent.dev/awesome-repo/crawlbase/crawlbase-logo-light-mode.svg" width="425"></picture></a> | [Crawlbase](https://s.getdesign.md/crawl-gs) is web data infrastructure trusted by 70,000+ developers. Its Crawling API, MCP server, and integrations give AI agents live access to any webpage — with JavaScript rendering, proxy rotation, and anti-bot protection. |
+
+<br />
+
+<a href="https://sponsors.voltagent.dev/#awesome-claude-code-subagents"><img src="https://img.shields.io/badge/📩_Become_a_Sponsor-Contact_Us-blue?style=for-the-badge&logoColor=white" alt="Become a Sponsor" /></a>
+
 ## Installation
 
 ### As Claude Code Plugin (Recommended)
