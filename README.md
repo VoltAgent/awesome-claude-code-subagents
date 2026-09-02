@@ -35,7 +35,7 @@ This repository serves as the definitive collection of Claude Code subagents, sp
 
 |  |  |
 | :-: | :-- |
-| <a href="https://s.getdesign.md/crawl-gs"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.voltagent.dev/awesome-repo/crawlbase/crawlbase-logo-dark-mode.svg"><img alt="Crawlbase" src="https://cdn.voltagent.dev/awesome-repo/crawlbase/crawlbase-logo-light-mode.svg" width="425"></picture></a> | [Crawlbase](https://s.getdesign.md/crawl-gs) is web data infrastructure trusted by 70,000+ developers. Its Crawling API, MCP server, and integrations give AI agents live access to any webpage — with JavaScript rendering, proxy rotation, and anti-bot protection. |
+| <a href="https://crawlbase.com/?utm_source=awesome-claude-code-subagents&utm_medium=sponsorship&utm_campaign=voltagent_2026q3&utm_content=readme_listing"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.voltagent.dev/awesome-repo/crawlbase/crawlbase-logo-dark-mode.svg"><img alt="Crawlbase" src="https://cdn.voltagent.dev/awesome-repo/crawlbase/crawlbase-logo-light-mode.svg" width="425"></picture></a> | [Crawlbase](https://crawlbase.com/?utm_source=awesome-claude-code-subagents&utm_medium=sponsorship&utm_campaign=voltagent_2026q3&utm_content=readme_listing) is web data infrastructure trusted by 70,000+ developers. Its Crawling API, MCP server, and integrations give AI agents live access to any webpage — with JavaScript rendering, proxy rotation, and anti-bot protection. |
 
 <br />
 
