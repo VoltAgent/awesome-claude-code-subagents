@@ -36,6 +36,7 @@ This repository serves as the definitive collection of Claude Code subagents, sp
 |  |  |
 | :-: | :-- |
 | <a href="https://crawlbase.com/?utm_source=awesome-claude-code-subagents&utm_medium=sponsorship&utm_campaign=voltagent_2026q3&utm_content=readme_listing"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.voltagent.dev/awesome-repo/crawlbase-new/crawlbase-logo-dark-mode.svg"><img alt="Crawlbase" src="https://cdn.voltagent.dev/awesome-repo/crawlbase-new/crawlbase-logo-light-mode.svg" width="425"></picture></a> | [Crawlbase](https://crawlbase.com/?utm_source=awesome-claude-code-subagents&utm_medium=sponsorship&utm_campaign=voltagent_2026q3&utm_content=readme_listing) is web data infrastructure trusted by 70,000+ developers. Its Crawling API, MCP server, and integrations give AI agents live access to any webpage — with JavaScript rendering, proxy rotation, and anti-bot protection. |
+| <a href="https://serpapi.com/?utm_source=voltagent&utm_campaign=md"><img alt="SerpApi" src="https://cdn.voltagent.dev/awesome-repo/serpapi/serpapi-logo.png" width="425"></a> | [SerpApi](https://serpapi.com/?utm_source=voltagent&utm_campaign=md) is a Web Search API for your AI apps. Available in Markdown and JSON for any integration. |
 
 <br />
 
