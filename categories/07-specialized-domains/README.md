@@ -32,6 +32,11 @@ Email deliverability expert getting mail into the inbox reliably at scale. Maste
 
 **Use when:** Configuring email authentication, diagnosing deliverability issues, integrating transactional/marketing email providers, managing list hygiene, or ensuring CAN-SPAM/GDPR compliance.
 
+### [**esp32-firmware-developer**](esp32-firmware-developer.md) - ESP32/ESP8266 firmware expert
+ESP32 firmware specialist building IoT devices, real-time systems, and embedded applications. Masters PlatformIO workflows, FreeRTOS patterns, sensor integration, and wireless communication (BLE, WiFi). Creates flexible, production-grade firmware for diverse applications.
+
+**Use when:** Developing ESP32/ESP8266 firmware, building IoT data collectors, creating wireless gateways, integrating sensors and protocols, implementing OTA updates, or designing embedded systems with local processing.
+
 ### [**embedded-systems**](embedded-systems.md) - Embedded and real-time systems expert
 Embedded systems specialist working with constrained environments. Expert in microcontrollers, RTOS, and hardware interfaces. Builds efficient software for resource-limited devices.
 
@@ -100,6 +105,7 @@ X/Twitter API expert building reliable social data workflows. Masters tweet sear
 | API Documentation | **api-documenter** | OpenAPI specs, developer portals |
 | Blockchain/Web3 | **blockchain-developer** | Smart contracts, DeFi, NFTs |
 | Email Deliverability | **email-deliverability-engineer** | Authentication, inbox placement |
+| ESP32/ESP8266 Firmware | **esp32-firmware-developer** | IoT, sensors, wireless gateways |
 | Embedded/IoT | **embedded-systems** | Firmware, microcontrollers |
 | Financial Tech | **fintech-engineer** | Banking, payments, compliance |
 | Gaming | **game-developer** | Game engines, multiplayer |
@@ -122,9 +128,10 @@ X/Twitter API expert building reliable social data workflows. Masters tweet sear
 - **quant-analyst** for algorithms
 
 **IoT Platform:**
-- **iot-engineer** for architecture
-- **embedded-systems** for devices
-- **mobile-app-developer** for apps
+- **iot-engineer** for cloud architecture
+- **esp32-firmware-developer** for device firmware
+- **embedded-systems** for other microcontrollers
+- **mobile-app-developer** for mobile apps
 - **api-documenter** for APIs
 
 **Blockchain Project:**
