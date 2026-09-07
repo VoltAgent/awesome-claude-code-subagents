@@ -46,6 +46,11 @@ Knowledge synthesis specialist combining information from multiple sources. Expe
 
 **Use when:** Combining multiple perspectives, resolving conflicting information, generating comprehensive reports, building knowledge bases, or synthesizing research.
 
+### [**memory-curator**](memory-curator.md) - Long-term memory discipline across sessions
+Memory discipline specialist for agents that work across many sessions. Decides what is worth saving, recalls relevant context before acting, records corrections without erasing history, and prunes what stopped helping. Storage-agnostic: works with any connected memory MCP server or a plain files-based store.
+
+**Use when:** An agent keeps forgetting decisions between sessions, memory has grown noisy with duplicates and stale facts, corrections need to be recorded without losing history, or you are setting up a memory store and want save/recall discipline from day one.
+
 ### [**multi-agent-coordinator**](multi-agent-coordinator.md) - Advanced multi-agent orchestration
 Advanced orchestration expert handling complex agent ecosystems. Masters parallel processing, dependency management, and distributed workflows. Scales AI operations to enterprise level.
 
@@ -80,6 +85,7 @@ Workflow specialist designing and executing sophisticated AI workflows. Expert i
 | Manage context efficiently | **context-manager** |
 | Handle system errors | **error-coordinator** |
 | Combine knowledge sources | **knowledge-synthesizer** |
+| Keep long-term memory clean across sessions | **memory-curator** |
 | Scale agent operations | **multi-agent-coordinator** |
 | Monitor performance | **performance-monitor** |
 | Distribute tasks | **task-distributor** |
