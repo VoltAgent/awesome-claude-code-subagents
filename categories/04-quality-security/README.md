@@ -91,6 +91,11 @@ Security specialist conducting thorough security audits. Masters vulnerability a
 
 **Use when:** Auditing application security, implementing security best practices, fixing vulnerabilities, designing secure architectures, or training teams on security.
 
+### [**sandbox-runner**](sandbox-runner.md) - Sandboxed execution specialist
+Execution specialist that runs untrusted agent-generated code and commands inside a kernel-enforced sandbox. Denies secret reads and off-allowlist network, blocks destructive git ops, and reports a session security recap.
+
+**Use when:** Running untrusted code or tool calls, wrapping agent CLIs in kernel isolation, enforcing egress allowlists, or auditing what a session tried to access.
+
 ### [**test-automator**](test-automator.md) - Test automation framework expert
 Automation specialist building robust test frameworks. Expert in various testing tools, patterns, and strategies. Creates maintainable, reliable automated test suites.
 
@@ -118,6 +123,7 @@ Interaction-heavy testing specialist that drives web or desktop interfaces again
 | Optimize performance | **performance-engineer** |
 | Automate testing | **qa-expert** |
 | Audit security | **security-auditor** |
+| Run untrusted code safely | **sandbox-runner** |
 | Build test frameworks | **test-automator** |
 | Exhaustively test UI flows | **ui-ux-tester** |
 
