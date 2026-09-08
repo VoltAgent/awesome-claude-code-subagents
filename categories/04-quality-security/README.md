@@ -86,6 +86,11 @@ Quality assurance master designing comprehensive test strategies. Expert in test
 
 **Use when:** Setting up test automation, designing test strategies, implementing CI/CD testing, improving test coverage, or establishing QA processes.
 
+### [**repo-publication-auditor**](repo-publication-auditor.md) - Pre-publication exposure auditor
+Audits what publishing a repository would expose, at the point before that becomes irreversible. Covers the full commit history rather than the working tree, the author email on every commit, credential shapes that trip push protection and vendor partner scanning, machine-specific paths, and README claims that do not reproduce from a clean clone.
+
+**Use when:** Making a private repository public, open-sourcing an internal project, publishing a first release, or auditing a repository that already went public to find what went with it.
+
 ### [**security-auditor**](security-auditor.md) - Security vulnerability expert
 Security specialist conducting thorough security audits. Masters vulnerability assessment, security best practices, and remediation strategies. Protects applications from evolving threats.
 
@@ -117,6 +122,7 @@ Interaction-heavy testing specialist that drives web or desktop interfaces again
 | Test security | **penetration-tester** |
 | Optimize performance | **performance-engineer** |
 | Automate testing | **qa-expert** |
+| Make a repo public safely | **repo-publication-auditor** |
 | Audit security | **security-auditor** |
 | Build test frameworks | **test-automator** |
 | Exhaustively test UI flows | **ui-ux-tester** |
