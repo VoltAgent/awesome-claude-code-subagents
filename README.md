@@ -458,7 +458,7 @@ Each agent has minimal necessary permissions. You can extend agents by adding MC
 ## 🧰 Tools
 
 ### [DevScratchpad AI Skill Studio](https://www.devscratchpad.tech/ai-skill-studio/agents-md)
-Interactive 100% client-side studio for generating, testing, and exporting Claude Code subagent definitions, `.claude/agents/*.md`, and `AGENTS.md` multi-agent orchestrations with 36+ framework presets.
+Interactive 100% client-side studio for generating, testing, and scaffolding Claude Code subagent definitions, `CLAUDE.md`, and `AGENTS.md` multi-agent orchestrations across 13 formats, 5-layer agent context suites, and zero-install terminal CLI (`npx devscratchpad init`).
 
 ### [subagent-catalog](tools/subagent-catalog/)
 Claude Code skill for browsing and fetching subagents from this catalog.
