@@ -1,0 +1,40 @@
+{
+  "name": "awesome-zcode-subagents",
+  "version": "1.0.0",
+  "description": "Interactive installer and catalog for 158+ curated ZCode subagents across 10 categories",
+  "bin": {
+    "awesome-zcode-subagents": "./bin/cli.js",
+    "zcode-subagents": "./bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "categories",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node ./bin/cli.js"
+  },
+  "keywords": [
+    "zcode",
+    "subagents",
+    "ai",
+    "installer",
+    "cli",
+    "agents"
+  ],
+  "author": "a2mus",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a2mus/awesome-zcode-subagents.git"
+  },
+  "bugs": {
+    "url": "https://github.com/a2mus/awesome-zcode-subagents/issues"
+  },
+  "homepage": "https://github.com/a2mus/awesome-zcode-subagents#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "preferGlobal": true
+}

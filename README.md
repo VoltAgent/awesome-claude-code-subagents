@@ -15,26 +15,77 @@ This repository serves as the definitive collection of ZCode subagents, speciali
 
 ## Installation
 
-### As a ZCode Plugin (Recommended)
+### Option 1: NPX Zero-Install (Recommended for Windows, macOS, Linux)
+
+No git clone, curl, or bash required — run directly via `npx` in any terminal (**PowerShell**, **Command Prompt**, **Windows Terminal**, **macOS Terminal**, or **Linux**):
+
+```bash
+# Launch interactive installer menu
+npx github:a2mus/awesome-zcode-subagents
+```
+
+#### One-Liner Quick Commands:
+```bash
+# Install recommended Starter Pack (10 essential coding & debugging agents)
+npx github:a2mus/awesome-zcode-subagents --starter
+
+# Install a specific category
+npx github:a2mus/awesome-zcode-subagents -c 01-core-development
+npx github:a2mus/awesome-zcode-subagents -c 02-language-specialists
+
+# Install specific agent(s)
+npx github:a2mus/awesome-zcode-subagents --agent python-pro,debugger,code-reviewer
+
+# Install all 158+ agents
+npx github:a2mus/awesome-zcode-subagents --all
+
+# List installed agents in your ZCode directory
+npx github:a2mus/awesome-zcode-subagents --installed
+
+# Uninstall agent(s)
+npx github:a2mus/awesome-zcode-subagents --uninstall code-reviewer
+npx github:a2mus/awesome-zcode-subagents --uninstall all
+```
+
+> **Windows Note:** The installer automatically locates and creates your user agents directory at `C:\Users\<YourUsername>\.zcode\agents`.
+
+---
+
+### Option 2: As a ZCode Plugin (In-App Marketplace)
 
 ZCode can install these agents as plugins from its marketplace:
 
 1. Open ZCode **Settings → Plugin Management → Discover**
-2. Click **`+`** to add a marketplace and point it at this repository (a GitHub repository URL, Git URL, or local directory all work — the marketplace manifest lives at `.zcode-plugin/marketplace.json`)
+2. Click **`+`** to add a marketplace and point it at this repository (`https://github.com/a2mus/awesome-zcode-subagents`)
 3. Install the category plugins you want, e.g. `zcode-lang` (language specialists) or `zcode-infra` (infrastructure & DevOps)
 
 See [Categories](#-categories) below for all available plugins.
 
 > **Note**: The `zcode-meta` orchestration agents work best when other categories are installed.
 
-### Option 1: Manual Installation
+---
 
-1. Clone this repository
-2. Copy the desired agent files into `~/.zcode/agents/` (e.g. `cp categories/02-language-specialists/python-pro.md ~/.zcode/agents/`)
-3. Restart your ZCode session — definition files are read at session start
-4. Customize based on your project requirements
+### Option 3: Manual Installation (Windows, macOS, Linux)
 
-### Option 2: Interactive Installer
+#### On Windows (PowerShell):
+```powershell
+# Create target directory if it doesn't exist
+New-Item -ItemType Directory -Force -Path "$HOME\.zcode\agents"
+
+# Copy chosen agent(s) from a local clone
+Copy-Item -Path "categories\02-language-specialists\python-pro.md" -Destination "$HOME\.zcode\agents\"
+```
+
+#### On macOS / Linux / Git Bash:
+```bash
+mkdir -p ~/.zcode/agents
+cp categories/02-language-specialists/python-pro.md ~/.zcode/agents/
+```
+Restart your ZCode session after copying — subagents are loaded at session start.
+
+---
+
+### Option 4: Interactive Bash Script
 ```bash
 git clone https://github.com/a2mus/awesome-zcode-subagents.git
 cd awesome-zcode-subagents
@@ -42,19 +93,27 @@ cd awesome-zcode-subagents
 ```
 This interactive script lets you browse categories, select agents, and install/uninstall them with a single command.
 
-### Option 3: Standalone Installer (no clone required)
+---
+
+### Option 5: Standalone Curl Installer (no clone required)
 ```bash
 curl -sO https://raw.githubusercontent.com/a2mus/awesome-zcode-subagents/main/install-agents.sh
 chmod +x install-agents.sh
 ./install-agents.sh
 ```
-Downloads agents directly from GitHub without cloning the repository. Requires `curl`.  
+Downloads agents directly from GitHub without cloning the repository. Requires `curl` and bash.
 
-### Option 4: Agent Installer (use ZCode to install agents)
+---
+
+### Option 6: Agent Installer (use ZCode to install agents)
 ```bash
+# On Linux / macOS:
 curl -s https://raw.githubusercontent.com/a2mus/awesome-zcode-subagents/main/categories/09-meta-orchestration/agent-installer.md -o ~/.zcode/agents/agent-installer.md
+
+# On Windows (PowerShell):
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/a2mus/awesome-zcode-subagents/main/categories/09-meta-orchestration/agent-installer.md" -OutFile "$HOME\.zcode\agents\agent-installer.md"
 ```
-Then in ZCode: "Use the agent-installer to show me available categories" or "Find PHP agents and install php-pro globally".
+Then in ZCode: *"Use the agent-installer to show me available categories"* or *"Find PHP agents and install php-pro globally"*.
 
 ## 📚 Categories
 
