@@ -26,8 +26,8 @@ SOURCE_MODE=""  # "local" or "remote"
 # GitHub API configuration
 # Points at the upstream VoltAgent collection so remote mode works out of the box.
 # If you publish a ZCode fork, change these two lines to your own repo slug.
-GITHUB_API_BASE="https://api.github.com/repos/VoltAgent/awesome-claude-code-subagents/contents"
-GITHUB_RAW_BASE="https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main"
+GITHUB_API_BASE="https://api.github.com/repos/a2mus/awesome-zcode-subagents/contents"
+GITHUB_RAW_BASE="https://raw.githubusercontent.com/a2mus/awesome-zcode-subagents/main"
 
 # Cache for remote data
 REMOTE_CATEGORIES=()

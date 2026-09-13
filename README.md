@@ -36,7 +36,7 @@ See [Categories](#-categories) below for all available plugins.
 
 ### Option 2: Interactive Installer
 ```bash
-git clone <your-fork-url>/awesome-zcode-subagents.git
+git clone https://github.com/a2mus/awesome-zcode-subagents.git
 cd awesome-zcode-subagents
 ./install-agents.sh
 ```
@@ -44,15 +44,15 @@ This interactive script lets you browse categories, select agents, and install/u
 
 ### Option 3: Standalone Installer (no clone required)
 ```bash
-curl -sO https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/install-agents.sh
+curl -sO https://raw.githubusercontent.com/a2mus/awesome-zcode-subagents/main/install-agents.sh
 chmod +x install-agents.sh
 ./install-agents.sh
 ```
-Downloads agents directly from GitHub without cloning the repository. Requires `curl`. (Update the URL to your published fork if you have one.)
+Downloads agents directly from GitHub without cloning the repository. Requires `curl`.  
 
 ### Option 4: Agent Installer (use ZCode to install agents)
 ```bash
-curl -s https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/categories/09-meta-orchestration/agent-installer.md -o ~/.zcode/agents/agent-installer.md
+curl -s https://raw.githubusercontent.com/a2mus/awesome-zcode-subagents/main/categories/09-meta-orchestration/agent-installer.md -o ~/.zcode/agents/agent-installer.md
 ```
 Then in ZCode: "Use the agent-installer to show me available categories" or "Find PHP agents and install php-pro globally".
 
@@ -416,6 +416,6 @@ MIT License - see [LICENSE](LICENSE)
 
 This repository is a curated collection of subagent definitions contributed by both the maintainers and the community. All subagents are provided "as is" without warranty. We do not audit or guarantee the security or correctness of any subagent. Review before use, the maintainers accept no liability for any issues arising from their use.
 
-If you find an issue with a listed subagent or want your contribution removed, please [open an issue](https://github.com/VoltAgent/awesome-claude-code-subagents/issues) and we'll address it promptly.
+If you find an issue with a listed subagent or want your contribution removed, please [open an issue](https://github.com/a2mus/awesome-zcode-subagents/issues) and we'll address it promptly.
 
 
