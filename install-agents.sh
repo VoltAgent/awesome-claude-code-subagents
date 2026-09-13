@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Claude Code Agents Installer
+# ZCode Agents Installer
 # Interactive script to install/uninstall agents from this repository
 
 set -e
@@ -17,13 +17,15 @@ BOLD='\033[1m'
 # Configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CATEGORIES_DIR="$SCRIPT_DIR/categories"
-GLOBAL_AGENTS_DIR="$HOME/.claude/agents"
-LOCAL_AGENTS_DIR=".claude/agents"
-CLAUDE_AGENTS_DIR=""  # Will be set by select_install_mode
+GLOBAL_AGENTS_DIR="$HOME/.zcode/agents"
+LOCAL_AGENTS_DIR=".zcode/agents"
+ZCODE_AGENTS_DIR=""  # Will be set by select_install_mode
 INSTALL_MODE=""  # "global" or "local"
 SOURCE_MODE=""  # "local" or "remote"
 
 # GitHub API configuration
+# Points at the upstream VoltAgent collection so remote mode works out of the box.
+# If you publish a ZCode fork, change these two lines to your own repo slug.
 GITHUB_API_BASE="https://api.github.com/repos/VoltAgent/awesome-claude-code-subagents/contents"
 GITHUB_RAW_BASE="https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main"
 
@@ -31,9 +33,9 @@ GITHUB_RAW_BASE="https://raw.githubusercontent.com/VoltAgent/awesome-claude-code
 REMOTE_CATEGORIES=()
 REMOTE_AGENTS=()
 
-# Function to check if local .claude directory exists
-has_local_claude_dir() {
-    [[ -d ".claude" ]]
+# Function to check if a local .zcode directory exists
+has_local_zcode_dir() {
+    [[ -d ".zcode" ]]
 }
 
 # Function to check if local categories directory exists
@@ -108,6 +110,9 @@ download_agent() {
     local url="$GITHUB_RAW_BASE/categories/$category/$agent_file"
 
     if curl -sS "$url" -o "$dest_path" 2>/dev/null; then
+        # The upstream collection uses Claude model tiers (sonnet/opus/haiku) which
+        # are not valid ZCode model ids; drop them so agents inherit the primary model.
+        sed -i.bak '/^model: \(sonnet\|opus\|haiku\)$/d' "$dest_path" && rm -f "$dest_path.bak"
         return 0
     else
         return 1
@@ -164,16 +169,16 @@ select_install_mode() {
     show_header
     echo -e "${BOLD}Select installation mode:${NC}\n"
 
-    echo -e "  ${YELLOW}1)${NC} Global installation ${CYAN}(~/.claude/agents/)${NC}"
+    echo -e "  ${YELLOW}1)${NC} Global installation ${CYAN}(~/.zcode/agents/)${NC}"
     echo -e "     Available for all projects"
     echo ""
 
-    if has_local_claude_dir; then
-        echo -e "  ${YELLOW}2)${NC} Local installation ${CYAN}(.claude/agents/)${NC}"
+    if has_local_zcode_dir; then
+        echo -e "  ${YELLOW}2)${NC} Local installation ${CYAN}(.zcode/agents/)${NC}"
         echo -e "     Only for current project"
     else
         echo -e "  ${BLUE}2)${NC} Local installation ${CYAN}(not available)${NC}"
-        echo -e "     ${YELLOW}No .claude/ directory found in current directory${NC}"
+        echo -e "     ${YELLOW}No .zcode/ directory found in current directory${NC}"
     fi
     echo ""
     echo -e "  ${YELLOW}q)${NC} Quit"
@@ -183,17 +188,17 @@ select_install_mode() {
 
     case "$choice" in
         1)
-            CLAUDE_AGENTS_DIR="$GLOBAL_AGENTS_DIR"
+            ZCODE_AGENTS_DIR="$GLOBAL_AGENTS_DIR"
             INSTALL_MODE="global"
-            mkdir -p "$CLAUDE_AGENTS_DIR"
+            mkdir -p "$ZCODE_AGENTS_DIR"
             ;;
         2)
-            if has_local_claude_dir; then
-                CLAUDE_AGENTS_DIR="$LOCAL_AGENTS_DIR"
+            if has_local_zcode_dir; then
+                ZCODE_AGENTS_DIR="$LOCAL_AGENTS_DIR"
                 INSTALL_MODE="local"
-                mkdir -p "$CLAUDE_AGENTS_DIR"
+                mkdir -p "$ZCODE_AGENTS_DIR"
             else
-                echo -e "\n${RED}Local installation not available. No .claude/ directory found.${NC}"
+                echo -e "\n${RED}Local installation not available. No .zcode/ directory found.${NC}"
                 sleep 2
                 select_install_mode
                 return
@@ -216,15 +221,15 @@ show_header() {
     clear
     echo -e "${BOLD}${CYAN}"
     echo "╔══════════════════════════════════════════════════════════════╗"
-    echo "║           Claude Code Agents Installer                       ║"
+    echo "║           ZCode Agents Installer                       ║"
     echo "╚══════════════════════════════════════════════════════════════╝"
     echo -e "${NC}"
     if [[ -n "$INSTALL_MODE" ]]; then
         local mode_str=""
         if [[ "$INSTALL_MODE" == "global" ]]; then
-            mode_str="Global (~/.claude/agents/)"
+            mode_str="Global (~/.zcode/agents/)"
         else
-            mode_str="Local (.claude/agents/)"
+            mode_str="Local (.zcode/agents/)"
         fi
 
         local source_str=""
@@ -249,7 +254,7 @@ get_category_name() {
 is_agent_installed() {
     local agent_file="$1"
     local agent_name=$(basename "$agent_file")
-    [[ -f "$CLAUDE_AGENTS_DIR/$agent_name" ]]
+    [[ -f "$ZCODE_AGENTS_DIR/$agent_name" ]]
 }
 
 # Function to get agent description from frontmatter
@@ -344,7 +349,7 @@ select_agents() {
         for agent_file in "${REMOTE_AGENTS[@]}"; do
             agents+=("$agent_file")
             # Check if installed (by filename)
-            if [[ -f "$CLAUDE_AGENTS_DIR/$agent_file" ]]; then
+            if [[ -f "$ZCODE_AGENTS_DIR/$agent_file" ]]; then
                 agent_states+=(1)
             else
                 agent_states+=(0)
@@ -357,7 +362,7 @@ select_agents() {
             local basename=$(basename "$agent_file")
             if [[ "$basename" != "README.md" ]]; then
                 agents+=("$basename")
-                if [[ -f "$CLAUDE_AGENTS_DIR/$basename" ]]; then
+                if [[ -f "$ZCODE_AGENTS_DIR/$basename" ]]; then
                     agent_states+=(1)
                 else
                     agent_states+=(0)
@@ -381,7 +386,7 @@ select_agents() {
             local status_icon=""
             local status_color=""
 
-            if [[ -f "$CLAUDE_AGENTS_DIR/$agent_file" ]]; then
+            if [[ -f "$ZCODE_AGENTS_DIR/$agent_file" ]]; then
                 is_installed=" ${BLUE}(installed)${NC}"
             fi
 
@@ -440,7 +445,7 @@ select_agents() {
 
                     # Check if currently installed
                     local was_installed=0
-                    if [[ -f "$CLAUDE_AGENTS_DIR/$agent_file" ]]; then
+                    if [[ -f "$ZCODE_AGENTS_DIR/$agent_file" ]]; then
                         was_installed=1
                     fi
 
@@ -531,7 +536,7 @@ confirm_and_apply() {
                 if [[ "$SOURCE_MODE" == "remote" ]]; then
                     # Download from GitHub
                     echo -e "${CYAN}Downloading $agent_file...${NC}"
-                    if download_agent "$category" "$agent_file" "$CLAUDE_AGENTS_DIR/$agent_file"; then
+                    if download_agent "$category" "$agent_file" "$ZCODE_AGENTS_DIR/$agent_file"; then
                         echo -e "${GREEN}✓${NC} Installed: $agent_file"
                     else
                         echo -e "${RED}✗${NC} Failed to download: $agent_file"
@@ -540,7 +545,7 @@ confirm_and_apply() {
                     # Copy from local
                     local source_path="$CATEGORIES_DIR/$category/$agent_file"
                     if [[ -f "$source_path" ]]; then
-                        cp "$source_path" "$CLAUDE_AGENTS_DIR/$agent_file"
+                        cp "$source_path" "$ZCODE_AGENTS_DIR/$agent_file"
                         echo -e "${GREEN}✓${NC} Installed: $agent_file"
                     fi
                 fi
@@ -550,8 +555,8 @@ confirm_and_apply() {
         # Perform uninstallations
         for agent_file in "${to_uninstall[@]}"; do
             if [[ -n "$agent_file" ]]; then
-                if [[ -f "$CLAUDE_AGENTS_DIR/$agent_file" ]]; then
-                    rm "$CLAUDE_AGENTS_DIR/$agent_file"
+                if [[ -f "$ZCODE_AGENTS_DIR/$agent_file" ]]; then
+                    rm "$ZCODE_AGENTS_DIR/$agent_file"
                     echo -e "${RED}✓${NC} Uninstalled: $agent_file"
                 fi
             fi

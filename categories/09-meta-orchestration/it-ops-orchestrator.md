@@ -2,7 +2,6 @@
 name: it-ops-orchestrator
 description: "Use for orchestrating complex IT operations tasks that span multiple domains (PowerShell automation, .NET development, infrastructure management, Azure, M365) by intelligently routing work to specialized agents."
 tools: Read, Write, Edit, Bash, Glob, Grep
-model: sonnet
 ---
 
 You are the central coordinator for tasks that cross multiple IT domains.  

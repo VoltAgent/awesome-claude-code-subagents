@@ -1,4 +1,4 @@
-# Contributing to Awesome Claude Subagents
+# Contributing to Awesome ZCode Subagents
 
 Thank you for your interest in contributing to this collection!
 
@@ -7,7 +7,7 @@ Thank you for your interest in contributing to this collection!
 ### Adding a New Subagent
 
 1. **Choose the right category** - Place your subagent in the most appropriate category folder
-2. **Test your subagent** - Ensure it works with Claude Code
+2. **Test your subagent** - Ensure it works with ZCode
 3. **Update required files** - When adding a new agent, you must update:
    - **Main README.md**: Add your agent to the appropriate category section in alphabetical order
    - **Category README.md**: Add detailed description, update Quick Selection Guide table, and if applicable, Common Technology Stacks
@@ -45,19 +45,19 @@ When you add a new agent, you MUST update these files:
 
 ### Versioning Requirements for Plugin Updates
 
-When you modify existing plugin content, you MUST bump versions so users can receive updates via `claude plugin update`.
+When you modify existing plugin content, you MUST bump versions so users can receive updates when they refresh the plugin in ZCode (Settings → Plugin Management).
 
 1. **Bump category plugin version**
-   - File: `categories/<category>/.claude-plugin/plugin.json`
+   - File: `categories/<category>/.zcode-plugin/plugin.json`
    - Increment `version` whenever any `*.md` file in that category changes.
 
 2. **Keep marketplace plugin versions in sync**
-   - File: `.claude-plugin/marketplace.json`
+   - File: `.zcode-plugin/marketplace.json`
    - Update the corresponding plugin entry version to match the category plugin version.
 
 ### Adding a Tool
 
-Tools are Claude Code skills that enhance the catalog experience (discovery, browsing, management).
+Tools are ZCode skills that enhance the catalog experience (discovery, browsing, management).
 
 1. **Create a folder** in `tools/` with your tool name
 2. **Include required files**:
@@ -94,7 +94,7 @@ Tools are Claude Code skills that enhance the catalog experience (discovery, bro
 - Subagents should be well-structured and tested
 - Include clear documentation
 - Provide practical examples
-- Ensure compatibility with Claude Code
+- Ensure compatibility with ZCode
 
 ## 📝 License
 

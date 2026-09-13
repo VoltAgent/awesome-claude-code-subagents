@@ -1,13 +1,13 @@
 # subagent-catalog
 
-A Claude Code skill for browsing and fetching subagents from the [awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents) catalog.
+A ZCode skill for browsing and fetching subagents from the awesome-zcode-subagents catalog.
 
 ## Installation
 
-Copy the `subagent-catalog/` folder to `~/.claude/commands/`:
+Copy the `subagent-catalog/` folder to `~/.zcode/commands/`:
 
 ```bash
-cp -r tools/subagent-catalog ~/.claude/commands/
+cp -r tools/subagent-catalog ~/.zcode/commands/
 ```
 
 ## Usage
@@ -41,11 +41,11 @@ cp -r tools/subagent-catalog ~/.claude/commands/
 - **Smart caching**: 12-hour TTL with graceful fallback on network failure
 - **Atomic updates**: Uses tmp file + mv pattern to prevent partial writes
 - **Cross-platform**: Works on macOS and Linux
-- **Best practices**: Follows Anthropic skill authoring guidelines
+- **Best practices**: Follows ZCode command authoring conventions
 
 ## Cache
 
-- **Location**: `~/.claude/cache/subagent-catalog.md`
+- **Location**: `~/.zcode/cache/subagent-catalog.md`
 - **TTL**: 12 hours (configurable in `config.sh`)
 - **Behavior**: Auto-refreshes when stale, falls back to old cache on network failure
 

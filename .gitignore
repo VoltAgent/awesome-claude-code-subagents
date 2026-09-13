@@ -12,6 +12,6 @@ dist/
 build/
 *.egg-info/
 
-# Claude Code
-.claude/
-.claude_history
+# ZCode local settings
+.zcode/config.json
+.zcode_history

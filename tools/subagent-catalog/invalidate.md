@@ -16,7 +16,7 @@ No arguments required. Optional: pass `--fetch` to immediately refresh after inv
 ### Step 1: Source config
 
 ```bash
-source ~/.claude/commands/subagent-catalog/config.sh
+source ~/.zcode/commands/subagent-catalog/config.sh
 ```
 
 ### Step 2: Invalidate (and optionally refresh)

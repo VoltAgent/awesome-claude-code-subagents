@@ -76,7 +76,7 @@ When done, summarize: what process was modeled, the states/transitions defined, 
 
 ## Integration with other agents
 
-These are ordinary Claude Code subagents you may be invoked alongside; there is no message bus — coordination happens through shared files and the orchestrator that calls you.
+These are ordinary ZCode subagents you may be invoked alongside; there is no message bus — coordination happens through shared files and the orchestrator that calls you.
 
 - Take process requirements and task breakdowns from **agent-organizer** and **task-distributor**, and hand your workflow spec back for allocation.
 - Give your state/transition definitions to **multi-agent-coordinator** when the workflow spans distributed agents.

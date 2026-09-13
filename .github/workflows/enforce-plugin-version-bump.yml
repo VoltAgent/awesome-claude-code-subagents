@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - "categories/**"
-      - ".claude-plugin/marketplace.json"
+      - ".zcode-plugin/marketplace.json"
   workflow_dispatch:
 
 jobs:
@@ -35,7 +35,7 @@ jobs:
           CHANGED_FILES="$(git diff --name-only "${BASE_SHA}"...HEAD)"
           FAIL=0
 
-          for plugin_json in categories/*/.claude-plugin/plugin.json; do
+          for plugin_json in categories/*/.zcode-plugin/plugin.json; do
             category_dir="$(dirname "$(dirname "${plugin_json}")")"
 
             if echo "${CHANGED_FILES}" | grep -Eq "^${category_dir}/.*\.md$"; then
@@ -51,7 +51,7 @@ jobs:
             fi
           done
 
-          for plugin_json in categories/*/.claude-plugin/plugin.json; do
+          for plugin_json in categories/*/.zcode-plugin/plugin.json; do
             plugin_name="$(sed -n 's/.*"name":[[:space:]]*"\([^"]*\)".*/\1/p' "${plugin_json}" | head -n1)"
             category_version="$(sed -n 's/.*"version":[[:space:]]*"\([^"]*\)".*/\1/p' "${plugin_json}" | head -n1)"
 
@@ -64,14 +64,14 @@ jobs:
                   exit
                 }
                 in_plugin && $0 ~ "}" { in_plugin = 0 }
-              ' .claude-plugin/marketplace.json
+              ' .zcode-plugin/marketplace.json
             )"
 
             if [ -z "${marketplace_version}" ]; then
-              echo "::error file=.claude-plugin/marketplace.json::Could not find plugin ${plugin_name} in marketplace manifest."
+              echo "::error file=.zcode-plugin/marketplace.json::Could not find plugin ${plugin_name} in marketplace manifest."
               FAIL=1
             elif [ "${marketplace_version}" != "${category_version}" ]; then
-              echo "::error file=.claude-plugin/marketplace.json::Version mismatch for ${plugin_name}: marketplace=${marketplace_version}, category=${category_version}."
+              echo "::error file=.zcode-plugin/marketplace.json::Version mismatch for ${plugin_name}: marketplace=${marketplace_version}, category=${category_version}."
               FAIL=1
             fi
           done

@@ -1,7 +1,7 @@
 {
-  "name": "voltagent-meta",
+  "name": "zcode-meta",
   "version": "1.0.4",
-  "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation, and safe refactor governance. Works best with other voltagent plugins installed.",
+  "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation, and safe refactor governance. Works best with other zcode plugins installed.",
   "author": {
     "name": "VoltAgent Community",
     "url": "https://github.com/VoltAgent"

@@ -27,9 +27,9 @@ Expert code reviewer specializing in code quality, security vulnerabilities...
 
 ---
 **What now?**
-- save to ~/.claude/agents/code-reviewer.md
+- save to ~/.zcode/agents/code-reviewer.md
 - customize for this project
-- spawn as Task subagent
+- invoke via the ZCode Agent tool
 ```
 
 ## Instructions
@@ -44,7 +44,7 @@ Copy and track:
 ### Step 1: Resolve path
 
 ```bash
-source ~/.claude/commands/subagent-catalog/config.sh
+source ~/.zcode/commands/subagent-catalog/config.sh
 subagent_catalog_ensure_cache
 
 # find the agent (use -F for literal match)
@@ -69,9 +69,9 @@ fi
 ### Step 3: Display and offer options
 
 Show the definition with frontmatter parsed, then offer:
-1. save locally (`~/.claude/agents/<name>.md`)
+1. save locally (`~/.zcode/agents/<name>.md`)
 2. customize for project
-3. spawn as Task
+3. invoke via the ZCode Agent tool
 
 ### Error handling
 

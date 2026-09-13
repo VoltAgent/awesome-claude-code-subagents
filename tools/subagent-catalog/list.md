@@ -5,7 +5,7 @@ description: "List all categories and agents in the subagent catalog. Use when u
 
 # Subagent Catalog - List
 
-Browse all available categories and agents from the awesome-claude-code-subagents catalog.
+Browse all available categories and agents from the awesome-zcode-subagents catalog.
 
 ## Input: $ARGUMENTS
 
@@ -16,7 +16,7 @@ No arguments required.
 ### Step 1: Ensure cache is fresh
 
 ```bash
-source ~/.claude/commands/subagent-catalog/config.sh
+source ~/.zcode/commands/subagent-catalog/config.sh
 subagent_catalog_ensure_cache
 ```
 

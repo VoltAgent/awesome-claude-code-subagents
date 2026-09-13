@@ -1,78 +1,43 @@
-<a href="https://github.com/VoltAgent/voltagent">
-<img width="1500" height="500" alt="Group 32" src="https://github.com/user-attachments/assets/55b97c47-8506-4be0-b18f-f5384d063cbb" />
-</a>
-
-<br />
-<br/>
-
 <div align="center">
-    <strong>The awesome collection of 158+ Claude Code subagents across 10 categories.</strong>
-    <br />
-    <br />
-</div>
 
-<div align="center">
+# Awesome ZCode Subagents
+
+**The awesome collection of 158+ ZCode subagents across 10 categories.**
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 ![Subagent Count](https://img.shields.io/badge/subagents-158-blue?style=classic)
-[![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-claude-code-subagents?label=Last%20update&style=classic)](https://github.com/VoltAgent/awesome-claude-code-subagents)
-[![Discord](https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://s.voltagent.dev/discord)
-
-
-
 
 </div>
 
+This repository serves as the definitive collection of ZCode subagents, specialized AI assistants designed for specific development tasks.
 
-
-# Awesome Claude Code Subagents
-
-This repository serves as the definitive collection of Claude Code subagents, specialized AI assistants designed for specific development tasks.
-
-> **A note on contributions:** We don't accept PRs whose primary purpose is to promote a product, company, or personal project. Subagents must be genuinely useful to Claude Code users and stay vendor-neutral in their content. If you'd like to get your project in front of this community, you can [sponsor the repo](#sponsors) instead — that's the supported way to surface your work here.
-
-## Sponsors
-
-|  |  |
-| :-: | :-- |
-| <a href="https://crawlbase.com/?utm_source=awesome-claude-code-subagents&utm_medium=sponsorship&utm_campaign=voltagent_2026q3&utm_content=readme_listing"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.voltagent.dev/awesome-repo/crawlbase-new/crawlbase-logo-dark-mode.svg"><img alt="Crawlbase" src="https://cdn.voltagent.dev/awesome-repo/crawlbase-new/crawlbase-logo-light-mode.svg" width="425"></picture></a> | [Crawlbase](https://crawlbase.com/?utm_source=awesome-claude-code-subagents&utm_medium=sponsorship&utm_campaign=voltagent_2026q3&utm_content=readme_listing) is web data infrastructure trusted by 70,000+ developers. Its Crawling API, MCP server, and integrations give AI agents live access to any webpage — with JavaScript rendering, proxy rotation, and anti-bot protection. |
-| <a href="https://serpapi.com/awesome-claude-code-subagents"><img alt="SerpApi" src="https://cdn.voltagent.dev/awesome-repo/serpapi/serpapi-logo.png" width="425"></a> | [SerpApi](https://serpapi.com/awesome-claude-code-subagents) is a Web Search API for your AI apps. Available in Markdown and JSON for any integration. |
-
-<br />
-
-<a href="https://sponsors.voltagent.dev/#awesome-claude-code-subagents"><img src="https://img.shields.io/badge/📩_Become_a_Sponsor-Contact_Us-blue?style=for-the-badge&logoColor=white" alt="Become a Sponsor" /></a>
+> **Credits:** This is a fork of [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents), adapted for **ZCode** — agent definitions were converted to ZCode's subagent format (files in `~/.zcode/agents/`, ZCode tool names, inherit-by-default models) and the plugin manifests were moved to `.zcode-plugin/`. All credit for the original 158 agent definitions goes to the VoltAgent community.
 
 ## Installation
 
-### As Claude Code Plugin (Recommended)
+### As a ZCode Plugin (Recommended)
 
-```bash
-claude plugin marketplace add VoltAgent/awesome-claude-code-subagents
-claude plugin install <plugin-name>
-```
+ZCode can install these agents as plugins from its marketplace:
 
-Examples:
-```bash
-claude plugin install voltagent-lang    # Language specialists
-claude plugin install voltagent-infra   # Infrastructure & DevOps
-```
+1. Open ZCode **Settings → Plugin Management → Discover**
+2. Click **`+`** to add a marketplace and point it at this repository (a GitHub repository URL, Git URL, or local directory all work — the marketplace manifest lives at `.zcode-plugin/marketplace.json`)
+3. Install the category plugins you want, e.g. `zcode-lang` (language specialists) or `zcode-infra` (infrastructure & DevOps)
 
 See [Categories](#-categories) below for all available plugins.
 
-> **Note**: The `voltagent-meta` orchestration agents work best when other categories installed.
+> **Note**: The `zcode-meta` orchestration agents work best when other categories are installed.
 
 ### Option 1: Manual Installation
 
 1. Clone this repository
-2. Copy desired agent files to:
-   - `~/.claude/agents/` for global access
-   - `.claude/agents/` for project-specific use
-3. Customize based on your project requirements
+2. Copy the desired agent files into `~/.zcode/agents/` (e.g. `cp categories/02-language-specialists/python-pro.md ~/.zcode/agents/`)
+3. Restart your ZCode session — definition files are read at session start
+4. Customize based on your project requirements
 
 ### Option 2: Interactive Installer
 ```bash
-git clone https://github.com/VoltAgent/awesome-claude-code-subagents.git
-cd awesome-claude-code-subagents
+git clone <your-fork-url>/awesome-zcode-subagents.git
+cd awesome-zcode-subagents
 ./install-agents.sh
 ```
 This interactive script lets you browse categories, select agents, and install/uninstall them with a single command.
@@ -83,36 +48,18 @@ curl -sO https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagen
 chmod +x install-agents.sh
 ./install-agents.sh
 ```
-Downloads agents directly from GitHub without cloning the repository. Requires `curl`.
+Downloads agents directly from GitHub without cloning the repository. Requires `curl`. (Update the URL to your published fork if you have one.)
 
-### Option 4: Agent Installer (use Claude Code to install agents)
+### Option 4: Agent Installer (use ZCode to install agents)
 ```bash
-curl -s https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/categories/09-meta-orchestration/agent-installer.md -o ~/.claude/agents/agent-installer.md
+curl -s https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/categories/09-meta-orchestration/agent-installer.md -o ~/.zcode/agents/agent-installer.md
 ```
-Then in Claude Code: "Use the agent-installer to show me available categories" or "Find PHP agents and install php-pro globally".
-
-<br/>
-
-<div align="center">
-
-<table>
-<tr>
-<td align="center" width="100%">
-<h4>👉 You can feature your product here and reach developers using AI coding agents like Claude Code, Codex, Gemini, and more.</h4>
-     
-<a href="https://sponsors.voltagent.dev/#awesome-claude-code-subagents"><img src="https://img.shields.io/badge/📩_Become_a_Sponsor-Contact_Us-blue?style=for-the-badge&logoColor=white" alt="Become a Sponsor" /></a>
-
-</td>
-</tr>
-</table>
-
-</div>
-
+Then in ZCode: "Use the agent-installer to show me available categories" or "Find PHP agents and install php-pro globally".
 
 ## 📚 Categories
 
 ### [01. Core Development](categories/01-core-development/)
-**Plugin:** `voltagent-core-dev`
+**Plugin:** `zcode-core-dev`
 
 Essential development subagents for everyday coding tasks.
 
@@ -131,25 +78,8 @@ Essential development subagents for everyday coding tasks.
 
 <br/>
 
-You ship products with AI, but every launch still dies quietly because nobody posts about it. [EveryFeed](https://everyfeed.ai/) plugs your AI assistant into a social workspace that drafts, schedules, and publishes across 35+ channels — no agency, no marketing hire.
-
-<a href="https://everyfeed.ai/">
-<img src="https://cdn.voltagent.dev/awesome-repo/everyfeed-social.png" alt="everyfeed"  /><br/>
-</a>
-
-<br/>
-<br/>
-
-Stop building from a blank page. [LaunchKit](https://launchkit.getdesign.md/) gives your AI coding assistant a complete, working product to start from — websites, startups, and web apps that are clickable on day one.
-
-<a href="https://launchkit.getdesign.md/">
-<img src="https://cdn.voltagent.dev/awesome-repo/new-launchkit.png" alt="launchkit"  /><br/>
-</a>
-
-<br/>
-
 ### [02. Language Specialists](categories/02-language-specialists/)
-**Plugin:** `voltagent-lang`
+**Plugin:** `zcode-lang`
 
 Language-specific experts with deep framework knowledge.
 - [**typescript-pro**](categories/02-language-specialists/typescript-pro.md) - TypeScript specialist
@@ -185,7 +115,7 @@ Language-specific experts with deep framework knowledge.
 
 
 ### [03. Infrastructure](categories/03-infrastructure/)
-**Plugin:** `voltagent-infra`
+**Plugin:** `zcode-infra`
 
 DevOps, cloud, and deployment specialists.
 
@@ -207,7 +137,7 @@ DevOps, cloud, and deployment specialists.
 - [**windows-infra-admin**](categories/03-infrastructure/windows-infra-admin.md) - Active Directory, DNS, DHCP, and GPO automation specialist
 
 ### [04. Quality & Security](categories/04-quality-security/)
-**Plugin:** `voltagent-qa-sec`
+**Plugin:** `zcode-qa-sec`
 
 Testing, security, and code quality experts.
 
@@ -230,7 +160,7 @@ Testing, security, and code quality experts.
 - [**ui-ux-tester**](categories/04-quality-security/ui-ux-tester.md) - Exhaustive documented-flow UI tester
 
 ### [05. Data & AI](categories/05-data-ai/)
-**Plugin:** `voltagent-data-ai`
+**Plugin:** `zcode-data-ai`
 
 Data engineering, ML, and AI specialists.
 
@@ -249,7 +179,7 @@ Data engineering, ML, and AI specialists.
 - [**reinforcement-learning-engineer**](categories/05-data-ai/reinforcement-learning-engineer.md) - Reinforcement learning and agent training expert
 
 ### [06. Developer Experience](categories/06-developer-experience/)
-**Plugin:** `voltagent-dev-exp`
+**Plugin:** `zcode-dev-exp`
 
 Tooling and developer productivity experts.
 
@@ -271,7 +201,7 @@ Tooling and developer productivity experts.
 - [**visual-asset-generator**](categories/06-developer-experience/visual-asset-generator.md) - Visual asset generation specialist using prompt-to-asset MCP across 30+ image models
 
 ### [07. Specialized Domains](categories/07-specialized-domains/)
-**Plugin:** `voltagent-domains`
+**Plugin:** `zcode-domains`
 
 Domain-specific technology experts.
 
@@ -293,7 +223,7 @@ Domain-specific technology experts.
 - [**x-api-integration**](categories/07-specialized-domains/x-api-integration.md) - X/Twitter API integration specialist
 
 ### [08. Business & Product](categories/08-business-product/)
-**Plugin:** `voltagent-biz`
+**Plugin:** `zcode-biz`
 
 Product management and business analysis.
 
@@ -316,7 +246,7 @@ Product management and business analysis.
 - [**content-quality-editor**](categories/08-business-product/content-quality-editor.md) - AI content quality specialist using unslop to strip AI writing patterns before publishing
 
 ### [09. Meta & Orchestration](categories/09-meta-orchestration/)
-**Plugin:** `voltagent-meta`
+**Plugin:** `zcode-meta`
 
 Agent coordination and meta-programming.
 
@@ -337,7 +267,7 @@ Agent coordination and meta-programming.
 - [**workflow-orchestrator**](categories/09-meta-orchestration/workflow-orchestrator.md) - Complex workflow automation
 
 ### [10. Research & Analysis](categories/10-research-analysis/)
-**Plugin:** `voltagent-research`
+**Plugin:** `zcode-research`
 
 Research, search, and analysis specialists.
 
@@ -355,7 +285,7 @@ Research, search, and analysis specialists.
 
 ## 🤖 Understanding Subagents
 
-Subagents are specialized AI assistants that enhance Claude Code's capabilities by providing task-specific expertise. They act as dedicated helpers that Claude Code can call upon when encountering particular types of work.
+Subagents are specialized AI assistants that enhance ZCode's capabilities by providing task-specific expertise. They act as dedicated helpers that ZCode can call upon when encountering particular types of work.
 
 ### What Makes Subagents Special?
 
@@ -380,32 +310,30 @@ You can configure each subagent with specific tool access rights, enabling fine-
 
 ### Getting Started with Subagents
 
-**1. Access the Subagent Manager**
-```bash
-/agents
-```
+**1. Open the Subagent Settings**
+
+In ZCode, go to **Settings → Subagents** (or simply drop a `.md` file into `~/.zcode/agents/` — see [Option 1](#option-1-manual-installation) above).
 
 **2. Create Your Subagent**
-- Choose between project-specific or global subagents
-- Let Claude generate an initial version, then refine it to your needs
+- Choose "Inherit default" for the model, or pin a specific model id
 - Provide detailed descriptions of the subagent's purpose and activation triggers
 - Configure tool access (leave empty to inherit all available tools)
-- Customize the system prompt using the built-in editor (press `e`)
+- Set an optional `thoughtLevel` (e.g. `high`) for tasks that need deeper reasoning
 
 **3. Deploy and Utilize**
-Your subagent becomes immediately available. Claude Code will automatically engage it when suitable, or you can explicitly request its help:
+Your subagent becomes available in new sessions. ZCode will automatically engage it when suitable (driven by its `description`), or you can explicitly request it:
 ```
 > Have the code-reviewer subagent analyze my latest commits
 ```
+You can also mention a subagent with `@` in chat to invoke it directly.
 
 ### Subagent Storage Locations
 
-| Type | Path | Availability | Precedence |
-|------|------|--------------|------------|
-| Project Subagents | `.claude/agents/` | Current project only | Higher |
-| Global Subagents | `~/.claude/agents/` | All projects | Lower |
+| Type | Path | Availability |
+|------|------|--------------|
+| User (global) Subagents | `~/.zcode/agents/` | All projects |
 
-Note: When naming conflicts occur, project-specific subagents override global ones.
+Note: ZCode currently loads custom subagents from the user-level directory (workspace/project-level management is not available yet). Files are read at session start; running sessions do not hot-reload.
 
 
 ## 📖 Subagent Structure
@@ -417,7 +345,6 @@ Each subagent follows a standardized template:
 name: subagent-name
 description: When this agent should be invoked
 tools: Read, Write, Edit, Bash, Glob, Grep
-model: sonnet
 ---
 
 You are a [role description and expertise areas]...
@@ -431,23 +358,19 @@ Inter-agent communication specifications...
 Structured implementation phases...
 ```
 
-### Tool Assignment Philosophy
+### Model Selection
 
-### Smart Model Routing
+By default, subagents omit the `model` field and inherit whatever model your primary ZCode agent is currently using. You can pin a specific model id or tune reasoning per agent by editing its frontmatter:
 
-Each subagent includes a `model` field that automatically routes it to the right Claude model — balancing quality and cost:
-
-| Model | When It's Used | Examples |
-|-------|----------------|----------|
-| `opus` | Deep reasoning — architecture reviews, security audits, financial logic | `security-auditor`, `architect-reviewer`, `fintech-engineer` |
-| `sonnet` | Everyday coding — writing, debugging, refactoring | `python-pro`, `backend-developer`, `devops-engineer` |
-| `haiku` | Quick tasks — docs, search, dependency checks | `documentation-engineer`, `seo-specialist`, `build-engineer` |
-
-You can override any agent's model by editing the `model` field in its frontmatter. Set `model: inherit` to use whatever model your main conversation is using.
+| Frontmatter field | Effect | Good for |
+|-------------------|--------|----------|
+| *(omitted)* / `model: inherit` | Follows the primary agent's current model | Most agents — one model switch updates everything |
+| `model: <model-id>` | Pins the subagent to a specific model | Cost-sensitive or heavyweight agents |
+| `thoughtLevel: high` | Deeper reasoning (only with a pinned model) | Architecture reviews, security audits |
 
 ### Tool Assignment Philosophy
 
-Each subagent's `tools` field specifies Claude Code built-in tools, optimized for their role:
+Each subagent's `tools` field specifies ZCode built-in tools, optimized for their role:
 - **Read-only agents** (reviewers, auditors): `Read, Grep, Glob` - analyze without modifying
 - **Research agents** (analysts, researchers): `Read, Grep, Glob, WebFetch, WebSearch` - gather information
 - **Code writers** (developers, engineers): `Read, Write, Edit, Bash, Glob, Grep` - create and execute
@@ -458,7 +381,7 @@ Each agent has minimal necessary permissions. You can extend agents by adding MC
 ## 🧰 Tools
 
 ### [subagent-catalog](tools/subagent-catalog/)
-Claude Code skill for browsing and fetching subagents from this catalog.
+ZCode skill for browsing and fetching subagents from this catalog.
 
 | Command | Description |
 |---------|-------------|
@@ -469,7 +392,7 @@ Claude Code skill for browsing and fetching subagents from this catalog.
 
 **Installation:**
 ```bash
-cp -r tools/subagent-catalog ~/.claude/commands/
+cp -r tools/subagent-catalog ~/.zcode/commands/
 ```
 
 
@@ -483,7 +406,8 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 - Report issues and bugs
 
 ## Contributor ♥️ Thanks
-![Contributors](https://contrib.rocks/image?repo=voltagent/awesome-claude-code-subagents&max=500&columns=20&anon=1)
+
+Thanks to everyone who has contributed subagents — originally the [VoltAgent community](https://github.com/VoltAgent/awesome-claude-code-subagents), and now ZCode users improving the definitions further.
 
 
 ## 📄 License
@@ -495,5 +419,3 @@ This repository is a curated collection of subagent definitions contributed by b
 If you find an issue with a listed subagent or want your contribution removed, please [open an issue](https://github.com/VoltAgent/awesome-claude-code-subagents/issues) and we'll address it promptly.
 
 
-[codex-badge]: https://img.shields.io/github/stars/VoltAgent/awesome-codex-subagents?style=classic&label=Codex%20Subagents&color=000000&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0yMi4yODIgOS44MjFhNS45ODUgNS45ODUgMCAwIDAtLjUxNi00LjkxIDYuMDQ2IDYuMDQ2IDAgMCAwLTYuNTEtMi45QTYuMDY1IDYuMDY1IDAgMCAwIDQuOTgxIDQuMThhNS45ODUgNS45ODUgMCAwIDAtMy45OTggMi45IDYuMDQ2IDYuMDQ2IDAgMCAwIC43NDMgNy4wOTcgNS45OCA1Ljk4IDAgMCAwIC41MSA0LjkxMSA2LjA1MSA2LjA1MSAwIDAgMCA2LjUxNSAyLjlBNS45ODUgNS45ODUgMCAwIDAgMTMuMjYgMjRhNi4wNTYgNi4wNTYgMCAwIDAgNS43NzItNC4yMDYgNS45OSA1Ljk5IDAgMCAwIDMuOTk3LTIuOSA2LjA1NiA2LjA1NiAwIDAgMC0uNzQ3LTcuMDczek0xMy4yNiAyMi40M2E0LjQ3NiA0LjQ3NiAwIDAgMS0yLjg3Ni0xLjA0bC4xNDEtLjA4MSA0Ljc3OS0yLjc1OGEuNzk1Ljc5NSAwIDAgMCAuMzkyLS42ODF2LTYuNzM3bDIuMDIgMS4xNjhhLjA3MS4wNzEgMCAwIDEgLjAzOC4wNTJ2NS41ODNhNC41MDQgNC41MDQgMCAwIDEtNC40OTQgNC40OTR6TTMuNiAxOC4zMDRhNC40NyA0LjQ3IDAgMCAxLS41MzUtMy4wMTRsLjE0Mi4wODUgNC43ODMgMi43NTlhLjc3MS43NzEgMCAwIDAgLjc4IDBsNS44NDMtMy4zNjl2Mi4zMzJhLjA4LjA4IDAgMCAxLS4wMzMuMDYyTDkuNzQgMTkuOTVhNC41IDQuNSAwIDAgMS02LjE0LTEuNjQ2ek0yLjM0IDcuODk2YTQuNDg1IDQuNDg1IDAgMCAxIDIuMzY2LTEuOTczVjExLjZhLjc2Ni43NjYgMCAwIDAgLjM4OC42NzZsNS44MTUgMy4zNTUtMi4wMiAxLjE2OGEuMDc2LjA3NiAwIDAgMS0uMDcxIDBsLTQuODMtMi43ODZBNC41MDQgNC41MDQgMCAwIDEgMi4zNCA3Ljg3MnptMTYuNTk3IDMuODU1bC01LjgzMy0zLjM4N0wxNS4xMTkgNy4yYS4wNzYuMDc2IDAgMCAxIC4wNzEgMGw0LjgzIDIuNzkxYTQuNDk0IDQuNDk0IDAgMCAxLS42NzYgOC4xMDV2LTUuNjc4YS43OS43OSAwIDAgMC0uNDA3LS42Njd6bTIuMDEtMy4wMjNsLS4xNDEtLjA4NS00Ljc3NC0yLjc4MmEuNzc2Ljc3NiAwIDAgMC0uNzg1IDBMOS40MDkgOS4yM1Y2Ljg5N2EuMDY2LjA2NiAwIDAgMSAuMDI4LS4wNjFsNC44My0yLjc4N2E0LjUgNC41IDAgMCAxIDYuNjggNC42NnptLTEyLjY0IDQuMTM1bC0yLjAyLTEuMTY0YS4wOC4wOCAwIDAgMS0uMDM4LS4wNTdWNi4wNzVhNC41IDQuNSAwIDAgMSA3LjM3NS0zLjQ1M2wtLjE0Mi4wOEw4LjcwNCA1LjQ2YS43OTUuNzk1IDAgMCAwLS4zOTMuNjgxem0xLjA5Ny0yLjM2NWwyLjYwMi0xLjUgMi42MDcgMS41djIuOTk5bC0yLjU5NyAxLjUtMi42MDctMS41eiIvPjwvc3ZnPg==
-[codex-link]: https://github.com/VoltAgent/awesome-codex-subagents

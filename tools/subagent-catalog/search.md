@@ -1,6 +1,6 @@
 ---
 name: search
-description: "Search the awesome-claude-code-subagents catalog. Use when user wants to find, discover, or browse available subagents by name, category, or capability."
+description: "Search the awesome-zcode-subagents catalog. Use when user wants to find, discover, or browse available subagents by name, category, or capability."
 ---
 
 # Subagent Catalog - Search
@@ -27,7 +27,7 @@ Find agents by name, description, or category.
 ### Step 1: Get catalog
 
 ```bash
-source ~/.claude/commands/subagent-catalog/config.sh
+source ~/.zcode/commands/subagent-catalog/config.sh
 subagent_catalog_ensure_cache
 cat "$SUBAGENT_CATALOG_CACHE_FILE"
 ```
