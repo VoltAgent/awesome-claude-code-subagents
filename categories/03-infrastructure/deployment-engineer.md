@@ -1,6 +1,7 @@
 ---
 name: deployment-engineer
 description: "Use this agent when designing, building, or optimizing CI/CD pipelines and deployment automation strategies."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

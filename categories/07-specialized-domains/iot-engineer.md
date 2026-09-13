@@ -1,6 +1,7 @@
 ---
 name: iot-engineer
 description: "Use when designing and deploying IoT solutions requiring expertise in device management, edge computing, cloud integration, and handling challenges like massive device scale, complex connectivity scenarios, or real-time data pipelines."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

@@ -1,6 +1,7 @@
 ---
 name: knowledge-synthesizer
 description: "Use when you need to mine recurring patterns from agent logs, session transcripts, and workflow history, then write grounded, evidence-cited findings that other agents or humans can act on."
+mode: subagent
 tools: Read, Write, Edit, Glob, Grep
 ---
 

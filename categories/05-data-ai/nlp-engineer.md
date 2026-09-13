@@ -1,6 +1,7 @@
 ---
 name: nlp-engineer
 description: "Use when building production NLP systems, implementing text processing pipelines, developing language models, or solving domain-specific NLP tasks like named entity recognition, sentiment analysis, or machine translation."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

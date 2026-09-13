@@ -1,6 +1,7 @@
 ---
 name: business-analyst
 description: "Use when analyzing business processes, gathering requirements from stakeholders, or identifying process improvement opportunities to drive operational efficiency and measurable business value."
+mode: subagent
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 ---
 

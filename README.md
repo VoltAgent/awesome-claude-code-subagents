@@ -1,17 +1,18 @@
 <div align="center">
 
-# Awesome ZCode Subagents
+# Awesome Subagents (ZCode & OpenCode)
 
-**The awesome collection of 158+ ZCode subagents across 10 categories.**
+**The awesome collection of 158+ subagents across 10 categories for ZCode and OpenCode.**
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 ![Subagent Count](https://img.shields.io/badge/subagents-158-blue?style=classic)
+![Platform](https://img.shields.io/badge/platform-ZCode%20%7C%20OpenCode-blueviolet?style=classic)
 
 </div>
 
-This repository serves as the definitive collection of ZCode subagents, specialized AI assistants designed for specific development tasks.
+This repository serves as the definitive collection of subagents for **ZCode** and **OpenCode**, specialized AI assistants designed for specific development tasks.
 
-> **Credits:** This is a fork of [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents), adapted for **ZCode** — agent definitions were converted to ZCode's subagent format (files in `~/.zcode/agents/`, ZCode tool names, inherit-by-default models) and the plugin manifests were moved to `.zcode-plugin/`. All credit for the original 158 agent definitions goes to the VoltAgent community.
+> **Credits:** This collection is an adaptation of [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents) supporting both **ZCode** and **OpenCode** — agent definitions feature dual compatibility (`mode: subagent`, inherit-by-default models, and platform-specific tool/permission mapping), and plugin manifests in `.zcode-plugin/`. All credit for the original 158 agent definitions goes to the VoltAgent community.
 
 ## Installation
 
@@ -20,34 +21,50 @@ This repository serves as the definitive collection of ZCode subagents, speciali
 No git clone, curl, or bash required — run directly via `npx` in any terminal (**PowerShell**, **Command Prompt**, **Windows Terminal**, **macOS Terminal**, or **Linux**):
 
 ```bash
-# Launch interactive installer menu
+# Launch interactive installer menu (supports ZCode & OpenCode)
 npx github:a2mus/awesome-zcode-subagents
 ```
 
-#### One-Liner Quick Commands:
+#### OpenCode Commands:
 ```bash
-# Install recommended Starter Pack (10 essential coding & debugging agents)
+# Install recommended Starter Pack for OpenCode (global: ~/.config/opencode/agents/)
+npx github:a2mus/awesome-zcode-subagents --opencode --starter
+
+# Install into current project for OpenCode (.opencode/agents/)
+npx github:a2mus/awesome-zcode-subagents --opencode --project --starter
+npx github:a2mus/awesome-zcode-subagents --opencode --project --all
+
+# Install specific agent(s) for OpenCode
+npx github:a2mus/awesome-zcode-subagents --opencode --agent code-reviewer,debugger
+
+# List installed OpenCode subagents
+npx github:a2mus/awesome-zcode-subagents --opencode --installed
+```
+
+#### ZCode Commands:
+```bash
+# Install recommended Starter Pack for ZCode (default: ~/.zcode/agents/)
 npx github:a2mus/awesome-zcode-subagents --starter
 
-# Install a specific category
+# Install a specific category for ZCode
 npx github:a2mus/awesome-zcode-subagents -c 01-core-development
 npx github:a2mus/awesome-zcode-subagents -c 02-language-specialists
 
-# Install specific agent(s)
-npx github:a2mus/awesome-zcode-subagents --agent python-pro,debugger,code-reviewer
-
-# Install all 158+ agents
+# Install all 158+ agents for ZCode
 npx github:a2mus/awesome-zcode-subagents --all
 
 # List installed agents in your ZCode directory
 npx github:a2mus/awesome-zcode-subagents --installed
-
-# Uninstall agent(s)
-npx github:a2mus/awesome-zcode-subagents --uninstall code-reviewer
-npx github:a2mus/awesome-zcode-subagents --uninstall all
 ```
 
-> **Windows Note:** The installer automatically locates and creates your user agents directory at `C:\Users\<YourUsername>\.zcode\agents`.
+#### Both Assistants Simultaneously:
+```bash
+# Install starter pack into BOTH ZCode and OpenCode
+npx github:a2mus/awesome-zcode-subagents --both --starter
+
+# Install all 158+ agents into BOTH ZCode and OpenCode
+npx github:a2mus/awesome-zcode-subagents --both --all
+```
 
 ---
 
@@ -61,27 +78,32 @@ ZCode can install these agents as plugins from its marketplace:
 
 See [Categories](#-categories) below for all available plugins.
 
-> **Note**: The `zcode-meta` orchestration agents work best when other categories are installed.
-
 ---
 
 ### Option 3: Manual Installation (Windows, macOS, Linux)
 
-#### On Windows (PowerShell):
-```powershell
-# Create target directory if it doesn't exist
-New-Item -ItemType Directory -Force -Path "$HOME\.zcode\agents"
-
-# Copy chosen agent(s) from a local clone
-Copy-Item -Path "categories\02-language-specialists\python-pro.md" -Destination "$HOME\.zcode\agents\"
-```
-
-#### On macOS / Linux / Git Bash:
+#### For OpenCode:
 ```bash
-mkdir -p ~/.zcode/agents
-cp categories/02-language-specialists/python-pro.md ~/.zcode/agents/
+# Global scope (all projects):
+mkdir -p ~/.config/opencode/agents
+cp categories/02-language-specialists/python-pro.md ~/.config/opencode/agents/
+
+# Local scope (current project):
+mkdir -p .opencode/agents
+cp categories/02-language-specialists/python-pro.md .opencode/agents/
 ```
-Restart your ZCode session after copying — subagents are loaded at session start.
+
+#### For ZCode:
+- **Windows (PowerShell):**
+  ```powershell
+  New-Item -ItemType Directory -Force -Path "$HOME\.zcode\agents"
+  Copy-Item -Path "categories\02-language-specialists\python-pro.md" -Destination "$HOME\.zcode\agents\"
+  ```
+- **macOS / Linux:**
+  ```bash
+  mkdir -p ~/.zcode/agents
+  cp categories/02-language-specialists/python-pro.md ~/.zcode/agents/
+  ```
 
 ---
 
@@ -89,9 +111,13 @@ Restart your ZCode session after copying — subagents are loaded at session sta
 ```bash
 git clone https://github.com/a2mus/awesome-zcode-subagents.git
 cd awesome-zcode-subagents
+
+# Interactive menu (choose ZCode or OpenCode)
 ./install-agents.sh
+
+# Target OpenCode directly
+./install-agents.sh --opencode
 ```
-This interactive script lets you browse categories, select agents, and install/uninstall them with a single command.
 
 ---
 
@@ -99,21 +125,17 @@ This interactive script lets you browse categories, select agents, and install/u
 ```bash
 curl -sO https://raw.githubusercontent.com/a2mus/awesome-zcode-subagents/main/install-agents.sh
 chmod +x install-agents.sh
-./install-agents.sh
+./install-agents.sh --opencode
 ```
-Downloads agents directly from GitHub without cloning the repository. Requires `curl` and bash.
 
 ---
 
-### Option 6: Agent Installer (use ZCode to install agents)
-```bash
-# On Linux / macOS:
-curl -s https://raw.githubusercontent.com/a2mus/awesome-zcode-subagents/main/categories/09-meta-orchestration/agent-installer.md -o ~/.zcode/agents/agent-installer.md
+### Option 6: Agent Installer (in-agent installation)
+Install the `agent-installer` subagent directly into your assistant:
+- For OpenCode: save to `~/.config/opencode/agents/agent-installer.md`
+- For ZCode: save to `~/.zcode/agents/agent-installer.md`
 
-# On Windows (PowerShell):
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/a2mus/awesome-zcode-subagents/main/categories/09-meta-orchestration/agent-installer.md" -OutFile "$HOME\.zcode\agents\agent-installer.md"
-```
-Then in ZCode: *"Use the agent-installer to show me available categories"* or *"Find PHP agents and install php-pro globally"*.
+Then ask: *"Use the agent-installer to find out which Python agents are available"* or *"Install code-reviewer"*.
 
 ## 📚 Categories
 
@@ -369,40 +391,45 @@ You can configure each subagent with specific tool access rights, enabling fine-
 
 ### Getting Started with Subagents
 
-**1. Open the Subagent Settings**
+#### In ZCode:
+1. Drop agent `.md` files into `~/.zcode/agents/` (or use `npx github:a2mus/awesome-zcode-subagents --starter`).
+2. Restart your ZCode session.
+3. Subagents trigger automatically based on task descriptions, or invoke directly with `@<agent-name>`:
+   ```
+   > Have @code-reviewer analyze my latest commits
+   ```
 
-In ZCode, go to **Settings → Subagents** (or simply drop a `.md` file into `~/.zcode/agents/` — see [Option 1](#option-1-manual-installation) above).
-
-**2. Create Your Subagent**
-- Choose "Inherit default" for the model, or pin a specific model id
-- Provide detailed descriptions of the subagent's purpose and activation triggers
-- Configure tool access (leave empty to inherit all available tools)
-- Set an optional `thoughtLevel` (e.g. `high`) for tasks that need deeper reasoning
-
-**3. Deploy and Utilize**
-Your subagent becomes available in new sessions. ZCode will automatically engage it when suitable (driven by its `description`), or you can explicitly request it:
-```
-> Have the code-reviewer subagent analyze my latest commits
-```
-You can also mention a subagent with `@` in chat to invoke it directly.
+#### In OpenCode:
+1. Install agents to `~/.config/opencode/agents/` (global) or `.opencode/agents/` (current project) using:
+   ```bash
+   npx github:a2mus/awesome-zcode-subagents --opencode --starter
+   ```
+2. Start OpenCode in your project terminal: `opencode`.
+3. OpenCode automatically discovers custom subagents with `mode: subagent`.
+4. Invoke any subagent using `@` mention:
+   ```
+   > @python-pro refactor the data pipeline to use async iterators
+   ```
+5. Primary agents (`build`, `plan`) can also autonomously delegate subtasks to these agents!
 
 ### Subagent Storage Locations
 
-| Type | Path | Availability |
-|------|------|--------------|
-| User (global) Subagents | `~/.zcode/agents/` | All projects |
-
-Note: ZCode currently loads custom subagents from the user-level directory (workspace/project-level management is not available yet). Files are read at session start; running sessions do not hot-reload.
-
+| Assistant | Scope | Path | Availability |
+|-----------|-------|------|--------------|
+| **OpenCode** | User (global) | `~/.config/opencode/agents/` | Available across all projects |
+| **OpenCode** | Project (local)| `.opencode/agents/` | Current repository only |
+| **ZCode** | User (global) | `~/.zcode/agents/` | Available across all projects |
+| **ZCode** | Project (local)| `.zcode/agents/` | Current repository only |
 
 ## 📖 Subagent Structure
 
-Each subagent follows a standardized template:
+Each subagent follows a dual-compatible template:
 
 ```yaml
 ---
 name: subagent-name
 description: When this agent should be invoked
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ZCode Agents Installer
+# Subagents Installer for ZCode & OpenCode
 # Interactive script to install/uninstall agents from this repository
 
 set -e
@@ -11,21 +11,26 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 CYAN='\033[0;36m'
+MAGENTA='\033[0;35m'
 NC='\033[0m' # No Color
 BOLD='\033[1m'
 
 # Configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CATEGORIES_DIR="$SCRIPT_DIR/categories"
-GLOBAL_AGENTS_DIR="$HOME/.zcode/agents"
-LOCAL_AGENTS_DIR=".zcode/agents"
-ZCODE_AGENTS_DIR=""  # Will be set by select_install_mode
-INSTALL_MODE=""  # "global" or "local"
-SOURCE_MODE=""  # "local" or "remote"
+
+# Default directories
+ZCODE_GLOBAL_DIR="$HOME/.zcode/agents"
+ZCODE_LOCAL_DIR=".zcode/agents"
+OPENCODE_GLOBAL_DIR="$HOME/.config/opencode/agents"
+OPENCODE_LOCAL_DIR=".opencode/agents"
+
+TARGET_PLATFORM="zcode" # "zcode" or "opencode"
+TARGET_AGENTS_DIR=""    # Will be set by select_install_mode
+INSTALL_MODE=""         # "global" or "local"
+SOURCE_MODE=""          # "local" or "remote"
 
 # GitHub API configuration
-# Points at the upstream VoltAgent collection so remote mode works out of the box.
-# If you publish a ZCode fork, change these two lines to your own repo slug.
 GITHUB_API_BASE="https://api.github.com/repos/a2mus/awesome-zcode-subagents/contents"
 GITHUB_RAW_BASE="https://raw.githubusercontent.com/a2mus/awesome-zcode-subagents/main"
 
@@ -33,17 +38,46 @@ GITHUB_RAW_BASE="https://raw.githubusercontent.com/a2mus/awesome-zcode-subagents
 REMOTE_CATEGORIES=()
 REMOTE_AGENTS=()
 
-# Function to check if a local .zcode directory exists
+# Parse CLI arguments
+for arg in "$@"; do
+    case "$arg" in
+        --opencode|-o)
+            TARGET_PLATFORM="opencode"
+            ;;
+        --zcode|-z)
+            TARGET_PLATFORM="zcode"
+            ;;
+        --global)
+            INSTALL_MODE="global"
+            ;;
+        --local|-p|--project)
+            INSTALL_MODE="local"
+            ;;
+        --help|-h)
+            echo "Usage: ./install-agents.sh [options]"
+            echo "Options:"
+            echo "  --opencode, -o    Target OpenCode (~/.config/opencode/agents/ or .opencode/agents/)"
+            echo "  --zcode, -z       Target ZCode (~/.zcode/agents/ or .zcode/agents/)"
+            echo "  --global          Install to user global directory"
+            echo "  --local, -p       Install to project local directory"
+            echo "  --help, -h        Show this help message"
+            exit 0
+            ;;
+    esac
+done
+
 has_local_zcode_dir() {
     [[ -d ".zcode" ]]
 }
 
-# Function to check if local categories directory exists
+has_local_opencode_dir() {
+    [[ -d ".opencode" ]]
+}
+
 has_local_categories() {
     [[ -d "$CATEGORIES_DIR" ]]
 }
 
-# Function to check if curl is available
 check_curl() {
     if ! command -v curl &> /dev/null; then
         echo -e "${RED}Error: curl is required for remote mode but not installed.${NC}"
@@ -51,12 +85,10 @@ check_curl() {
     fi
 }
 
-# Function to fetch categories from GitHub API
 fetch_categories_remote() {
     local response
     response=$(curl -s "$GITHUB_API_BASE/categories")
 
-    # Check for rate limiting or errors
     if echo "$response" | grep -q "API rate limit exceeded"; then
         echo -e "${RED}GitHub API rate limit exceeded. Please try again later or use local mode.${NC}"
         sleep 3
@@ -69,7 +101,6 @@ fetch_categories_remote() {
         return 1
     fi
 
-    # Parse JSON response - extract directory names starting with numbers
     REMOTE_CATEGORIES=()
     while IFS= read -r line; do
         if [[ -n "$line" ]]; then
@@ -80,18 +111,15 @@ fetch_categories_remote() {
     return 0
 }
 
-# Function to fetch agents from a category via GitHub API
 fetch_agents_remote() {
     local category="$1"
     local response
     response=$(curl -s "$GITHUB_API_BASE/categories/$category")
 
-    # Check for errors
     if echo "$response" | grep -q '"message"'; then
         return 1
     fi
 
-    # Parse JSON response - extract .md files excluding README.md
     REMOTE_AGENTS=()
     while IFS= read -r line; do
         if [[ -n "$line" && "$line" != "README.md" ]]; then
@@ -102,7 +130,43 @@ fetch_agents_remote() {
     return 0
 }
 
-# Function to download an agent file from GitHub
+# Transform an agent file for OpenCode compatibility if targeting OpenCode
+format_agent_for_destination() {
+    local file_path="$1"
+    if [[ "$TARGET_PLATFORM" == "opencode" ]]; then
+        # Create temp file
+        local tmp_file="${file_path}.tmp"
+        node -e '
+        const fs = require("fs");
+        const path = process.argv[1];
+        let content = fs.readFileSync(path, "utf8");
+        const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+        if (match) {
+            const fm = match[1];
+            const body = content.slice(match[0].length);
+            const descMatch = fm.match(/^description:\s*(.*)$/m);
+            const desc = descMatch ? descMatch[1].trim() : "\"Subagent\"";
+            const nameMatch = fm.match(/^name:\s*(.*)$/m);
+            const name = nameMatch ? nameMatch[1].trim() : "agent";
+            const toolsMatch = fm.match(/^tools:\s*(.*)$/m);
+            const tools = toolsMatch ? toolsMatch[1].toLowerCase() : "";
+            
+            const hasEdit = tools.includes("write") || tools.includes("edit");
+            const hasBash = tools.includes("bash");
+            
+            let newFm = `name: ${name}\ndescription: ${desc}\nmode: subagent`;
+            if (!hasEdit || !hasBash) {
+                newFm += `\npermission:`;
+                if (!hasEdit) newFm += `\n  edit: deny`;
+                if (!hasBash) newFm += `\n  bash: deny`;
+            }
+            content = `---\n${newFm}\n---${body}`;
+            fs.writeFileSync(path, content, "utf8");
+        }
+        ' "$file_path" 2>/dev/null || true
+    fi
+}
+
 download_agent() {
     local category="$1"
     local agent_file="$2"
@@ -110,18 +174,46 @@ download_agent() {
     local url="$GITHUB_RAW_BASE/categories/$category/$agent_file"
 
     if curl -sS "$url" -o "$dest_path" 2>/dev/null; then
-        # The upstream collection uses Claude model tiers (sonnet/opus/haiku) which
-        # are not valid ZCode model ids; drop them so agents inherit the primary model.
-        sed -i.bak '/^model: \(sonnet\|opus\|haiku\)$/d' "$dest_path" && rm -f "$dest_path.bak"
+        sed -i.bak '/^model: \(sonnet\|opus\|haiku\)$/d' "$dest_path" 2>/dev/null && rm -f "$dest_path.bak"
+        format_agent_for_destination "$dest_path"
         return 0
     else
         return 1
     fi
 }
 
-# Function to select source mode (local or remote)
+select_platform() {
+    show_header
+    echo -e "${BOLD}Select Target Assistant Platform:${NC}\n"
+
+    echo -e "  ${YELLOW}1)${NC} ${CYAN}ZCode${NC}     - ~/.zcode/agents/ (or .zcode/agents/)"
+    echo -e "  ${YELLOW}2)${NC} ${MAGENTA}OpenCode${NC}  - ~/.config/opencode/agents/ (or .opencode/agents/)"
+    echo ""
+    echo -e "  ${YELLOW}q)${NC} Quit"
+    echo ""
+
+    read -p "Enter your choice [1-2]: " choice
+
+    case "$choice" in
+        1)
+            TARGET_PLATFORM="zcode"
+            ;;
+        2)
+            TARGET_PLATFORM="opencode"
+            ;;
+        q|Q)
+            echo -e "\n${GREEN}Goodbye!${NC}"
+            exit 0
+            ;;
+        *)
+            echo -e "${RED}Invalid choice. Defaulting to ZCode.${NC}"
+            TARGET_PLATFORM="zcode"
+            sleep 1
+            ;;
+    esac
+}
+
 select_source_mode() {
-    # If no local categories, automatically use remote
     if ! has_local_categories; then
         SOURCE_MODE="remote"
         check_curl
@@ -164,21 +256,44 @@ select_source_mode() {
     esac
 }
 
-# Function to select installation mode
 select_install_mode() {
-    show_header
-    echo -e "${BOLD}Select installation mode:${NC}\n"
+    local global_dir=""
+    local local_dir=""
+    local has_local=0
 
-    echo -e "  ${YELLOW}1)${NC} Global installation ${CYAN}(~/.zcode/agents/)${NC}"
+    if [[ "$TARGET_PLATFORM" == "opencode" ]]; then
+        global_dir="$OPENCODE_GLOBAL_DIR"
+        local_dir="$OPENCODE_LOCAL_DIR"
+        has_local_opencode_dir && has_local=1
+    else
+        global_dir="$ZCODE_GLOBAL_DIR"
+        local_dir="$ZCODE_LOCAL_DIR"
+        has_local_zcode_dir && has_local=1
+    fi
+
+    if [[ -n "$INSTALL_MODE" ]]; then
+        if [[ "$INSTALL_MODE" == "local" ]]; then
+            TARGET_AGENTS_DIR="$local_dir"
+        else
+            TARGET_AGENTS_DIR="$global_dir"
+        fi
+        mkdir -p "$TARGET_AGENTS_DIR"
+        return
+    fi
+
+    show_header
+    echo -e "${BOLD}Select installation mode for ${CYAN}${TARGET_PLATFORM}${NC}:${NC}\n"
+
+    echo -e "  ${YELLOW}1)${NC} Global installation ${CYAN}($global_dir)${NC}"
     echo -e "     Available for all projects"
     echo ""
 
-    if has_local_zcode_dir; then
-        echo -e "  ${YELLOW}2)${NC} Local installation ${CYAN}(.zcode/agents/)${NC}"
+    if [[ $has_local -eq 1 ]]; then
+        echo -e "  ${YELLOW}2)${NC} Local project installation ${CYAN}($local_dir)${NC}"
         echo -e "     Only for current project"
     else
-        echo -e "  ${BLUE}2)${NC} Local installation ${CYAN}(not available)${NC}"
-        echo -e "     ${YELLOW}No .zcode/ directory found in current directory${NC}"
+        echo -e "  ${YELLOW}2)${NC} Local project installation ${CYAN}($local_dir)${NC}"
+        echo -e "     ${YELLOW}(Will create directory in current project)${NC}"
     fi
     echo ""
     echo -e "  ${YELLOW}q)${NC} Quit"
@@ -188,82 +303,49 @@ select_install_mode() {
 
     case "$choice" in
         1)
-            ZCODE_AGENTS_DIR="$GLOBAL_AGENTS_DIR"
+            TARGET_AGENTS_DIR="$global_dir"
             INSTALL_MODE="global"
-            mkdir -p "$ZCODE_AGENTS_DIR"
+            mkdir -p "$TARGET_AGENTS_DIR"
             ;;
         2)
-            if has_local_zcode_dir; then
-                ZCODE_AGENTS_DIR="$LOCAL_AGENTS_DIR"
-                INSTALL_MODE="local"
-                mkdir -p "$ZCODE_AGENTS_DIR"
-            else
-                echo -e "\n${RED}Local installation not available. No .zcode/ directory found.${NC}"
-                sleep 2
-                select_install_mode
-                return
-            fi
+            TARGET_AGENTS_DIR="$local_dir"
+            INSTALL_MODE="local"
+            mkdir -p "$TARGET_AGENTS_DIR"
             ;;
         q|Q)
             echo -e "\n${GREEN}Goodbye!${NC}"
             exit 0
             ;;
         *)
-            echo -e "${RED}Invalid choice. Please try again.${NC}"
+            echo -e "${RED}Invalid choice. Defaulting to global.${NC}"
+            TARGET_AGENTS_DIR="$global_dir"
+            INSTALL_MODE="global"
+            mkdir -p "$TARGET_AGENTS_DIR"
             sleep 1
-            select_install_mode
             ;;
     esac
 }
 
-# Function to display a header
 show_header() {
     clear
     echo -e "${BOLD}${CYAN}"
     echo "╔══════════════════════════════════════════════════════════════╗"
-    echo "║           ZCode Agents Installer                       ║"
+    echo "║       Awesome Subagents Installer (ZCode & OpenCode)         ║"
     echo "╚══════════════════════════════════════════════════════════════╝"
     echo -e "${NC}"
-    if [[ -n "$INSTALL_MODE" ]]; then
-        local mode_str=""
-        if [[ "$INSTALL_MODE" == "global" ]]; then
-            mode_str="Global (~/.zcode/agents/)"
-        else
-            mode_str="Local (.zcode/agents/)"
-        fi
-
-        local source_str=""
-        if [[ "$SOURCE_MODE" == "remote" ]]; then
-            source_str=" | Source: GitHub"
-        else
-            source_str=" | Source: Local"
-        fi
-
-        echo -e "${BLUE}Mode: ${mode_str}${source_str}${NC}\n"
+    if [[ -n "$TARGET_AGENTS_DIR" ]]; then
+        local platform_color="${CYAN}"
+        [[ "$TARGET_PLATFORM" == "opencode" ]] && platform_color="${MAGENTA}"
+        echo -e "Platform: ${platform_color}${BOLD}${TARGET_PLATFORM}${NC} | Target: ${BLUE}${TARGET_AGENTS_DIR}${NC}"
+        echo ""
     fi
 }
 
-# Function to get category display name (remove number prefix)
-# Uses awk for Title Case conversion (compatible with macOS and Linux)
 get_category_name() {
     local dir="$1"
     echo "$dir" | sed 's/^[0-9]*-//' | tr '-' ' ' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2))}1'
 }
 
-# Function to check if an agent is installed
-is_agent_installed() {
-    local agent_file="$1"
-    local agent_name=$(basename "$agent_file")
-    [[ -f "$ZCODE_AGENTS_DIR/$agent_name" ]]
-}
-
-# Function to get agent description from frontmatter
-get_agent_description() {
-    local agent_file="$1"
-    grep -A1 "^description:" "$agent_file" 2>/dev/null | head -1 | sed 's/^description: *//' | cut -c1-60
-}
-
-# Function to display category selection menu
 select_category() {
     show_header
     echo -e "${BOLD}Select a category:${NC}\n"
@@ -272,7 +354,6 @@ select_category() {
     local i=1
 
     if [[ "$SOURCE_MODE" == "remote" ]]; then
-        # Remote mode: fetch from GitHub API
         echo -e "${CYAN}Fetching categories from GitHub...${NC}\n"
         if ! fetch_categories_remote; then
             echo -e "${RED}Failed to fetch categories. Press Enter to retry.${NC}"
@@ -288,11 +369,9 @@ select_category() {
             ((i++))
         done
     else
-        # Local mode: read from filesystem
         for dir in "$CATEGORIES_DIR"/*/; do
             if [[ -d "$dir" && $(basename "$dir") != "." ]]; then
                 local dirname=$(basename "$dir")
-                # Skip if it's not a category directory (doesn't start with number)
                 if [[ "$dirname" =~ ^[0-9]+ ]]; then
                     categories+=("$dirname")
                     local display_name=$(get_category_name "$dirname")
@@ -325,17 +404,14 @@ select_category() {
     fi
 }
 
-# Function to display agent selection menu with multi-select
 select_agents() {
     local category="$1"
     local category_name=$(get_category_name "$category")
 
-    # Build list of agents (excluding README.md)
     local agents=()
     local agent_states=()
 
     if [[ "$SOURCE_MODE" == "remote" ]]; then
-        # Remote mode: fetch from GitHub API
         show_header
         echo -e "${BOLD}Category: ${CYAN}$category_name${NC}\n"
         echo -e "${CYAN}Fetching agents from GitHub...${NC}\n"
@@ -348,21 +424,19 @@ select_agents() {
 
         for agent_file in "${REMOTE_AGENTS[@]}"; do
             agents+=("$agent_file")
-            # Check if installed (by filename)
-            if [[ -f "$ZCODE_AGENTS_DIR/$agent_file" ]]; then
+            if [[ -f "$TARGET_AGENTS_DIR/$agent_file" ]]; then
                 agent_states+=(1)
             else
                 agent_states+=(0)
             fi
         done
     else
-        # Local mode: read from filesystem
         local category_path="$CATEGORIES_DIR/$category"
         for agent_file in "$category_path"/*.md; do
             local basename=$(basename "$agent_file")
             if [[ "$basename" != "README.md" ]]; then
                 agents+=("$basename")
-                if [[ -f "$ZCODE_AGENTS_DIR/$basename" ]]; then
+                if [[ -f "$TARGET_AGENTS_DIR/$basename" ]]; then
                     agent_states+=(1)
                 else
                     agent_states+=(0)
@@ -370,9 +444,6 @@ select_agents() {
             fi
         done
     fi
-
-    # Store original states to calculate changes
-    local original_states=("${agent_states[@]}")
 
     while true; do
         show_header
@@ -386,7 +457,7 @@ select_agents() {
             local status_icon=""
             local status_color=""
 
-            if [[ -f "$ZCODE_AGENTS_DIR/$agent_file" ]]; then
+            if [[ -f "$TARGET_AGENTS_DIR/$agent_file" ]]; then
                 is_installed=" ${BLUE}(installed)${NC}"
             fi
 
@@ -415,7 +486,6 @@ select_agents() {
         case "$choice" in
             [0-9]*)
                 if (( choice >= 1 && choice <= ${#agents[@]} )); then
-                    # Toggle selection
                     local idx=$((choice-1))
                     if [[ ${agent_states[$idx]} -eq 1 ]]; then
                         agent_states[$idx]=0
@@ -435,17 +505,14 @@ select_agents() {
                 done
                 ;;
             c|C)
-                # Calculate changes
                 local to_install=()
                 local to_uninstall=()
 
                 for i in "${!agents[@]}"; do
                     local agent_file="${agents[$i]}"
                     local is_selected=${agent_states[$i]}
-
-                    # Check if currently installed
                     local was_installed=0
-                    if [[ -f "$ZCODE_AGENTS_DIR/$agent_file" ]]; then
+                    if [[ -f "$TARGET_AGENTS_DIR/$agent_file" ]]; then
                         was_installed=1
                     fi
 
@@ -470,17 +537,14 @@ select_agents() {
     done
 }
 
-# Function to confirm and apply changes
 confirm_and_apply() {
     local category="$1"
     local install_list="$2"
     local uninstall_list="$3"
 
-    # Convert space-separated strings back to arrays
     IFS=' ' read -ra to_install <<< "$install_list"
     IFS=' ' read -ra to_uninstall <<< "$uninstall_list"
 
-    # Filter out empty entries
     local install_count=0
     local uninstall_count=0
 
@@ -530,33 +594,30 @@ confirm_and_apply() {
     if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
         echo ""
 
-        # Perform installations
         for agent_file in "${to_install[@]}"; do
             if [[ -n "$agent_file" ]]; then
                 if [[ "$SOURCE_MODE" == "remote" ]]; then
-                    # Download from GitHub
                     echo -e "${CYAN}Downloading $agent_file...${NC}"
-                    if download_agent "$category" "$agent_file" "$ZCODE_AGENTS_DIR/$agent_file"; then
+                    if download_agent "$category" "$agent_file" "$TARGET_AGENTS_DIR/$agent_file"; then
                         echo -e "${GREEN}✓${NC} Installed: $agent_file"
                     else
                         echo -e "${RED}✗${NC} Failed to download: $agent_file"
                     fi
                 else
-                    # Copy from local
                     local source_path="$CATEGORIES_DIR/$category/$agent_file"
                     if [[ -f "$source_path" ]]; then
-                        cp "$source_path" "$ZCODE_AGENTS_DIR/$agent_file"
+                        cp "$source_path" "$TARGET_AGENTS_DIR/$agent_file"
+                        format_agent_for_destination "$TARGET_AGENTS_DIR/$agent_file"
                         echo -e "${GREEN}✓${NC} Installed: $agent_file"
                     fi
                 fi
             fi
         done
 
-        # Perform uninstallations
         for agent_file in "${to_uninstall[@]}"; do
             if [[ -n "$agent_file" ]]; then
-                if [[ -f "$ZCODE_AGENTS_DIR/$agent_file" ]]; then
-                    rm "$ZCODE_AGENTS_DIR/$agent_file"
+                if [[ -f "$TARGET_AGENTS_DIR/$agent_file" ]]; then
+                    rm "$TARGET_AGENTS_DIR/$agent_file"
                     echo -e "${RED}✓${NC} Uninstalled: $agent_file"
                 fi
             fi
@@ -572,8 +633,8 @@ confirm_and_apply() {
     read -p "Press Enter to continue..."
 }
 
-# Main loop
 main() {
+    select_platform
     select_install_mode
     select_source_mode
     while true; do
@@ -584,5 +645,4 @@ main() {
     done
 }
 
-# Run main function
 main

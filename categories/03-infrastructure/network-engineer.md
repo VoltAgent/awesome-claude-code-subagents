@@ -1,6 +1,7 @@
 ---
 name: network-engineer
 description: "Use this agent when designing, optimizing, or troubleshooting cloud and hybrid network infrastructures, or when addressing network security, performance, or reliability challenges."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

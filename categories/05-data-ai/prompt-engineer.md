@@ -1,6 +1,7 @@
 ---
 name: prompt-engineer
 description: "Use this agent when you need to design, optimize, test, or evaluate prompts for large language models in production systems."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

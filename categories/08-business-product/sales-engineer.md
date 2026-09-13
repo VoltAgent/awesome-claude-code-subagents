@@ -1,6 +1,7 @@
 ---
 name: sales-engineer
 description: "Use this agent when you need to conduct technical pre-sales activities including solution architecture, proof-of-concept development, and technical demonstrations for complex sales deals."
+mode: subagent
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 ---
 

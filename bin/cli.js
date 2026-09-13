@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * Awesome ZCode Subagents CLI Installer
- * Zero-dependency installer for ZCode subagents on Windows, macOS, and Linux.
+ * Awesome Subagents CLI Installer
+ * Zero-dependency installer for ZCode and OpenCode subagents on Windows, macOS, and Linux.
  * 
  * Usage:
  *   npx github:a2mus/awesome-zcode-subagents [options]
@@ -14,7 +14,7 @@ const path = require('path');
 const os = require('os');
 const readline = require('readline');
 
-// Color helpers using ANSI escape codes (supported on modern Windows Terminal, PowerShell, CMD, Bash)
+// Color helpers using ANSI escape codes
 const colors = {
   reset: '\x1b[0m',
   bold: '\x1b[1m',
@@ -43,10 +43,23 @@ const c = {
 // Root directories
 const CATEGORIES_DIR = path.resolve(__dirname, '..', 'categories');
 
-// Default target directory: ~/.zcode/agents
-function getDefaultTargetDir() {
-  const home = process.env.USERPROFILE || process.env.HOME || os.homedir();
-  return path.join(home, '.zcode', 'agents');
+// Resolve standard platform directories
+function getHomeDir() {
+  return process.env.USERPROFILE || process.env.HOME || os.homedir();
+}
+
+function getZCodeDefaultDir(isProject = false) {
+  if (isProject) {
+    return path.resolve('.zcode', 'agents');
+  }
+  return path.join(getHomeDir(), '.zcode', 'agents');
+}
+
+function getOpenCodeDefaultDir(isProject = false) {
+  if (isProject) {
+    return path.resolve('.opencode', 'agents');
+  }
+  return path.join(getHomeDir(), '.config', 'opencode', 'agents');
 }
 
 // Curated starter pack (10 essential development subagents)
@@ -124,53 +137,122 @@ function findCategory(query, categories) {
   return found || null;
 }
 
-// Copy an agent file to target directory
+// Format markdown content for OpenCode subagent compatibility
+function formatForOpenCode(content, agentName) {
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!match) return content;
+
+  const frontmatter = match[1];
+  const body = content.slice(match[0].length);
+
+  // Extract description
+  const descMatch = frontmatter.match(/^description:\s*(.*)$/m);
+  const desc = descMatch ? descMatch[1].trim() : `"${agentName} subagent"`;
+
+  // Extract tools to determine permissions
+  const toolsMatch = frontmatter.match(/^tools:\s*(.*)$/m);
+  const toolsStr = toolsMatch ? toolsMatch[1].trim() : "";
+  const tools = toolsStr.split(",").map((t) => t.trim().toLowerCase());
+
+  const hasEdit = tools.some((t) => t === "write" || t === "edit");
+  const hasBash = tools.some((t) => t === "bash");
+
+  // Build clean OpenCode frontmatter
+  let newFm = `name: ${agentName}\ndescription: ${desc}\nmode: subagent`;
+
+  // Enforce read-only / execution restrictions if tools restricted
+  if (!hasEdit || !hasBash) {
+    newFm += `\npermission:`;
+    if (!hasEdit) newFm += `\n  edit: deny`;
+    if (!hasBash) newFm += `\n  bash: deny`;
+  }
+
+  return `---\n${newFm}\n---${body}`;
+}
+
+// Determine if destination directory is for OpenCode
+function isOpenCodeDestination(targetDir) {
+  const normalized = targetDir.replace(/\\/g, '/').toLowerCase();
+  return normalized.includes('opencode');
+}
+
+// Copy and adapt an agent file to target directory
 function installAgentFile(agent, targetDir, quiet = false) {
   fs.mkdirSync(targetDir, { recursive: true });
   const destPath = path.join(targetDir, `${agent.name}.md`);
   const isOverwriting = fs.existsSync(destPath);
-  fs.copyFileSync(agent.path, destPath);
+  const isOpenCode = isOpenCodeDestination(targetDir);
+
+  let content = fs.readFileSync(agent.path, 'utf8');
+  if (isOpenCode) {
+    content = formatForOpenCode(content, agent.name);
+  }
+
+  fs.writeFileSync(destPath, content, 'utf8');
+
   if (!quiet) {
     const action = isOverwriting ? c.yellow('updated') : c.green('installed');
-    console.log(`  ${c.cyan('•')} ${c.bold(agent.name)} (${agent.category}) ${action}`);
+    const platformLabel = isOpenCode ? c.magenta('[OpenCode]') : c.blue('[ZCode]');
+    console.log(`  ${c.cyan('•')} ${c.bold(agent.name)} (${agent.category}) ${platformLabel} ${action}`);
   }
   return isOverwriting ? 'updated' : 'installed';
 }
 
 // Print header banner
-function printHeader(targetDir) {
+function printHeader(targetDirs) {
   console.log();
   console.log(c.cyan('╔════════════════════════════════════════════════════════════════════════╗'));
-  console.log(c.cyan('║') + c.bold('                    Awesome ZCode Subagents Installer                  ') + c.cyan('║'));
+  console.log(c.cyan('║') + c.bold('               Awesome Subagents Installer (ZCode & OpenCode)          ') + c.cyan('║'));
   console.log(c.cyan('╚════════════════════════════════════════════════════════════════════════╝'));
   console.log(`  ${c.dim('OS:')} ${process.platform} (${os.arch()})`);
-  console.log(`  ${c.dim('Destination:')} ${c.cyan(targetDir)}`);
+  targetDirs.forEach((td) => {
+    const label = isOpenCodeDestination(td.dir) ? c.magenta('OpenCode:') : c.blue('ZCode:   ');
+    console.log(`  ${c.dim(label)} ${c.cyan(td.dir)}`);
+  });
   console.log();
 }
 
 // Print usage help
-function printHelp(targetDir) {
-  printHeader(targetDir);
+function printHelp(targetDirs) {
+  printHeader(targetDirs);
   console.log(`${c.bold('USAGE:')}`);
   console.log(`  npx github:a2mus/awesome-zcode-subagents [options]`);
   console.log(`  node bin/cli.js [options]`);
   console.log();
-  console.log(`${c.bold('OPTIONS:')}`);
+  console.log(`${c.bold('TARGET PLATFORM OPTIONS:')}`);
+  console.log(`  ${c.cyan('-o, --opencode')}          Target OpenCode (${c.dim('default global: ~/.config/opencode/agents')})`);
+  console.log(`  ${c.cyan('-z, --zcode')}             Target ZCode (${c.dim('default global: ~/.zcode/agents')})`);
+  console.log(`  ${c.cyan('-b, --both')}              Target BOTH ZCode and OpenCode simultaneously`);
+  console.log(`  ${c.cyan('--target <platform>')}     Set target: "zcode", "opencode", or "both" (default: zcode)`);
+  console.log(`  ${c.cyan('-p, --project')}           Install into local project directory (.opencode/agents or .zcode/agents)`);
+  console.log(`  ${c.cyan('--global')}                Install into user global directory (default)`);
+  console.log(`  ${c.cyan('-d, --dest <path>')}       Custom destination directory`);
+  console.log();
+  console.log(`${c.bold('INSTALLATION OPTIONS:')}`);
   console.log(`  ${c.cyan('-s, --starter')}           Install the recommended starter pack (10 essential agents)`);
-  console.log(`  ${c.cyan('-a, --all')}               Install ALL 158+ subagents into your ZCode directory`);
+  console.log(`  ${c.cyan('-a, --all')}               Install ALL 158+ subagents into your agent directory`);
   console.log(`  ${c.cyan('-c, --category <name>')}   Install all agents from a category (e.g. -c 01, -c infra)`);
   console.log(`  ${c.cyan('-g, --agent <names>')}     Install specific agent(s), comma-separated (e.g. -g python-pro,debugger)`);
   console.log(`  ${c.cyan('-l, --list')}              List all available categories and agents`);
   console.log(`  ${c.cyan('--installed')}             List subagents currently installed in target directory`);
   console.log(`  ${c.cyan('-u, --uninstall <name>')}  Uninstall an agent, or "all" to remove all`);
-  console.log(`  ${c.cyan('-d, --dest <path>')}       Custom destination directory (default: ~/.zcode/agents)`);
   console.log(`  ${c.cyan('-h, --help')}              Show this help menu`);
   console.log();
   console.log(`${c.bold('EXAMPLES (Windows / macOS / Linux):')}`);
+  console.log(`  ${c.dim('# Install for OpenCode (starter pack)')}`);
+  console.log(`  npx github:a2mus/awesome-zcode-subagents --opencode --starter`);
+  console.log();
+  console.log(`  ${c.dim('# Install for OpenCode into current project (.opencode/agents)')}`);
+  console.log(`  npx github:a2mus/awesome-zcode-subagents --opencode --project --all`);
+  console.log();
+  console.log(`  ${c.dim('# Install for ZCode (default)')}`);
   console.log(`  npx github:a2mus/awesome-zcode-subagents --starter`);
-  console.log(`  npx github:a2mus/awesome-zcode-subagents -c 02-language-specialists`);
-  console.log(`  npx github:a2mus/awesome-zcode-subagents --agent code-reviewer,debugger`);
-  console.log(`  npx github:a2mus/awesome-zcode-subagents --installed`);
+  console.log();
+  console.log(`  ${c.dim('# Install for BOTH ZCode and OpenCode')}`);
+  console.log(`  npx github:a2mus/awesome-zcode-subagents --both --starter`);
+  console.log();
+  console.log(`  ${c.dim('# Install a specific agent for OpenCode')}`);
+  console.log(`  npx github:a2mus/awesome-zcode-subagents --opencode --agent code-reviewer,debugger`);
   console.log();
 }
 
@@ -186,89 +268,103 @@ function printCatalog(catalogData) {
 }
 
 // List installed agents
-function listInstalled(targetDir) {
-  if (!fs.existsSync(targetDir)) {
-    console.log(c.yellow(`Target directory does not exist yet: ${targetDir}`));
-    console.log(`No subagents currently installed.`);
-    return [];
-  }
+function listInstalled(targetDirs) {
+  for (const td of targetDirs) {
+    const targetDir = td.dir;
+    const platform = isOpenCodeDestination(targetDir) ? 'OpenCode' : 'ZCode';
 
-  const files = fs.readdirSync(targetDir)
-    .filter((f) => f.endsWith('.md') && f.toLowerCase() !== 'readme.md')
-    .map((f) => f.replace(/\.md$/, ''))
-    .sort();
+    if (!fs.existsSync(targetDir)) {
+      console.log(c.yellow(`${platform} directory does not exist yet: ${targetDir}`));
+      console.log(`No subagents currently installed.`);
+      console.log();
+      continue;
+    }
 
-  console.log(c.bold(`Installed subagents in ${c.cyan(targetDir)}: (${files.length} installed)\n`));
-  if (files.length === 0) {
-    console.log(c.dim('  (None installed yet)'));
-  } else {
-    for (let i = 0; i < files.length; i += 4) {
-      const slice = files.slice(i, i + 4);
-      console.log(`  ${slice.map((name) => c.green(name)).join(', ')}`);
+    const files = fs.readdirSync(targetDir)
+      .filter((f) => f.endsWith('.md') && f.toLowerCase() !== 'readme.md')
+      .map((f) => f.replace(/\.md$/, ''))
+      .sort();
+
+    console.log(c.bold(`Installed subagents in ${platform} (${c.cyan(targetDir)}): [${files.length} installed]\n`));
+    if (files.length === 0) {
+      console.log(c.dim('  (None installed yet)\n'));
+    } else {
+      for (let i = 0; i < files.length; i += 4) {
+        const slice = files.slice(i, i + 4);
+        console.log(`  ${slice.map((name) => c.green(name)).join(', ')}`);
+      }
+      console.log();
     }
   }
-  console.log();
-  return files;
 }
 
 // Uninstall agents
-function uninstallAgents(targetArg, targetDir) {
-  if (!fs.existsSync(targetDir)) {
-    console.log(c.yellow(`Nothing to uninstall: ${targetDir} does not exist.`));
-    return;
-  }
+function uninstallAgents(targetArg, targetDirs) {
+  for (const td of targetDirs) {
+    const targetDir = td.dir;
+    const platform = isOpenCodeDestination(targetDir) ? 'OpenCode' : 'ZCode';
 
-  const installed = fs.readdirSync(targetDir)
-    .filter((f) => f.endsWith('.md') && f.toLowerCase() !== 'readme.md');
+    if (!fs.existsSync(targetDir)) {
+      console.log(c.yellow(`Nothing to uninstall: ${targetDir} does not exist.`));
+      continue;
+    }
 
-  if (targetArg === 'all') {
-    if (installed.length === 0) {
-      console.log(c.dim('No agents to remove.'));
-      return;
-    }
-    for (const f of installed) {
-      fs.unlinkSync(path.join(targetDir, f));
-    }
-    console.log(c.green(`✓ Removed all ${installed.length} subagents from ${targetDir}`));
-  } else {
-    const names = targetArg.split(',').map((s) => s.trim());
-    let removed = 0;
-    for (const name of names) {
-      const fileName = name.endsWith('.md') ? name : `${name}.md`;
-      const filePath = path.join(targetDir, fileName);
-      if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath);
-        console.log(`  ${c.red('✕')} Removed ${name}`);
-        removed++;
-      } else {
-        console.log(`  ${c.yellow('?')} Agent not found: ${name}`);
+    const installed = fs.readdirSync(targetDir)
+      .filter((f) => f.endsWith('.md') && f.toLowerCase() !== 'readme.md');
+
+    if (targetArg === 'all') {
+      if (installed.length === 0) {
+        console.log(c.dim(`No agents to remove from ${platform}.`));
+        continue;
       }
+      for (const f of installed) {
+        fs.unlinkSync(path.join(targetDir, f));
+      }
+      console.log(c.green(`✓ Removed all ${installed.length} subagents from ${platform} (${targetDir})`));
+    } else {
+      const names = targetArg.split(',').map((s) => s.trim());
+      let removed = 0;
+      for (const name of names) {
+        const fileName = name.endsWith('.md') ? name : `${name}.md`;
+        const filePath = path.join(targetDir, fileName);
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath);
+          console.log(`  ${c.red('✕')} Removed ${name} from ${platform}`);
+          removed++;
+        } else {
+          console.log(`  ${c.yellow('?')} Agent not found in ${platform}: ${name}`);
+        }
+      }
+      console.log(c.green(`✓ Uninstalled ${removed} subagent(s) from ${platform}.`));
     }
-    console.log(c.green(`✓ Uninstalled ${removed} subagent(s).`));
   }
 }
 
 // Install starter pack
-function installStarterPack(catalogData, targetDir) {
+function installStarterPack(catalogData, targetDirs) {
   console.log(c.bold(`Installing Popular Starter Pack (10 subagents)...`));
-  console.log(c.dim(`Target directory: ${targetDir}\n`));
-  let installedCount = 0;
-  for (const name of STARTER_PACK) {
-    const agent = findAgentByName(name, catalogData.catalog);
-    if (agent) {
-      installAgentFile(agent, targetDir);
-      installedCount++;
-    } else {
-      console.log(`  ${c.yellow('?')} Warning: ${name} not found in catalog.`);
+  for (const td of targetDirs) {
+    const targetDir = td.dir;
+    const platform = isOpenCodeDestination(targetDir) ? 'OpenCode' : 'ZCode';
+    console.log(c.dim(`\nTarget (${platform}): ${targetDir}`));
+
+    let installedCount = 0;
+    for (const name of STARTER_PACK) {
+      const agent = findAgentByName(name, catalogData.catalog);
+      if (agent) {
+        installAgentFile(agent, targetDir);
+        installedCount++;
+      } else {
+        console.log(`  ${c.yellow('?')} Warning: ${name} not found in catalog.`);
+      }
     }
+    console.log(c.green(`✓ Successfully installed ${installedCount} starter subagents to ${platform}!`));
   }
-  console.log();
-  console.log(c.green(`✓ Successfully installed ${installedCount} starter subagents!`));
-  printPostInstallInstructions(targetDir);
+  printPostInstallInstructions(targetDirs);
 }
 
 // Install category
-function installCategory(catName, catalogData, targetDir) {
+function installCategory(catName, catalogData, targetDirs) {
   const category = findCategory(catName, catalogData.categories);
   if (!category) {
     console.error(c.red(`Error: Category "${catName}" not found.`));
@@ -278,73 +374,98 @@ function installCategory(catName, catalogData, targetDir) {
 
   const agents = catalogData.catalog[category];
   console.log(c.bold(`Installing category ${c.cyan(category)} (${agents.length} subagents)...`));
-  console.log(c.dim(`Target directory: ${targetDir}\n`));
 
-  for (const agent of agents) {
-    installAgentFile(agent, targetDir);
+  for (const td of targetDirs) {
+    const targetDir = td.dir;
+    const platform = isOpenCodeDestination(targetDir) ? 'OpenCode' : 'ZCode';
+    console.log(c.dim(`\nTarget (${platform}): ${targetDir}`));
+
+    for (const agent of agents) {
+      installAgentFile(agent, targetDir);
+    }
+    console.log(c.green(`✓ Successfully installed ${agents.length} subagents from ${category} to ${platform}!`));
   }
-
-  console.log();
-  console.log(c.green(`✓ Successfully installed ${agents.length} subagents from ${category}!`));
-  printPostInstallInstructions(targetDir);
+  printPostInstallInstructions(targetDirs);
 }
 
 // Install specific agents
-function installSpecificAgents(names, catalogData, targetDir) {
+function installSpecificAgents(names, catalogData, targetDirs) {
   console.log(c.bold(`Installing selected subagents...`));
-  console.log(c.dim(`Target directory: ${targetDir}\n`));
 
-  let successCount = 0;
-  for (const rawName of names) {
-    const name = rawName.trim();
-    if (!name) continue;
-    const agent = findAgentByName(name, catalogData.catalog);
-    if (agent) {
-      installAgentFile(agent, targetDir);
-      successCount++;
-    } else {
-      console.log(`  ${c.red('✕')} Agent "${name}" not found in catalog.`);
+  for (const td of targetDirs) {
+    const targetDir = td.dir;
+    const platform = isOpenCodeDestination(targetDir) ? 'OpenCode' : 'ZCode';
+    console.log(c.dim(`\nTarget (${platform}): ${targetDir}`));
+
+    let successCount = 0;
+    for (const rawName of names) {
+      const name = rawName.trim();
+      if (!name) continue;
+      const agent = findAgentByName(name, catalogData.catalog);
+      if (agent) {
+        installAgentFile(agent, targetDir);
+        successCount++;
+      } else {
+        console.log(`  ${c.red('✕')} Agent "${name}" not found in catalog.`);
+      }
     }
+    console.log(c.green(`✓ Successfully installed ${successCount} subagent(s) to ${platform}!`));
   }
-
-  console.log();
-  console.log(c.green(`✓ Successfully installed ${successCount} subagent(s)!`));
-  printPostInstallInstructions(targetDir);
+  printPostInstallInstructions(targetDirs);
 }
 
 // Install all agents
-function installAllAgents(catalogData, targetDir) {
+function installAllAgents(catalogData, targetDirs) {
   console.log(c.bold(`Installing ALL ${catalogData.totalAgents} subagents across ${catalogData.categories.length} categories...`));
-  console.log(c.dim(`Target directory: ${targetDir}\n`));
 
-  let installedCount = 0;
-  for (const cat of catalogData.categories) {
-    console.log(`${c.magenta(c.bold(`Category: ${cat}`))}`);
-    for (const agent of catalogData.catalog[cat]) {
-      installAgentFile(agent, targetDir);
-      installedCount++;
+  for (const td of targetDirs) {
+    const targetDir = td.dir;
+    const platform = isOpenCodeDestination(targetDir) ? 'OpenCode' : 'ZCode';
+    console.log(c.bold(`\nInstalling to ${platform} (${targetDir})...`));
+
+    let installedCount = 0;
+    for (const cat of catalogData.categories) {
+      console.log(`${c.magenta(c.bold(`Category: ${cat}`))}`);
+      for (const agent of catalogData.catalog[cat]) {
+        installAgentFile(agent, targetDir);
+        installedCount++;
+      }
     }
-    console.log();
+    console.log(c.green(`✓ Successfully installed all ${installedCount} subagents to ${platform}!`));
   }
-
-  console.log(c.green(`✓ Successfully installed all ${installedCount} subagents!`));
-  printPostInstallInstructions(targetDir);
+  printPostInstallInstructions(targetDirs);
 }
 
 // Post-install message
-function printPostInstallInstructions(targetDir) {
+function printPostInstallInstructions(targetDirs) {
   console.log();
-  console.log(c.bold('Next steps in ZCode:'));
-  console.log(`  1. Restart your ZCode session or start a new conversation`);
-  console.log(`  2. In ZCode, check ${c.cyan('Settings → Subagents')} to see your installed agents`);
-  console.log(`  3. Subagents trigger automatically based on task descriptions, or invoke directly:`);
-  console.log(`     ${c.dim('> Have @code-reviewer inspect my recent changes')}`);
-  console.log();
+  const hasZCode = targetDirs.some((td) => !isOpenCodeDestination(td.dir));
+  const hasOpenCode = targetDirs.some((td) => isOpenCodeDestination(td.dir));
+
+  if (hasZCode) {
+    console.log(c.bold('Next steps in ZCode:'));
+    console.log(`  1. Restart your ZCode session or start a new conversation`);
+    console.log(`  2. In ZCode, check ${c.cyan('Settings → Subagents')} to see your installed agents`);
+    console.log(`  3. Subagents trigger automatically based on task descriptions, or invoke directly:`);
+    console.log(`     ${c.dim('> Have @code-reviewer inspect my recent changes')}`);
+    console.log();
+  }
+
+  if (hasOpenCode) {
+    console.log(c.bold('Next steps in OpenCode:'));
+    console.log(`  1. Run OpenCode in your project terminal: ${c.cyan('opencode')}`);
+    console.log(`  2. OpenCode discovers custom subagents from ${c.cyan('~/.config/opencode/agents/')} or ${c.cyan('.opencode/agents/')}`);
+    console.log(`  3. Invoke subagents in messages using @ mention:`);
+    console.log(`     ${c.dim('> @code-reviewer inspect recent changes for security issues')}`);
+    console.log(`  4. Primary agents can also automatically delegate tasks to these subagents!`);
+    console.log();
+  }
 }
 
 // Interactive prompt runner
-async function runInteractive(catalogData, targetDir) {
-  printHeader(targetDir);
+async function runInteractive(catalogData, initialTargetDirs) {
+  let targetDirs = initialTargetDirs;
+  printHeader(targetDirs);
 
   const rl = readline.createInterface({
     input: process.stdin,
@@ -359,12 +480,13 @@ async function runInteractive(catalogData, targetDir) {
     console.log(`  ${c.cyan('2)')} Install by Category ${c.dim('(choose from 10 categories)')}`);
     console.log(`  ${c.cyan('3)')} Install Specific Subagent(s)`);
     console.log(`  ${c.cyan('4)')} Install ALL Subagents ${c.dim(`(${catalogData.totalAgents} agents)`)}`);
-    console.log(`  ${c.cyan('5)')} List Installed Subagents`);
-    console.log(`  ${c.cyan('6)')} Uninstall Subagents`);
+    console.log(`  ${c.cyan('5)')} Switch Target Platform ${c.dim(`(Current: ${targetDirs.map((t) => isOpenCodeDestination(t.dir) ? 'OpenCode' : 'ZCode').join(', ')})`)}`);
+    console.log(`  ${c.cyan('6)')} List Installed Subagents`);
+    console.log(`  ${c.cyan('7)')} Uninstall Subagents`);
     console.log(`  ${c.cyan('0)')} Exit`);
     console.log();
 
-    const answer = (await question(c.bold('Enter choice [0-6]: '))).trim();
+    const answer = (await question(c.bold('Enter choice [0-7]: '))).trim();
     console.log();
 
     if (answer === '0' || answer.toLowerCase() === 'exit' || answer.toLowerCase() === 'q') {
@@ -372,7 +494,7 @@ async function runInteractive(catalogData, targetDir) {
       rl.close();
       return;
     } else if (answer === '1') {
-      installStarterPack(catalogData, targetDir);
+      installStarterPack(catalogData, targetDirs);
     } else if (answer === '2') {
       console.log(c.bold('Available categories:'));
       catalogData.categories.forEach((cat, idx) => {
@@ -384,35 +506,56 @@ async function runInteractive(catalogData, targetDir) {
       if (catChoice !== '0' && catChoice !== '') {
         const num = parseInt(catChoice, 10);
         if (!isNaN(num) && num >= 1 && num <= catalogData.categories.length) {
-          installCategory(catalogData.categories[num - 1], catalogData, targetDir);
+          installCategory(catalogData.categories[num - 1], catalogData, targetDirs);
         } else {
-          installCategory(catChoice, catalogData, targetDir);
+          installCategory(catChoice, catalogData, targetDirs);
         }
       }
     } else if (answer === '3') {
       const agentInput = (await question(c.bold('Enter subagent name(s) (comma-separated, e.g. python-pro, debugger): '))).trim();
       console.log();
       if (agentInput) {
-        installSpecificAgents(agentInput.split(','), catalogData, targetDir);
+        installSpecificAgents(agentInput.split(','), catalogData, targetDirs);
       }
     } else if (answer === '4') {
       const confirm = (await question(c.yellow(`Install all ${catalogData.totalAgents} subagents? [y/N]: `))).trim().toLowerCase();
       console.log();
       if (confirm === 'y' || confirm === 'yes') {
-        installAllAgents(catalogData, targetDir);
+        installAllAgents(catalogData, targetDirs);
       } else {
         console.log('Cancelled.');
       }
     } else if (answer === '5') {
-      listInstalled(targetDir);
+      console.log(c.bold('Choose target platform:'));
+      console.log(`  ${c.cyan('1)')} OpenCode Global ${c.dim(`(~/.config/opencode/agents)`)}`);
+      console.log(`  ${c.cyan('2)')} OpenCode Project ${c.dim(`(.opencode/agents)`)}`);
+      console.log(`  ${c.cyan('3)')} ZCode Global ${c.dim(`(~/.zcode/agents)`)}`);
+      console.log(`  ${c.cyan('4)')} Both ZCode & OpenCode`);
+      console.log();
+      const targetChoice = (await question(c.bold('Select [1-4]: '))).trim();
+      if (targetChoice === '1') {
+        targetDirs = [{ platform: 'opencode', dir: getOpenCodeDefaultDir(false) }];
+      } else if (targetChoice === '2') {
+        targetDirs = [{ platform: 'opencode', dir: getOpenCodeDefaultDir(true) }];
+      } else if (targetChoice === '3') {
+        targetDirs = [{ platform: 'zcode', dir: getZCodeDefaultDir(false) }];
+      } else if (targetChoice === '4') {
+        targetDirs = [
+          { platform: 'zcode', dir: getZCodeDefaultDir(false) },
+          { platform: 'opencode', dir: getOpenCodeDefaultDir(false) }
+        ];
+      }
+      console.log(c.green(`✓ Active target set to: ${targetDirs.map((t) => t.dir).join(', ')}\n`));
     } else if (answer === '6') {
+      listInstalled(targetDirs);
+    } else if (answer === '7') {
       const unChoice = (await question(c.bold('Enter subagent name to uninstall, or "all" to remove all (or 0 to cancel): '))).trim();
       console.log();
       if (unChoice && unChoice !== '0') {
-        uninstallAgents(unChoice, targetDir);
+        uninstallAgents(unChoice, targetDirs);
       }
     } else {
-      console.log(c.red('Invalid choice. Please enter 0-6.\n'));
+      console.log(c.red('Invalid choice. Please enter 0-7.\n'));
     }
 
     const continueChoice = (await question(c.dim('Press Enter to return to menu (or type "q" to exit): '))).trim().toLowerCase();
@@ -428,17 +571,64 @@ async function runInteractive(catalogData, targetDir) {
 // Main CLI parsing
 async function main() {
   const args = process.argv.slice(2);
-  let targetDir = getDefaultTargetDir();
 
-  // Parse destination override first
+  let targetPlatform = 'zcode'; // default
+  let isProject = false;
+  let customDest = null;
+
+  // Extract platform and destination flags first
   for (let i = 0; i < args.length; i++) {
-    if (args[i] === '--dest' || args[i] === '-d') {
+    const arg = args[i];
+
+    if (arg === '--opencode' || arg === '-o') {
+      targetPlatform = 'opencode';
+      args.splice(i, 1);
+      i--;
+    } else if (arg === '--zcode' || arg === '-z') {
+      targetPlatform = 'zcode';
+      args.splice(i, 1);
+      i--;
+    } else if (arg === '--both' || arg === '-b') {
+      targetPlatform = 'both';
+      args.splice(i, 1);
+      i--;
+    } else if (arg === '--target') {
+      const val = (args[i + 1] || '').toLowerCase();
+      if (val === 'opencode' || val === 'zcode' || val === 'both') {
+        targetPlatform = val;
+        args.splice(i, 2);
+        i--;
+      }
+    } else if (arg === '--project' || arg === '-p') {
+      isProject = true;
+      args.splice(i, 1);
+      i--;
+    } else if (arg === '--global') {
+      isProject = false;
+      args.splice(i, 1);
+      i--;
+    } else if (arg === '--dest' || arg === '-d') {
       if (args[i + 1]) {
-        targetDir = path.resolve(args[i + 1]);
+        customDest = path.resolve(args[i + 1]);
         args.splice(i, 2);
         i--;
       }
     }
+  }
+
+  // Resolve target directories
+  let targetDirs = [];
+  if (customDest) {
+    targetDirs = [{ platform: targetPlatform, dir: customDest }];
+  } else if (targetPlatform === 'both') {
+    targetDirs = [
+      { platform: 'zcode', dir: getZCodeDefaultDir(isProject) },
+      { platform: 'opencode', dir: getOpenCodeDefaultDir(isProject) }
+    ];
+  } else if (targetPlatform === 'opencode') {
+    targetDirs = [{ platform: 'opencode', dir: getOpenCodeDefaultDir(isProject) }];
+  } else {
+    targetDirs = [{ platform: 'zcode', dir: getZCodeDefaultDir(isProject) }];
   }
 
   const catalogData = getCatalog();
@@ -446,21 +636,20 @@ async function main() {
   // If no arguments, launch interactive mode
   if (args.length === 0) {
     if (process.stdin.isTTY) {
-      await runInteractive(catalogData, targetDir);
+      await runInteractive(catalogData, targetDirs);
       return;
     } else {
-      // Non-interactive environment with no flags -> print help
-      printHelp(targetDir);
+      printHelp(targetDirs);
       return;
     }
   }
 
-  // Parse command line arguments
+  // Parse command line actions
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
 
     if (arg === '--help' || arg === '-h') {
-      printHelp(targetDir);
+      printHelp(targetDirs);
       return;
     }
 
@@ -470,17 +659,17 @@ async function main() {
     }
 
     if (arg === '--installed') {
-      listInstalled(targetDir);
+      listInstalled(targetDirs);
       return;
     }
 
     if (arg === '--starter' || arg === '-s') {
-      installStarterPack(catalogData, targetDir);
+      installStarterPack(catalogData, targetDirs);
       return;
     }
 
     if (arg === '--all' || arg === '-a') {
-      installAllAgents(catalogData, targetDir);
+      installAllAgents(catalogData, targetDirs);
       return;
     }
 
@@ -490,7 +679,7 @@ async function main() {
         console.error(c.red('Error: --category requires a category name or number.'));
         process.exit(1);
       }
-      installCategory(catArg, catalogData, targetDir);
+      installCategory(catArg, catalogData, targetDirs);
       return;
     }
 
@@ -500,26 +689,26 @@ async function main() {
         console.error(c.red('Error: --agent requires agent name(s).'));
         process.exit(1);
       }
-      installSpecificAgents(agentArg.split(','), catalogData, targetDir);
+      installSpecificAgents(agentArg.split(','), catalogData, targetDirs);
       return;
     }
 
     if (arg === '--uninstall' || arg === '-u') {
       const unArg = args[i + 1] || 'all';
-      uninstallAgents(unArg, targetDir);
+      uninstallAgents(unArg, targetDirs);
       return;
     }
 
     // Direct category or agent name match shorthand
     const matchedCategory = findCategory(arg, catalogData.categories);
     if (matchedCategory) {
-      installCategory(matchedCategory, catalogData, targetDir);
+      installCategory(matchedCategory, catalogData, targetDirs);
       return;
     }
 
     const matchedAgent = findAgentByName(arg, catalogData.catalog);
     if (matchedAgent) {
-      installSpecificAgents([arg], catalogData, targetDir);
+      installSpecificAgents([arg], catalogData, targetDirs);
       return;
     }
 

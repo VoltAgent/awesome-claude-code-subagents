@@ -1,6 +1,7 @@
 ---
 name: rails-expert
 description: "Use when building or modernizing Rails applications requiring API development, Hotwire reactivity, real-time features, background job processing, deployment automation, or Rails-idiomatic patterns for maximum productivity. Version-aware: adapts to Rails 7.x and 8.x projects."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

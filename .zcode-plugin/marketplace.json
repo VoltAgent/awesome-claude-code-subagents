@@ -5,7 +5,7 @@
     "url": "https://github.com/VoltAgent"
   },
   "metadata": {
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Curated collection of 158 specialized ZCode subagents organized into 10 focused categories"
   },
   "plugins": [
@@ -13,81 +13,167 @@
       "name": "zcode-core-dev",
       "source": "./categories/01-core-development",
       "description": "Essential development subagents for everyday coding tasks - backend, frontend, fullstack, mobile, and API design",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "category": "development",
-      "keywords": ["backend", "frontend", "fullstack", "mobile", "api", "microservices"]
+      "keywords": [
+        "backend",
+        "frontend",
+        "fullstack",
+        "mobile",
+        "api",
+        "microservices"
+      ]
     },
     {
       "name": "zcode-lang",
       "source": "./categories/02-language-specialists",
       "description": "Language-specific expert agents with deep framework knowledge - Python, TypeScript, Go, Rust, Java, and more",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "development",
-      "keywords": ["python", "typescript", "golang", "rust", "java", "react", "vue", "angular", "expo", "react-native", "node"]
+      "keywords": [
+        "python",
+        "typescript",
+        "golang",
+        "rust",
+        "java",
+        "react",
+        "vue",
+        "angular",
+        "expo",
+        "react-native",
+        "node"
+      ]
     },
     {
       "name": "zcode-infra",
       "source": "./categories/03-infrastructure",
       "description": "DevOps, cloud, and deployment specialists - Kubernetes, Terraform, AWS, Azure, GCP, and SRE",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "category": "infrastructure",
-      "keywords": ["devops", "docker", "kubernetes", "terraform", "aws", "azure", "gcp", "sre", "cloud"]
+      "keywords": [
+        "devops",
+        "docker",
+        "kubernetes",
+        "terraform",
+        "aws",
+        "azure",
+        "gcp",
+        "sre",
+        "cloud"
+      ]
     },
     {
       "name": "zcode-qa-sec",
       "source": "./categories/04-quality-security",
       "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "category": "quality",
-      "keywords": ["testing", "security", "code-review", "qa", "penetration-testing", "compliance", "ui-testing", "ux-testing"]
+      "keywords": [
+        "testing",
+        "security",
+        "code-review",
+        "qa",
+        "penetration-testing",
+        "compliance",
+        "ui-testing",
+        "ux-testing"
+      ]
     },
     {
       "name": "zcode-data-ai",
       "source": "./categories/05-data-ai",
       "description": "Data engineering, ML, and AI specialists - data pipelines, machine learning, LLM architecture",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "category": "data",
-      "keywords": ["data-engineering", "machine-learning", "ai", "llm", "mlops", "nlp"]
+      "keywords": [
+        "data-engineering",
+        "machine-learning",
+        "ai",
+        "llm",
+        "mlops",
+        "nlp"
+      ]
     },
     {
       "name": "zcode-dev-exp",
       "source": "./categories/06-developer-experience",
       "description": "Tooling and developer productivity experts - CLI tools, documentation, README generation, and DX optimization",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "category": "tooling",
-      "keywords": ["developer-experience", "cli", "documentation", "readme", "tooling", "build", "dx"]
+      "keywords": [
+        "developer-experience",
+        "cli",
+        "documentation",
+        "readme",
+        "tooling",
+        "build",
+        "dx"
+      ]
     },
     {
       "name": "zcode-domains",
       "source": "./categories/07-specialized-domains",
       "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments, X/Twitter APIs",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "specialized",
-      "keywords": ["blockchain", "fintech", "gaming", "iot", "payments", "embedded", "twitter", "x-api"]
+      "keywords": [
+        "blockchain",
+        "fintech",
+        "gaming",
+        "iot",
+        "payments",
+        "embedded",
+        "twitter",
+        "x-api"
+      ]
     },
     {
       "name": "zcode-biz",
       "source": "./categories/08-business-product",
       "description": "Product, legal, and business specialists - product strategy, licensing, project management, UX research",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "business",
-      "keywords": ["product-management", "business-analysis", "legal", "licensing", "ux", "scrum", "project-management"]
+      "keywords": [
+        "product-management",
+        "business-analysis",
+        "legal",
+        "licensing",
+        "ux",
+        "scrum",
+        "project-management"
+      ]
     },
     {
       "name": "zcode-meta",
       "source": "./categories/09-meta-orchestration",
       "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation, and safe refactor governance. Works best with other zcode plugins installed.",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "orchestration",
-      "keywords": ["multi-agent", "orchestration", "workflow", "coordination", "meta", "refactor", "codebase-governance"]
+      "keywords": [
+        "multi-agent",
+        "orchestration",
+        "workflow",
+        "coordination",
+        "meta",
+        "refactor",
+        "codebase-governance"
+      ]
     },
     {
       "name": "zcode-research",
       "source": "./categories/10-research-analysis",
       "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting, and idea validation",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "research",
-      "keywords": ["research", "analysis", "market-research", "competitive-analysis", "trends", "idea-validation", "product-strategy"]
+      "keywords": [
+        "research",
+        "analysis",
+        "market-research",
+        "competitive-analysis",
+        "trends",
+        "idea-validation",
+        "product-strategy"
+      ]
     }
   ]
 }

@@ -1,6 +1,7 @@
 ---
 name: machine-learning-engineer
 description: "Use this agent when you need to deploy, optimize, or serve machine learning models at scale in production environments."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

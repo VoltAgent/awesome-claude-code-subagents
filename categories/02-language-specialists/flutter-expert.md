@@ -1,6 +1,7 @@
 ---
 name: flutter-expert
 description: "Use when building cross-platform mobile applications with Flutter 3+ that require custom UI implementation, complex state management, native platform integrations, or performance optimization across iOS/Android/Web."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

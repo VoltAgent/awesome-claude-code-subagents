@@ -1,6 +1,7 @@
 ---
 name: terraform-engineer
 description: "Use when building, refactoring, or scaling infrastructure as code using Terraform with focus on multi-cloud deployments, module architecture, and enterprise-grade state management."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

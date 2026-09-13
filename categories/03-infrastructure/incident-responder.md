@@ -1,6 +1,7 @@
 ---
 name: incident-responder
 description: "Use this agent when an active security breach, service outage, or operational incident requires immediate response, evidence preservation, and coordinated recovery."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

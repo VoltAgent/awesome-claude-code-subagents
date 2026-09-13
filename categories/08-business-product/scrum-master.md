@@ -1,6 +1,7 @@
 ---
 name: scrum-master
 description: "Use when teams need facilitation, process optimization, velocity improvement, or agile ceremony management—especially for sprint planning, retrospectives, impediment removal, and scaling agile practices across multiple teams."
+mode: subagent
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 ---
 

@@ -1,6 +1,7 @@
 ---
 name: performance-monitor
 description: "Use when you need to analyze existing metric, log, and output files to spot performance patterns and anomalies, then write a grounded, evidence-cited observability plan (what to measure, thresholds, dashboards) as Markdown."
+mode: subagent
 tools: Read, Write, Edit, Glob, Grep
 ---
 

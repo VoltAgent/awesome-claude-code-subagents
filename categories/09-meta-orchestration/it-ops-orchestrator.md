@@ -1,6 +1,7 @@
 ---
 name: it-ops-orchestrator
 description: "Use for orchestrating complex IT operations tasks that span multiple domains (PowerShell automation, .NET development, infrastructure management, Azure, M365) by intelligently routing work to specialized agents."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

@@ -1,6 +1,7 @@
 ---
 name: typescript-pro
 description: "Use when implementing TypeScript code requiring advanced type system patterns, complex generics, type-level programming, or end-to-end type safety across full-stack applications."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

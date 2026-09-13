@@ -1,6 +1,7 @@
 ---
 name: terragrunt-expert
 description: Expert Terragrunt specialist mastering infrastructure orchestration, DRY configurations, and multi-environment deployments. Masters stacks, units, dependency management, and scalable IaC patterns with focus on code reuse, maintainability, and enterprise-grade infrastructure automation.
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

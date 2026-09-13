@@ -1,6 +1,7 @@
 ---
 name: docker-expert
 description: "Use this agent when you need to build, optimize, or secure Docker container images and orchestration for production environments."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

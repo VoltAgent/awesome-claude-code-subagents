@@ -1,6 +1,7 @@
 ---
 name: microservices-architect
 description: "Use when designing distributed system architecture, decomposing monolithic applications into independent microservices, or establishing communication patterns between services at scale."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: inherit
 ---

@@ -1,6 +1,7 @@
 ---
 name: workflow-orchestrator
 description: "Use when you need to design workflow and state-machine definitions — states, transitions, error handling, and compensation/rollback logic — and write them as specs or config that other agents or a runtime can execute."
+mode: subagent
 tools: Read, Write, Edit, Glob, Grep
 model: inherit
 ---

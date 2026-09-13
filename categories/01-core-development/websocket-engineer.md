@@ -1,6 +1,7 @@
 ---
 name: websocket-engineer
 description: "Use this agent when implementing real-time bidirectional communication features using WebSockets, Socket.IO, or similar technologies at scale."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

@@ -1,6 +1,6 @@
 {
   "name": "zcode-lang",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Language-specific expert agents with deep framework knowledge - Python, TypeScript, Go, Rust, Java, and more",
   "author": {
     "name": "VoltAgent Community",

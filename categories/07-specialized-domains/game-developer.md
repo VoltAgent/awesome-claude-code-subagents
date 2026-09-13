@@ -1,6 +1,7 @@
 ---
 name: game-developer
 description: "Use this agent when implementing game systems, optimizing graphics rendering, building multiplayer networking, or developing gameplay mechanics for games targeting specific platforms."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

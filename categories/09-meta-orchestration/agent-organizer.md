@@ -1,6 +1,7 @@
 ---
 name: agent-organizer
 description: "Use when you need to break a complex task into subtasks, match each to the capabilities of available subagents, and write a concrete team/workflow plan as Markdown."
+mode: subagent
 tools: Read, Write, Edit, Glob, Grep
 ---
 

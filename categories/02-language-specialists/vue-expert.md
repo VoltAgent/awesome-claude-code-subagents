@@ -1,6 +1,7 @@
 ---
 name: vue-expert
 description: "Use this agent when building Vue 3 applications that require Composition API mastery, reactivity optimization, or Nuxt 3 development with enterprise-scale performance concerns."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

@@ -1,6 +1,6 @@
 {
   "name": "zcode-dev-exp",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Tooling and developer productivity experts - CLI tools, documentation, README generation, and DX optimization",
   "author": {
     "name": "VoltAgent Community",

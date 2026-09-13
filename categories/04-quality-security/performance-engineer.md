@@ -1,6 +1,7 @@
 ---
 name: performance-engineer
 description: "Use this agent when you need to identify and eliminate performance bottlenecks in applications, databases, or infrastructure systems, and when baseline performance metrics need improvement."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

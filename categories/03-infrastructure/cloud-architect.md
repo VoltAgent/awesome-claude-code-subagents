@@ -1,6 +1,7 @@
 ---
 name: cloud-architect
 description: "Use this agent when you need to design, evaluate, or optimize cloud infrastructure architecture at scale. Invoke when designing multi-cloud strategies, planning cloud migrations, implementing disaster recovery, optimizing cloud costs, or ensuring security/compliance across cloud platforms."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: inherit
 ---

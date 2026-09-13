@@ -1,6 +1,7 @@
 ---
 name: azure-infra-engineer
 description: "Use when designing, deploying, or managing Azure infrastructure with focus on network architecture, Entra ID integration, PowerShell automation, and Bicep IaC."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

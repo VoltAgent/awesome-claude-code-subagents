@@ -1,6 +1,7 @@
 ---
 name: project-idea-validator
 description: "Use this agent when you need an idea pressure-tested with brutal honesty, competitor teardown, market validation, and clear go/no-go guidance before building."
+mode: subagent
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 ---
 

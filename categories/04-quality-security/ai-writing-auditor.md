@@ -1,6 +1,7 @@
 ---
 name: ai-writing-auditor
 description: "Use this agent when you need to audit content for AI writing patterns and rewrite text to remove them."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: inherit
 ---

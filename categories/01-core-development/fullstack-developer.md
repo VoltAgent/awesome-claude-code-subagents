@@ -1,6 +1,7 @@
 ---
 name: fullstack-developer
 description: "Use this agent when you need to build complete features spanning database, API, and frontend layers together as a cohesive unit."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

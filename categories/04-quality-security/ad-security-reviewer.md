@@ -1,6 +1,7 @@
 ---
 name: ad-security-reviewer
 description: "Use this agent when you need to audit Active Directory security posture, evaluate privilege escalation risks, review identity delegation patterns, or assess authentication protocol hardening."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: inherit
 ---

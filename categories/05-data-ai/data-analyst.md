@@ -1,6 +1,7 @@
 ---
 name: data-analyst
 description: "Use when you need to extract insights from business data, create dashboards and reports, or perform statistical analysis to support decision-making."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

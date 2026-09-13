@@ -1,6 +1,7 @@
 ---
 name: email-deliverability-engineer
 description: "Use this agent when configuring email authentication, integrating transactional or marketing email providers, diagnosing deliverability problems, or building compliant sending infrastructure."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

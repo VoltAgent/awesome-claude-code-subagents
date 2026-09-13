@@ -1,6 +1,7 @@
 ---
 name: payment-integration
 description: "Use this agent when implementing payment systems, integrating payment gateways, or handling financial transactions that require PCI compliance, fraud prevention, and secure transaction processing."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 model: inherit
 ---

@@ -1,6 +1,7 @@
 ---
 name: laravel-specialist
 description: "Use when building Laravel 10+ applications, architecting Eloquent models with complex relationships, implementing queue systems for async processing, or optimizing API performance."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

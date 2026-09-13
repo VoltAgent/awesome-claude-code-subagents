@@ -1,10 +1,11 @@
 {
   "name": "awesome-zcode-subagents",
-  "version": "1.0.0",
-  "description": "Interactive installer and catalog for 158+ curated ZCode subagents across 10 categories",
+  "version": "1.1.0",
+  "description": "Interactive installer and catalog for 158+ curated subagents across 10 categories for ZCode and OpenCode",
   "bin": {
     "awesome-zcode-subagents": "./bin/cli.js",
-    "zcode-subagents": "./bin/cli.js"
+    "zcode-subagents": "./bin/cli.js",
+    "opencode-subagents": "./bin/cli.js"
   },
   "files": [
     "bin",
@@ -17,6 +18,9 @@
   },
   "keywords": [
     "zcode",
+    "opencode",
+    "opencode-agents",
+    "opencode-subagents",
     "subagents",
     "ai",
     "installer",

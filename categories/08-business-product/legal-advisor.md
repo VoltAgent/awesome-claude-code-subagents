@@ -1,6 +1,7 @@
 ---
 name: legal-advisor
 description: "Use this agent when you need to draft contracts, review compliance requirements, develop IP protection strategies, or assess legal risks for technology businesses."
+mode: subagent
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 ---
 

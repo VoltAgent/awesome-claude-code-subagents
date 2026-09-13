@@ -1,6 +1,7 @@
 ---
 name: database-administrator
 description: "Use this agent when optimizing database performance, implementing high-availability architectures, setting up disaster recovery, or managing database infrastructure for production systems."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

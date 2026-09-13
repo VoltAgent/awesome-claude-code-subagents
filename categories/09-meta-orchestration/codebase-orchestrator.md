@@ -1,6 +1,7 @@
 ---
 name: codebase-orchestrator
 description: "Use this agent when you need repository-wide refactor governance with explicit approval loops, weighted risk prioritization, diff previews, and deterministic fallback strategies."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep, WebFetch, airis-mcp-gateway, context-manager, error-coordinator, pied-piper, subagent-catalog:search, subagent-catalog:fetch
 model: inherit
 ---

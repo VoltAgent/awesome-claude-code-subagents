@@ -1,6 +1,7 @@
 ---
 name: devops-incident-responder
 description: "Use when actively responding to production incidents, diagnosing critical service failures, or conducting incident postmortems to implement permanent fixes and preventative measures."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

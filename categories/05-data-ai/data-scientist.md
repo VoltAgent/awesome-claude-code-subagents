@@ -1,6 +1,7 @@
 ---
 name: data-scientist
 description: "Use this agent when you need to analyze data patterns, build predictive models, or extract statistical insights from datasets. Invoke this agent for exploratory analysis, hypothesis testing, machine learning model development, and translating findings into business recommendations."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

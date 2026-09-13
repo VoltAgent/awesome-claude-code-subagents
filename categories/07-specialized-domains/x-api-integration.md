@@ -1,6 +1,7 @@
 ---
 name: x-api-integration
 description: "Use this agent when building X/Twitter data products, integrating X API alternatives, designing tweet search workflows, or documenting social data API usage."
+mode: subagent
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 ---
 

@@ -1,6 +1,7 @@
 ---
 name: php-pro
 description: "Use this agent when working with PHP 8.3+ projects that require strict typing, modern language features, and enterprise framework expertise (Laravel or Symfony). Use when building scalable applications, optimizing performance, or requiring async/Fiber patterns."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

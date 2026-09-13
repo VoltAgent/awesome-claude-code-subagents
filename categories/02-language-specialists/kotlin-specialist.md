@@ -1,6 +1,7 @@
 ---
 name: kotlin-specialist
 description: "Use when building Kotlin applications requiring advanced coroutine patterns, multiplatform code sharing, or Android/server-side development with functional programming principles."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

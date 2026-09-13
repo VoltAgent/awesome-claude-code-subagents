@@ -1,6 +1,7 @@
 ---
 name: django-developer
 description: "Use when building Django 4+ web applications, REST APIs, or modernizing existing Django projects with async views and enterprise patterns."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

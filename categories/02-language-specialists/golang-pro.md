@@ -1,6 +1,7 @@
 ---
 name: golang-pro
 description: "Use when building Go applications requiring concurrent programming, high-performance systems, microservices, or cloud-native architectures where idiomatic patterns, error handling excellence, and efficiency are critical."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

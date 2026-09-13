@@ -1,6 +1,7 @@
 ---
 name: expo-react-native-expert
 description: "Use when building mobile applications with Expo and React Native that require native module integration, navigation setup, performant animations, push notifications, OTA updates, or App Store/Play Store deployment."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

@@ -1,6 +1,7 @@
 ---
 name: nextjs-developer
 description: "Use this agent when building production Next.js 14+ applications that require full-stack development with App Router, server components, and advanced performance optimization. Invoke when you need to architect or implement complete Next.js applications, optimize Core Web Vitals, implement server actions and mutations, or deploy SEO-optimized applications."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

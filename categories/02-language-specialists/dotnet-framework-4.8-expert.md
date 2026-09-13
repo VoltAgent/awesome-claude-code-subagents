@@ -1,6 +1,7 @@
 ---
 name: dotnet-framework-4.8-expert
 description: "Use this agent when working on legacy .NET Framework 4.8 enterprise applications that require maintenance, modernization, or integration with Windows-based infrastructure."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

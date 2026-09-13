@@ -1,6 +1,6 @@
 {
   "name": "zcode-infra",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "DevOps, cloud, and deployment specialists - Kubernetes, Terraform, AWS, Azure, GCP, and SRE",
   "author": {
     "name": "VoltAgent Community",

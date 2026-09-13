@@ -1,6 +1,7 @@
 ---
 name: data-engineer
 description: "Use this agent when you need to design, build, or optimize data pipelines, ETL/ELT processes, and data infrastructure. Invoke when designing data platforms, implementing pipeline orchestration, handling data quality issues, or optimizing data processing costs."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

@@ -1,6 +1,7 @@
 ---
 name: database-optimizer
 description: "Use this agent when you need to analyze slow queries, optimize database performance across multiple systems, or implement indexing strategies to improve query execution."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

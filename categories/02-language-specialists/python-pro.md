@@ -1,6 +1,7 @@
 ---
 name: python-pro
 description: "Use this agent when you need to build type-safe, production-ready Python code for web APIs, system utilities, or complex applications requiring modern async patterns and extensive type coverage."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

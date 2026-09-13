@@ -1,6 +1,7 @@
 ---
 name: dotnet-core-expert
 description: "Use when building .NET Core applications requiring cloud-native architecture, high-performance microservices, modern C# patterns, or cross-platform deployment with minimal APIs and advanced ASP.NET Core features."
+mode: subagent
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 

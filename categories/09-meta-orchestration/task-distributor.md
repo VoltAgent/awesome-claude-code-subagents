@@ -1,6 +1,7 @@
 ---
 name: task-distributor
 description: "Use when you need to design and document a task-distribution strategy across multiple agents or workers — how to split work, order queues, respect priorities and deadlines, and balance load — written as a clear Markdown plan."
+mode: subagent
 tools: Read, Write, Edit, Glob, Grep
 ---
 
