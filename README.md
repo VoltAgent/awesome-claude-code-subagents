@@ -6,7 +6,7 @@
 <br/>
 
 <div align="center">
-    <strong>The awesome collection of 160+ Claude Code subagents across 10 categories.</strong>
+    <strong>The awesome collection of 161+ Claude Code subagents across 10 categories.</strong>
     <br />
     <br />
 </div>
@@ -14,7 +14,7 @@
 <div align="center">
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-![Subagent Count](https://img.shields.io/badge/subagents-160-blue?style=classic)
+![Subagent Count](https://img.shields.io/badge/subagents-161-blue?style=classic)
 [![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-claude-code-subagents?label=Last%20update&style=classic)](https://github.com/VoltAgent/awesome-claude-code-subagents)
 [![Discord](https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://s.voltagent.dev/discord)
 
