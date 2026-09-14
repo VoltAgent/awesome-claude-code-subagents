@@ -31,6 +31,17 @@ This repository serves as the definitive collection of Claude Code subagents, sp
 
 > **A note on contributions:** We don't accept PRs whose primary purpose is to promote a product, company, or personal project. Subagents must be genuinely useful to Claude Code users and stay vendor-neutral in their content. If you'd like to get your project in front of this community, you can [sponsor the repo](#sponsors) instead — that's the supported way to surface your work here.
 
+## Sponsors
+
+|  |  |
+| :-: | :-- |
+| <a href="https://crawlbase.com/?utm_source=awesome-claude-code-subagents&utm_medium=sponsorship&utm_campaign=voltagent_2026q3&utm_content=readme_listing"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.voltagent.dev/awesome-repo/crawlbase-new/crawlbase-logo-dark-mode.svg"><img alt="Crawlbase" src="https://cdn.voltagent.dev/awesome-repo/crawlbase-new/crawlbase-logo-light-mode.svg" width="425"></picture></a> | [Crawlbase](https://crawlbase.com/?utm_source=awesome-claude-code-subagents&utm_medium=sponsorship&utm_campaign=voltagent_2026q3&utm_content=readme_listing) is web data infrastructure trusted by 70,000+ developers. Its Crawling API, MCP server, and integrations give AI agents live access to any webpage — with JavaScript rendering, proxy rotation, and anti-bot protection. |
+| <a href="https://serpapi.com/awesome-claude-code-subagents"><img alt="SerpApi" src="https://cdn.voltagent.dev/awesome-repo/serpapi/serpapi-logo.png" width="425"></a> | [SerpApi](https://serpapi.com/awesome-claude-code-subagents) is a Web Search API for your AI apps. Available in Markdown and JSON for any integration. |
+
+<br />
+
+<a href="https://sponsors.voltagent.dev/#awesome-claude-code-subagents"><img src="https://img.shields.io/badge/📩_Become_a_Sponsor-Contact_Us-blue?style=for-the-badge&logoColor=white" alt="Become a Sponsor" /></a>
+
 ## Installation
 
 ### As Claude Code Plugin (Recommended)
