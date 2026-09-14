@@ -6,7 +6,7 @@
 <br/>
 
 <div align="center">
-    <strong>The awesome collection of 158+ Claude Code subagents across 10 categories.</strong>
+    <strong>The awesome collection of 160+ Claude Code subagents across 10 categories.</strong>
     <br />
     <br />
 </div>
@@ -14,7 +14,7 @@
 <div align="center">
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-![Subagent Count](https://img.shields.io/badge/subagents-158-blue?style=classic)
+![Subagent Count](https://img.shields.io/badge/subagents-160-blue?style=classic)
 [![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-claude-code-subagents?label=Last%20update&style=classic)](https://github.com/VoltAgent/awesome-claude-code-subagents)
 [![Discord](https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://s.voltagent.dev/discord)
 
@@ -30,6 +30,17 @@
 This repository serves as the definitive collection of Claude Code subagents, specialized AI assistants designed for specific development tasks.
 
 > **A note on contributions:** We don't accept PRs whose primary purpose is to promote a product, company, or personal project. Subagents must be genuinely useful to Claude Code users and stay vendor-neutral in their content. If you'd like to get your project in front of this community, you can [sponsor the repo](#sponsors) instead — that's the supported way to surface your work here.
+
+## Sponsors
+
+|  |  |
+| :-: | :-- |
+| <a href="https://crawlbase.com/?utm_source=awesome-claude-code-subagents&utm_medium=sponsorship&utm_campaign=voltagent_2026q3&utm_content=readme_listing"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.voltagent.dev/awesome-repo/crawlbase-new/crawlbase-logo-dark-mode.svg"><img alt="Crawlbase" src="https://cdn.voltagent.dev/awesome-repo/crawlbase-new/crawlbase-logo-light-mode.svg" width="425"></picture></a> | [Crawlbase](https://crawlbase.com/?utm_source=awesome-claude-code-subagents&utm_medium=sponsorship&utm_campaign=voltagent_2026q3&utm_content=readme_listing) is web data infrastructure trusted by 70,000+ developers. Its Crawling API, MCP server, and integrations give AI agents live access to any webpage — with JavaScript rendering, proxy rotation, and anti-bot protection. |
+| <a href="https://serpapi.com/awesome-claude-code-subagents"><img alt="SerpApi" src="https://cdn.voltagent.dev/awesome-repo/serpapi/serpapi-logo.png" width="425"></a> | [SerpApi](https://serpapi.com/awesome-claude-code-subagents) is a Web Search API for your AI apps. Available in Markdown and JSON for any integration. |
+
+<br />
+
+<a href="https://sponsors.voltagent.dev/#awesome-claude-code-subagents"><img src="https://img.shields.io/badge/📩_Become_a_Sponsor-Contact_Us-blue?style=for-the-badge&logoColor=white" alt="Become a Sponsor" /></a>
 
 ## Installation
 
@@ -106,6 +117,7 @@ Then in Claude Code: "Use the agent-installer to show me available categories" o
 Essential development subagents for everyday coding tasks.
 
 - [**api-designer**](categories/01-core-development/api-designer.md) - REST and GraphQL API architect
+- [**auth-integration-engineer**](categories/01-core-development/auth-integration-engineer.md) - Authentication and authorization specialist
 - [**backend-developer**](categories/01-core-development/backend-developer.md) - Server-side expert for scalable APIs
 - [**design-bridge**](categories/01-core-development/design-bridge.md) - Design-to-agent translator
 - [**electron-pro**](categories/01-core-development/electron-pro.md) - Desktop application expert
@@ -115,6 +127,7 @@ Essential development subagents for everyday coding tasks.
 - [**microservices-architect**](categories/01-core-development/microservices-architect.md) - Distributed systems designer
 - [**mobile-developer**](categories/01-core-development/mobile-developer.md) - Cross-platform mobile specialist
 - [**ui-designer**](categories/01-core-development/ui-designer.md) - Visual design and interaction specialist
+- [**webhook-engineer**](categories/01-core-development/webhook-engineer.md) - Webhook delivery and consumption specialist
 - [**websocket-engineer**](categories/01-core-development/websocket-engineer.md) - Real-time communication specialist
 
 
