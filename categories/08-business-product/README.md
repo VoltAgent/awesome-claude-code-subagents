@@ -63,6 +63,11 @@ Licensing systems expert designing OSS and proprietary licensing architectures f
 
 **Use when:** Selecting open source licenses, designing dual-licensing models, auditing dependency compatibility, implementing notice and attribution workflows, or preparing software for SaaS, enterprise, app store, or embedded distribution.
 
+### [**marketing-strategist**](marketing-strategist.md) - Marketing decision and channel judgment specialist
+Marketing strategy expert who returns decisions rather than templates. Sizes a test before judging it, sets kill criteria in advance, benchmarks against the competitors earning money from the same audience right now, and reviews positioning, offers, and first-client acquisition with honest verdicts.
+
+**Use when:** Deciding whether to keep or kill a channel, sizing a campaign before committing budget, reviewing positioning or an offer, planning first-client acquisition by hand, or getting a straight critique of a marketing plan.
+
 ### [**product-manager**](product-manager.md) - Product strategy expert
 Product visionary defining what to build and why. Expert in market analysis, user needs, and product strategy. Drives product success from conception to market leadership.
 
@@ -106,6 +111,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | Write landing page copy | **landing-page-copywriter** |
 | Handle legal matters | **legal-advisor** |
 | Design software licensing | **license-engineer** |
+| Size a marketing test or decide a channel | **marketing-strategist** |
 | Shape product vision | **product-manager** |
 | Manage projects | **project-manager** |
 | Support sales | **sales-engineer** |
@@ -122,6 +128,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 - **project-manager** for execution
 
 **Go-to-Market:**
+- **marketing-strategist** for channel verdicts, positioning, and first-client acquisition
 - **content-marketer** for content
 - **sales-engineer** for demos
 - **technical-writer** for docs
