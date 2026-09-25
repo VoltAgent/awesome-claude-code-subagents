@@ -256,6 +256,7 @@ Testing, security, and code quality experts.
 - [**powershell-security-hardening**](categories/04-quality-security/powershell-security-hardening.md) - PowerShell security hardening and compliance specialist
 - [**qa-expert**](categories/04-quality-security/qa-expert.md) - Test automation specialist
 - [**security-auditor**](categories/04-quality-security/security-auditor.md) - Security vulnerability expert
+- [**surgeon-reviewer**](categories/04-quality-security/surgeon-reviewer.md) - Zero-noise code review with severity tiers and ship/no-ship verdict
 - [**test-automator**](categories/04-quality-security/test-automator.md) - Test automation framework expert
 - [**ui-ux-tester**](categories/04-quality-security/ui-ux-tester.md) - Exhaustive documented-flow UI tester
 
