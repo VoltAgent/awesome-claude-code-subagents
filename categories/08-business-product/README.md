@@ -88,6 +88,11 @@ Documentation expert making complex technical concepts accessible. Masters vario
 
 **Use when:** Writing user guides, creating API documentation, developing tutorials, improving documentation, or building knowledge bases.
 
+### [**telegram-ads-analyst**](telegram-ads-analyst.md) - Telegram channel ad vetting and pricing specialist
+Media buyer for Telegram channels, where there is no likes-based engagement rate and subscriber counts are easy to inflate. Vets channels on real post views against size, topic and language benchmarks, flags inactive channels, heavy ad load, ad networks and renamed channels, and prices posts per view with deletion-window discounts.
+
+**Use when:** Buying ads in Telegram channels, checking whether a channel's audience is real, comparing channels for a campaign, or turning a price per subscriber into a CPM.
+
 ### [**ux-researcher**](ux-researcher.md) - User research expert
 User research specialist uncovering user needs and behaviors. Expert in research methodologies, usability testing, and insight synthesis. Ensures products are built on real user understanding.
 
@@ -111,6 +116,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | Support sales | **sales-engineer** |
 | Run Scrum teams | **scrum-master** |
 | Write documentation | **technical-writer** |
+| Buy ads in Telegram channels | **telegram-ads-analyst** |
 | Research users | **ux-researcher** |
 
 ## Common Business Patterns

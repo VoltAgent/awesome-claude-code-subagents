@@ -297,6 +297,7 @@ Product management and business analysis.
 - [**sales-engineer**](categories/08-business-product/sales-engineer.md) - Technical sales expert
 - [**scrum-master**](categories/08-business-product/scrum-master.md) - Agile methodology expert
 - [**technical-writer**](categories/08-business-product/technical-writer.md) - Technical documentation specialist
+- [**telegram-ads-analyst**](categories/08-business-product/telegram-ads-analyst.md) - Telegram channel ad vetting and pricing specialist
 - [**ux-researcher**](categories/08-business-product/ux-researcher.md) - User research expert
 - [**wordpress-master**](categories/08-business-product/wordpress-master.md) - WordPress development and optimization expert
 - [**content-quality-editor**](categories/08-business-product/content-quality-editor.md) - AI content quality specialist using unslop to strip AI writing patterns before publishing
