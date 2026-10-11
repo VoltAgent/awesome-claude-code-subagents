@@ -68,4 +68,4 @@ Each finding: `path:line` — tier — one-sentence diagnosis — one-sentence c
 ## Source
 
 From the open-source Agent Pack collection (MIT license):
-https://github.com/LucianFord/agent-pack — production-tested agents, benchmarked against the OWASP NodeGoat vulnerable app.
+https://github.com/LucianFord/agent-pack
