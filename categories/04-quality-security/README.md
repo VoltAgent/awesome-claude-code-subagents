@@ -91,6 +91,11 @@ Security specialist conducting thorough security audits. Masters vulnerability a
 
 **Use when:** Auditing application security, implementing security best practices, fixing vulnerabilities, designing secure architectures, or training teams on security.
 
+### [**surgeon-reviewer**](surgeon-reviewer.md) - Zero-noise code review specialist
+Code review specialist that reports only real problems — bugs, money-losing logic, maintenance traps — ranked by blast radius across three fixed severity tiers (WILL BREAK / WILL COST / WILL ROT). Never comments on style, naming, or taste, and ends every review with a SHIP / SHIP WITH FIXES / DO NOT SHIP verdict. From the open-source [Agent Pack](https://github.com/LucianFord/agent-pack) collection (MIT).
+
+**Use when:** Reviewing pull requests, running pre-merge checks, auditing AI-generated code, or when review noise is drowning out the findings that actually matter.
+
 ### [**test-automator**](test-automator.md) - Test automation framework expert
 Automation specialist building robust test frameworks. Expert in various testing tools, patterns, and strategies. Creates maintainable, reliable automated test suites.
 
@@ -118,6 +123,7 @@ Interaction-heavy testing specialist that drives web or desktop interfaces again
 | Optimize performance | **performance-engineer** |
 | Automate testing | **qa-expert** |
 | Audit security | **security-auditor** |
+| Zero-noise review with ship verdict | **surgeon-reviewer** |
 | Build test frameworks | **test-automator** |
 | Exhaustively test UI flows | **ui-ux-tester** |
 
