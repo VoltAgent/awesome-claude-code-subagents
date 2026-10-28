@@ -37,7 +37,7 @@
       "name": "voltagent-qa-sec",
       "source": "./categories/04-quality-security",
       "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
-      "version": "1.1.2",
+      "version": "1.1.3",
       "category": "quality",
       "keywords": ["testing", "security", "code-review", "qa", "penetration-testing", "compliance", "ui-testing", "ux-testing"]
     },
@@ -61,7 +61,7 @@
       "name": "voltagent-domains",
       "source": "./categories/07-specialized-domains",
       "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments, X/Twitter APIs",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "specialized",
       "keywords": ["blockchain", "fintech", "gaming", "iot", "payments", "embedded", "twitter", "x-api"]
     },
@@ -69,7 +69,7 @@
       "name": "voltagent-biz",
       "source": "./categories/08-business-product",
       "description": "Product, legal, and business specialists - product strategy, licensing, project management, UX research",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "category": "business",
       "keywords": ["product-management", "business-analysis", "legal", "licensing", "ux", "scrum", "project-management"]
     },
@@ -85,7 +85,7 @@
       "name": "voltagent-research",
       "source": "./categories/10-research-analysis",
       "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting, and idea validation",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "research",
       "keywords": ["research", "analysis", "market-research", "competitive-analysis", "trends", "idea-validation", "product-strategy"]
     }

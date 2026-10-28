@@ -1,6 +1,6 @@
 ---
 name: ab-test-analysis
-description: Use when the user wants to analyze A/B test results, interpret p-values, determine statistical significance, or make a ship/no-ship decision. Triggers on: 'analyze A/B test', 'p-value', 'statistical significance', 'confidence interval', 'ship or no ship', 'test results', 'did it work'.
+description: "Use when the user wants to analyze A/B test results, interpret p-values, determine statistical significance, or make a ship/no-ship decision. Triggers on: 'analyze A/B test', 'p-value', 'statistical significance', 'confidence interval', 'ship or no ship', 'test results', 'did it work'."
 tools: Read, Grep, Glob, WebFetch, WebSearch
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: assumption-mapping
-description: Use when the user needs to identify and prioritize risky assumptions in a product idea, feature, or strategy. Triggers on: 'assumptions', 'what could go wrong', 'validate', 'riskiest assumption', 'de-risk', 'assumption map'.
+description: "Use when the user needs to identify and prioritize risky assumptions in a product idea, feature, or strategy. Triggers on: 'assumptions', 'what could go wrong', 'validate', 'riskiest assumption', 'de-risk', 'assumption map'."
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 ---
 

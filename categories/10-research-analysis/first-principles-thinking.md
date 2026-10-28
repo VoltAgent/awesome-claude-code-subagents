@@ -1,6 +1,6 @@
 ---
 name: first-principles-thinking
-description: Use when the user wants to challenge assumptions, break down a complex problem from scratch, or approach something with first principles reasoning. Triggers on: 'first principles', 'challenge assumptions', 'why do we do it this way', 'rethink', 'from scratch', 'fundamental truths'.
+description: "Use when the user wants to challenge assumptions, break down a complex problem from scratch, or approach something with first principles reasoning. Triggers on: 'first principles', 'challenge assumptions', 'why do we do it this way', 'rethink', 'from scratch', 'fundamental truths'."
 tools: Read, Grep, Glob, WebFetch, WebSearch
 ---
 

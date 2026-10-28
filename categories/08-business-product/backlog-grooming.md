@@ -1,6 +1,6 @@
 ---
 name: backlog-grooming
-description: Use when the user needs to groom, refine, or clean up a product backlog. Triggers on: 'groom backlog', 'backlog refinement', 'backlog grooming', 'clean up backlog', 'refine stories', 'sprint refinement', 'backlog management'.
+description: "Use when the user needs to groom, refine, or clean up a product backlog. Triggers on: 'groom backlog', 'backlog refinement', 'backlog grooming', 'clean up backlog', 'refine stories', 'sprint refinement', 'backlog management'."
 tools: Read, Write, Edit, Glob, Grep, WebFetch, WebSearch
 ---
 
