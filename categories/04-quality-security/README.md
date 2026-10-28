@@ -76,6 +76,11 @@ Performance specialist making applications blazing fast. Masters profiling, opti
 
 **Use when:** Optimizing application performance, conducting load testing, analyzing bottlenecks, improving response times, or reducing resource consumption.
 
+### [**ponder-auditor**](ponder-auditor.md) - Convergent multi-pass audit and deliberation specialist
+Convergent multi-pass audit specialist that enforces 100% surface enumeration, runs four adversarial voices (`Skeptic` -> `delete`, `Builder` -> `edit`, `Dreamer` -> `add`, `Empath` -> `change`), retracts false positives against helpers and import graphs, and halts via epistemic silence (`0 deltas` after full verification). From the open-source [Ponder](https://github.com/Quinnod345/ponder) engine and skill (MIT).
+
+**Use when:** Auditing an entire codebase, UI surface, or security boundary where single-pass reviews miss state variants or hallucinate false positives on decoys and dead code.
+
 ### [**powershell-security-hardening**](powershell-security-hardening.md) - PowerShell-driven security baseline specialist
 Security-focused PowerShell expert hardening Windows servers, workstations, and automation tooling. Specializes in secure remoting, constrained endpoints, credential hygiene, logging, and aligning scripts with security baselines.
 
@@ -121,6 +126,7 @@ Interaction-heavy testing specialist that drives web or desktop interfaces again
 | Investigate errors | **error-detective** |
 | Test security | **penetration-tester** |
 | Optimize performance | **performance-engineer** |
+| Convergent multi-pass audit with zero false positives | **ponder-auditor** |
 | Automate testing | **qa-expert** |
 | Audit security | **security-auditor** |
 | Zero-noise review with ship verdict | **surgeon-reviewer** |
