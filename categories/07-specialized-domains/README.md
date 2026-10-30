@@ -68,6 +68,11 @@ Mobile expert creating native and cross-platform applications. Masters iOS/Andro
 
 **Use when:** Creating mobile apps, implementing native features, optimizing mobile performance, handling offline functionality, or deploying to app stores.
 
+### [**motion-director**](motion-director.md) - Motion graphics and video rendering specialist
+Creative technologist directing and rendering launch-quality 2D/3D motion films, UI walkthroughs, kinetic typography posters, and physics simulations in code with deterministic 60 FPS video export.
+
+**Use when:** Directing programmatic video, rendering Three.js/WebGL scenes, building kinetic typography, simulating deterministic physics, or exporting frame-exact MP4/WebM videos.
+
 ### [**payment-integration**](payment-integration.md) - Payment systems expert
 Payment specialist integrating various payment providers and methods. Expert in PCI compliance, payment security, and transaction handling. Makes payments seamless and secure.
 
@@ -107,6 +112,7 @@ X/Twitter API expert building reliable social data workflows. Masters tweet sear
 | HIPAA Compliance (SaaS) | **hipaa-compliance** | PHI, BAA, safeguards, breach notification |
 | IoT/Connected | **iot-engineer** | Device clouds, sensors |
 | Mobile Apps | **mobile-app-developer** | iOS/Android apps |
+| Motion Graphics / Video | **motion-director** | Programmatic 60 FPS video, Three.js, Canvas |
 | Payments | **payment-integration** | Payment gateways, PCI |
 | Quantitative | **quant-analyst** | Trading algorithms, risk |
 | Risk Management | **risk-manager** | Risk assessment, compliance |
