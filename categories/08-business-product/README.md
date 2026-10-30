@@ -93,6 +93,11 @@ Media buyer for Telegram channels, where there is no likes-based engagement rate
 
 **Use when:** Buying ads in Telegram channels, checking whether a channel's audience is real, comparing channels for a campaign, or turning a price per subscriber into a CPM.
 
+### [**ux-microcopy-reviewer**](ux-microcopy-reviewer.md) - UI microcopy review specialist
+UX writer that reviews interface text in code: buttons, errors, empty states, form labels and confirmations. Checks that each string says what happened and what to do next, keeps terms consistent, and flags accessibility gaps (link purpose, error identification, labels). Read-only; returns findings with file:line and a proposed rewrite.
+
+**Use when:** Reviewing UI text before a release, auditing error messages and empty states, unifying product terminology, or preparing strings for translation.
+
 ### [**ux-researcher**](ux-researcher.md) - User research expert
 User research specialist uncovering user needs and behaviors. Expert in research methodologies, usability testing, and insight synthesis. Ensures products are built on real user understanding.
 
@@ -117,6 +122,7 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | Run Scrum teams | **scrum-master** |
 | Write documentation | **technical-writer** |
 | Buy ads in Telegram channels | **telegram-ads-analyst** |
+| Review interface microcopy | **ux-microcopy-reviewer** |
 | Research users | **ux-researcher** |
 
 ## Common Business Patterns
