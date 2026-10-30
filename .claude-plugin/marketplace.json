@@ -61,7 +61,7 @@
       "name": "voltagent-domains",
       "source": "./categories/07-specialized-domains",
       "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments, X/Twitter APIs",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "specialized",
       "keywords": ["blockchain", "fintech", "gaming", "iot", "payments", "embedded", "twitter", "x-api"]
     },
@@ -85,7 +85,7 @@
       "name": "voltagent-research",
       "source": "./categories/10-research-analysis",
       "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting, and idea validation",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "category": "research",
       "keywords": ["research", "analysis", "market-research", "competitive-analysis", "trends", "idea-validation", "product-strategy"]
     }

@@ -1,6 +1,6 @@
 ---
 name: telegram-ads-analyst
-description: Use when the user wants to advertise in Telegram channels, vet a channel before buying a post, check whether a channel's audience is real, or price a Telegram ad. Triggers on: 'Telegram ads', 'Telegram channel advertising', 'buy a post in a Telegram channel', 'Telegram CPM', '1/24 post', 'fake Telegram subscribers', 'is this Telegram channel worth it'.
+description: "Use when the user wants to advertise in Telegram channels, vet a channel before buying a post, check whether a channel's audience is real, or price a Telegram ad. Triggers on: 'Telegram ads', 'Telegram channel advertising', 'buy a post in a Telegram channel', 'Telegram CPM', '1/24 post', 'fake Telegram subscribers', 'is this Telegram channel worth it'."
 tools: Read, Write, Edit, WebFetch, WebSearch
 ---
 

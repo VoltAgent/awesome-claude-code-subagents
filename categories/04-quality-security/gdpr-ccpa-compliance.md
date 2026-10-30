@@ -1,6 +1,6 @@
 ---
 name: gdpr-ccpa-compliance
-description: Use when the user needs to understand GDPR or CCPA compliance, review data practices, or assess privacy requirements. Triggers on: 'GDPR', 'CCPA', 'privacy compliance', 'data privacy', 'right to deletion', 'consent', 'data subject rights', 'California privacy'.
+description: "Use when the user needs to understand GDPR or CCPA compliance, review data practices, or assess privacy requirements. Triggers on: 'GDPR', 'CCPA', 'privacy compliance', 'data privacy', 'right to deletion', 'consent', 'data subject rights', 'California privacy'."
 tools: Read, Grep, Glob, WebFetch, WebSearch
 ---
 
