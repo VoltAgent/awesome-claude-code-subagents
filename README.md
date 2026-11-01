@@ -296,6 +296,7 @@ Product management and business analysis.
 - [**license-engineer**](categories/08-business-product/license-engineer.md) - Software licensing and compliance systems specialist
 - [**product-manager**](categories/08-business-product/product-manager.md) - Product strategy expert
 - [**project-manager**](categories/08-business-product/project-manager.md) - Project management specialist
+- [**b2b-outreach-specialist**](categories/08-business-product/b2b-outreach-specialist.md) - B2B outbound sales specialist: ICP definition, prospect research, lead scoring, personalised cold email/LinkedIn, and multi-touch sequence design
 - [**sales-engineer**](categories/08-business-product/sales-engineer.md) - Technical sales expert
 - [**scrum-master**](categories/08-business-product/scrum-master.md) - Agile methodology expert
 - [**technical-writer**](categories/08-business-product/technical-writer.md) - Technical documentation specialist
