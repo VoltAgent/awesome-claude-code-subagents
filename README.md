@@ -295,6 +295,7 @@ Product management and business analysis.
 - [**landing-page-copywriter**](categories/08-business-product/landing-page-copywriter.md) - Conversion copywriting specialist
 - [**legal-advisor**](categories/08-business-product/legal-advisor.md) - Legal and compliance specialist
 - [**license-engineer**](categories/08-business-product/license-engineer.md) - Software licensing and compliance systems specialist
+- [**meeting-notes-synthesizer**](categories/08-business-product/meeting-notes-synthesizer.md) - Meeting transcript, decision log, and action-item specialist
 - [**product-manager**](categories/08-business-product/product-manager.md) - Product strategy expert
 - [**project-manager**](categories/08-business-product/project-manager.md) - Project management specialist
 - [**sales-engineer**](categories/08-business-product/sales-engineer.md) - Technical sales expert

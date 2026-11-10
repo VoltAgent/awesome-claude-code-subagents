@@ -15,7 +15,16 @@
       "description": "Essential development subagents for everyday coding tasks - backend, frontend, fullstack, mobile, and API design",
       "version": "1.0.4",
       "category": "development",
-      "keywords": ["backend", "frontend", "fullstack", "mobile", "api", "microservices", "auth", "webhooks"]
+      "keywords": [
+        "backend",
+        "frontend",
+        "fullstack",
+        "mobile",
+        "api",
+        "microservices",
+        "auth",
+        "webhooks"
+      ]
     },
     {
       "name": "voltagent-lang",
@@ -23,7 +32,19 @@
       "description": "Language-specific expert agents with deep framework knowledge - Python, TypeScript, Go, Rust, Java, and more",
       "version": "1.0.4",
       "category": "development",
-      "keywords": ["python", "typescript", "golang", "rust", "java", "react", "vue", "angular", "expo", "react-native", "node"]
+      "keywords": [
+        "python",
+        "typescript",
+        "golang",
+        "rust",
+        "java",
+        "react",
+        "vue",
+        "angular",
+        "expo",
+        "react-native",
+        "node"
+      ]
     },
     {
       "name": "voltagent-infra",
@@ -31,7 +52,17 @@
       "description": "DevOps, cloud, and deployment specialists - Kubernetes, Terraform, AWS, Azure, GCP, and SRE",
       "version": "1.0.1",
       "category": "infrastructure",
-      "keywords": ["devops", "docker", "kubernetes", "terraform", "aws", "azure", "gcp", "sre", "cloud"]
+      "keywords": [
+        "devops",
+        "docker",
+        "kubernetes",
+        "terraform",
+        "aws",
+        "azure",
+        "gcp",
+        "sre",
+        "cloud"
+      ]
     },
     {
       "name": "voltagent-qa-sec",
@@ -39,7 +70,16 @@
       "description": "Testing, security, and code quality experts - code review, penetration testing, QA automation",
       "version": "1.1.3",
       "category": "quality",
-      "keywords": ["testing", "security", "code-review", "qa", "penetration-testing", "compliance", "ui-testing", "ux-testing"]
+      "keywords": [
+        "testing",
+        "security",
+        "code-review",
+        "qa",
+        "penetration-testing",
+        "compliance",
+        "ui-testing",
+        "ux-testing"
+      ]
     },
     {
       "name": "voltagent-data-ai",
@@ -47,7 +87,14 @@
       "description": "Data engineering, ML, and AI specialists - data pipelines, machine learning, LLM architecture",
       "version": "1.0.2",
       "category": "data",
-      "keywords": ["data-engineering", "machine-learning", "ai", "llm", "mlops", "nlp"]
+      "keywords": [
+        "data-engineering",
+        "machine-learning",
+        "ai",
+        "llm",
+        "mlops",
+        "nlp"
+      ]
     },
     {
       "name": "voltagent-dev-exp",
@@ -55,7 +102,15 @@
       "description": "Tooling and developer productivity experts - CLI tools, documentation, README generation, and DX optimization",
       "version": "1.0.3",
       "category": "tooling",
-      "keywords": ["developer-experience", "cli", "documentation", "readme", "tooling", "build", "dx"]
+      "keywords": [
+        "developer-experience",
+        "cli",
+        "documentation",
+        "readme",
+        "tooling",
+        "build",
+        "dx"
+      ]
     },
     {
       "name": "voltagent-domains",
@@ -63,15 +118,32 @@
       "description": "Domain-specific technology experts - blockchain, fintech, gaming, IoT, payments, X/Twitter APIs",
       "version": "1.0.5",
       "category": "specialized",
-      "keywords": ["blockchain", "fintech", "gaming", "iot", "payments", "embedded", "twitter", "x-api"]
+      "keywords": [
+        "blockchain",
+        "fintech",
+        "gaming",
+        "iot",
+        "payments",
+        "embedded",
+        "twitter",
+        "x-api"
+      ]
     },
     {
       "name": "voltagent-biz",
       "source": "./categories/08-business-product",
       "description": "Product, legal, and business specialists - product strategy, licensing, project management, UX research",
-      "version": "1.0.6",
+      "version": "1.0.7",
       "category": "business",
-      "keywords": ["product-management", "business-analysis", "legal", "licensing", "ux", "scrum", "project-management"]
+      "keywords": [
+        "product-management",
+        "business-analysis",
+        "legal",
+        "licensing",
+        "ux",
+        "scrum",
+        "project-management"
+      ]
     },
     {
       "name": "voltagent-meta",
@@ -79,7 +151,15 @@
       "description": "Agent coordination and meta-programming - multi-agent orchestration, workflow automation, and safe refactor governance. Works best with other voltagent plugins installed.",
       "version": "1.0.5",
       "category": "orchestration",
-      "keywords": ["multi-agent", "orchestration", "workflow", "coordination", "meta", "refactor", "codebase-governance"]
+      "keywords": [
+        "multi-agent",
+        "orchestration",
+        "workflow",
+        "coordination",
+        "meta",
+        "refactor",
+        "codebase-governance"
+      ]
     },
     {
       "name": "voltagent-research",
@@ -87,7 +167,15 @@
       "description": "Research, search, and analysis specialists - market research, competitive analysis, trend forecasting, and idea validation",
       "version": "1.0.5",
       "category": "research",
-      "keywords": ["research", "analysis", "market-research", "competitive-analysis", "trends", "idea-validation", "product-strategy"]
+      "keywords": [
+        "research",
+        "analysis",
+        "market-research",
+        "competitive-analysis",
+        "trends",
+        "idea-validation",
+        "product-strategy"
+      ]
     }
   ]
 }
