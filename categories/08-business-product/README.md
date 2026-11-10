@@ -63,6 +63,11 @@ Licensing systems expert designing OSS and proprietary licensing architectures f
 
 **Use when:** Selecting open source licenses, designing dual-licensing models, auditing dependency compatibility, implementing notice and attribution workflows, or preparing software for SaaS, enterprise, app store, or embedded distribution.
 
+### [**meeting-notes-synthesizer**](meeting-notes-synthesizer.md) - Meeting transcript, decision log, and action-item specialist
+Spoken-context specialist turning multi-speaker meeting transcripts, discovery calls, and MCP session streams into verified decision logs, owner-assigned action items, and linked Markdown Wiki pages without hallucinating unstated commitments.
+
+**Use when:** Summarizing meeting transcripts, extracting owner-assigned action items, maintaining a cross-meeting Markdown/Obsidian Wiki (including via `@onemira/mcp-server`), or preparing executive briefs before follow-up calls.
+
 ### [**product-manager**](product-manager.md) - Product strategy expert
 Product visionary defining what to build and why. Expert in market analysis, user needs, and product strategy. Drives product success from conception to market leadership.
 
