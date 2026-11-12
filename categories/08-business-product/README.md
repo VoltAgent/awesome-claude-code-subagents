@@ -22,6 +22,11 @@ Product validation expert surfacing and prioritizing risky assumptions in produc
 
 **Use when:** Starting a new product or feature, de-risking ideas before sprint commitment, identifying which assumptions to validate first, or building a lightweight experiment plan.
 
+### [**b2b-outbound-strategist**](b2b-outbound-strategist.md) - B2B GTM & outbound enrichment specialist
+GTM engineer designing deterministic B2B lead enrichment waterfalls, buying-signal qualification matrices, Clay.com HTTP API / n8n pipelines, DNS MX/SPF/DMARC deliverability checks, and concise signal-triggered cold email sequences.
+
+**Use when:** Building B2B prospect lists, designing Clay or n8n enrichment waterfalls, auditing outbound email deliverability, qualifying ICP accounts by tech/ad/hiring signals, or writing non-generic outbound sequences.
+
 ### [**backlog-grooming**](backlog-grooming.md) - Backlog refinement specialist
 Agile backlog expert keeping product backlogs healthy — well-estimated, well-defined, prioritized, and sprint-ready. Runs grooming sessions, enforces story readiness, and eliminates zombie tickets.
 
@@ -108,7 +113,8 @@ User research specialist uncovering user needs and behaviors. Expert in research
 | If you need to... | Use this subagent |
 |-------------------|-------------------|
 | Map risky assumptions | **assumption-mapping** |
-| Groom / refine backlog | **backlog-grooming** |
+| Groom / refine backlog | **b2b-outbound-strategist** | Lead enrichment waterfalls, Clay/n8n pipelines & outbound | ICP signal qualification, MX checks, cold sequences |
+| **backlog-grooming** |
 | Define requirements | **business-analyst** |
 | Create content | **content-marketer** |
 | Retain customers | **customer-success-manager** |
