@@ -1,6 +1,6 @@
 {
   "name": "voltagent-biz",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Product, legal, and business specialists - product strategy, licensing, project management, UX research",
   "author": {
     "name": "VoltAgent Community",
@@ -10,6 +10,7 @@
   "license": "MIT",
   "agents": [
     "./assumption-mapping.md",
+    "./b2b-outbound-strategist.md",
     "./backlog-grooming.md",
     "./business-analyst.md",
     "./content-marketer.md",

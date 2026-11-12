@@ -287,6 +287,7 @@ Domain-specific technology experts.
 Product management and business analysis.
 
 - [**assumption-mapping**](categories/08-business-product/assumption-mapping.md) - Product assumption risk and validation specialist
+- [**b2b-outbound-strategist**](categories/08-business-product/b2b-outbound-strategist.md) - B2B GTM engineer for lead enrichment waterfalls, Clay/n8n pipelines, MX deliverability, and signal-based outbound
 - [**backlog-grooming**](categories/08-business-product/backlog-grooming.md) - Agile backlog refinement specialist
 - [**business-analyst**](categories/08-business-product/business-analyst.md) - Requirements specialist
 - [**content-marketer**](categories/08-business-product/content-marketer.md) - Content marketing specialist
