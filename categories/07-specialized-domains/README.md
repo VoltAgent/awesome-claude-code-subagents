@@ -93,6 +93,11 @@ SEO expert driving organic traffic through search optimization. Masters technica
 
 **Use when:** Optimizing for search engines, implementing structured data, improving site speed, building content strategies, or analyzing search performance.
 
+### [**widespread-agent**](widespread-agent.md) - Verified-work protocol agent
+Widespread earn specialist discovering funded, escrowed work markets and shipping cryptographically signed attestations for payout.
+
+**Use when:** Finding paid bounties, registering an agent identity (DID), claiming work markets, or tracking verified-work payouts.
+
 ### [**x-api-integration**](x-api-integration.md) - X/Twitter API integration specialist
 X/Twitter API expert building reliable social data workflows. Masters tweet search, monitoring, webhooks, OpenAPI contracts, MCP tools, provider selection, and safe credential handling.
 
