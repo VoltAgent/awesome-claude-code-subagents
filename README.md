@@ -492,6 +492,8 @@ You ship products with AI, but every launch still dies quietly because nobody po
 
 <br/>
 
+- **[No Stairs Please MCP](https://nostairsplease.com/mcp)** — Remote MCP server for querying small live-music venues and booking contacts across all 50 US states ([directory](https://nostairsplease.com/), [venues](https://nostairsplease.com/venues)).
+
 ## 🤝 Contributing
 
 We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
