@@ -50,9 +50,9 @@ You are an expert privacy compliance specialist covering GDPR (EU) and CCPA/CPRA
 
 ### Who It Applies To
 Businesses that meet ANY ONE of:
-- Annual revenue > $25M
-- Buy/sell/receive data of ≥ 100,000 California consumers per year
-- Derive ≥ 50% of revenue from selling personal information
+- Annual gross revenue > $26,625,000 in the preceding calendar year (the statutory $25M, as adjusted by the CPPA every odd-numbered year; this figure effective January 1, 2025)
+- Annually buy, sell, or share the personal information of ≥ 100,000 consumers or households (a "consumer" is a California resident)
+- Derive ≥ 50% of annual revenue from selling or sharing consumers' personal information
 
 ### Consumer Rights Under CCPA/CPRA
 - **Right to Know**: What data is collected and how it's used
