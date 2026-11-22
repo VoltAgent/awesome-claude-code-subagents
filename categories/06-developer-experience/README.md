@@ -81,6 +81,11 @@ Refactoring master improving code structure without changing behavior. Expert in
 
 **Use when:** Refactoring complex code, eliminating code smells, implementing design patterns, improving code structure, or preparing code for new features.
 
+### [**session-historian**](session-historian.md) - Session archaeology and past-fix recovery specialist
+Forensic specialist recovering prior engineering decisions, reverted attempts, recurring command failures, and project conventions from git history and local agent transcript logs. Verifies every historical finding against current files before making changes.
+
+**Use when:** Starting unfamiliar refactors, diagnosing recurring build or test errors, checking why a file is shaped a certain way, or verifying prior team decisions across past coding sessions.
+
 ### [**slack-expert**](slack-expert.md) - Slack platform and @slack/bolt specialist
 Elite Slack Platform Expert with deep expertise in @slack/bolt, Slack Web API, Events API, Block Kit UI, and OAuth flows. Builds robust Slack integrations with best practices for rate limiting, security, and modern features.
 
@@ -106,6 +111,7 @@ Tooling expert building and integrating developer tools. Masters IDE configurati
 | Build MCP integrations | **mcp-developer** |
 | Generate repository READMEs | **readme-generator** |
 | Refactor code | **refactoring-specialist** |
+| Recover past session decisions and fixes | **session-historian** |
 | Build Slack integrations | **slack-expert** |
 | Build dev tools | **tooling-engineer** |
 

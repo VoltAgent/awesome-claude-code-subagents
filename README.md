@@ -254,6 +254,7 @@ Tooling and developer productivity experts.
 - [**powershell-module-architect**](categories/06-developer-experience/powershell-module-architect.md) - PowerShell module and profile architecture specialist
 - [**readme-generator**](categories/06-developer-experience/readme-generator.md) - Repository README generation specialist
 - [**refactoring-specialist**](categories/06-developer-experience/refactoring-specialist.md) - Code refactoring expert
+- [**session-historian**](categories/06-developer-experience/session-historian.md) - Forensic session and git history specialist
 - [**slack-expert**](categories/06-developer-experience/slack-expert.md) - Slack platform and @slack/bolt specialist
 - [**tooling-engineer**](categories/06-developer-experience/tooling-engineer.md) - Developer tooling specialist
 - [**visual-asset-generator**](categories/06-developer-experience/visual-asset-generator.md) - Visual asset generation specialist using prompt-to-asset MCP across 30+ image models
