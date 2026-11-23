@@ -206,6 +206,7 @@ Testing, security, and code quality experts.
 - [**compliance-auditor**](categories/04-quality-security/compliance-auditor.md) - Regulatory compliance expert
 - [**debugger**](categories/04-quality-security/debugger.md) - Advanced debugging specialist
 - [**gdpr-ccpa-compliance**](categories/04-quality-security/gdpr-ccpa-compliance.md) - GDPR and CCPA privacy compliance specialist
+- [**launch-readiness-auditor**](categories/04-quality-security/launch-readiness-auditor.md) - Pre-launch web security headers, client-side bundle secret leak, SPF/DKIM/DMARC DNS, and AI crawler readiness auditor
 - [**error-detective**](categories/04-quality-security/error-detective.md) - Error analysis and resolution expert
 - [**penetration-tester**](categories/04-quality-security/penetration-tester.md) - Ethical hacking specialist
 - [**performance-engineer**](categories/04-quality-security/performance-engineer.md) - Performance optimization expert
