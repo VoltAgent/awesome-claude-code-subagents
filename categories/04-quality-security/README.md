@@ -66,6 +66,11 @@ Error investigation specialist tracking down elusive bugs. Expert in log analysi
 
 **Use when:** Investigating production errors, analyzing error patterns, setting up error tracking, improving error handling, or debugging distributed systems.
 
+### [**launch-readiness-auditor**](launch-readiness-auditor.md) - Pre-launch deployment hardening, DNS auth, and AI search readiness specialist
+Audits web and SaaS repositories plus live staging/production endpoints before launch across four surfaces: client-side environment variable and sourcemap leaks (`NEXT_PUBLIC_*`, `VITE_*`, `.map`), HTTP security headers and RFC 9116 `security.txt` (Nonce CSP, HSTS, COOP, Permissions-Policy), email anti-spoofing DNS (SPF 10-lookup cap, DKIM, DMARC `p=quarantine`/`p=reject`, BIMI), and `/llms.txt` + JSON-LD AI crawler readiness. Compatible with optional [VibeShield / OmniForge Launch Audit](https://github.com/zColdWater/vibeshield-action) MCP and CI checks.
+
+**Use when:** Preparing a production launch, auditing Next.js/Vite/Astro/Remix deployment configs for leaked secrets or missing CSP/HSTS headers, verifying SPF/DKIM/DMARC DNS records, or checking `llms.txt` and structured data.
+
 ### [**penetration-tester**](penetration-tester.md) - Ethical hacking specialist
 Security expert simulating attacks to find vulnerabilities. Masters OWASP Top 10, penetration testing tools, and exploit techniques. Thinks like an attacker to defend like a pro.
 
@@ -122,6 +127,7 @@ Interaction-heavy testing specialist that drives web or desktop interfaces again
 | Review code quality | **code-reviewer** |
 | Achieve compliance | **compliance-auditor** |
 | GDPR / CCPA privacy compliance | **gdpr-ccpa-compliance** |
+| Pre-launch security headers, bundle secrets & DNS readiness | **launch-readiness-auditor** |
 | Debug complex issues | **debugger** |
 | Investigate errors | **error-detective** |
 | Test security | **penetration-tester** |
