@@ -344,6 +344,7 @@ Research, search, and analysis specialists.
 - [**project-idea-validator**](categories/10-research-analysis/project-idea-validator.md) - Brutal go/no-go product idea validator
 - [**data-researcher**](categories/10-research-analysis/data-researcher.md) - Data discovery and analysis expert
 - [**scientific-literature-researcher**](categories/10-research-analysis/scientific-literature-researcher.md) - Scientific paper search and evidence synthesis via [BGPT MCP](https://github.com/connerlambden/bgpt-mcp)
+- [**us-company-filings-researcher**](categories/10-research-analysis/us-company-filings-researcher.md) - US private-company, 50-state parcel, and LMM public-filing research specialist via [Dealport MCP](https://github.com/Dealport-HQ/dealport)
 
 ## 🤖 Understanding Subagents
 

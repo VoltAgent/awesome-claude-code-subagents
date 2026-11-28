@@ -71,6 +71,11 @@ Scientific literature specialist using [BGPT MCP](https://github.com/connerlambd
 
 **Use when:** Searching scientific literature, conducting systematic reviews, synthesizing experimental evidence, fact-checking claims against published data, or building evidence-grounded research reports.
 
+### [**us-company-filings-researcher**](us-company-filings-researcher.md) - US private-company, parcel & public-filing research
+Private-market and public-filings specialist using [Dealport MCP](https://github.com/Dealport-HQ/dealport) (`47` tools across 28M+ US private companies, 160M+ 50-state property parcels, and primary LMM filings) to size industry segments for `$0.00`, inspect cited `Record`s, verify county property deeds, and unmask holding LLCs to human principals.
+
+**Use when:** Sizing US SMB or industrial markets by state and NAICS code, investigating federal/state contracts, permits, or manifests, verifying commercial property deeds, or resolving human principals behind holding LLCs with primary public-filing citations.
+
 ## Quick Selection Guide
 
 | If you need to... | Use this subagent |
@@ -86,6 +91,7 @@ Scientific literature specialist using [BGPT MCP](https://github.com/connerlambd
 | Pressure-test product ideas | **project-idea-validator** |
 | Analyze data patterns | **data-researcher** |
 | Search scientific papers | **scientific-literature-researcher** |
+| Size US private markets, parcels & public filings | **us-company-filings-researcher** |
 
 ## Common Research Patterns
 
